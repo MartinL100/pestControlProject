@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>药剂/器械一览</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../lib/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../lib/layuiadmin/style/admin.css" media="all">
+    <script src="../../lib/jquery.js"></script>
+</head>
+
+
+<body>
+
+
+
+<div class="layui-fluid" id="LAY-component-layer-list">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+
+                <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                    <!-- 表单开始 -->
+                    <form action="addInformation.lovo" method="post" id="addInformationFromId">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input type="hidden" value="${currentPage}" name="currentPage">
+                                <input type="hidden" value="${checkType}" id="checkTypeId">
+                            </div>
+
+
+
+                            <!-- 物品信息表开始-->
+                            <div class="layui-card-body">
+                                <table class="layui-table">
+                                    <colgroup>
+                                        <col width="150">
+                                        <col width="150">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>防治类型</th>
+                                        <th>类别</th>
+                                        <th>主要用途</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- 遍历传入的出入库信息集合  -->
+                                    <c:forEach items="${articleList}" var="article">
+                                        <tr>
+                                            <!-- 物品名称 -->
+                                            <td>${article.articleName}</td>
+                                            <!-- 防治品类型 -->
+                                            <td>${article.curetype}</td>
+                                            <!-- 物品类型 -->
+                                            <td>${article.type}</td>
+                                            <!--  物品主要用途-->
+                                            <td>${article.purpose}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- 物品表格数据结束 -->
+
+
+
+                            <!-- 防治类型下拉框结束 -->
+                        </div>
+                    </form>
+                    <!-- 表单结束 -->
+
+                    <!-- 按钮开始 -->
+                    <div class="layui-card-body">
+                        <div class="layui-btn-container" style="margin-top: 40px">
+                            <button id="addBtn" class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:80px;top: 40px">添加药剂</button>
+                        </div>
+                    </div>
+                    <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -80px">
+                        <span style=" position:absolute;top:0px;left:30px">药剂名称</span>
+                        <span style=" position:absolute;top:60px;left:30px">防治类型</span>
+                        <span style=" position:absolute;top:120px;left:30px">类别</span>
+                        <input type="text" style=" position:absolute;top:11px;left:105px"/>
+                        <select type="text" id="cureType" name="cureType" style="display: block; position:absolute;top:70px;left:105px;width: 58%;height: 22px">
+                            <option>鼠害</option>
+                            <option>虫害</option>
+                            <option>病害</option>
+                        </select>
+                        <select type="text" id="articleType" name="articleType" style="display: block; position:absolute;top:128px;left:105px;width: 58%;height: 22px">
+                            <option>药剂</option>
+                            <option>器械</option>
+                        </select>
+                        <!--<input type="date" style=" position:absolute;top:85px;left:140px"/>-->
+                        <!--<input type="text" style=" width: 140px;height:20px;position:absolute;top:140px;left:140px"/>-->
+                        <button id="findBtn" class="layui-btn layui-btn-primary layui-btn-sm" style=" position:absolute;top:170px;left:200px">查询</button>
+                    </div>
+                </div>
+                <!-- 按钮结束 -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+</div>
+</div>
+
+<script src="../../lib/layuiadmin/layui/layui.js"></script>
+<script>
+    $("#getBtn").click(function () {
+        //
+        alert(123)
+    });
+</script>
+
+
+</body>
+</html>
