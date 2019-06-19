@@ -1,0 +1,30 @@
+1、所有类型用int表示，从1开始
+2、公用工具类写在父项目com.AAAAAA.pestcontrolproject.util包里;
+3、所有常量放在父项目com.AAAAAA.pestcontrolproject.util.StaticStringInfo类里
+4、所有页面使用layui框架
+
+
+
+人员分工：
+虫害、病害、鼠害管理-------->曾贤富
+
+
+区域一览、小班管理---------->刘俊麟
+
+
+事件记录---------------------->舒俊益
+
+
+专家一览、会商灾情------------->龚亮
+
+
+药剂器械管理、出库管理---------->古成全
+
+
+用户管理、日志一览--------------->刘聪
+
+t_user:用户表
+  user_id(用户id)   user_name(用户名)  real_name(真实姓名)     power_id(权限id，连接等级表外键)
+
+  t_power:用户等级表
+  power_id(权限id)  power_name（权限名称） power_servlet（权限servlet  json字符串）power_descrip（权限状态栏展示json字符串）
