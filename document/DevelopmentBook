@@ -17,6 +17,24 @@
 
 专家一览、会商灾情------------->龚亮
 
+t_specialist :专家表
+   specialist_id (专家ID)            specialist_name (专家姓名)
+   specialist_birth(专家出生年月)    specialist_speciality( 专家专长)
+   specialist_phone ( 专家电话)      specialist_site ( 专家通讯地址)
+   specialist_sex (专家性别)         specialist_photo(专家照片)
+   specialist_duty (专家职务)        specialist_units(专家工作单位)
+   specialist_email(专家邮箱)
+注：
+   专家性别：1为男、2为女
+
+
+ t_conference:会商日志表
+   conference_id (会商日志ID)         conference_date(会商时间)
+   conference_staff(会商人员)         conference_result(会商结果)
+注：
+    会商时间为：处理当前事件的时间
+    会商人员为：多选框专家的拼接字符串
+
 
 药剂器械管理、出库管理---------->古成全
 
