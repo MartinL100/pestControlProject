@@ -1,0 +1,54 @@
+网页命名规范
+登录页面 Login
+添加班级classAdd
+
+一、资料管理                  对应网页包doucument
+1.虫害一览wormPanel
+添加虫害wormAdd
+虫害详情wormInfo
+2.病害一览diseasePanel
+添加病害diseaseAdd
+病害详情diseaseInfo
+3.鼠害一览 mousePanel
+鼠害添加 mouseAdd
+鼠害详情mouseInfo
+
+
+二、灾情防治                 对应网页包disaster
+(1)区域预览areaPanel
+添加区域 areaAdd
+(2)小班管理 classPanel
+添加小班classAdd
+查看小班classShow
+修改小班信息classUpdate
+(3)事件记录 thingPanel
+添加信息事件 thingAdd
+查看事件信息thingInfo
+修改事件信息thingUpdate
+
+
+三、专家会商 proficientPanel   对应网页包proficient
+1.专家一览 proficientPanel
+添加专家 proficientAdd
+查看专家 proficientShow
+修改专家信息 proficientUpdate
+2.会商灾情 conferPanel
+专家会商添加信息 conferPaneAdd
+
+
+四、药剂器械出库管理                  对应网页包drug
+1.药剂器械一览drugPanel
+添加药剂 drugAdd
+出库管理
+2.药剂器械出库管理outwarehousePanel
+添加出库信息outwarehouseAdd
+添加物品outwarehouseAddObj
+查看出库信息 outwarehouseUpdate
+
+
+五、系统管理                 对应网页包user
+1.用户管理userPanel
+用户管理userAdd
+用户更改userUpdate
+
+2.日志一览logs                 对应网页包logs
