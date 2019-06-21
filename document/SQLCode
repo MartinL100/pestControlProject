@@ -223,6 +223,68 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
 
 
 
+================================================================================================================
+模块负责人   曾贤富
+
+DROP TABLE IF EXISTS `t_pestis`;   虫害表
+CREATE TABLE `t_pestis` (
+ `pestis_id` INT NOT NULL AUTO_INCREMENT COMMENT '虫害ID',
+ `pestis_name` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害名',
+ `pestis_breed` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害繁殖',
+ `pestis_host` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害寄主',
+ `pestis_enemy` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害天敌',
+ `pestis_harm` VARCHAR(64) NULL DEFAULT NULL COMMENT '主要危害',
+ `pestis_defense` VARCHAR(64) NULL DEFAULT NULL COMMENT '防御措施',
+ `pestis_photo` VARCHAR(128) NULL DEFAULT NULL COMMENT '幼虫图片',
+ `pestis_adultImages` VARCHAR(128) NULL DEFAULT NULL COMMENT '成虫图片',
+ PRIMARY KEY (`pestis_id`)
+);
+SELECT * FROM t_pestis
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_disease  病害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_disease`;
+CREATE TABLE `t_disease` (
+ `disease_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '病害id',
+ `disease_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害名称',
+ `disease_ source` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害病源',
+ `disease_symptom` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病症状',
+ `disease_law` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病规律',
+ `disease_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ `disease_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '图片',
+ `disease_measure` VARCHAR(48) NULL DEFAULT NULL COMMENT '防治措施',
+ PRIMARY KEY (`disease_id`)
+);
+SELECT * FROM t_disease
+
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_mouse  鼠害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mouse`;
+CREATE TABLE `t_mouse` (
+ `mouse_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '鼠害id',
+ `mouse_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害名称',
+ `mouse_ breed` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害繁殖',
+ `mouse_food` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害食物',
+ `mouse_natural` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害天敌',
+ `mouse_prevent` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害防治措施',
+ `mouse_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '鼠害图片',
+ `mouse_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ PRIMARY KEY (`mouse_id`)
+);
+
+SELECT * FROM t_mouse
+
 
 
 
