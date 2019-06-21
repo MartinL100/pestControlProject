@@ -4,67 +4,289 @@
 
 模块所属人：古成全
 
-/*==============================================================*/
-/* DBMS name:      Sybase SQL Anywhere 11                       */
-/* Created on:     2019/6/19 20:26:56                           */
-/*==============================================================*/
-if exists(
-   select 1 from sys.systable
-   where table_name='t_article'
-     and table_type in ('BASE', 'GBL TEMP')
-) then
-    drop table t_article
-end if;
 
-if exists(
-   select 1 from sys.systable
-   where table_name='t_outbank'
-     and table_type in ('BASE', 'GBL TEMP')
-) then
-    drop table t_outbank
-end if;
+drop table  drug_stockpile;
+drop table sys_drug;
+drop table sys_stockpile;
 
 /*==============================================================*/
-/* Table: t_article          物品表                                */
+/* Table: sys_drug   药剂表                                           */
 /*==============================================================*/
-create table t_article
+create table sys_drug
 (
-   article_id           bigint                         not null, --   article_id(物品id)
-   article_name         varchar(32)                    null,     --   article_name(物品名称)
-   article_curetype     varchar(32)                    null,     --   article_curetype(物品防治类型)
-   article_type         varchar(32)                    null,     --   article_type(物品类型)
-   article_purpose      varchar(128)                   null,     --   article_purpose(物品用途)
-   article_bankcount    bigint                         null,     --   article_bankCount(库存)
-   constraint PK_T_ARTICLE primary key clustered (article_id)
+   drug_id              int not null auto_increment,
+   drug_name            varchar(32),
+   drug_cure_type       bigint,
+   drug_type            bigint,
+   drug_use_way         text,
+   drug_num             int,
+   primary key (drug_id)
 );
 
 
 
 /*==============================================================*/
-/* Table: t_outbank        出入库信息管理表                                     */
+/* Table: drug_stockpile   出库器材中间表                                   */
 /*==============================================================*/
-create table t_outbank
+create table drug_stockpile
 (
-   outbank_id           bigint                         not null,     --  outbank_id(出库信息Id)
-   class_name           varchar(32)                    null,         --  class_name(领用小班)
-   article_name         varchar(32)                    null,         --  article_name(物品名称)
-   article_type         varchar(32)                    null,         --  article_type(物品类型)
-   article_curetype     varchar(32)                    null,         --  article_curetype(防治类型)
-   outbank_time         date                           null,         --  outbank_time(领用时间)
-   outbank_count        bigint                         null,         --  outbank_count(领用数量)
-   real_name            varchar(32)                    null,         --  real_name(出库人)
-   constraint PK_T_OUTBANK primary key clustered (outbank_id)
+   drug_id              int,
+   stockpile_id         int,
+   stockpile_num        int
 );
 
+alter table drug_stockpile add constraint FK_Reference_12 foreign key (drug_id)
+      references sys_drug (drug_id) on delete restrict on update restrict;
+
+alter table drug_stockpile add constraint FK_Reference_13 foreign key (stockpile_id)
+      references sys_stockpile (stockpile_id) on delete restrict on update restrict;
 
 
 
+
+/*==============================================================*/
+/* Table: sys_stockpile   出库信息表                                      */
+/*==============================================================*/
+create table sys_stockpile
+(
+   stockpile_id         int not null auto_increment,
+   stockpile_class      bigint,
+   stockpile_man        bigint,
+   stockpile_date       varchar(48),
+   stockpile_num        int,
+   primary key (stockpile_id)
+);
 
 
 
 
 
 =====================================================================================================
+模块所属人：龚亮
+
+/*==============================================================*/
+/* Table: t_specialist                                          */
+/*==============================================================*/
+alter table t_specialist comment '专家表';
+create table t_specialist
+(
+   specialist_id        bigint not null auto_increment comment '专家ID',
+   specialist_name      varchar(32) comment '专家姓名',
+   specialist_sex       varchar(32) comment '专家性别',
+   specialist_birthday  varchar(48) comment '专家生日',
+   specialist_path      varchar(64) comment '专家头像',
+   specialist_speciality varchar(64) comment '专家专长',
+   specialist_duty      varchar(64) comment '专家职务',
+   specialist_tel       varchar(64) comment '专家电话',
+   specialist_units     varchar(64) comment '专家工作单位',
+   specialist_site      varchar(64) comment '专家住址',
+   specialist_email     varchar(64) comment '专家邮箱',
+   primary key (specialist_id)
+);
+
+
+
+/*==============================================================*/
+/* Table: result_specialist                                     */
+/*==============================================================*/
+
+alter table result_specialist comment '会商结果和专家中间表';
+create table result_specialist
+(
+   result_id            bigint comment '结果ID',
+   specialist_id        bigint comment '专家ID'
+);
+alter table result_specialist add constraint FK_Reference_10 foreign key (result_id)
+      references conference_result (result_id) on delete restrict on update restrict;
+
+alter table result_specialist add constraint FK_Reference_11 foreign key (specialist_id)
+      references t_specialist (specialist_id) on delete restrict on update restrict;
+
+
+
+
+/*==============================================================*/
+/* Table: conference_result                                     */
+/*==============================================================*/
+alter table conference_result comment '专家会商结果表';
+create table conference_result
+(
+   result_id            bigint not null comment '结果ID',
+   conference_id        bigint comment '专家会商ID',
+   conference_date      varchar(48) comment '专家会审日期',
+   conference_result    test comment '专家会商结果',
+   primary key (result_id)
+);
+alter table conference_result add constraint FK_Reference_9 foreign key (conference_id)
+      references t_conference (conference_id) on delete restrict on update restrict;
+
+
+drop table if exists t_conference;
+
+/*==============================================================*/
+/* Table: t_conference                                          */
+/*==============================================================*/
+alter table t_conference comment '专家会商表';
+create table t_conference
+(
+   conference_id        bigint not null auto_increment comment '专家会商ID',
+   event_id             bigint comment '事件ID',
+   primary key (conference_id)
+);
+alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
+      references sys_event (event_id) on delete restrict on update restrict;
+
+
+
+
+      =========================================
+
+      模块所属人：刘聪
+      ==========================================
+
+
+      /*==============================================================*/
+      /* DBMS name:      MySQL 5.0                                    */
+      /* Created on:     2019/6/21 16:17:56                           */
+      /*==============================================================*/
+
+
+      drop table if exists t_log;
+
+      drop table if exists t_power;
+
+      drop table if exists t_role;
+
+      drop table if exists t_user;
+
+      /*==============================================================*/
+      /* Table: t_log                                                 */
+      /*==============================================================*/
+      create table t_log
+      (
+         log_id               bigint not null,
+         log_descrip          text,
+         log_date             varchar(0),
+         primary key (log_id)
+      );
+
+      alter table t_log comment '日志表';
+
+      /*==============================================================*/
+      /* Table: t_power                                               */
+      /*==============================================================*/
+      create table t_power
+      (
+         power_id             bigint not null,
+         role_id              bigint,
+         power_name           varchar(32),
+         power_resource       varchar(32),
+         power_tag            int,
+         primary key (power_id)
+      );
+
+      /*==============================================================*/
+      /* Table: t_role                                                */
+      /*==============================================================*/
+      create table t_role
+      (
+         role_id              bigint not null,
+         role_name            bigint,
+         primary key (role_id)
+      );
+
+      alter table t_role comment '角色表';
+
+      /*==============================================================*/
+      /* Table: t_user                                                */
+      /*==============================================================*/
+      create table t_user
+      (
+         user_id              bigint not null auto_increment,
+         role_id              bigint,
+         user_name            varchar(32),
+         real_name            varchar(32),
+         user_password        varchar(0),
+         primary key (user_id)
+      );
+
+      alter table t_user comment '用户表';
+
+      alter table t_power add constraint FK_Reference_2 foreign key (role_id)
+            references t_role (role_id) on delete restrict on update restrict;
+
+      alter table t_user add constraint FK_Reference_1 foreign key (role_id)
+            references t_role (role_id) on delete restrict on update restrict;
+
+
+
+
+
+
+================================================================================================================
+模块负责人   曾贤富
+
+DROP TABLE IF EXISTS `t_pestis`;   虫害表
+CREATE TABLE `t_pestis` (
+ `pestis_id` INT NOT NULL AUTO_INCREMENT COMMENT '虫害ID',
+ `pestis_name` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害名',
+ `pestis_breed` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害繁殖',
+ `pestis_host` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害寄主',
+ `pestis_enemy` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害天敌',
+ `pestis_harm` VARCHAR(64) NULL DEFAULT NULL COMMENT '主要危害',
+ `pestis_defense` VARCHAR(64) NULL DEFAULT NULL COMMENT '防御措施',
+ `pestis_photo` VARCHAR(128) NULL DEFAULT NULL COMMENT '幼虫图片',
+ `pestis_adultImages` VARCHAR(128) NULL DEFAULT NULL COMMENT '成虫图片',
+ PRIMARY KEY (`pestis_id`)
+);
+SELECT * FROM t_pestis
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_disease  病害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_disease`;
+CREATE TABLE `t_disease` (
+ `disease_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '病害id',
+ `disease_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害名称',
+ `disease_ source` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害病源',
+ `disease_symptom` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病症状',
+ `disease_law` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病规律',
+ `disease_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ `disease_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '图片',
+ `disease_measure` VARCHAR(48) NULL DEFAULT NULL COMMENT '防治措施',
+ PRIMARY KEY (`disease_id`)
+);
+SELECT * FROM t_disease
+
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_mouse  鼠害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mouse`;
+CREATE TABLE `t_mouse` (
+ `mouse_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '鼠害id',
+ `mouse_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害名称',
+ `mouse_ breed` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害繁殖',
+ `mouse_food` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害食物',
+ `mouse_natural` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害天敌',
+ `mouse_prevent` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害防治措施',
+ `mouse_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '鼠害图片',
+ `mouse_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ PRIMARY KEY (`mouse_id`)
+);
+
+SELECT * FROM t_mouse
+
+
+
 
 模块所属人：刘俊麟
 

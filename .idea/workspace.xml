@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="57588897-f3fc-4d5b-b620-7c687b960c4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webModule/src/main/webapp/page/areaAndClassModule/test.keepgit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webModule/src/main/webapp/page/documentModule/test.keepgit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webModule/src/main/webapp/page/drugModule/test.keepgit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webModule/src/main/webapp/page/eventModule/test.keepgit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webModule/src/main/webapp/page/specialistModule/test.keepgit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/SQLCode" beforeDir="false" afterPath="$PROJECT_DIR$/document/SQLCode" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webModule/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/page/drug/drugAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/page/drug/drugPanel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/page/drug/outwarehouseAdd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/page/drug/outwarehouseAddObj.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/page/drug/outwarehousePanel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webModule/src/main/webapp/page/drug/outwarehouseUpdate.html" beforeDir="false" />
-    </list>
+    <list default="true" id="57588897-f3fc-4d5b-b620-7c687b960c4c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/webModule/target/" />
@@ -31,16 +16,11 @@
     <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/AAAAAA/pestcontrolproject/util/test.keepgit">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/document/DevelopmentBook">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
+            <state relative-caret-position="880">
               <caret line="47" column="46" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="46" />
             </state>
           </provider>
@@ -49,7 +29,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-717">
+            <state relative-caret-position="560">
               <caret line="92" column="15" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="15" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -61,18 +41,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/document/SQLCode">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="363">
+              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/page/specialistModule/test.keepgit">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -92,6 +67,12 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-34" />
     <option name="y" value="-13" />
@@ -106,7 +87,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,41 +103,6 @@
             <path>
               <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pestcontrolproject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pestcontrolproject" type="462c0819:PsiDirectoryNode" />
-              <item name="servic" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
               <item name="webModule" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -164,53 +110,26 @@
               <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
               <item name="webModule" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="webModule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="webModule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="webModule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestControlProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestControlProject" type="462c0819:PsiDirectoryNode" />
-              <item name="webModule" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561104721552" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/webModule/src/main/webapp/page" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\pull\pestControlProject\webModule\src\main\webapp\page\specialistModule" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\ideaLib\web_library\pestControlProject\webModule\src\main\webapp\page" />
       <recent name="D:\ideaLib\web_library\pestControlProject\src\main\java\com\AAAAAA\pestcontrolproject\util" />
@@ -257,32 +176,31 @@
       <option name="project" value="LOCAL" />
       <updated>1561102205641</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="更改人：龚亮&#10;操作空间：document/SQLCode &#10;修改内容：上传专家和会商相关表  （4个表）">
+      <created>1561104004902</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561104004902</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3705000" />
+    <option name="totallyTimeSpent" value="4190000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info id="JRebel" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info id="Web" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.34039333" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34568834" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.3295082" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Java Enterprise" weight="0.3295082" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" weight="0.7819672" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="JRebel Executor" />
-      <window_info anchor="bottom" id="JRebel Console" side_tool="true" />
+      <window_info id="Designer" order="2" />
+      <window_info id="JRebel" order="3" side_tool="true" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Image Layers" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -290,15 +208,23 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.3295082" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" visible="true" weight="0.14193548" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="JRebel Executor" order="13" />
+      <window_info anchor="bottom" id="JRebel Console" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.17019667" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,16 +255,29 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="24524" />
     <MESSAGE value="增加个人文件夹，个人面向个人自己模块编程，不要随意修改别人及公共部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加个人文件夹，个人面向个人自己模块编程，不要随意修改别人及公共部分代码" />
+    <MESSAGE value="更改人：龚亮&#10;操作空间：document/SQLCode &#10;修改内容：上传专家和会商相关表  （4个表）" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改人：龚亮&#10;操作空间：document/SQLCode &#10;修改内容：上传专家和会商相关表  （4个表）" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/page/drug/drugAdd.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/page/drug/drugAdd.html" />
     <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/layuiadmin/lib/extend/echarts.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -399,7 +338,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/document/DevelopmentBook">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="880">
           <caret line="47" column="46" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="46" />
         </state>
       </provider>
@@ -413,7 +352,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-717">
+        <state relative-caret-position="560">
           <caret line="92" column="15" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="15" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -426,13 +365,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/document/SQLCode">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="363">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/page/specialistModule/test.keepgit">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webModule/src/main/webapp/page/specialistModule/SpecialistMain.html" />
+    <entry file="file://$PROJECT_DIR$/document/PageName">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

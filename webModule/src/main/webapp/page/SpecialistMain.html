@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>专家一览</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../lib/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/layuiadmin/style/admin.css" media="all">
+    <script src="../lib/jquery.js"></script>
+</head>
+
+
+<body>
+
+
+
+<div class="layui-fluid" id="LAY-component-layer-list">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+
+
+
+                <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                    <!-- 表单开始 -->
+                    <form action="addInformation.lovo" method="post" id="addInformationFromId">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input type="hidden" value="${currentPage}" name="currentPage">
+                                <input type="hidden" value="${checkType}" id="checkTypeId">
+                            </div>
+                            
+
+                            <!-- 专家信息表开始-->
+                            <div class="layui-card-body">
+                                <table class="layui-table">
+                                    <colgroup>
+                                        <col width="150">
+                                        <col width="150">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>姓名</th>
+                                        <th>工作单位</th>
+                                        <th>专长</th>
+                                        <th>职务</th>
+                                        <th>电话</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- 遍历传入的专家信息集合  -->
+                                    <c:forEach items="${SpecialistMainList}" var="c">
+                                        <tr>
+                                            <td><input type="checkbox" style="display: block"></td>
+                                            <!-- 专家姓名 -->
+                                            <td>${c.specialistName}</td>
+                                            <!-- 工作单位 -->
+                                            <td>${c.specialistUnits}</td>
+                                            <!-- 专长 -->
+                                            <td>${c.specialistSpeciality}</td>
+                                            <!-- 职务 -->
+                                            <td>${c.specialistDuty}</td>
+                                            <!-- 电话  -->
+                                            <td>${c.specialistPhone}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- 专家信息结束 -->
+
+                            <div style="margin-bottom: 50px;margin-top: 50px">
+                                <button type="button" class="layui-btn layui-btn-primary" id="prevBtn"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${currentPage}" id="currentPage">
+                                &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${MaxPage}</span>
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="lastBtn" value="lastBtn"> &nbsp;>|&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextBtn" value="nextBtn">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </form>
+                        </div>
+
+                    <!-- 表单结束 -->
+
+                    <!-- 按钮开始 -->
+                    <div class="layui-card-body">
+                        <div class="layui-btn-container layadmin-layer-demo">
+                            <button style="width: 150px;" type="button" class="layui-btn layui-btn-primary" id="addSpecialist">添加专家</button>
+                            <button style="width: 150px;"type="button" class="layui-btn layui-btn-primary" id="findSpecialist">查看专家信息</button>
+                            <p/>
+                            <button style="width: 150px;"type="button" class="layui-btn layui-btn-primary" id="updateSpecialist">修改专家信息</button>
+                            <button style="width: 150px;"type="button" class="layui-btn layui-btn-primary" id="delSpecialist">删除专家</button>
+                        </div>
+                    </div>
+                    <!-- 按钮结束 -->
+
+                </div>
+            </div>
+        </div>
+
+    <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -80px">
+        <span style=" position:absolute;top:-35px;left:30px">查询专家信息</span>
+        <span style=" position:absolute;top:20px;left:30px">专家姓名</span>
+        <input type="date" style=" position:absolute;top:30px;left:140px"/>
+        <span style=" position:absolute;top:75px;left:30px">专长</span>
+        <input type="date" style=" position:absolute;top:85px;left:140px"/>
+        <span style=" position:absolute;top:130px;left:30px">工作单位</span>
+        <input type="text" style=" width: 140px;height:20px;position:absolute;top:140px;left:140px"/>
+        <button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:absolute;top:170px;left:200px">查询</button>
+    </div>
+
+
+    </div>
+</div>
+</div>
+
+<script src="../lib/layuiadmin/layui/layui.js"></script>
+<script>
+
+    //关闭子窗口 刷新父窗口
+    $("#getBtn").click(function (status) {
+        if(status=="yes"){
+            window.parent.location.reload();//刷新父页面
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            parent.layer.close(index);
+        }
+        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+        parent.layer.close(index);
+
+    });
+
+
+
+</script>
+
+
+</body>
+</html>
