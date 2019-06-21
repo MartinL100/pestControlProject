@@ -6,16 +6,16 @@
 
 
 人员分工：
-虫害、病害、鼠害管理-------->曾贤富
+虫害、病害、鼠害管理-------->曾贤富----->documentModule
 
 
-区域一览、小班管理---------->刘俊麟
+区域一览、小班管理---------->刘俊麟----->areaAndClassModule
 
 
-事件记录---------------------->舒俊益
+事件记录---------------------->舒俊益------>eventModule
 
 
-专家一览、会商灾情------------->龚亮
+专家一览、会商灾情------------->龚亮-------->specialistModule
 
 t_specialist :专家表
    specialist_id (专家ID)            specialist_name (专家姓名)
@@ -36,7 +36,7 @@ t_specialist :专家表
     会商人员为：多选框专家的拼接字符串
 
 
-药剂器械管理、出库管理---------->古成全
+药剂器械管理、出库管理---------->古成全------>drugModule
 t_article：药剂器材管理表
 article_id(物品id)  article_name(物品名称)  article_curetype(物品防治类型)  article_type(物品类型) article_purpose(物品用途) article_bankCount(库存)
 
@@ -45,7 +45,7 @@ outbank_id(出库信息Id) class_name(领用小班) article_name(物品名称) a
 
 
 
-用户管理、日志一览--------------->刘聪
+用户管理、日志一览--------------->刘聪-------->userModule
 
 t_user:用户表
   user_id(用户id)   user_name(用户名)  real_name(真实姓名)     power_id(权限id，连接等级表外键)
