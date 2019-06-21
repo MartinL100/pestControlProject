@@ -226,7 +226,12 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
 ================================================================================================================
 模块负责人   曾贤富
 
-DROP TABLE IF EXISTS `t_pestis`;   虫害表
+-- ----------------------------
+-- Table structure for t_pestis  虫害表
+-- ----------------------------
+
+
+DROP TABLE IF EXISTS `t_pestis`;
 CREATE TABLE `t_pestis` (
  `pestis_id` INT NOT NULL AUTO_INCREMENT COMMENT '虫害ID',
  `pestis_name` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害名',
@@ -285,6 +290,23 @@ CREATE TABLE `t_mouse` (
 
 SELECT * FROM t_mouse
 
+
+
+
+
+drop table sys_type;
+
+/*==============================================================*/
+/* Table: sys_type             下拉类型表                                 */
+/*==============================================================*/
+create table sys_type
+(
+   type_id              bigint not null,
+   type_name            varchar(48),
+   type_key             int,
+   type_val             varchar(48),
+   primary key (type_id)
+);
 
 
 
