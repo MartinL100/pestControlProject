@@ -142,5 +142,92 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
 
 
 
+      =========================================
+
+      模块所属人：刘聪
+      ==========================================
+
+
+      /*==============================================================*/
+      /* DBMS name:      MySQL 5.0                                    */
+      /* Created on:     2019/6/21 16:17:56                           */
+      /*==============================================================*/
+
+
+      drop table if exists t_log;
+
+      drop table if exists t_power;
+
+      drop table if exists t_role;
+
+      drop table if exists t_user;
+
+      /*==============================================================*/
+      /* Table: t_log                                                 */
+      /*==============================================================*/
+      create table t_log
+      (
+         log_id               bigint not null,
+         log_descrip          text,
+         log_date             varchar(0),
+         primary key (log_id)
+      );
+
+      alter table t_log comment '日志表';
+
+      /*==============================================================*/
+      /* Table: t_power                                               */
+      /*==============================================================*/
+      create table t_power
+      (
+         power_id             bigint not null,
+         role_id              bigint,
+         power_name           varchar(32),
+         power_resource       varchar(32),
+         power_tag            int,
+         primary key (power_id)
+      );
+
+      /*==============================================================*/
+      /* Table: t_role                                                */
+      /*==============================================================*/
+      create table t_role
+      (
+         role_id              bigint not null,
+         role_name            bigint,
+         primary key (role_id)
+      );
+
+      alter table t_role comment '角色表';
+
+      /*==============================================================*/
+      /* Table: t_user                                                */
+      /*==============================================================*/
+      create table t_user
+      (
+         user_id              bigint not null auto_increment,
+         role_id              bigint,
+         user_name            varchar(32),
+         real_name            varchar(32),
+         user_password        varchar(0),
+         primary key (user_id)
+      );
+
+      alter table t_user comment '用户表';
+
+      alter table t_power add constraint FK_Reference_2 foreign key (role_id)
+            references t_role (role_id) on delete restrict on update restrict;
+
+      alter table t_user add constraint FK_Reference_1 foreign key (role_id)
+            references t_role (role_id) on delete restrict on update restrict;
+
+
+
+
+
+
+
+
+
 
 
