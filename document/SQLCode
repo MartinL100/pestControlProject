@@ -65,6 +65,82 @@ create table t_outbank
 
 
 =====================================================================================================
+模块所属人：龚亮
+
+/*==============================================================*/
+/* Table: t_specialist                                          */
+/*==============================================================*/
+alter table t_specialist comment '专家表';
+create table t_specialist
+(
+   specialist_id        bigint not null auto_increment comment '专家ID',
+   specialist_name      varchar(32) comment '专家姓名',
+   specialist_sex       varchar(32) comment '专家性别',
+   specialist_birthday  varchar(48) comment '专家生日',
+   specialist_path      varchar(64) comment '专家头像',
+   specialist_speciality varchar(64) comment '专家专长',
+   specialist_duty      varchar(64) comment '专家职务',
+   specialist_tel       varchar(64) comment '专家电话',
+   specialist_units     varchar(64) comment '专家工作单位',
+   specialist_site      varchar(64) comment '专家住址',
+   specialist_email     varchar(64) comment '专家邮箱',
+   primary key (specialist_id)
+);
+
+
+
+/*==============================================================*/
+/* Table: result_specialist                                     */
+/*==============================================================*/
+
+alter table result_specialist comment '会商结果和专家中间表';
+create table result_specialist
+(
+   result_id            bigint comment '结果ID',
+   specialist_id        bigint comment '专家ID'
+);
+alter table result_specialist add constraint FK_Reference_10 foreign key (result_id)
+      references conference_result (result_id) on delete restrict on update restrict;
+
+alter table result_specialist add constraint FK_Reference_11 foreign key (specialist_id)
+      references t_specialist (specialist_id) on delete restrict on update restrict;
+
+
+
+
+/*==============================================================*/
+/* Table: conference_result                                     */
+/*==============================================================*/
+alter table conference_result comment '专家会商结果表';
+create table conference_result
+(
+   result_id            bigint not null comment '结果ID',
+   conference_id        bigint comment '专家会商ID',
+   conference_date      varchar(48) comment '专家会审日期',
+   conference_result    test comment '专家会商结果',
+   primary key (result_id)
+);
+alter table conference_result add constraint FK_Reference_9 foreign key (conference_id)
+      references t_conference (conference_id) on delete restrict on update restrict;
+
+
+drop table if exists t_conference;
+
+/*==============================================================*/
+/* Table: t_conference                                          */
+/*==============================================================*/
+alter table t_conference comment '专家会商表';
+create table t_conference
+(
+   conference_id        bigint not null auto_increment comment '专家会商ID',
+   event_id             bigint comment '事件ID',
+   primary key (conference_id)
+);
+alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
+      references sys_event (event_id) on delete restrict on update restrict;
+
+
+
 
 
 
