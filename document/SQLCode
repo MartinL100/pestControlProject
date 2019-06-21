@@ -4,61 +4,58 @@
 
 模块所属人：古成全
 
-/*==============================================================*/
-/* DBMS name:      Sybase SQL Anywhere 11                       */
-/* Created on:     2019/6/19 20:26:56                           */
-/*==============================================================*/
-if exists(
-   select 1 from sys.systable
-   where table_name='t_article'
-     and table_type in ('BASE', 'GBL TEMP')
-) then
-    drop table t_article
-end if;
 
-if exists(
-   select 1 from sys.systable
-   where table_name='t_outbank'
-     and table_type in ('BASE', 'GBL TEMP')
-) then
-    drop table t_outbank
-end if;
+drop table  drug_stockpile;
+drop table sys_drug;
+drop table sys_stockpile;
 
 /*==============================================================*/
-/* Table: t_article          物品表                                */
+/* Table: sys_drug   药剂表                                           */
 /*==============================================================*/
-create table t_article
+create table sys_drug
 (
-   article_id           bigint                         not null, --   article_id(物品id)
-   article_name         varchar(32)                    null,     --   article_name(物品名称)
-   article_curetype     varchar(32)                    null,     --   article_curetype(物品防治类型)
-   article_type         varchar(32)                    null,     --   article_type(物品类型)
-   article_purpose      varchar(128)                   null,     --   article_purpose(物品用途)
-   article_bankcount    bigint                         null,     --   article_bankCount(库存)
-   constraint PK_T_ARTICLE primary key clustered (article_id)
+   drug_id              int not null auto_increment,
+   drug_name            varchar(32),
+   drug_cure_type       bigint,
+   drug_type            bigint,
+   drug_use_way         text,
+   drug_num             int,
+   primary key (drug_id)
 );
 
 
 
 /*==============================================================*/
-/* Table: t_outbank        出入库信息管理表                                     */
+/* Table: drug_stockpile   出库器材中间表                                   */
 /*==============================================================*/
-create table t_outbank
+create table drug_stockpile
 (
-   outbank_id           bigint                         not null,     --  outbank_id(出库信息Id)
-   class_name           varchar(32)                    null,         --  class_name(领用小班)
-   article_name         varchar(32)                    null,         --  article_name(物品名称)
-   article_type         varchar(32)                    null,         --  article_type(物品类型)
-   article_curetype     varchar(32)                    null,         --  article_curetype(防治类型)
-   outbank_time         date                           null,         --  outbank_time(领用时间)
-   outbank_count        bigint                         null,         --  outbank_count(领用数量)
-   real_name            varchar(32)                    null,         --  real_name(出库人)
-   constraint PK_T_OUTBANK primary key clustered (outbank_id)
+   drug_id              int,
+   stockpile_id         int,
+   stockpile_num        int
 );
 
+alter table drug_stockpile add constraint FK_Reference_12 foreign key (drug_id)
+      references sys_drug (drug_id) on delete restrict on update restrict;
+
+alter table drug_stockpile add constraint FK_Reference_13 foreign key (stockpile_id)
+      references sys_stockpile (stockpile_id) on delete restrict on update restrict;
 
 
 
+
+/*==============================================================*/
+/* Table: sys_stockpile   出库信息表                                      */
+/*==============================================================*/
+create table sys_stockpile
+(
+   stockpile_id         int not null auto_increment,
+   stockpile_class      bigint,
+   stockpile_man        bigint,
+   stockpile_date       varchar(48),
+   stockpile_num        int,
+   primary key (stockpile_id)
+);
 
 
 
