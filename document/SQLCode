@@ -66,5 +66,45 @@ create table t_outbank
 
 =====================================================================================================
 
+模块所属人：刘俊麟
 
+
+DROP TABLE IF EXISTS sys_area;
+/*==============================================================*/
+/* Table: sys_area    区域表                                          */
+/*==============================================================*/
+CREATE TABLE sys_area
+(
+   area_id              INT NOT NULL AUTO_INCREMENT,
+   area_name            VARCHAR(32),
+   area_tree_type       VARCHAR(48),
+   area_good_tree       VARCHAR(48),
+   area_adress_id       BIGINT,
+   PRIMARY KEY (area_id)
+);
+
+SELECT  *FROM sys_area
+
+
+
+DROP TABLE IF EXISTS sys_class;
+
+/*==============================================================*/
+/* Table: sys_class       小班表                                      */
+/*==============================================================*/
+CREATE TABLE sys_class
+(
+   sclass_id            INT NOT NULL AUTO_INCREMENT,
+   area_id              INT,
+   sclass_name          VARCHAR(32),
+   sclass_leader        VARCHAR(32),
+   sclass_leader_tel    VARCHAR(48),
+   sclass_num           INT,
+   sclass_start_date    DATE,
+   PRIMARY KEY (sclass_id)
+);
+
+ALTER TABLE sys_class ADD CONSTRAINT FK_Reference_2 FOREIGN KEY (area_id)
+      REFERENCES sys_area (area_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+DROP TABLE sys_class
 
