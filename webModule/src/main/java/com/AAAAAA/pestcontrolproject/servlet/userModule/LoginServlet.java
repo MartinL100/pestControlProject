@@ -1,4 +1,4 @@
-package com.AAAAAA.pestcontrolproject.servlet;
+package com.AAAAAA.pestcontrolproject.servlet.userModule;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
