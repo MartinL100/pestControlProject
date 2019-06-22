@@ -10,22 +10,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-  
+
 
 </head>
 <body class="layui-layout-body">
-  
+
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
 
-      
+
       <!-- 侧边菜单 -->
       <div class="layui-side layui-side-menu">
         <div class="layui-side-scroll">
           <div class="layui-logo" lay-href="home/console.html">
             <span>森林病虫害防治系统</span>
           </div>
-          
+
           <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
             <li data-name="home" class="layui-nav-item layui-nav-itemed">
               <a href="javascript:;" lay-tips="主页" lay-direction="2">
@@ -34,13 +34,13 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a lay-href="home/console.html">控制台</a>
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">控制台</a>
                 </dd>
                 <dd data-name="console">
-                  <a lay-href="home/homepage1.html">主页一</a>
+                  <a href="../drugModule/drugPanel.html" target="frameName">主页一</a>
                 </dd>
                 <dd data-name="console">
-                  <a lay-href="home/homepage2.html">主页二</a>
+                  <a href="../userModule/userManager.html" target="frameName">主页二</a>
                 </dd>
               </dl>
             </li>
@@ -50,15 +50,15 @@
       </div>
 
 
-      
-      
+
+
       <!-- 主体内容 -->
       <div class="layui-body" id="LAY_app_body" style="margin-top: -100px">
         <div class="layadmin-tabsbody-item layui-show">
-          <iframe src="http://www.baidu.com" frameborder="0" class="layadmin-iframe"></iframe>
+          <iframe src="" frameborder="0" class="layadmin-iframe" name="frameName"></iframe>
         </div>
       </div>
-      
+
       <!-- 辅助元素，一般用于移动设备下遮罩 -->
       <div class="layadmin-body-shade" layadmin-event="shade"></div>
     </div>
