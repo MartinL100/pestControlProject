@@ -191,7 +191,7 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
    create table t_role
    (
       role_id              bigint not null auto_increment,
-      role_name            bigint,
+      role_name             varchar(32),
       primary key (role_id)
    );
 
@@ -206,7 +206,7 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
       role_id              bigint,
       user_name            varchar(32),
       real_name            varchar(32),
-      user_password        varchar(0),
+      user_password        varchar(32),
       primary key (user_id)
    );
 
