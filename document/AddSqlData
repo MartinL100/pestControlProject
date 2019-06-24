@@ -1,0 +1,9 @@
+-- 刘聪存储过程
+
+DELIMITER$$
+CREATE PROCEDURE login(IN usernamein VARCHAR(32),IN passwordin VARCHAR(32))
+BEGIN
+SELECT * FROM t_user ,t_role,t_power WHERE user_name=usernamein AND user_password=passwordin
+AND t_role.role_id=t_user.role_id AND t_role.role_id=t_power.power_id;
+
+END$$

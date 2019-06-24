@@ -114,7 +114,7 @@ create table conference_result
    result_id            bigint not null comment '结果ID',
    conference_id        bigint comment '专家会商ID',
    conference_date      varchar(48) comment '专家会审日期',
-   conference_result    test comment '专家会商结果',
+   conference_result    text comment '专家会商结果',
    primary key (result_id)
 );
 alter table conference_result add constraint FK_Reference_9 foreign key (conference_id)
@@ -295,20 +295,279 @@ SELECT * FROM t_mouse
 
 
 
-模块所属人：刘俊麟
 
-drop table sys_type;
+-- 舒俊益
+
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2019/6/21 16:53:15                           */
+/*==============================================================*/
+
+
+DROP TABLE IF EXISTS sys_event;
+
+/*==============================================================*/
+/* Table: sys_event                                             */
+/*==============================================================*/
+CREATE TABLE sys_event
+(
+   event_Id             BIGINT NOT NULL AUTO_INCREMENT,
+   even_tName           VARCHAR(64),
+   occur_Time           VARCHAR(64),
+   disaster_stage       BIGINT,
+   event_describe       TEXT,
+   photo_Path           VARCHAR(64),
+   disaster_type        BIGINT,
+   find_way             BIGINT,
+   area_Id              BIGINT,
+   class_Id             BIGINT,
+   event_loss                 VARCHAR(64),
+   event_area                 VARCHAR(64),
+   plan                 VARCHAR(64),
+   PRIMARY KEY (event_Id)
+);
+
+
+
+
+
+-- =====================================================================================================
+-- 模块所属人：龚亮
+
+/*==============================================================*/
+/* Table: t_specialist                                          */
+/*==============================================================*/
+ALTER TABLE t_specialist COMMENT '专家表';
+CREATE TABLE t_specialist
+(
+   specialist_id        BIGINT NOT NULL AUTO_INCREMENT COMMENT '专家ID',
+   specialist_name      VARCHAR(32) COMMENT '专家姓名',
+   specialist_sex       VARCHAR(32) COMMENT '专家性别',
+   specialist_birthday  VARCHAR(48) COMMENT '专家生日',
+   specialist_path      VARCHAR(64) COMMENT '专家头像',
+   specialist_speciality VARCHAR(64) COMMENT '专家专长',
+   specialist_duty      VARCHAR(64) COMMENT '专家职务',
+   specialist_tel       VARCHAR(64) COMMENT '专家电话',
+   specialist_units     VARCHAR(64) COMMENT '专家工作单位',
+   specialist_site      VARCHAR(64) COMMENT '专家住址',
+   specialist_email     VARCHAR(64) COMMENT '专家邮箱',
+   PRIMARY KEY (specialist_id)
+);
+
+
+
+/*==============================================================*/
+/* Table: result_specialist                                     */
+/*==============================================================*/
+
+ALTER TABLE result_specialist COMMENT '会商结果和专家中间表';
+CREATE TABLE result_specialist
+(
+   result_id            BIGINT COMMENT '结果ID',
+   specialist_id        BIGINT COMMENT '专家ID'
+);
+ALTER TABLE result_specialist ADD CONSTRAINT FK_Reference_10 FOREIGN KEY (result_id)
+      REFERENCES conference_result (result_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE result_specialist ADD CONSTRAINT FK_Reference_11 FOREIGN KEY (specialist_id)
+      REFERENCES t_specialist (specialist_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+
+/*==============================================================*/
+/* Table: conference_result                                     */
+/*==============================================================*/
+ALTER TABLE conference_result COMMENT '专家会商结果表';
+CREATE TABLE conference_result
+(
+   result_id            BIGINT NOT NULL COMMENT '结果ID',
+   conference_id        BIGINT COMMENT '专家会商ID',
+   conference_date      VARCHAR(48) COMMENT '专家会审日期',
+   conference_result    TEXT COMMENT '专家会商结果',
+   PRIMARY KEY (result_id)
+);
+ALTER TABLE conference_result ADD CONSTRAINT FK_Reference_9 FOREIGN KEY (conference_id)
+      REFERENCES t_conference (conference_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+DROP TABLE IF EXISTS t_conference;
+
+/*==============================================================*/
+/* Table: t_conference                                          */
+/*==============================================================*/
+ALTER TABLE t_conference COMMENT '专家会商表';
+CREATE TABLE t_conference
+(
+   conference_id        BIGINT NOT NULL AUTO_INCREMENT COMMENT '专家会商ID',
+   event_id             BIGINT COMMENT '事件ID',
+   PRIMARY KEY (conference_id)
+);
+ALTER TABLE t_conference ADD CONSTRAINT FK_Reference_4 FOREIGN KEY (event_id)
+      REFERENCES sys_event (event_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+  =========================================
+
+      模块所属人：刘聪
+      ==========================================
+
+
+   /*==============================================================*/
+   /* DBMS name:      MySQL 5.0                                    */
+   /* Created on:     2019/6/22 10:05:21                           */
+   /*==============================================================*/
+
+
+   DROP TABLE IF EXISTS t_log;
+
+   DROP TABLE IF EXISTS t_power;
+
+   DROP TABLE IF EXISTS t_role;
+
+   DROP TABLE IF EXISTS t_user;
+
+   /*==============================================================*/
+   /* Table: t_log                                                 */
+   /*==============================================================*/
+   CREATE TABLE t_log
+   (
+      log_id               BIGINT NOT NULL AUTO_INCREMENT,
+      log_descrip          TEXT,
+      log_date             VARCHAR(64),
+      PRIMARY KEY (log_id)
+   );
+
+   ALTER TABLE t_log COMMENT '日志表';
+
+   /*==============================================================*/
+   /* Table: t_power                                               */
+   /*==============================================================*/
+   CREATE TABLE t_power
+   (
+      power_id             BIGINT NOT NULL AUTO_INCREMENT,
+      role_id              BIGINT,
+      power_name           VARCHAR(32),
+      power_resource       VARCHAR(32),
+      power_tag            INT,
+      PRIMARY KEY (power_id)
+   );
+
+   /*==============================================================*/
+   /* Table: t_role                                                */
+   /*==============================================================*/
+   CREATE TABLE t_role
+   (
+      role_id              BIGINT NOT NULL AUTO_INCREMENT,
+      role_name             VARCHAR(32),
+      PRIMARY KEY (role_id)
+   );
+
+   ALTER TABLE t_role COMMENT '角色表';
+
+   /*==============================================================*/
+   /* Table: t_user                                                */
+   /*==============================================================*/
+   CREATE TABLE t_user
+   (
+      user_id              BIGINT NOT NULL AUTO_INCREMENT,
+      role_id              BIGINT,
+      user_name            VARCHAR(32),
+      real_name            VARCHAR(32),
+      user_password        VARCHAR(32),
+      PRIMARY KEY (user_id)
+   );
+
+   ALTER TABLE t_user COMMENT '用户表';
+
+   ALTER TABLE t_power ADD CONSTRAINT FK_Reference_2 FOREIGN KEY (role_id)
+         REFERENCES t_role (role_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+   ALTER TABLE t_user ADD CONSTRAINT FK_Reference_1 FOREIGN KEY (role_id)
+         REFERENCES t_role (role_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+-- ----------------------------
+-- Table structure for t_pestis  虫害表
+-- ----------------------------
+
+
+DROP TABLE IF EXISTS `t_pestis`;
+CREATE TABLE `t_pestis` (
+ `pestis_id` INT NOT NULL AUTO_INCREMENT COMMENT '虫害ID',
+ `pestis_name` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害名',
+ `pestis_breed` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害繁殖',
+ `pestis_host` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害寄主',
+ `pestis_enemy` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害天敌',
+ `pestis_harm` VARCHAR(64) NULL DEFAULT NULL COMMENT '主要危害',
+ `pestis_defense` VARCHAR(64) NULL DEFAULT NULL COMMENT '防御措施',
+ `pestis_photo` VARCHAR(128) NULL DEFAULT NULL COMMENT '幼虫图片',
+ `pestis_adultImages` VARCHAR(128) NULL DEFAULT NULL COMMENT '成虫图片',
+ PRIMARY KEY (`pestis_id`)
+);
+SELECT * FROM t_pestis
+
+
+================================================================================================================
+-- 模块负责人   曾贤富
+
+
+-- ----------------------------
+-- Table structure for t_disease  病害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_disease`;
+CREATE TABLE `t_disease` (
+ `disease_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '病害id',
+ `disease_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害名称',
+ `disease_ source` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害病源',
+ `disease_symptom` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病症状',
+ `disease_law` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病规律',
+ `disease_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ `disease_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '图片',
+ `disease_measure` VARCHAR(48) NULL DEFAULT NULL COMMENT '防治措施',
+ PRIMARY KEY (`disease_id`)
+);
+SELECT * FROM t_disease
+
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_mouse  鼠害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mouse`;
+CREATE TABLE `t_mouse` (
+ `mouse_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '鼠害id',
+ `mouse_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害名称',
+ `mouse_ breed` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害繁殖',
+ `mouse_food` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害食物',
+ `mouse_natural` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害天敌',
+ `mouse_prevent` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害防治措施',
+ `mouse_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '鼠害图片',
+ `mouse_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ PRIMARY KEY (`mouse_id`)
+);
+
+SELECT * FROM t_mouse
+
+
+-- 模块所属人：刘俊麟
+
+DROP TABLE sys_type;
 
 /*==============================================================*/
 /* Table: sys_type             下拉类型表                                 */
 /*==============================================================*/
-create table sys_type
+CREATE TABLE sys_type
 (
-   type_id              bigint not null,
-   type_name            varchar(48),
-   type_key             int,
-   type_val             varchar(48),
-   primary key (type_id)
+   type_id              BIGINT NOT NULL  AUTO_INCREMENT,
+   type_name            VARCHAR(48),
+   type_key             INT,
+   type_val             VARCHAR(48),
+   PRIMARY KEY (type_id)
 );
 
 
@@ -346,11 +605,15 @@ CREATE TABLE sys_class
    sclass_leader        VARCHAR(32),
    sclass_leader_tel    VARCHAR(48),
    sclass_num           INT,
-   sclass_start_date    DATE,
+   sclass_start_date    VARCHAR(48),
    PRIMARY KEY (sclass_id)
 );
 
 ALTER TABLE sys_class ADD CONSTRAINT FK_Reference_2 FOREIGN KEY (area_id)
       REFERENCES sys_area (area_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 DROP TABLE sys_class
+
+
+
+
 

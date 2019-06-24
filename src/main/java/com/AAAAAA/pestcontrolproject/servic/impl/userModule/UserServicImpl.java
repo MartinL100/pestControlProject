@@ -41,6 +41,13 @@ public class UserServicImpl implements IUserServic {
 
     @Override
     public boolean isExistUserByName(String userName) {
-        return false;
+        SqlSession sqlSession =GetSession.getSession();
+        IUserDao dao= sqlSession.getMapper(IUserDao.class);
+        TUser user= dao.findUserByName(userName);
+        boolean bl = false;
+        if(user!=null){
+            bl=true;
+        }
+        return bl;
     }
 }
