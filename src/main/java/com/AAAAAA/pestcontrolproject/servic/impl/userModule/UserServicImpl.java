@@ -7,6 +7,7 @@ import com.AAAAAA.pestcontrolproject.util.GetSession;
 import com.AAAAAA.pestcontrolproject.util.UserModuleStringInfo;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
 import java.util.Map;
 
 public class UserServicImpl implements IUserServic {
@@ -49,5 +50,22 @@ public class UserServicImpl implements IUserServic {
             bl=true;
         }
         return bl;
+    }
+
+    @Override
+    public List<TUser> findUsersList(Map map) {
+        SqlSession sqlSession =GetSession.getSession();
+        IUserDao dao= sqlSession.getMapper(IUserDao.class);
+        List<TUser> userList=dao.findUsersList(map);
+        return userList;
+    }
+
+    @Override
+    public void delUser(Map map) {
+        SqlSession sqlSession =GetSession.getSession();
+        IUserDao dao= sqlSession.getMapper(IUserDao.class);
+        dao.delUser(map);
+        sqlSession.commit();
+        sqlSession.close();
     }
 }

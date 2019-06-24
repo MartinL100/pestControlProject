@@ -22,7 +22,7 @@
 
 
         <div class="layui-card-body" style="padding: 15px;">
-            <form class="layui-form" action="userAddServlet" lay-filter="component-form-group">
+            <form class="layui-form" action="userAddServlet" lay-filter="component-form-group" method="post">
 
                 <div class="layui-form-item" align="center">
 

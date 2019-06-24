@@ -56,4 +56,13 @@ public class UserModuleTest {
         Map map= SplitPage.SplitPage(1,"25",10,50);
         System.out.println(map.get("startIndex"));
     }
+
+    @Test
+    public void selectTest(){
+    IUserServic servic=new UserServicImpl();
+        Map<String,Integer> map=new HashMap();
+        map.put("roleId",1);
+        List<TUser>userList=servic.findUsersList(map);
+        System.out.println(userList.size());
+    }
 }

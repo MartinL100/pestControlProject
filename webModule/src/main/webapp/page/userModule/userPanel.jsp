@@ -12,7 +12,7 @@
 </head>
 <body>
 
-
+<h2 style="color: red" id="erroInfo"></h2>
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -31,40 +31,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>贤心</td>
-                            <td>汉族</td>
-                            <td>1989-10-14</td>
-                            <td>人生似修行</td>
-                        </tr>
-                        <tr>
-                            <td>张爱玲</td>
-                            <td>汉族</td>
-                            <td>1920-09-30</td>
-                            <td>于千万人之中遇见你所遇见</td>
-                        </tr>
-                        <tr>
-                            <td>Helen Keller</td>
-                            <td>拉丁美裔</td>
-                            <td>1880-06-27</td>
-                            <td> Life is either a daring adventure or nothing.</td>
-                        </tr>
-                        <tr>
-                            <td>岳飞</td>
-                            <td>汉族</td>
-                            <td>1103-北宋崇宁二年</td>
-                            <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-                        </tr>
-                        <tr>
-                            <td>孟子</td>
-                            <td>华夏族（汉族）</td>
-                            <td>公元前-372年</td>
-                            <td>猿强，则国强。国强，则猿更强！ </td>
-                        </tr>
+                        <c:forEach items="${userList}" var="user" >
+                            <tr onclick="saveId(this)">
+                                <td>${user.userName}</td>
+                                <td>${user.userPassword}</td>
+                                <td>${user.role.roleName}</td>
+                                <td>${user.realName}</td>
+                                <td style="display: none">${user.userId}</td>
+                            </tr>
+                        </c:forEach>
+
                         </tbody>
                     </table>
+
                 </div>
 
+                <form action="delUserServlet" id="userIdRecord" method="post">
+                    <!--隐藏div，用于记录点击的用户的id-->
+                    <input id="userId" name="checkedUserId" style="display: none"/>
+                </form>
                 <!-- 翻页按钮部分-->
                 <div align="center">
                     <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe603;</i></button>
@@ -92,7 +77,7 @@
                     <div class="layui-row layui-col-space10" >
                         <div style="width: 40%; float: left;margin-top: 4%" >
                             <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加用户</button>
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">删除用户</button><br/>
+                            <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">删除用户</button><br/>
                             <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改用户信息</button>
                         </div>
 
@@ -101,17 +86,15 @@
                             <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D">
                                 <div class="layui-card-header">查询用户信息</div>
                                 <div class="layui-card-body" >
+                                    <form action="findUserServlet" method="post">
                                     <!-- 填充内容 -->
-                                        <select name="city" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
-                                            <option value="">所有用户</option>
-                                            <option value="010">超级管理员</option>
-                                            <option value="021">资料管理员</option>
-                                            <option value="0571">灾情管理员</option>
-                                            <option value="0571">专家管理员</option>
-                                            <option value="0571">库房管理员</option>
+                                        <select name="roleId" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
+                                            <c:forEach var="role" items="${roleList}" >
+                                                <option value="${role.roleId}">${role.roleName}</option>
+                                            </c:forEach>
                                         </select>
-                                    <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%">查询</button>
-
+                                    <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%" type="submit">查询</button>
+                                    </form>
                                     <!-- 填充内容 -->
                                 </div>
                             </div>
@@ -124,6 +107,24 @@
     </div>
 </div>
 
+<script>
+    function saveId(obj) {
+        //获取点中行对应的用户id
+   var id = obj.lastChild.previousSibling.firstChild.nodeValue;
+        //将用户id保存到隐藏div  userId中
+   $("#userId").val(id);
+    }
+    //点击删除按钮
+    $("#delUser").click(function () {
+        //从隐藏div中获取选中id
+        var userId=$("#userId").val();
+        if(userId==null||""==userId){
+            $("#erroInfo").text("请点击需要删除的行");
+        }else {
+            $("#userIdRecord").submit();
+        }
+    })
+</script>
 
 
 
@@ -131,11 +132,9 @@
 
 
 
-
-<script src="../../layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index']);

@@ -2,6 +2,7 @@ package com.AAAAAA.pestcontrolproject.servic.userModule;
 
 import com.AAAAAA.pestcontrolproject.entity.userModule.TUser;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,5 +30,18 @@ public interface IUserServic {
      * @return  存在返回true，不存在返回fasle
      */
     boolean isExistUserByName(String userName);
+
+    /**
+     * 动态查询用户集合
+     * @param map 条件集合
+     * @return  用户集合
+     */
+    List<TUser> findUsersList(Map map);
+
+    /**
+     * 删除用户
+     * @param map 包含用户id
+     */
+    void delUser(Map map);
 
 }

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class UserAddServlet extends HttpServlet {
     IUserServic userServic=new UserServicImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String userName=request.getParameter("userName");
         String password=request.getParameter("password");
         String passwordSure=request.getParameter("passwordSure");
