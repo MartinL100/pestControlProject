@@ -6,6 +6,7 @@ import com.AAAAAA.pestcontrolproject.servic.impl.userModule.UserServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IRoleServic;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IUserServic;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
+import com.AAAAAA.pestcontrolproject.util.SplitPage;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -48,5 +49,11 @@ public class UserModuleTest {
          user.setRole(role);
         String info =servic.addUser(user);
     System.out.println(info);
+    }
+    @Test
+    public void splitPageTest(){
+
+        Map map= SplitPage.SplitPage(1,"25",10,50);
+        System.out.println(map.get("startIndex"));
     }
 }
