@@ -19,6 +19,16 @@
        </association>
     </resultMap>
 
+    <resultMap id="allUsers" type="com.AAAAAA.pestcontrolproject.entity.userModule.TUser">
+        <result column="user_id" property="userId"></result>
+        <result column="user_name" property="userName"></result>
+        <result column="real_name" property="realName"></result>
+        <result column="user_password" property="userPassword"></result>
+        <association property="role" javaType="com.AAAAAA.pestcontrolproject.entity.userModule.TRole">
+            <result column="role_name" property="roleName"></result>
+        </association>
+    </resultMap>
+
 <select id="login" resultMap="userInfo" parameterType="map" statementType="CALLABLE">
     call login(#{userName},#{password});
 </select>
@@ -30,4 +40,16 @@
 <select id="findUserByName" resultType="com.AAAAAA.pestcontrolproject.entity.userModule.TUser">
     select user_id userId from t_user where  user_name=#{0};
 </select>
+    <select id="findUsersList" parameterType="map" resultMap="allUsers">
+        select user_id ,  user_name , real_name , user_password ,role_name
+        from t_user join t_role on t_user.role_id = t_role.role_id
+        <where>
+            <if test="roleId !=null and roleId !=''">
+                t_user.role_id =#{roleId}
+            </if>
+        </where>
+    </select>
+    <update id="delUser" parameterType="map">
+        delete from t_user where user_id=#{userId}
+    </update>
 </mapper>

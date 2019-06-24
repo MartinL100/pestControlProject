@@ -20,16 +20,18 @@
         <h1 align="center" style="padding: 15px;">添加用户信息</h1>
         <h3 style="color: red" align="center" id="erroInfo">${erroInfo}</h3>
 
+
         <div class="layui-card-body" style="padding: 15px;">
-            <form class="layui-form" action="userAddServlet" lay-filter="component-form-group">
+            <form class="layui-form" action="userAddServlet" lay-filter="component-form-group" method="post">
 
                 <div class="layui-form-item" align="center">
 
                     <label class="layui-form-label" style="margin-left: 30%">用户名</label>
 
                     <div class="layui-input-block" style="width: 30%;margin-top: 3%" >
-                        <input type="text" name="userName" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input" >
+                        <input type="text" name="userName"  id="userName" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input" >
                     </div>
+
                 </div>
 
                 <div class="layui-form-item" align="center">
@@ -118,6 +120,20 @@
         setTimeout(function(){
             $("#erroInfo").hide();
         }, 3000);
+
+
+        $("#userName").mouseleave(function () {
+            var userName=$("#userName").val()
+
+            $.post("isExistUserServlet",{"userName":userName},function (result) {
+                $("#erroInfo").show();
+                $("#erroInfo").text(result);
+                setTimeout(function(){
+                    $("#erroInfo").hide();
+                }, 3000);
+
+            })
+        })
     })
 
 </script>
