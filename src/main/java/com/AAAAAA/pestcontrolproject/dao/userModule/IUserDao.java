@@ -15,12 +15,19 @@ public interface IUserDao {
      * @param map  用户名  密码
      * @return 登录用户对象
      */
-    public TUser login(Map map);
+    TUser login(Map map);
 
     /**
      * 添加用户
      * @param user 用户对象
      */
 
-    public  void addUser(TUser user);
+      int addUser(TUser user);
+
+    /**
+     * 根据用户名查找用户
+     * @param userName  用户名
+     * @return  用户对象
+     */
+      TUser findUserByName(String userName);
 }

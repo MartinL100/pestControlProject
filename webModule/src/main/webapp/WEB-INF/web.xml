@@ -9,8 +9,36 @@
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>userPanelServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UserPanelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UserAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addUserInitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.AddUserInitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addUserInitServlet</servlet-name>
+        <url-pattern>/addUserInitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userAddServlet</servlet-name>
+        <url-pattern>/userAddServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userPanelServlet</servlet-name>
+        <url-pattern>/userPanelServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>com.AAAAAA.pestcontrolproject.listenner.ContextListenner</listener-class>
+    </listener>
 </web-app>

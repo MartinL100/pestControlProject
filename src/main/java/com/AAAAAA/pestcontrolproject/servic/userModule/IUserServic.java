@@ -15,12 +15,19 @@ public interface IUserServic {
      * @param map  用户名  密码
      * @return 登录用户对象
      */
-    public TUser login(Map map);
+    TUser login(Map map);
 
     /**
      * 添加用户
      * @param user 用户对象
      */
+    String addUser(TUser user);
 
-    public  void addUser(TUser user);
+    /**
+     * 根据用户名判断用户是否存在
+     * @param userName  用户名
+     * @return  存在返回true，不存在返回fasle
+     */
+    boolean isExistUserByName(String userName);
+
 }
