@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,43 +27,38 @@
 
                         <thead>
                         <tr>
-                            <th>用户名</th>
-                            <th>密码</th>
-                            <th>等级</th>
-                            <th>真实姓名</th>
+                            <th>日志内容</th>
+                            <th>日期</th>
+
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>贤心</td>
                             <td>汉族</td>
-                            <td>1989-10-14</td>
-                            <td>人生似修行</td>
+
                         </tr>
                         <tr>
                             <td>张爱玲</td>
                             <td>汉族</td>
-                            <td>1920-09-30</td>
-                            <td>于千万人之中遇见你所遇见</td>
+
                         </tr>
                         <tr>
-                            <td>Helen Keller</td>
-                            <td>拉丁美裔</td>
-                            <td>1880-06-27</td>
-                            <td> Life is either a daring adventure or nothing.</td>
-                        </tr>
-                        <tr>
-                            <td>岳飞</td>
+                            <td>张爱玲</td>
                             <td>汉族</td>
-                            <td>1103-北宋崇宁二年</td>
-                            <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
+
+                        </tr>        <tr>
+                            <td>张爱玲</td>
+                            <td>汉族</td>
+
                         </tr>
                         <tr>
-                            <td>孟子</td>
-                            <td>华夏族（汉族）</td>
-                            <td>公元前-372年</td>
-                            <td>猿强，则国强。国强，则猿更强！ </td>
+                            <td>张爱玲</td>
+                            <td>汉族</td>
+
                         </tr>
+
+
                         </tbody>
                     </table>
                 </div>
@@ -79,7 +75,7 @@
                 </div>
                 <!-- 翻页按钮部分结束 -->
 
-<!--通用模块-->
+ <!--通用模块-->
 
                 <style>
                     /* 这段样式只是用于演示 */
@@ -92,28 +88,31 @@
 
 
                     <div class="layui-row layui-col-space10" >
-                        <div style="width: 40%; float: left;margin-top: 4%" >
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加用户</button>
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">删除用户</button><br/>
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改用户信息</button>
-                        </div>
 
-                        <div class="layui-col-xs3" style="float: right;margin-right: 20%;">
 
-                            <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D">
+                        <div class="layui-col-xs3" style="float: right;margin-right: 10%;width: 30%">
+
+                            <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D;">
                                 <div class="layui-card-header">查询用户信息</div>
                                 <div class="layui-card-body" >
                                     <!-- 填充内容 -->
-                                        <select name="city" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
-                                            <option value="">所有用户</option>
-                                            <option value="010">超级管理员</option>
-                                            <option value="021">资料管理员</option>
-                                            <option value="0571">灾情管理员</option>
-                                            <option value="0571">专家管理员</option>
-                                            <option value="0571">库房管理员</option>
-                                        </select>
-                                    <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%">查询</button>
-
+                                    <form class="layui-form" action="" lay-filter="component-form-group">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">验证日期</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="date" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <!--时间模块-->
+                                        <div class="layui-inline"style="margin-top: 10%">
+                                            <label class="layui-form-label">验证日期</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="date" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <!--时间模块-->
+                                        <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%">查询</button>
+                                    </form>
                                     <!-- 填充内容 -->
                                 </div>
                             </div>
@@ -141,6 +140,37 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index']);
+</script>
+
+
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'component-form-group');
+
+        laydate.render({
+            elem: '#startdate'
+
+        });
+
+        laydate.render({
+            elem: '#enddate'
+
+        });
+
+
+
+    });
 </script>
 </body>
 </html>

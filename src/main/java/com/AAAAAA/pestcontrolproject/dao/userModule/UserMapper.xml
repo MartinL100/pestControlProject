@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.userModule.IUserDao">
+    <resultMap id="userInfo" type="com.AAAAAA.pestcontrolproject.entity.userModule.TUser">
+        <result column="user_id" property="userId" ></result>
+        <result column="user_name" property="userName" ></result>
+        <result column="real_name" property="realName" ></result>
+        <result column="user_password" property="userPassword" ></result>
+       <association property="role" javaType="com.AAAAAA.pestcontrolproject.entity.userModule.TRole">
+           <result column="role_id" property="roleId"></result>
+           <result column="role_Name" property="roleName"></result>
+           <collection property="powers" ofType="com.AAAAAA.pestcontrolproject.entity.userModule.TPower">
+               <result column="power_id" property="powerId"></result>
+               <result column="power_name" property="powerName"></result>
+               <result column="power_resource" property="powerResource"></result>
+               <result column="power_tag" property="powerTag"></result>
+           </collection>
+       </association>
+    </resultMap>
+
+<select id="login" resultMap="userInfo" parameterType="map" statementType="CALLABLE">
+    call login(#{userName},#{password});
+</select>
+
+
+</mapper>

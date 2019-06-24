@@ -1,0 +1,28 @@
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2019/6/21 16:53:15                           */
+/*==============================================================*/
+
+
+DROP TABLE IF EXISTS sys_event;
+
+/*==============================================================*/
+/* Table: sys_event                                             */
+/*==============================================================*/
+CREATE TABLE sys_event
+(
+   event_Id             BIGINT NOT NULL AUTO_INCREMENT,
+   even_tName           VARCHAR(64),
+   occur_Time           VARCHAR(64),
+   disaster_stage       BIGINT,
+   event_describe           test,
+   photo_Path           VARCHAR(64),
+   disaster_type        BIGINT,
+   find_way             BIGINT,
+   area_Id              BIGINT,
+   event_loss                 VARCHAR(64),
+   event_area                 VARCHAR(64),
+   plan                 VARCHAR(64),
+   PRIMARY KEY (event_Id)
+);
+

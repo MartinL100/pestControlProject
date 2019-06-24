@@ -145,80 +145,78 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
       ==========================================
 
 
-      /*==============================================================*/
-      /* DBMS name:      MySQL 5.0                                    */
-      /* Created on:     2019/6/21 16:17:56                           */
-      /*==============================================================*/
+   /*==============================================================*/
+   /* DBMS name:      MySQL 5.0                                    */
+   /* Created on:     2019/6/22 10:05:21                           */
+   /*==============================================================*/
 
 
-      drop table if exists t_log;
+   drop table if exists t_log;
 
-      drop table if exists t_power;
+   drop table if exists t_power;
 
-      drop table if exists t_role;
+   drop table if exists t_role;
 
-      drop table if exists t_user;
+   drop table if exists t_user;
 
-      /*==============================================================*/
-      /* Table: t_log                                                 */
-      /*==============================================================*/
-      create table t_log
-      (
-         log_id               bigint not null,
-         log_descrip          text,
-         log_date             varchar(0),
-         primary key (log_id)
-      );
+   /*==============================================================*/
+   /* Table: t_log                                                 */
+   /*==============================================================*/
+   create table t_log
+   (
+      log_id               bigint not null auto_increment,
+      log_descrip          text,
+      log_date             varchar(0),
+      primary key (log_id)
+   );
 
-      alter table t_log comment '日志表';
+   alter table t_log comment '日志表';
 
-      /*==============================================================*/
-      /* Table: t_power                                               */
-      /*==============================================================*/
-      create table t_power
-      (
-         power_id             bigint not null,
-         role_id              bigint,
-         power_name           varchar(32),
-         power_resource       varchar(32),
-         power_tag            int,
-         primary key (power_id)
-      );
+   /*==============================================================*/
+   /* Table: t_power                                               */
+   /*==============================================================*/
+   create table t_power
+   (
+      power_id             bigint not null auto_increment,
+      role_id              bigint,
+      power_name           varchar(32),
+      power_resource       varchar(32),
+      power_tag            int,
+      primary key (power_id)
+   );
 
-      /*==============================================================*/
-      /* Table: t_role                                                */
-      /*==============================================================*/
-      create table t_role
-      (
-         role_id              bigint not null,
-         role_name            bigint,
-         primary key (role_id)
-      );
+   /*==============================================================*/
+   /* Table: t_role                                                */
+   /*==============================================================*/
+   create table t_role
+   (
+      role_id              bigint not null auto_increment,
+      role_name             varchar(32),
+      primary key (role_id)
+   );
 
-      alter table t_role comment '角色表';
+   alter table t_role comment '角色表';
 
-      /*==============================================================*/
-      /* Table: t_user                                                */
-      /*==============================================================*/
-      create table t_user
-      (
-         user_id              bigint not null auto_increment,
-         role_id              bigint,
-         user_name            varchar(32),
-         real_name            varchar(32),
-         user_password        varchar(0),
-         primary key (user_id)
-      );
+   /*==============================================================*/
+   /* Table: t_user                                                */
+   /*==============================================================*/
+   create table t_user
+   (
+      user_id              bigint not null auto_increment,
+      role_id              bigint,
+      user_name            varchar(32),
+      real_name            varchar(32),
+      user_password        varchar(32),
+      primary key (user_id)
+   );
 
-      alter table t_user comment '用户表';
+   alter table t_user comment '用户表';
 
-      alter table t_power add constraint FK_Reference_2 foreign key (role_id)
-            references t_role (role_id) on delete restrict on update restrict;
+   alter table t_power add constraint FK_Reference_2 foreign key (role_id)
+         references t_role (role_id) on delete restrict on update restrict;
 
-      alter table t_user add constraint FK_Reference_1 foreign key (role_id)
-            references t_role (role_id) on delete restrict on update restrict;
-
-
+   alter table t_user add constraint FK_Reference_1 foreign key (role_id)
+         references t_role (role_id) on delete restrict on update restrict;
 
 
 
@@ -227,4 +225,132 @@ alter table t_conference add constraint FK_Reference_4 foreign key (event_id)
 
 
 
+================================================================================================================
+模块负责人   曾贤富
+
+-- ----------------------------
+-- Table structure for t_pestis  虫害表
+-- ----------------------------
+
+
+DROP TABLE IF EXISTS `t_pestis`;
+CREATE TABLE `t_pestis` (
+ `pestis_id` INT NOT NULL AUTO_INCREMENT COMMENT '虫害ID',
+ `pestis_name` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害名',
+ `pestis_breed` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害繁殖',
+ `pestis_host` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害寄主',
+ `pestis_enemy` VARCHAR(64) NULL DEFAULT NULL COMMENT '虫害天敌',
+ `pestis_harm` VARCHAR(64) NULL DEFAULT NULL COMMENT '主要危害',
+ `pestis_defense` VARCHAR(64) NULL DEFAULT NULL COMMENT '防御措施',
+ `pestis_photo` VARCHAR(128) NULL DEFAULT NULL COMMENT '幼虫图片',
+ `pestis_adultImages` VARCHAR(128) NULL DEFAULT NULL COMMENT '成虫图片',
+ PRIMARY KEY (`pestis_id`)
+);
+SELECT * FROM t_pestis
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_disease  病害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_disease`;
+CREATE TABLE `t_disease` (
+ `disease_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '病害id',
+ `disease_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害名称',
+ `disease_ source` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害病源',
+ `disease_symptom` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病症状',
+ `disease_law` VARCHAR(48) NULL DEFAULT NULL COMMENT '发病规律',
+ `disease_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ `disease_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '图片',
+ `disease_measure` VARCHAR(48) NULL DEFAULT NULL COMMENT '防治措施',
+ PRIMARY KEY (`disease_id`)
+);
+SELECT * FROM t_disease
+
+
+
+
+
+
+-- ----------------------------
+-- Table structure for t_mouse  鼠害表
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mouse`;
+CREATE TABLE `t_mouse` (
+ `mouse_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '鼠害id',
+ `mouse_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害名称',
+ `mouse_ breed` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害繁殖',
+ `mouse_food` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害食物',
+ `mouse_natural` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害天敌',
+ `mouse_prevent` VARCHAR(48) NULL DEFAULT NULL COMMENT '鼠害防治措施',
+ `mouse_photo` VARCHAR(64) NULL DEFAULT NULL COMMENT '鼠害图片',
+ `mouse_harm` VARCHAR(48) NULL DEFAULT NULL COMMENT '主要危害',
+ PRIMARY KEY (`mouse_id`)
+);
+
+SELECT * FROM t_mouse
+
+
+
+
+模块所属人：刘俊麟
+
+drop table sys_type;
+
+/*==============================================================*/
+/* Table: sys_type             下拉类型表                                 */
+/*==============================================================*/
+create table sys_type
+(
+   type_id              bigint not null,
+   type_name            varchar(48),
+   type_key             int,
+   type_val             varchar(48),
+   primary key (type_id)
+);
+
+
+
+
+
+DROP TABLE IF EXISTS sys_area;
+/*==============================================================*/
+/* Table: sys_area    区域表                                          */
+/*==============================================================*/
+CREATE TABLE sys_area
+(
+   area_id              INT NOT NULL AUTO_INCREMENT,
+   area_name            VARCHAR(32),
+   area_tree_type       VARCHAR(48),
+   area_good_tree       VARCHAR(48),
+   area_adress_id       BIGINT,
+   PRIMARY KEY (area_id)
+);
+
+SELECT  *FROM sys_area
+
+
+
+DROP TABLE IF EXISTS sys_class;
+
+/*==============================================================*/
+/* Table: sys_class       小班表                                      */
+/*==============================================================*/
+CREATE TABLE sys_class
+(
+   sclass_id            INT NOT NULL AUTO_INCREMENT,
+   area_id              INT,
+   sclass_name          VARCHAR(32),
+   sclass_leader        VARCHAR(32),
+   sclass_leader_tel    VARCHAR(48),
+   sclass_num           INT,
+   sclass_start_date    DATE,
+   PRIMARY KEY (sclass_id)
+);
+
+ALTER TABLE sys_class ADD CONSTRAINT FK_Reference_2 FOREIGN KEY (area_id)
+      REFERENCES sys_area (area_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+DROP TABLE sys_class
 
