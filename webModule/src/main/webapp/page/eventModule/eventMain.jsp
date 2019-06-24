@@ -38,31 +38,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>鼠害</td>
-                            <td>1989-10-14</td>
-                            <td>大西北</td>
-                            <td>大量放置鼠笼</td>
-                            <td>防治中</td>
-                        </tr><tr>
-                            <td>鼠害</td>
-                            <td>1989-10-14</td>
-                            <td>大西北</td>
-                            <td>大量放置鼠笼</td>
-                            <td>防治中</td>
-                        </tr><tr>
-                            <td>鼠害</td>
-                            <td>1989-10-14</td>
-                            <td>大西北</td>
-                            <td>大量放置鼠笼</td>
-                            <td>防治中</td>
-                        </tr><tr>
-                            <td>鼠害</td>
-                            <td>1989-10-14</td>
-                            <td>大西北</td>
-                            <td>大量放置鼠笼</td>
-                            <td>防治中</td>
-                        </tr>
+                        <c:forEach items="eventList" var="e">
+                            <tr>
+                                <td>e.eventName </td>
+                                <td>e.occurTime</td>
+                                <td><c:if test="${e.areaId==0}">
+                                     0
+                                </c:if>
+                                <c:if test="${e.areaId==1}">
+                                     1
+                                </c:if>
+                                <c:if test="${e.areaId==2}">
+                                     2
+                                </c:if></td>
+
+                                <td>e.plan</td>
+                                <td><c:if test="${e.disasterStage==0}">
+                                    0
+                                </c:if>
+                                    <c:if test="${e.disasterStage==1}">
+                                        1
+                                    </c:if>
+                                    <c:if test="${e.disasterStage==2}">
+                                       2
+                                    </c:if></td>
+                            </tr>
+                        </c:forEach>
+
                         </tbody>
                     </table>
 
@@ -95,18 +97,27 @@
     <button class="layui-btn layui-btn-primary"style="position: relative;left:28px;top:88px">修改事件信息</button>
 </div>
 <!-- 按钮部分结束 -->
+<!--删选方框-->
+<div class="layui-col-xs3" style="float: right;margin-right: 10%;top:-25px;">
 
-<div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:1080px;top: -1px">
-    <span style=" position:absolute;top:-35px;left:30px">事件名称</span>
-    <span style=" position:absolute;top:0px;left:30px">灾情状态</span>
-    <span style=" position:absolute;top:60px;left:30px"></span>
-    <span style=" position:absolute;top:120px;left:30px">类别</span>
-    <input type="text" style=" position:absolute;top:11px;left:105px"/>
+    <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D" >
+        <div class="layui-card-header">查询用户信息</div>
+        <div class="layui-card-body" >
+            <!-- 填充内容 -->
 
-    <button id="findBtn" class="layui-btn layui-btn-primary layui-btn-sm" style=" position:absolute;top:170px;left:200px">查询</button>
-</div>
-</div>
+            <span>事件名称</span><input type="text"  style="height: 0.68cm;width: 3.5cm;position: relative;left:0px;top:0px;margin-left: 5%;"/><p/><p/>
+            <span style="position: relative;top:15px">灾情状态</span><input type="text"   style="height: 0.68cm;width: 3.5cm;position: relative;left:0px;top:15px;margin-left: 5%;" /><p/><p/>
+            <span style="position: relative;top:30px">发生位置</span><input type="text"  style="height: 0.68cm;width: 3.5cm;position: relative;left:0px;top:30px;margin-left: 5%;"/><p/><p/>
+            <span style="position: relative;top:45px">起始时间</span><input type="date"  style="height: 0.68cm;width: 3.5cm;position: relative;left:0px;top:45px;margin-left: 5%;"/><p/><p/>
+            <span style="position: relative;top:60px">结束时间</span><input type="date"  style="height: 0.68cm;width: 3.5cm;position: relative;left:0px;top:60px;margin-left: 5%;"/><p/><p/>
 
+            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 30%">查询</button>
+
+            <!-- 填充内容 -->
+        </div>
+    </div>
+</div></div></div>
+<!--删选方框结束-->
 
 
 

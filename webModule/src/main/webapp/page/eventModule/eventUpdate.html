@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>静态表格</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header" align="center"><h1>事件记录</h1></div>
+                <!--左边区域-->
+                <div  style="position: relative;width:400px;left:15%;float: left">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-inline" style="position: relative;left:15px">
+                            <label class="layui-form-label">事件名称：   </label><p/>
+                            <label class="layui-form-label">时&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp间：   </label><p/>
+                            <label class="layui-form-label">灾害类型：   </label><p/>
+                            <label class="layui-form-label">发现途径：   </label><p/>
+                            <label class="layui-form-label">发生位置：   </label><p/>
+                            <label class="layui-form-label">所在小班：   </label><p/>
+                            <label class="layui-form-label">影响面积：   </label><p/>
+                            <label class="layui-form-label">初步损失：   </label><p/>
+                            <label class="layui-form-label">专家建议：   </label><p/>
+                        </div>
+                </div>
+                </div>
+            </div>
+
+                <!--右边区域-->
+                <div  style="position: relative;left:10%;float: left">
+                    <div class="layui-form-item">
+                            <div class="layui-inline" style="position: relative;left:15px">
+                                <label class="layui-form-label">灾区图片：   </label>
+                                    <img src="" style="width: 120px;height: 140px"><p/>
+                            </div>
+                    </div>
+
+                </div>
+
+                <!-- 表格部分-->
+                <div class="layui-card-body">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="250">
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>事件名称</th>
+                            <th>日期</th>
+                            <th>发生位置</th>
+                            <th>防止方案</th>
+                            <th>灾情状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>鼠害</td>
+                            <td>1989-10-14</td>
+                            <td>大西北</td>
+                            <td>大量放置鼠笼</td>
+                            <td>防治中</td>
+                        </tr><tr>
+                            <td>鼠害</td>
+                            <td>1989-10-14</td>
+                            <td>大西北</td>
+                            <td>大量放置鼠笼</td>
+                            <td>防治中</td>
+                        </tr><tr>
+                            <td>鼠害</td>
+                            <td>1989-10-14</td>
+                            <td>大西北</td>
+                            <td>大量放置鼠笼</td>
+                            <td>防治中</td>
+                        </tr><tr>
+                            <td>鼠害</td>
+                            <td>1989-10-14</td>
+                            <td>大西北</td>
+                            <td>大量放置鼠笼</td>
+                            <td>防治中</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 表格部分结束 -->
+<!--提交按钮-->
+<div class="layui-form-item layui-layout-admin">
+    <div class="layui-input-block">
+        <div class="layui-footer" style="left: 0;">
+            <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1">修改</button>
+        </div>
+    </div>
+</div>
+<!--提交按钮结束-->
+
+<div class="layui-card-body" style="left:36%;position: relative; top:-486px ;padding: 15px;">
+    <form class="layui-form" action="" lay-filter="component-form-group">
+        <label class="layui-form-label">发生位置</label>
+        <div class="layui-input-inline">
+            <select name="quiz">
+                <option value="">请选择</option>
+                <option value="1">layer</option>
+                <option value="2">form</option>
+                <option value="3">layim</option>
+            </select>
+        </div><p/>
+        <label class="layui-form-label">防治方案</label>
+        <div class="layui-input-block">
+            <textarea name="text" placeholder="请输入内容" class="layui-textarea" style="width: 400px"></textarea>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'component-form-group');
+
+        laydate.render({
+            elem: '#LAY-component-form-group-date'
+        });
+    });
+
+</script>
+</body>
+</html>
