@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.selectedType.ISelectedTypeDao">
+
+<select id="getSelectValueListByTypeName" resultType="sysSelectedType">
+  select type_id typeId, type_name typeName, type_key typeKey, type_val typeVal from  sys_type where type_name=#{0};
+</select>
+
+    <select id="getSelectedValueByID" resultType="sysSelectedType">
+        select type_id typeId, type_name typeName, type_key typeKey, type_val typeVal from  sys_type where type_id=#{0};
+    </select>
+
+</mapper>
