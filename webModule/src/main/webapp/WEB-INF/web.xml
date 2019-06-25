@@ -21,6 +21,46 @@
         <servlet-name>addUserInitServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.AddUserInitServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>isExistUserServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.IsExistUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findUserServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.FindUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>delUserServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.DelUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateUserInfoServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UpdateUserInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateUserInfoSureServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UpdateUserInfoSureServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserInfoSureServlet</servlet-name>
+        <url-pattern>/updateUserInfoSureServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateUserInfoServlet</servlet-name>
+        <url-pattern>/updateUserInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>delUserServlet</servlet-name>
+        <url-pattern>/delUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findUserServlet</servlet-name>
+        <url-pattern>/findUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>isExistUserServlet</servlet-name>
+        <url-pattern>/isExistUserServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addUserInitServlet</servlet-name>
         <url-pattern>/addUserInitServlet</url-pattern>
@@ -41,4 +81,16 @@
     <listener>
         <listener-class>com.AAAAAA.pestcontrolproject.listenner.ContextListenner</listener-class>
     </listener>
+    <filter>
+        <filter-name>encodeFilter</filter-name>
+        <filter-class>com.AAAAAA.pestcontrolproject.filter.EncodeFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
