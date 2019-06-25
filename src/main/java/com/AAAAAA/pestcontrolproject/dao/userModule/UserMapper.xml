@@ -28,6 +28,15 @@
             <result column="role_name" property="roleName"></result>
         </association>
     </resultMap>
+    <resultMap id="user" type="com.AAAAAA.pestcontrolproject.entity.userModule.TUser">
+        <result column="user_id" property="userId"></result>
+        <result column="user_name" property="userName"></result>
+        <result column="real_name" property="realName"></result>
+        <result column="user_password" property="userPassword"></result>
+        <association property="role" javaType="com.AAAAAA.pestcontrolproject.entity.userModule.TRole">
+            <result column="role_id" property="roleId"></result>
+        </association>
+    </resultMap>
 
 <select id="login" resultMap="userInfo" parameterType="map" statementType="CALLABLE">
     call login(#{userName},#{password});
@@ -52,4 +61,12 @@
     <update id="delUser" parameterType="map">
         delete from t_user where user_id=#{userId}
     </update>
+    <select id="findUserById" parameterType="map" resultMap="user">
+        select user_id , role_id, user_name, real_name, user_password
+         from t_user where user_id=#{userId};
+    </select>
+    <update id="updateUserInfo" parameterType="map">
+        update t_user set user_password=#{newPwd},role_id=#{roleId} where user_id=#{userId}
+    </update>
+
 </mapper>

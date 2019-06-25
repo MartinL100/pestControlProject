@@ -11,14 +11,15 @@
     <title>用户管理</title>
 </head>
 <body>
-
-<h2 style="color: red" id="erroInfo"></h2>
+<!--用于控制页面跳转-->
+<form action="addUserInitServlet" method="post" id="addUserForm"></form>
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <h1 align="center">用  户  管  理</h1>
+                <h2 style="color: red" id="erroInfo" align="center"></h2>
                 <div class="layui-card-body">
                     <table class="layui-table">
 
@@ -46,7 +47,7 @@
 
                 </div>
 
-                <form action="delUserServlet" id="userIdRecord" method="post">
+                <form action="" id="userIdRecord" method="post">
                     <!--隐藏div，用于记录点击的用户的id-->
                     <input id="userId" name="checkedUserId" style="display: none"/>
                 </form>
@@ -76,9 +77,9 @@
 
                     <div class="layui-row layui-col-space10" >
                         <div style="width: 40%; float: left;margin-top: 4%" >
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加用户</button>
+                            <button id="addUser" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加用户</button>
                             <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">删除用户</button><br/>
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改用户信息</button>
+                            <button  id="updateUserInfo" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改用户信息</button>
                         </div>
 
                         <div class="layui-col-xs3" style="float: right;margin-right: 20%;">
@@ -89,6 +90,7 @@
                                     <form action="findUserServlet" method="post">
                                     <!-- 填充内容 -->
                                         <select name="roleId" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
+                                            <option value="">所有用户</option>
                                             <c:forEach var="role" items="${roleList}" >
                                                 <option value="${role.roleId}">${role.roleName}</option>
                                             </c:forEach>
@@ -108,21 +110,51 @@
 </div>
 
 <script>
+    //点击某行，保存该行对应用户对象的id
     function saveId(obj) {
         //获取点中行对应的用户id
    var id = obj.lastChild.previousSibling.firstChild.nodeValue;
         //将用户id保存到隐藏div  userId中
    $("#userId").val(id);
     }
+
+
     //点击删除按钮
     $("#delUser").click(function () {
+        $("#userIdRecord").attr('action','delUserServlet');
         //从隐藏div中获取选中id
         var userId=$("#userId").val();
         if(userId==null||""==userId){
             $("#erroInfo").text("请点击需要删除的行");
+            setTimeout(function(){
+                $("#erroInfo").hide();
+            }, 3000);
         }else {
             $("#userIdRecord").submit();
         }
+    })
+
+    //点击修改按钮
+
+    $("#updateUserInfo").click(function () {
+        $("#userIdRecord").attr('action','updateUserInfoServlet');
+
+        //从隐藏div中获取选中id
+        var userId=$("#userId").val();
+        if(userId==null||""==userId){
+            $("#erroInfo").text("请点击需要删除的行");
+            setTimeout(function(){
+                $("#erroInfo").hide();
+            }, 3000);
+        }else {
+            $("#userIdRecord").submit();
+        }
+
+    })
+
+    //点击添加用户
+    $("#addUser").click(function () {
+        $("#addUserForm").submit();
     })
 </script>
 

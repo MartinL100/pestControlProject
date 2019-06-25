@@ -65,4 +65,12 @@ public class UserModuleTest {
         List<TUser>userList=servic.findUsersList(map);
         System.out.println(userList.size());
     }
+    @Test
+    public void findUserTest(){
+        IUserServic servic=new UserServicImpl();
+        Map<String,Integer> map=new HashMap();
+        map.put("userId",1);
+        TUser user=servic.findUserById(map);
+        System.out.println(user.getUserId());
+    }
 }

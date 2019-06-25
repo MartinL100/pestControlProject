@@ -23,7 +23,10 @@ public class LoginServlet extends HttpServlet {
         map.put("userName",userName);
         map.put("password",password);
        TUser user= userServic.login(map);
-        System.out.println(user.toString());
+
+
+
+       request.getRequestDispatcher("page/userModule/mainFrame.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

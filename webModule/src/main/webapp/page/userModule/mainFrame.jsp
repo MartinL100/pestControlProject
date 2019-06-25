@@ -27,21 +27,85 @@
             <li data-name="home" class="layui-nav-item layui-nav-itemed">
               <a href="javascript:;" lay-tips="主页" lay-direction="2">
 
-                <cite>主页</cite>
+                <cite>资料管理</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">控制台</a>
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">虫害一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">主页一</a>
+                  <a href="../drugModule/drugPanel.html" target="frameName">病害一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="userPanel.html" target="frameName">主页二</a>
+                  <a href="userPanel.html" target="frameName">鼠害一览</a>
                 </dd>
               </dl>
             </li>
 
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>灾情防治</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">区域一览</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">小班管理</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">事件记录</a>
+                </dd>
+              </dl>
+            </li>
+
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>专家会商</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">专家一览</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">会商灾情</a>
+                </dd>
+              </dl>
+            </li>
+
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>药剂器械出库管理</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">药剂器械管理</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">出库管理</a>
+                </dd>
+              </dl>
+            </li>
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>系统信息</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="findUserInitServlet" target="frameName">用户管理</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">日志一览</a>
+                </dd>
+              </dl>
+            </li>
           </ul>
         </div>
       </div>

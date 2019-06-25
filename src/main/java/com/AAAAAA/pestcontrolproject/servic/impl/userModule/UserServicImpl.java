@@ -68,4 +68,23 @@ public class UserServicImpl implements IUserServic {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Override
+    public TUser findUserById(Map map) {
+        SqlSession sqlSession =GetSession.getSession();
+        IUserDao dao= sqlSession.getMapper(IUserDao.class);
+        TUser user=dao.findUserById(map);
+        sqlSession.close();
+
+        return user;
+    }
+
+    @Override
+    public void updateUserInfo(Map map) {
+        SqlSession sqlSession =GetSession.getSession();
+        IUserDao dao= sqlSession.getMapper(IUserDao.class);
+        dao.updateUserInfo(map);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }
