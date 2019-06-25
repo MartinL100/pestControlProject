@@ -21,6 +21,37 @@
         <servlet-name>addUserInitServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.AddUserInitServlet</servlet-class>
     </servlet>
+
+
+    <servlet>
+        <servlet-name>drugAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.drugAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>drugPanelPageServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.drugPanelPageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>outwarehousePanelServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.outWareHousePanelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>outwarehouseAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.outwarehouseAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>outwarehouseAddServlet</servlet-name>
+        <url-pattern>/outwarehouseAddServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>outwarehousePanelServlet</servlet-name>
+        <url-pattern>/outwarehousePanelServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+
+
     <servlet-mapping>
         <servlet-name>addUserInitServlet</servlet-name>
         <url-pattern>/addUserInitServlet</url-pattern>
@@ -38,7 +69,32 @@
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>drugAddServlet</servlet-name>
+        <url-pattern>/drugAddServlet.lovo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>drugPanelPageServlet</servlet-name>
+        <url-pattern>/drugPanelPageServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+
     <listener>
         <listener-class>com.AAAAAA.pestcontrolproject.listenner.ContextListenner</listener-class>
     </listener>
+
+
+
+    <filter>
+        <filter-name>encodeFilter</filter-name>
+        <filter-class>com.AAAAAA.pestcontrolproject.filter.EncodeFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodeFilter</filter-name>
+        <url-pattern>*.lovo</url-pattern>
+    </filter-mapping>
 </web-app>

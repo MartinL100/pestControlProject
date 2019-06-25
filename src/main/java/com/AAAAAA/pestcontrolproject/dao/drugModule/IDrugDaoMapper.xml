@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.drugModule.IDrugDao">
+
+    <resultMap id="DrugMap" type="sysDrug">
+        <id property="drugId" column="drug_id"></id>
+        <result property="drugName" column="drug_name"></result>
+        <result property="drugUseWay" column="drug_use_way"></result>
+        <result property="drugNum" column="drug_num"></result>
+        <association select="findByDrugTypeId" column="drug_type" property="drugType"></association>
+        <association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType"></association>
+    </resultMap>
+
+   <select id="getListPageDrugByMap" parameterType="map" resultMap="DrugMap">
+       select  *from  sys_drug where 1=1
+       <if test="drugName !=null and drugName !=''">
+           and drug_name=#{drugName}
+       </if>
+       <if test="drugCureType !=null and drugCureType !='' and '不限'!=drugCureType">
+           and drug_cure_type= (select type_id from sys_type where type_val= #{drugCureType})
+       </if>
+       <if test="drugType !=null and drugType!='' and '不限'!=drugType ">
+           and drug_type=(select type_id from sys_type where type_val= #{drugType})
+       </if>
+       limit #{startPage},#{countPage}
+   </select>
+
+
+    <select id="findByDrugTypeId" resultType="String">
+       select type_val  from  sys_type where type_id=#{0}
+    </select>
+
+    <select id="findByDrugCureTypeId" resultType="String" parameterType="long">
+     select type_val  from  sys_type where type_id=#{0}
+    </select>
+
+
+
+    <select id="getAllCount" parameterType="map" resultType="int">
+        select  count(*)from  sys_drug where 1=1
+        <if test="drugName !=null and drugName !=''">
+            and drug_name=#{drugName}
+        </if>
+        <if test="drugCureType !=null and drugCureType !='' and '不限'!=drugCureType">
+            and drug_cure_type=#{drugCureType}
+        </if>
+        <if test="drugType !=null and drugType!='' and '不限'!=drugType">
+            and drug_type=#{drugType}
+        </if>
+    </select>
+
+                                                                              <!--com.AAAAAA.pestcontrolproject.vo.drugModule.SysDrugAddVo-->
+    <select id="saveSysDrug" statementType="CALLABLE" parameterType="com.AAAAAA.pestcontrolproject.vo.drugModule.SysDrugAddVo">
+           call saveSysDrug(#{drugName},#{drugCureTypeId},#{drugTypeId},#{drugUseWay},#{drugNum},#{res})
+    </select>
+</mapper>

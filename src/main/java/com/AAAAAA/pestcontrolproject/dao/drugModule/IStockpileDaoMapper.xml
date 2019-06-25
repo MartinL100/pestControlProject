@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.drugModule.IStockpileDao">
+
+
+    <resultMap id="SysDrugMap" type="sysStockpile">
+        <id column="stockpile_id" property="stockpileId"></id>
+        <result column="stockpile_date" property="stockpileDate"></result>
+        <association select="findStockpileClassByID" column="stockpile_class" property="stockpileClass">
+            <id/>
+            <result column="sclass_name" property="sclassName"></result>
+        </association>
+        <association select="findStockpileManByID" column="stockpile_man" property="stockpileMan">
+            <id/>
+            <result column="user_name" property="userName"></result>
+        </association>
+        <!--<collection select="findDrugListByStockpileId" column="stockpile_id" property="DrugList" ofType="SysDrug">-->
+            <!--<id column="drug_id" property="drugId"></id>-->
+            <!--<result column="drug_name" property="drugName"></result>-->
+            <!--<result column="drug_use_way" property="drugUseWay"></result>-->
+            <!--<result column="drug_num" property="drugNum"></result>-->
+            <!--<association select="findByDrugTypeId" column="drug_type" property="drugType"></association>-->
+            <!--<association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType"></association>-->
+        <!--</collection>-->
+    </resultMap>
+
+
+<select id="getSysDrugList" resultMap="SysDrugMap" parameterType="map">
+    select *from  sys_stockpile where 1=1
+    <if test="startTime !=null and startTime!=''">
+     and sclass_start_date  &gt;= #{startTime}
+    </if>
+    <if test="endTime !=null and endTime!=''">
+        and sclass_start_date  &lt;= #{endTime}
+    </if>
+    <if test="sclassName!=null and sclassName!='' ">
+        and  sclass_id = (select sclass_id from sys_class where sclass_name=#{sclassName} )
+    </if>
+     LIMIT #{startPage},#{countPage}
+</select>
+
+
+
+
+
+
+
+
+    <resultMap id="SysDrugMap2" type="sysStockpile">
+        <id column="stockpile_id" property="stockpileId"></id>
+        <result column="stockpile_date" property="stockpileDate"></result>
+        <association select="findStockpileClassByID" column="stockpile_class" property="stockpileClass">
+            <id/>
+            <result column="sclass_name" property="sclassName"></result>
+        </association>
+        <association select="findStockpileManByID" column="stockpile_man" property="stockpileMan">
+            <id/>
+            <result column="user_name" property="userName"></result>
+        </association>
+        <!--<collection select="getDrugListById" column="stockpile_id" property="DrugList" ofType="stockpileDrug">-->
+            <!--<id  column="drug_id" property="drugId"></id>-->
+            <!--<result column="drug_name" property="drugName"></result>-->
+            <!--<result column="drug_use_way" property="drugUseWay"></result>-->
+            <!--<result column="drug_num" property="drugNum"></result>-->
+            <!--<result column="drug_type" property="drugType"></result>-->
+            <!--<result column="drug_cure_type" property="drugCureType"></result>-->
+            <!--&lt;!&ndash;<association select="findByDrugTypeId" column="drug_type" property="drugType"></association>&ndash;&gt;-->
+            <!--&lt;!&ndash;<association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType"></association>&ndash;&gt;-->
+        <!--</collection>-->
+    </resultMap>
+
+
+
+
+    <select id="findByDrugTypeId" resultType="String">
+       select type_val  from  sys_type where type_id=#{0}
+    </select>
+    <select id="findByDrugCureTypeId" resultType="String">
+     select type_val  from  sys_type where type_id=#{0}
+    </select>
+    <select id="findStockpileManByID" resultType="String">
+        select   real_name from  t_user where  user_id=#{0};
+    </select>
+    <select id="findStockpileClassByID" resultType="String">
+       select sclass_name from sys_class where sclass_id=#{0}
+   </select>
+
+
+    <resultMap id="SysDrugMapList" type="stockpileDrug">
+        <result  column="drug_id" property="drugId"></result>
+        <result column="drug_name" property="drugName"></result>
+        <result column="drug_use_way" property="drugUseWay"></result>
+        <result column="drug_num" property="drugNum"></result>
+        <result column="drug_type" property="drugType"></result>
+        <result column="drug_cure_type" property="drugCureType"></result>
+    </resultMap>
+
+    <select id="getDrugListById" resultMap="SysDrugMapList">
+      select  * from v_drug_tockpile where  stockpile_id=#{0}
+    </select>
+  <!--select  s.stockpile_num,s.stockpile_id,d.* from drug_stockpile s ,sys_drug d-->
+     <!--where s.drug_id= d.drug_id and s.drug_id=#{0}-->
+
+    <select id="getSysDrugByID" resultMap="SysDrugMap2">
+        select *from sys_stockpile where stockpile_id=#{0}
+    </select>
+
+
+
+
+
+    <select id="GetCounts" parameterType="map" resultType="int">
+        select count(*) from sys_stockpile where 1=1
+        <if test="startTime !=null and startTime!=''">
+            and stockpile_date &gt;= #{startTime}
+        </if>
+        <if test="endTime !=null and endTime!=''">
+            and stockpile_date &lt;= #{endTime}
+        </if>
+        <!--<if test="sclassNameid !=null sclassNameId!=0" >-->
+            <!--and  sclass_name=#{sclassNameId}-->
+        <!--</if>-->
+    </select>
+
+
+    <select id="saveStockpileDrug"></select>
+
+</mapper>

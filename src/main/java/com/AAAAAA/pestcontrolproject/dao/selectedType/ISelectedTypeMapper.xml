@@ -10,4 +10,8 @@
         select type_id typeId, type_name typeName, type_key typeKey, type_val typeVal from  sys_type where type_id=#{0};
     </select>
 
+
+    <select id="getAllClass" resultType="sysSelectedType">
+        select sclass_id typeKey, sclass_name typeName from sys_class
+    </select>
 </mapper>
