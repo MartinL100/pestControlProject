@@ -5,6 +5,7 @@ import com.AAAAAA.pestcontrolproject.servic.impl.userModule.RoleServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.userModule.UserServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IRoleServic;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IUserServic;
+import com.AAAAAA.pestcontrolproject.util.CheckString;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import com.AAAAAA.pestcontrolproject.util.SplitPage;
 import org.apache.ibatis.session.SqlSession;
@@ -53,7 +54,7 @@ public class UserModuleTest {
     @Test
     public void splitPageTest(){
 
-        Map map= SplitPage.SplitPage(1,"25",10,50);
+        Map map= SplitPage.SplitPage("1","25",10,50);
         System.out.println(map.get("startIndex"));
     }
 
@@ -61,8 +62,20 @@ public class UserModuleTest {
     public void selectTest(){
     IUserServic servic=new UserServicImpl();
         Map<String,Integer> map=new HashMap();
-        map.put("roleId",1);
-        List<TUser>userList=servic.findUsersList(map);
-        System.out.println(userList.size());
+//        map.put("roleId",1);
+//        List<TUser>userList=servic.findUsersList(map);
+//        System.out.println(userList.size());
+        System.out.println(servic.countAllUsers(map));
     }
+    @Test
+    public void findUserTest(){
+//        IUserServic servic=new UserServicImpl();
+//        Map<String,Integer> map=new HashMap();
+//        map.put("userId",1);
+//        TUser user=servic.findUserById(map);
+//        System.out.println(user.getUserId());
+        System.out.println(CheckString.isNum("1"));
+    }
+
+
 }
