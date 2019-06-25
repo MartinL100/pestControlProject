@@ -6,13 +6,13 @@ import java.util.Map;
 public class SplitPage {
     /**
      * 分页
-     * @param currentPage 当前页
-     * @param pageTag 操作标记 first next  targetPage
+     * @param currentPageString 当前页
+     * @param pageTag 操作标记 prev next  targetPage(跳转的页数  数字)
      * @param rowNum  每页显示的行数
      * @param allRows 数据库查询出的总行数
      * @return  结果包括newCurrentPage：新的当前页；maxPage：最大页；startIndex：查询起始位置
      */
-    public static Map<String,Object>SplitPage(int currentPage,String pageTag,int rowNum,int allRows){
+    public static Map<String,Object>SplitPage(String currentPageString,String pageTag,int rowNum,int allRows){
         Map<String,Object>map=new HashMap<>();
         //总页数
         int countPage=0;
@@ -22,6 +22,16 @@ public class SplitPage {
        }else {
            countPage=allRows/rowNum+1;
        }
+       //判断当前页，如果为空则默认显示第一页
+        if(!CheckString.isNum(currentPageString)){
+            currentPageString="1";
+        }
+        //将当前页转化为int
+       int currentPage=Integer.parseInt(currentPageString);
+        //如果标记为null则跳转到第一页
+        if(CheckString.isNull(pageTag)){
+            pageTag="1";
+        }
        //判断操作标记
         switch (pageTag){
             //标记为下一页
@@ -45,6 +55,10 @@ public class SplitPage {
                 break;
                 //标记为输入的页数
           default:
+              //如果标记不是数字或者为空，默认调到第一页
+              if(!CheckString.isNum(pageTag)){
+                  pageTag="1";
+              }
             //判断输入的页码是否在搜索范围内
               currentPage=Integer.parseInt(pageTag);
               //页码大于最大页，则调到最大页
@@ -60,6 +74,7 @@ public class SplitPage {
         map.put("newCurrentPage",currentPage);
        map.put("maxPage",countPage);
        map.put("startIndex",startIndex);
+        map.put("rowNum",rowNum);
         return map;
     }
 }

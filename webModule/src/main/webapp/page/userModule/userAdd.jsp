@@ -26,7 +26,7 @@
 
                 <div class="layui-form-item" align="center">
 
-                    <label class="layui-form-label" style="margin-left: 30%">用户名</label>
+                    <label class="layui-form-label" style="margin-left: 27%" >用户名</label>
 
                     <div class="layui-input-block" style="width: 30%;margin-top: 3%" >
                         <input type="text" name="userName"  id="userName" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input" >
@@ -36,24 +36,25 @@
 
                 <div class="layui-form-item" align="center">
 
-                    <label class="layui-form-label" style="margin-left: 30%">密码</label>
+                    <label class="layui-form-label" style="margin-left: 27%">密码</label>
 
                     <div class="layui-input-block" style="width: 30%" >
                         <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" >
                     </div>
                 </div>
 
-                <div class="layui-form-item" align="center">
+                <div class="layui-form-item" align="center" >
 
-                    <label class="layui-form-label" style="margin-left: 30%">确认密码</label>
+                    <label class="layui-form-label" style="margin-left: 27%; ">确认密码</label>
 
-                    <div class="layui-input-block" style="width: 30%" >
+                    <div class="layui-input-block" style="width: 30% ;" >
+
                         <input type="password" name="passwordSure" lay-verify="required" placeholder="确认密码" autocomplete="off" class="layui-input" >
                     </div>
                 </div>
                 <div class="layui-form-item" align="center">
 
-                    <label class="layui-form-label" style="margin-left: 30%">真实姓名</label>
+                    <label class="layui-form-label" style="margin-left: 27%">真实姓名</label>
 
                     <div class="layui-input-block" style="width: 30%" >
                         <input type="text" name="realName" lay-verify="required" placeholder="真实姓名" autocomplete="off" class="layui-input" >
@@ -61,7 +62,7 @@
                 </div>
 
                 <div class="layui-form-item" align="center">
-                    <label class="layui-form-label" style="margin-left: 30%">用户等级</label>
+                    <label class="layui-form-label" style="margin-left: 27%">用户等级</label>
                     <div class="layui-input-block" style="width: 30%" >
                         <select name="roleId" lay-filter="aihao">
                             <c:forEach var="role" items="${roleList}" >
