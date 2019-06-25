@@ -87,4 +87,12 @@ public class UserServicImpl implements IUserServic {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Override
+    public int countAllUsers(Map map) {
+        SqlSession sqlSession =GetSession.getSession();
+        IUserDao dao= sqlSession.getMapper(IUserDao.class);
+        int rows= dao.countAllUsers(map);
+        return rows;
+    }
 }

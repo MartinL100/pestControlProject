@@ -45,7 +45,7 @@ public class UserAddServlet extends HttpServlet {
         }
 
         request.setAttribute("erroInfo",erroInfo);
-request.getRequestDispatcher("findUserInitServlet").forward(request,response);
+response.sendRedirect("findUserServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

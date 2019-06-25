@@ -57,6 +57,7 @@
                 t_user.role_id =#{roleId}
             </if>
         </where>
+        limit #{startIndex},#{rowNum}
     </select>
     <update id="delUser" parameterType="map">
         delete from t_user where user_id=#{userId}
@@ -68,5 +69,13 @@
     <update id="updateUserInfo" parameterType="map">
         update t_user set user_password=#{newPwd},role_id=#{roleId} where user_id=#{userId}
     </update>
+<select id="countAllUsers" parameterType="map"  resultType="int">
+    select count(user_id)  from t_user
+    <where>
+        <if test="roleId!=null and roleId!=''">
+            role_id=#{roleId}
+        </if>
+    </where>
+</select>
 
 </mapper>

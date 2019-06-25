@@ -6,6 +6,8 @@ import com.AAAAAA.pestcontrolproject.servic.impl.userModule.RoleServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.userModule.UserServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IRoleServic;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IUserServic;
+import com.AAAAAA.pestcontrolproject.util.CheckString;
+import com.AAAAAA.pestcontrolproject.util.SplitPage;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,15 +22,29 @@ public class FindUserServlet extends HttpServlet {
     IUserServic userServic = new UserServicImpl();
     IRoleServic roleServic = new RoleServicImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+     //查询条件集合
+        Map map = new HashMap();
+
         //查找所有角色对象集合
         List<TRole> roleList =roleServic.findAllrolesList();
         //将集合放入request
         request.setAttribute("roleList",roleList);
+        //获取查找条件
         String roleId=request.getParameter("roleId");
-        Map<String,String> map=new HashMap<>();
         map.put("roleId",roleId);
+        //获取操作标记
+        String tag=request.getParameter("tag");
+        //获取前端传递的当前页
+        String currentPage=request.getParameter("currentPage");
+        //查找总行数
+        int allRows=userServic.countAllUsers(map);
+        //调用计算方法，返回条件集合
+         Map splitPageMap=SplitPage.SplitPage(currentPage,tag,5,allRows);
+        map.putAll(splitPageMap);
        List<TUser>userList= userServic.findUsersList(map);
         request.setAttribute("userList",userList);
+        request.setAttribute("maxPage",map.get("maxPage"));
+        request.setAttribute("currentPage",map.get("newCurrentPage"));
         request.getRequestDispatcher("page/userModule/userPanel.jsp").forward(request,response);
     }
 

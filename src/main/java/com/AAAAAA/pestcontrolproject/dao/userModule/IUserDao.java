@@ -53,5 +53,11 @@ public interface IUserDao {
      * @param map 条件集合
      */
     void updateUserInfo(Map map);
+    /**
+     * 动态查询总用户数
+     * @param map 条件集合
+     * @return 总条数
+     */
+    int countAllUsers(Map map);
 
 }

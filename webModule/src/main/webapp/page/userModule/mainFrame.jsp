@@ -99,7 +99,7 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a href="findUserInitServlet" target="frameName">用户管理</a>
+                  <a href="findUserServlet" target="frameName">用户管理</a>
                 </dd>
                 <dd data-name="console">
                   <a href="../drugModule/drugPanel.html" target="frameName">日志一览</a>

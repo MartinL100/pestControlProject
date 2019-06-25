@@ -18,7 +18,7 @@ public class DelUserServlet extends HttpServlet {
         Map map=new HashMap();
         map.put("userId",userId);
         userServic.delUser(map);
-        request.getRequestDispatcher("findUserInitServlet").forward(request,response);
+        request.getRequestDispatcher("findUserServlet").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

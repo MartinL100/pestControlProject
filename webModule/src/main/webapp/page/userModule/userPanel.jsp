@@ -53,14 +53,16 @@
                 </form>
                 <!-- 翻页按钮部分-->
                 <div align="center">
-                    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe603;</i></button>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('prev')"><i class="layui-icon">&#xe603;</i></button>
                     &nbsp&nbsp;
-                    <input type="text"  style="height: 0.68cm;width: 0.8cm" />
-                    <span style="font-size: 16px">/66页</span>
-                    <button class="layui-btn layui-btn-primary layui-btn-sm">跳转</button>
-                    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe602;</i></button>
+                    <input type="text"  style="height: 0.68cm;width: 0.8cm" id="targetPageNum"/>
+                    <span style="font-size: 16px">/${maxPage}</span>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('targetPage')">跳转</button>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="splitPage('next')"><i class="layui-icon">&#xe602;</i></button>
                     <br>
                 </div>
+
+
                 <!-- 翻页按钮部分结束 -->
 
 <!--通用模块-->
@@ -87,7 +89,7 @@
                             <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D">
                                 <div class="layui-card-header">查询用户信息</div>
                                 <div class="layui-card-body" >
-                                    <form action="findUserServlet" method="post">
+                                    <form action="findUserServlet" method="post" id="selectForm">
                                     <!-- 填充内容 -->
                                         <select name="roleId" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
                                             <option value="">所有用户</option>
@@ -96,6 +98,10 @@
                                             </c:forEach>
                                         </select>
                                     <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%" type="submit">查询</button>
+<!--分页标记-->
+                                        <input id="currentPageId" name="currentPage" style="display: none" value="${currentPage}"/><!--当前页-->
+                                        <input id="tagId" name="tag" style="display: none" value="${tag}"/><!--操作标记-->
+<!--分页标记-->
                                     </form>
                                     <!-- 填充内容 -->
                                 </div>
@@ -156,7 +162,24 @@
     $("#addUser").click(function () {
         $("#addUserForm").submit();
     })
+    //分页公共js
+
+    function splitPage(splitTag) {
+        if("targetPage"==splitTag){
+            var targetPage=$("#targetPageNum").val();
+            $("#tagId").val(targetPage);
+        }else {
+            $("#tagId").val(splitTag);
+        }
+        $("#selectForm").submit();
+    }
+
+
 </script>
+
+
+
+
 
 
 
