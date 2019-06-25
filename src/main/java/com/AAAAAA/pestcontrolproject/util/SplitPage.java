@@ -7,7 +7,7 @@ public class SplitPage {
     /**
      * 分页
      * @param currentPageString 当前页
-     * @param pageTag 操作标记 first next  targetPage
+     * @param pageTag 操作标记 prev next  targetPage(跳转的页数  数字)
      * @param rowNum  每页显示的行数
      * @param allRows 数据库查询出的总行数
      * @return  结果包括newCurrentPage：新的当前页；maxPage：最大页；startIndex：查询起始位置
