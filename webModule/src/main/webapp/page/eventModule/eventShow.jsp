@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
-    <meta charset="utf-8">
+    <base href="<%=basePath%>">
+    <%@include file="../../head.jsp"%>
     <title>事件信息</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+
 </head>
 <body>
 
@@ -74,26 +74,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="" var="e">
-                                <tr>
 
-                                    <td>e. </td>
-                                    <td>e.</td>
-                                    <c:if test="${e.==0}">
-                                        已得到控制
-                                    </c:if>
-                                    <c:if test="${e.==1}">
-                                        防治中
-                                    </c:if>
-                                    <c:if test="${e.==2}">
-                                        无法解决申请专家会商
-                                    </c:if>
-
-                                    <td>e.occurTime</td>
-                                </tr>
-
-
-                            </c:forEach>
 
                         </tbody>
                     </table>
@@ -111,7 +92,9 @@
 <div class="layui-form-item layui-layout-admin">
     <div class="layui-input-block">
         <div class="layui-footer" style="left: 0;">
+            <form  action="eventMainServlet" method="post">
             <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1">返回</button>
+            </form>
         </div>
     </div>
 </div>
@@ -124,10 +107,10 @@
 
 
 
-<script src="../../layuiadmin/layui/layui.js"></script>
+<script src="layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'form', 'laydate'], function(){

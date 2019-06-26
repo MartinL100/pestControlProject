@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <%@include file="../../head.jsp"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,25 +26,24 @@
     <div class="layui-card">
         <div class="layui-card-header"><div align="center"><h1>添 加 事 件 信 息</h1></div></div>
         <div class="layui-card-body" style="padding: 15px;">
-            <form class="layui-form" action="" lay-filter="component-form-group">
-
-
+            <form id="f1" class="layui-form" action="eventAddServlet"method="post" lay-filter="component-form-group">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">事件名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="username" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                                <input type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                             </div>
                             <label class="layui-form-label"></label>
 
                             <div class="layui-input-inline" >
                             &nbsp
                             </div>
-                            <div>
+                                <div>
                             <label class="layui-form-label">发生时间</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="date" id="LAY-component-form-group-date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                            </div></div>
+                                    <div class="layui-input-inline">
+                                <input type="text" name="occurTime" id="LAY-component-form-group-date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            </div>
+                                </div>
                         </div>
                         <!--头像-->
                         <div class="layui-inline">
@@ -44,9 +52,9 @@
                                     <div class="layui-card-body">
                                         <div class="layui-upload">
                                             <div class="layui-upload-list">
-                                                <img class="layui-upload-img" id="test-upload-normal-img">
+                                                <img class="layui-upload-img" id="test-upload-normal-img" >
                                             </div>
-                                            <button type="button" class="layui-btn" id="test-upload-normal">选择头像</button>
+                                            <button name="photoPath" type="button" class="layui-btn" id="test-upload-normal">选择头像</button>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +69,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">发生位置</label>
                         <div class="layui-input-inline">
-                            <select name="quiz">
+                            <select id="areaId" name="areaId">
                                 <option value="">请选择</option>
                                 <option value="1">layer</option>
                                 <option value="2">form</option>
@@ -70,7 +78,7 @@
                         </div>
                     </div>
                     <div class="layui-inline" style="position: relative;left:15px">
-                        <label class="layui-form-label">所在小班：   </label>
+                        <label class="layui-form-label">所在小班:</label><label name="classId" id="theClass"  > </label>
                     </div>
                 </div>
 
@@ -79,7 +87,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">灾害类型</label>
                         <div class="layui-input-inline">
-                            <select name="quiz">
+                            <select name="disasterType">
                                 <option value="">请选择</option>
                                 <option value="1">layer</option>
                                 <option value="2">form</option>
@@ -90,7 +98,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">灾情阶段</label>
                         <div class="layui-input-inline">
-                            <select name="modules" lay-verify="required" lay-search="">
+                            <select name="disasterStage" lay-verify="required" lay-search="">
                                 <option value="">直接选择或搜索选择</option>
                                 <option value="1">layer</option>
                                 <option value="2">form</option>
@@ -101,7 +109,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">发现途径</label>
                         <div class="layui-input-inline">
-                            <select name="modules" lay-verify="required" lay-search="">
+                            <select name="findWay" lay-verify="required" lay-search="">
                                 <option value="">直接选择或搜索选择</option>
                                 <option value="1">小班巡查发现</option>
                                 <option value="2">公众发现</option>
@@ -115,19 +123,19 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">初步损失</label>
                         <div class="layui-input-block">
-                            <input type="text" name="username" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input type="text" name="eventLoss" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline" style="position: relative;left:10px">
                         <label class="layui-form-label">影响面积</label>
                         <div class="layui-input-block">
-                            <input type="text" name="username" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input type="text" name="eventArea" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline"style="position: relative;left:20px">
                         <label class="layui-form-label">防治方案</label>
                         <div class="layui-input-block">
-                            <input type="text" name="username" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input type="text" name="plan" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -137,14 +145,14 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">输入灾情描述</label>
                     <div class="layui-input-block">
-                        <textarea name="text" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea name="eventDescribe" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <!--提交按钮-->
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">
-                            <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1">立即提交</button>
+                            <button id="addButton" class="layui-btn" >立即提交</button>
                         </div>
                     </div>
                 </div>
@@ -155,10 +163,36 @@
 </div>
 
 
-<script src="../../layuiadmin/layui/layui.js"></script>
+
+
+<script>
+    // 提交按钮触发事件
+    $("#addButton").click(function () {
+        alert(555);
+        $(f1).submit();
+    })
+    // 选择区域触发事件
+    $("#areaId").click(function () {
+        var areaId=$("#areaId").val();
+        fullClassLabel(areaId)
+    })
+    //
+    function fullClassLabel(areaId) {
+        $.post("",{"areaId":areaId },function (result) {
+             var jsonStr= eval("("+result+")");
+
+        })
+
+    }
+</script>
+
+
+
+
+<script src="layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'form', 'laydate'], function(){
@@ -175,16 +209,12 @@
             elem: '#LAY-component-form-group-date'
         });
 
-
-
-
     });
 
 </script>
-
 <script>
     layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'upload'], function(){
