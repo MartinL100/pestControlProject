@@ -7,7 +7,7 @@ public class Event {
     private String eventName;
     /*发生时间*/
     private String occurTime;
-    /*灾害等级*/
+    /*灾害阶段*/
     private int disasterStage;
     /*灾情描述*/
     private String eventDescribe;
@@ -28,6 +28,42 @@ public class Event {
     /*防治方案*/
     private String plan;
 
+    public Event() {
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", eventName='" + eventName + '\'' +
+                ", occurTime='" + occurTime + '\'' +
+                ", disasterStage=" + disasterStage +
+                ", eventDescribe='" + eventDescribe + '\'' +
+                ", photoPath='" + photoPath + '\'' +
+                ", disasterType=" + disasterType +
+                ", findWay=" + findWay +
+                ", areaId=" + areaId +
+                ", classId=" + classId +
+                ", eventLoss='" + eventLoss + '\'' +
+                ", eventArea='" + eventArea + '\'' +
+                ", plan='" + plan + '\'' +
+                '}';
+    }
+
+    public Event(String eventName, String occurTime, int disasterStage, String eventDescribe, String photoPath, int disasterType, int findWay, int areaId, int classId, String eventLoss, String eventArea, String plan) {
+        this.eventName = eventName;
+        this.occurTime = occurTime;
+        this.disasterStage = disasterStage;
+        this.eventDescribe = eventDescribe;
+        this.photoPath = photoPath;
+        this.disasterType = disasterType;
+        this.findWay = findWay;
+        this.areaId = areaId;
+        this.classId = classId;
+        this.eventLoss = eventLoss;
+        this.eventArea = eventArea;
+        this.plan = plan;
+    }
 
     public void setEventId(long eventId) {
         this.eventId = eventId;

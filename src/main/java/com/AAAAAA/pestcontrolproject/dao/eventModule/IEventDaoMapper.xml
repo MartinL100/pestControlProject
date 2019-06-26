@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.eventModule.IEventDao">
+
+<resultMap id="eventmap" type="com.AAAAAA.pestcontrolproject.entity.eventModule.Event">
+    <id property="eventId" column="event_id"></id>
+    <result property="eventName" column="event_name"></result>
+    <result property="occurTime" column="occur_time"></result>
+    <result property="eventDescribe" column="event_Describe"></result>
+    <result property="disasterStage" column="disaster_Stage"></result>
+    <result property="photoPath" column="photo_Path"></result>
+    <result property="disasterType" column="disaster_Type"></result>
+    <result property="findWay" column="find_Way"></result>
+    <result property="areaId" column="area_Id"></result>
+    <result property="classId" column="class_Id"></result>
+    <result property="eventLoss" column="event_Loss"></result>
+    <result property="eventArea" column="event_Area"></result>
+    <result property="plan" column="plan"></result>
+</resultMap>
+
+
+    <!--按条件查找事件-->
+    <select id="findAllEventBy" parameterType="map" resultMap="eventmap">
+        select*from sys_event
+        <where>
+            1=1
+            <if test="eventId!=null and eventId!=''">
+                and event_Id=#{eventId}
+            </if>
+             <if test="eventName!=null and eventName!=''">
+                and event_Name=#{eventName}
+             </if>
+            <if test="disasterType!=null">
+               and disaster_type=#{disasterType}
+            </if>
+            <if test="areaId!=null">
+               and area_Id=#{areaId}
+            </if>
+            <if test="startTime!=null and startTime!=''">
+                and occur_time>=#{startTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and occur_time &lt;=#{endTime}
+            </if>
+        </where>
+
+    </select>
+    <!--添加事件 -->
+    <insert id="addEvent" parameterType="com.AAAAAA.pestcontrolproject.entity.eventModule.Event">
+      insert into sys_event
+      (event_Name, occur_Time, disaster_stage, event_describe, photo_Path, disaster_type, find_way,
+      area_Id, class_Id, event_loss, event_area, plan)
+      values
+      (#{eventName},#{occurTime},#{disasterStage},#{eventDescribe},#{photoPath},#{disasterType},
+      #{findWay},#{areaId},#{classId},#{eventLoss},#{eventArea},#{plan});
+    </insert>
+
+    <!--修改事件信息-->
+    <update id="updateEvent" parameterType="com.AAAAAA.pestcontrolproject.entity.eventModule.Event">
+        update sys_event set disaster_stage=#{disasterStage},plan=#{plan} where event_Id=#{eventId}
+    </update>
+
+
+
+</mapper>
