@@ -7,7 +7,7 @@
     <display-name>Archetype Created Web Application</display-name>
     <context-param>
         <param-name>filePath</param-name>
-        <param-value>H:/Img/</param-value>
+        <param-value>F:/Img/</param-value>
     </context-param>
     <servlet>
         <servlet-name>loginServlet</servlet-name>
