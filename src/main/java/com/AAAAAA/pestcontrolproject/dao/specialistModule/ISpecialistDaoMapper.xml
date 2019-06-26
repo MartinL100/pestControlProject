@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.specialistModule.ISpecialistDao">
+    <!-- 映射 -->
+    <resultMap id="spcialistObj" type="com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist">
+        <id column="specialist_id" property="specialistId"></id>
+        <result column="specialist_name" property="specialistName"></result>
+        <result column="specialist_sex" property="specialistSex"></result>
+        <result column="specialist_birthday" property="specialistBirthday"></result>
+        <result column="specialist_path" property="specialistPath"></result>
+        <result column="specialist_speciality" property="specialistSpeciality"></result>
+        <result column="specialist_duty" property="specialistDuty"></result>
+        <result column="specialist_tel" property="specialistTel"></result>
+        <result column="specialist_units" property="specialistUnits"></result>
+        <result column="specialist_site" property="specialistSite"></result>
+        <result column="specialist_email" property="specialistEmail"></result>
+
+
+    </resultMap>
+    <!-- 添加专家 -->
+    <insert id="addSpecialist">
+    insert into t_specialist(specialist_name, specialist_sex,
+    specialist_birthday, specialist_path, specialist_speciality,
+     specialist_duty, specialist_tel, specialist_units,
+     specialist_site, specialist_email)
+     VALUES(#{specialistName},#{specialistSex},
+     #{specialistBirthday}, #{specialistPath},#{specialistSpeciality},
+     #{specialistDuty},#{specialistTel},#{specialistUnits},
+     #{specialistSite},#{specialistEmail})
+</insert>
+
+    <!-- ID查询专家 -->
+    <select id="findSpecialistById" resultMap="spcialistObj">
+       select*from t_specialist where specialist_id=#{specialistId}
+    </select>
+
+    <!-- 动态条件查询专家 -->
+    <select id="findSpecialistList" resultMap="spcialistObj"
+            parameterType="map">
+        select *from t_specialist where 1=1
+        <if test="null!=specialistName and  ''!=specialistName">
+            and specialist_name=#{specialistName}
+        </if>
+        <if test="specialistSpeciality!=null and specialistSpeciality!=''">
+            and specialist_speciality=#{specialistSpeciality}
+        </if>
+        <if test="specialistUnits!=null and specialistUnits!=''">
+            and specialist_units=#{specialistUnits}
+        </if>
+        limit #{startIndex},#{rowNum}
+    </select>
+
+    <!-- 删除专家 -->
+    <delete id="delSpecialistById">
+      delete from t_specialist where specialist_id=#{specialistId}
+  </delete>
+
+    <!-- 修改专家信息 -->
+    <update id="updateSpecialist" parameterType="map">
+        update t_specialist set specialist_tel=#{specialistTel},specialist_duty=#{specialistDuty},
+        specialist_units=#{specialistUnits},specialist_email=#{specialistEmail} where
+        specialist_id=#{specialistId}
+
+    </update>
+
+    <!-- 查询总行数 -->
+    <select id="findCountRow" resultType="int" parameterType="map">
+        select count(specialist_id) from  t_specialist where 1=1
+        <if test="null!=specialistName and  ''!=specialistName">
+            and specialist_name=#{specialistName}
+        </if>
+        <if test="specialistSpeciality!=null and specialistSpeciality!=''">
+            and specialist_speciality=#{specialistSpeciality}
+        </if>
+        <if test="specialistUnits!=null and specialistUnits!=''">
+            and specialist_units=#{specialistUnits}
+        </if>
+    </select>
+</mapper>

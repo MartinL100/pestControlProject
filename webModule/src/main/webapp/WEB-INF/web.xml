@@ -5,6 +5,10 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
   <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>filePath</param-name>
+        <param-value>H:/Img/</param-value>
+    </context-param>
     <servlet>
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.LoginServlet</servlet-class>
@@ -21,46 +25,6 @@
         <servlet-name>addUserInitServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.AddUserInitServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>isExistUserServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.IsExistUserServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>findUserServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.FindUserServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>delUserServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.DelUserServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>updateUserInfoServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UpdateUserInfoServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>updateUserInfoSureServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UpdateUserInfoSureServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>updateUserInfoSureServlet</servlet-name>
-        <url-pattern>/updateUserInfoSureServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>updateUserInfoServlet</servlet-name>
-        <url-pattern>/updateUserInfoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>delUserServlet</servlet-name>
-        <url-pattern>/delUserServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>findUserServlet</servlet-name>
-        <url-pattern>/findUserServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>isExistUserServlet</servlet-name>
-        <url-pattern>/isExistUserServlet</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addUserInitServlet</servlet-name>
         <url-pattern>/addUserInitServlet</url-pattern>
@@ -81,16 +45,60 @@
     <listener>
         <listener-class>com.AAAAAA.pestcontrolproject.listenner.ContextListenner</listener-class>
     </listener>
-    <filter>
-        <filter-name>encodeFilter</filter-name>
-        <filter-class>com.AAAAAA.pestcontrolproject.filter.EncodeFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>encodeFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+
+
+    <!-- 专家主界面servlet开始 -->
+    <servlet>
+        <servlet-name>specialistMainServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistMainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>specialistMainServlet</servlet-name>
+        <url-pattern>/specialistMain</url-pattern>
+    </servlet-mapping>
+    <!-- 专家主界面servlet结束 -->
+
+    <!-- 专家添加servlet开始 -->
+    <servlet>
+        <servlet-name>specialistAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>specialistAddServlet</servlet-name>
+        <url-pattern>/specialistAdd</url-pattern>
+    </servlet-mapping>
+    <!-- 专家添加servlet结束 -->
+
+    <!-- 专家查看servlet开始 -->
+    <servlet>
+        <servlet-name>specialistFindServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistFindServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>specialistFindServlet</servlet-name>
+        <url-pattern>/specialistFind</url-pattern>
+    </servlet-mapping>
+    <!-- 专家查看servlet结束 -->
+
+    <!-- 专家修改servlet开始 -->
+    <servlet>
+        <servlet-name>specialistUpdateServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>specialistUpdateServlet</servlet-name>
+        <url-pattern>/specialistUpdate</url-pattern>
+    </servlet-mapping>
+    <!-- 专家修改servlet结束 -->
+
+    <!-- 需要专家会审的事件记录servlet开始 -->
+    <servlet>
+        <servlet-name>conferenceEventServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.ConferenceEventServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>conferenceEventServlet</servlet-name>
+        <url-pattern>/conferenceEvent</url-pattern>
+    </servlet-mapping>
+    <!-- 需要专家会审的事件记录servlet结束 -->
 </web-app>

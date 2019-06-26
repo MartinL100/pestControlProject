@@ -68,10 +68,10 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">专家一览</a>
+                  <a href="specialistMain" target="frameName">专家一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">会商灾情</a>
+                  <a href="conferenceEvent" target="frameName">会商灾情</a>
                 </dd>
               </dl>
             </li>
