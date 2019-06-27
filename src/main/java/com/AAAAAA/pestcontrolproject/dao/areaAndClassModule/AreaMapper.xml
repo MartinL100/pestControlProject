@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.areaAndClassModule.IAreaDao">
+    <resultMap id="AreaObj" type="com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea">
+        <result column="area_id" property="areaId"></result>
+        <result column="area_name" property="areaName"></result>
+        <result column="area_tree_type" property="areaTreeType"></result>
+        <result column="area_good_tree" property="areaGoodTree"></result>
+        <association property="selectedType" javaType="com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType">
+            <result column="area_adress_id" property="typeId"></result>
+            <result column="type_key" property="typeKey"></result>
+            <result column="type_val" property="typeVal"></result>
+            <result column="type_name" property="typeName"></result>
+        </association>
+        <association property="sysClass" javaType="com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass">
+            <result column="sclass_id" property="sclassId"></result>
+            <result column="sclass_name" property="sclassName"></result>
+        </association>
+    </resultMap>
+    <insert id="addArea" parameterType="com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea">
+    insert into sys_area (area_name, area_tree_type, area_good_tree, area_adress_id)
+     values (#{areaName},#{areaTreeType},#{areaGoodTree},#{selectedType.typeId});
+</insert>
+
+<select id="findAreaList" parameterType="map" resultMap="AreaObj">
+    select sys_area.area_id, area_name, area_tree_type, area_good_tree, area_adress_id,
+    sclass_id,  sclass_name,
+    type_key,type_val,type_name
+    from sys_area join sys_class on sys_class.area_id=sys_area.area_id
+    join sys_type on sys_type.type_id=sys_area.area_adress_id
+    where 1=1
+    <if test="null!=areaName and ''!=areaName">
+            and area_name=#{areaName}
+    </if>
+    <if test="null!=areaTreeType and ''!=areaTreeType">
+        and area_tree_type=#{areaTreeType}
+    </if>
+    <if test="null!=sclassName and ''!=sclassName">
+        and sclass_name=#{sclassName}
+    </if>
+    limit  #{startIndex},#{rowNum}
+</select>
+
+    <select id="countAreas" parameterType="map" resultType="int">
+        select count(sys_class.area_id)
+        from sys_area join sys_class on sys_class.area_id=sys_area.area_id
+        where 1=1
+        <if test="null!=areaName and ''!=areaName">
+            and area_name=#{areaName}
+        </if>
+        <if test="null!=areaTreeType and ''!=areaTreeType">
+            and area_tree_type=#{areaTreeType}
+        </if>
+        <if test="null!=sclassName and ''!=sclassName">
+            and sclass_name=#{sclassName}
+        </if>
+    </select>
+</mapper>

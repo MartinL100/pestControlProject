@@ -19,6 +19,7 @@
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
             <h2>森林病虫害防治系统</h2>
+            <h2 style="background-color: red" id="errorInfoId">${errorInfo}</h2>
 
         </div>
         <form action="loginServlet" method="post" id="formId">
@@ -52,7 +53,16 @@
 <script>
     $("#login").click(function () {
         $("#formId").submit();
+    });
+
+    $(document).ready(function () {
+
+        setTimeout(function () {
+            $("#errorInfoId").hide()
+        },3000)
     })
 </script>
+
+
 </body>
 </html>

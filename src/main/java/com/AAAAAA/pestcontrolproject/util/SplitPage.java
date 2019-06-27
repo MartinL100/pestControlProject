@@ -71,9 +71,13 @@ public class SplitPage {
               }
         }
         int startIndex=(currentPage-1)*rowNum;
+        //新的当前页
         map.put("newCurrentPage",currentPage);
-         map.put("maxPage",countPage);
-         map.put("startIndex",startIndex);
+        //最大页
+       map.put("maxPage",countPage);
+       //数据库查询的起始位置
+       map.put("startIndex",startIndex);
+       //每页显示的行数
         map.put("rowNum",rowNum);
         return map;
     }

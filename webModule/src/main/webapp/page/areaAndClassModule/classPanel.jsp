@@ -12,33 +12,33 @@
 </head>
 <body>
 <!--用于控制页面跳转-->
-<form action="addUserInitServlet" method="post" id="addUserForm"></form>
+<form action="findClassServlet" method="post" id="addUserForm"></form>
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <h1 align="center">用  户  管  理</h1>
+                <h1 align="center">小 班  管  理</h1>
                 <h2 style="color: red" id="erroInfo" align="center"></h2>
                 <div class="layui-card-body">
                     <table class="layui-table">
 
                         <thead>
                         <tr>
-                            <th>用户名</th>
-                            <th>密码</th>
-                            <th>等级</th>
-                            <th>真实姓名</th>
+                            <th>小班名称</th>
+                            <th>负责人</th>
+                            <th>负责人电话</th>
+                            <th>负责区域</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${userList}" var="user" >
+                        <c:forEach items="${classList}" var="classObj" >
                             <tr onclick="saveId(this)">
-                                <td>${user.userName}</td>
-                                <td>${user.userPassword}</td>
-                                <td>${user.role.roleName}</td>
-                                <td>${user.realName}</td>
-                                <td style="display: none">${user.userId}</td>
+                                <td>${classObj.sclassName}</td>
+                                <td>${classObj.sclassLeader}</td>
+                                <td>${classObj.sclassLeaderTel}</td>
+                                <td>${classObj.area.selectedType.typeVal}</td>
+                                <td style="display: none">${classObj.sclassId}</td>
                             </tr>
                         </c:forEach>
 
@@ -79,24 +79,28 @@
 
                     <div class="layui-row layui-col-space10" >
                         <div style="width: 40%; float: left;margin-top: 4%" >
-                            <button id="addUser" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加用户</button>
-                            <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">删除用户</button><br/>
-                            <button  id="updateUserInfo" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改用户信息</button>
+                            <form action="addClassInitServlet" method="post">
+                            <button id="addClass" type="submit" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加小班</button>
+                            </form>
+                                <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">查看小班信息</button><br/>
+                            <button  id="updateUserInfo" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改小班信息</button>
                         </div>
 
                         <div class="layui-col-xs3" style="float: right;margin-right: 20%;">
 
                             <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D">
-                                <div class="layui-card-header">查询用户信息</div>
+                                <div class="layui-card-header">查询小班信息</div>
                                 <div class="layui-card-body" >
                                     <form action="findUserServlet" method="post" id="selectForm">
                                     <!-- 填充内容 -->
-                                        <select name="roleId" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
-                                            <option value="">所有用户</option>
-                                            <c:forEach var="role" items="${roleList}" >
-                                                <option value="${role.roleId}" <c:if test="${role.roleId == roleId}"> selected="selected"</c:if>>${role.roleName}</option>
-                                            </c:forEach>
-                                        </select>
+                                        <div style="margin-top: 4% ">
+                                            <label class="layui-form-label" style="display: inline-block ; width: 60px; ">小班名称</label>
+                                            <input class="layui-input"  name="sclassName" style="display: inline-block;width: 50%"/>
+                                        </div>
+                                        <div style="margin-top: 4% ">
+                                            <label class="layui-form-label" style="display: inline-block ; width: 60px; ">负责区域</label>
+                                            <input class="layui-input" name="areaName"  style="display: inline-block;width: 50%"/>
+                                        </div>
                                     <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%" type="submit">查询</button>
 <!--分页标记-->
                                         <input id="currentPageId" name="currentPage" style="display: none" value="${currentPage}"/><!--当前页-->
@@ -158,10 +162,7 @@
 
     })
 
-    //点击添加用户
-    $("#addUser").click(function () {
-        $("#addUserForm").submit();
-    })
+
     //分页公共js
 
     function splitPage(splitTag) {

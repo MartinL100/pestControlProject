@@ -49,10 +49,10 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">区域一览</a>
+                  <a href="findAreaServlet" target="frameName">区域一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">小班管理</a>
+                  <a href="findClassServlet" target="frameName">小班管理</a>
                 </dd>
                 <dd data-name="console">
                   <a href="../drugModule/drugPanel.html" target="frameName">事件记录</a>
@@ -102,7 +102,7 @@
                   <a href="findUserServlet" target="frameName">用户管理</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">日志一览</a>
+                  <a href="recordLogsServlet" target="frameName">日志一览</a>
                 </dd>
               </dl>
             </li>

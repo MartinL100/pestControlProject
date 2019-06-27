@@ -1,16 +1,14 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">
-    <script src="../../lib/jquery.js"></script>
-    <script src="../../layuiadmin/layui/layui.js"></script>
-    <script src="../../lib/userModule/userModule.js"></script>
+    <base href="<%=basePath%>">
+    <jsp:include page="../../head.jsp"></jsp:include>
+    <title>添加区域</title>
     <title>Title</title>
 </head>
 <body>
@@ -53,10 +51,11 @@
         <label class="layui-form-label">负责区域</label>
         <div class="layui-input-inline">
             <select id="areaId" name="areaId">
-                <option value="">请选择</option>
-                <option value="1">layer</option>
-                <option value="2">form</option>
-                <option value="3">layim</option>
+
+                <c:forEach var="areaObj" items="${areaList}" >
+                    <option value="${areaObj.areaId}">${areaObj.areaName}</option>
+                </c:forEach>
+
             </select>
         </div>
     </div>
@@ -82,10 +81,9 @@
 
 
 
-<script src="../../layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'form', 'laydate'], function(){
@@ -107,7 +105,7 @@
 </script>
 <script>
     layui.config({
-        base: '../../layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'upload'], function(){
