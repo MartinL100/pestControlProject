@@ -5,6 +5,7 @@ public class FileStringInfo {
     public  static final  String USERORPASSERROR="用户名或密码不能为空";
     public  static final  String  ERRORFILE="上传文件失败！！";
 
+
     /**
      * 获得新的文件名
      * @param path 原文件名
