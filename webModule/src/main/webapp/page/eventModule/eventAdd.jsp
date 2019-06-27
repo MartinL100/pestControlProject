@@ -19,14 +19,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
 </head>
 <body>
-<style>
-    .layui-upload-img{width: 88px; height:66px; margin: 0 10px 10px 0;}
-</style>
-<div class="layui-fluid">
-    <div class="layui-card">
-        <div class="layui-card-header"><div align="center"><h1>添 加 事 件 信 息</h1></div></div>
+
+<div align="center"><h1>添 加 事 件 信 息</h1></div></div>
         <div class="layui-card-body" style="padding: 15px;">
-            <form id="f1" class="layui-form" action="eventAddServlet"method="post" lay-filter="component-form-group">
+            <form id="f1" class="layui-form" action="eventAddServlet"method="post" enctype="multipart/form-data" lay-filter="component-form-group">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">事件名称</label>
@@ -46,19 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                         </div>
                         <!--头像-->
-                        <div class="layui-inline">
-                            <div class="layui-col-md12">
-                                <div class="layui-card">
-                                    <div class="layui-card-body">
-                                        <div class="layui-upload">
-                                            <div class="layui-upload-list">
-                                                <img class="layui-upload-img" id="test-upload-normal-img" >
-                                            </div>
-                                            <button name="photoPath" type="button" class="layui-btn" id="test-upload-normal">选择头像</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div  class="layui-inline">
+                            <input type="file" name="fileName"  />
 
                         </div>
                         <!--头像-->
@@ -71,16 +56,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-input-inline">
                             <select id="areaId" name="areaId">
                                 <option value="">请选择</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
+                                <option value="1">电信一区</option>
+                                <option value="2">电信二区</option>
+                                <option value="3">电信三区</option>
                             </select>
                         </div>
                     </div>
                     <div class="layui-inline" style="position: relative;left:15px">
-                        <label class="layui-form-label">所在小班:</label><label name="classId" id="theClass"  > </label>
+                        <label class="layui-form-label">所在小班:</label><label  name="classId" id="theClass" class="layui-form-label" >0</label>
                     </div>
                 </div>
+
 
 
                 <div class="layui-form-item">
@@ -89,9 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-input-inline">
                             <select name="disasterType">
                                 <option value="">请选择</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
+                                <option value="1">虫害</option>
+                                <option value="2">病害</option>
+                                <option value="3">鼠害</option>
                             </select>
                         </div>
                     </div>
@@ -100,9 +86,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-input-inline">
                             <select name="disasterStage" lay-verify="required" lay-search="">
                                 <option value="">直接选择或搜索选择</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
+                                <option value="1">已经得到控制</option>
+                                <option value="2">防治中</option>
+                                <option value="3">无法解决申请专家会商</option>
                             </select>
                         </div>
                     </div>
@@ -157,18 +143,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
                 <!--提交按钮结束-->
+                <hide>
+
+                    <input type="text" id="classId" name="classId" value="1" />
+                </hide>
             </form>
-        </div>
-    </div>
-</div>
 
 
 
 
 <script>
+    $(document).ready(function () {
+        $("#img").hide();
+        $("#classId").hide();
+    })
     // 提交按钮触发事件
     $("#addButton").click(function () {
-        alert(555);
+
         $(f1).submit();
     })
     // 选择区域触发事件
@@ -178,10 +169,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     })
     //
     function fullClassLabel(areaId) {
-        $.post("",{"areaId":areaId },function (result) {
-             var jsonStr= eval("("+result+")");
-
-        })
+        // $.post("",{"areaId":areaId },function (result) {
+        //      var jsonStr= eval("("+result+")");
+        // })；
+        if(areaId==1){
+$("#theClass").text("一班");
+        }else if (areaId==2) {
+            $("#theClass").text("二班");
+        }else if (areaId==3) {
+            $("#theClass").text("三班");
+        }
 
     }
 </script>
@@ -217,111 +214,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index', 'upload'], function(){
-        var $ = layui.jquery
-            ,upload = layui.upload;
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
 
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test-upload-normal'
-            ,url: '/upload/'
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#test-upload-normal-img').attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-                //如果上传失败
-                if(res.code > 0){
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#test-upload-demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function(){
-                    uploadInst.upload();
-                });
-            }
-        });
+        form.render(null, 'component-form-group');
 
-        //多图片上传
-        upload.render({
-            elem: '#test-upload-more'
-            ,url: '/upload/'
-            ,multiple: true
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#test-upload-more-list').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-                });
-            }
-            ,done: function(res){
-                //上传完毕
-            }
+        laydate.render({
+            elem: '#LAY-component-form-group-date'
         });
-
-        //指定允许上传的文件类型
-        upload.render({
-            elem: '#test-upload-type1'
-            ,url: '/upload/'
-            ,accept: 'file' //普通文件
-            ,done: function(res){
-                console.log(res)
-            }
-        });
-        upload.render({ //允许上传的文件后缀
-            elem: '#test-upload-type2'
-            ,url: '/upload/'
-            ,accept: 'file' //普通文件
-            ,exts: 'zip|rar|7z' //只允许上传压缩文件
-            ,done: function(res){
-                console.log(res)
-            }
-        });
-        upload.render({
-            elem: '#test-upload-type3'
-            ,url: '/upload/'
-            ,accept: 'video' //视频
-            ,done: function(res){
-                console.log(res)
-            }
-        });
-        upload.render({
-            elem: '#test-upload-type4'
-            ,url: '/upload/'
-            ,accept: 'audio' //音频
-            ,done: function(res){
-                console.log(res)
-            }
-        });
-
-        //设定文件大小限制
-        upload.render({
-            elem: '#test-upload-size'
-            ,url: '/upload/'
-            ,size: 60 //限制文件大小，单位 KB
-            ,done: function(res){
-                console.log(res)
-            }
-        });
-
-        //同时绑定多个元素，并将属性设定在元素上
-        upload.render({
-            elem: '.test-upload-demoMore'
-            ,before: function(){
-                layer.tips('接口地址：'+ this.url, this.item, {tips: 1});
-            }
-            ,done: function(res, index, upload){
-                var item = this.item;
-                console.log(item); //获取当前触发上传的元素，layui 2.1.0 新增
-            }
-        })
-
     });
+
 </script>
 </body>
 </html>

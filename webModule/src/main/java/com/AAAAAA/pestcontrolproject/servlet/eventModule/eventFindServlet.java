@@ -3,6 +3,7 @@ package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
+import com.AAAAAA.pestcontrolproject.util.SplitPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -16,13 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 public class eventFindServlet extends HttpServlet {
-
+    IEventService service = new EventServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IEventService service = new EventServiceImpl();
 
         request.setCharacterEncoding("UTF-8");
+        //条件map
         Map<String,Object> map=new HashMap<>();
-        System.out.println(request.getParameter("areaId"));
         String areaId=request.getParameter("areaId");
         String disasterStage=request.getParameter("disasterStage");
         // 区域id不为空
@@ -36,15 +36,25 @@ public class eventFindServlet extends HttpServlet {
         map.put("eventName",request.getParameter("eventName"));
         map.put("startTime",request.getParameter("startTime"));
         map.put("endTime",request.getParameter("endTime"));
-        System.out.println();
         //查找所有事件对象集合
         List<Event> eventsList =service.findAllByMap(map);
-        //将集合放入request
-        System.out.println("find"+eventsList.toString());
-
+        //分页显示
+        int allRows=eventsList.size();
+        String currentPageString=request.getParameter("currentPage");
+        String pageTag=request.getParameter("pageTag");
+        Map<String,Object> mapSplit= SplitPage.SplitPage(currentPageString,pageTag,5,allRows );
+        map.put("startIndex",mapSplit.get("startIndex"));
+        eventsList =service.findAllByMap(map);
+        String maxPage=mapSplit.get("maxPage").toString();
+        String currentPage=mapSplit.get("newCurrentPage").toString();
+        Map<String,Object> eventsMap=new HashMap<>();
+        eventsMap.put("eventsList",eventsList);
+        eventsMap.put("maxPage",maxPage);
+        eventsMap.put("currentPage",currentPage);
         //list转换为json格式字符串
         ObjectMapper objectMapper=new ObjectMapper();
-        String jsonStr= objectMapper.writeValueAsString(eventsList);
+
+        String jsonStr= objectMapper.writeValueAsString(eventsMap);
         response.setHeader("Content-type", "text/html;charset=UTF-8");
         PrintWriter printWriter =response.getWriter();
         printWriter.write(jsonStr);

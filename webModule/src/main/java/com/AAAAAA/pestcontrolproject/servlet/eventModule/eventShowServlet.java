@@ -24,7 +24,7 @@ public class eventShowServlet extends HttpServlet {
         Map<String,Object> map=new HashMap<>();
         int eventId=Integer.parseInt(request.getParameter("eventId"));
         map.put("eventId",eventId);
-        System.out.println();
+
         //查找所有事件对象集合
         List<Event> eventsList =service.findAllByMap(map);
 

@@ -3,12 +3,20 @@ package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
+import com.AAAAAA.pestcontrolproject.util.FileStringInfo;
+import com.AAAAAA.pestcontrolproject.util.UploadUtil;
+import com.AAAAAA.pestcontrolproject.util.Verify;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 
 public class eventAddServlet extends HttpServlet {
@@ -17,23 +25,80 @@ public class eventAddServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println(111);
         Event event=new Event();
-        event.setAreaId(Integer.parseInt(request.getParameter("areaId")));
-        event.setClassId(Integer.parseInt(request.getParameter("classId")));
-        event.setDisasterStage(Integer.parseInt(request.getParameter("disasterStage")));
-        event.setDisasterType(Integer.parseInt(request.getParameter("disasterType")));
-        event.setEventArea(request.getParameter("eventArea"));
-        event.setEventDescribe(request.getParameter("eventDescribe"));
-        event.setEventLoss(request.getParameter("eventLoss"));
-        event.setEventName(request.getParameter("eventName"));
-        event.setFindWay(Integer.parseInt(request.getParameter("findWay")));
-        event.setOccurTime(request.getParameter("occurTime"));
-        event.setPhotoPath(request.getParameter("photoPath"));
-        event.setPlan(request.getParameter("plan"));
+        UploadUtil uploadUtil= new UploadUtil();
+        boolean bl=false;
+        try {
+            Map<String, List<FileItem>> map= uploadUtil.getFileItem(request);
+            //获得表单集合
+            List<FileItem> listForm=   map.get("listForm");
+            //获得表单数据
+            for (FileItem form : listForm) {
+                String filedName = form.getFieldName();
+                String val = form.getString("UTF-8");
+                if (filedName.equals("plan")) {
+                    event.setPlan(val);
+                } else if (filedName.equals("occurTime")) {
+                   event.setOccurTime(val);
+                }else if (filedName.equals("areaId")) {
+                    event.setAreaId(Integer.parseInt(val));
+                }else if (filedName.equals("classId")) {
+                    event.setClassId(Integer.parseInt(val));
+                }else if (filedName.equals("disasterStage")) {
+                    event.setDisasterStage(Integer.parseInt(val));
+                } else if (filedName.equals("disasterType")) {
+                    event.setDisasterType(Integer.parseInt(val));
+                } else if (filedName.equals("eventArea")) {
+                    event.setEventArea(val);
+                }else if (filedName.equals("eventDescribe")) {
+                    event.setEventDescribe(val);
+                }else if (filedName.equals("eventLoss")) {
+                    event.setEventLoss(val);
+                }else if (filedName.equals("eventName")) {
+                    event.setEventName(val);
+                }else if (filedName.equals("findWay")) {
+                    event.setFindWay(Integer.parseInt(val));
+                }
+            }
+
+            //获得文件集合
+            List<FileItem> listFile=   map.get("listFile");
+
+            String  afterPathDir= FileStringInfo.FILEPATH; //文件放入的文件夹名
+            //获得文件
+            for (FileItem file:listFile) {
+                String fileName=   file.getName();//上传图片的名字
+                //做验证
+                bl= Verify.verifyFile(fileName,new String[]{"jpg","png"});
+                if(!bl){
+                    break; //如果验证不成功就结束循环
+                }
+                //验证成功
+                //重新生产新的文件名
+                Date date=new Date();
+                fileName= date.getTime()+fileName.substring(fileName.lastIndexOf("."),fileName.length());
+
+                //把文件名放入到实体对象中
+                event.setPhotoPath(fileName);
+
+                OutputStream out=new FileOutputStream(afterPathDir+ fileName );
+                InputStream in= file.getInputStream();
+                byte[]bytes=new byte[1024];
+                int len=0;
+                while ((len=in.read(bytes))>0){
+                    //写入文件
+                    out.write(bytes,0,len);
+                }
+                out.close();
+                in.close();
+            }
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(event.toString());
 
         // 将添加对象加入数据库
-//        service.eventAdd(event);
+        service.eventAdd(event);
 
         //返回事件主页面
         request.getRequestDispatcher("page/eventModule/eventMain.jsp").forward(request,response);
@@ -42,6 +107,6 @@ public class eventAddServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+doPost(request,response);
     }
 }
