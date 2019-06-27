@@ -2,14 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="jdbc.properties"></properties>
-    <settings>
-        <!-- 设置全局开启驼峰命名==》针对数据库，不用取别名，但是Javabean的命名一定要规范 -->
-        <setting name="mapUnderscoreToCamelCase" value="ture"/>
-    </settings>
+
     <typeAliases>
         <package name="com.AAAAAA.pestcontrolproject.dao"/>
     </typeAliases>
-
 
 
     <environments default="development">
@@ -28,6 +24,9 @@
         <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/UserMapper.xml"></mapper>
         <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/RoleMapper.xml"></mapper>
         <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/ISpecialistDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceDtoDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceResultDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IResultSpecialistDaoMapper.xml"></mapper>
     </mappers>
 
 </configuration>

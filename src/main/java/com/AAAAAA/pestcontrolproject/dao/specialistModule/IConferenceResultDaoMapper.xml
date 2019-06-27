@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceResultDao">
+    <resultMap id="resultMap" type="com.AAAAAA.pestcontrolproject.entity.specialistModule.ConferenceResult">
+        <id column="result_id" property=""></id>
+        <result column="conference_date" property=""></result>
+        <result column="conference_result" property=""></result>
+        <association property="tConference"
+                     javaType="com.AAAAAA.pestcontrolproject.entity.specialistModule.TConference">
+            <id column="conference_id" property="conferenceId"></id>
+        </association>
+        <collection property="specialistList"
+                    ofType="com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist">
+            <id column="specialist_id" property="specialistId"></id>
+            <result column="specialist_name" property="specialistName"></result>
+        </collection>
 
+    </resultMap>
 
-
-
+    <!--根据会商ID查询结果集合-->
+    <select id="findConferenceByConferenceId" resultMap="resultMap">
+    select from result_specialist rs join conference_result cr on rs.result_id = cr.result_id
+    join t_specialist ts on rs.specialist_id = ts.specialist_id
+    where cr.conference_id=#{conferenceId}
+    </select>
+    <!--添加会商结果、同时添加中间表关联专家-->
+    <insert id="addConferenceResult">
+    insert into conference_result(conference_id, conference_date, conference_result)
+    values(#{conferenceId},#{conferenceDate},#{conferenceResult})
+    </insert>
 </mapper>

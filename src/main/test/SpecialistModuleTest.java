@@ -1,4 +1,6 @@
+import com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceDtoDao;
 import com.AAAAAA.pestcontrolproject.dao.specialistModule.ISpecialistDao;
+import com.AAAAAA.pestcontrolproject.entity.Dto.ConferenceDto;
 import com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import org.apache.ibatis.session.SqlSession;
@@ -63,4 +65,17 @@ public class SpecialistModuleTest {
         session.commit();
         session.close();
     }
+
+    //会商的查询
+    @Test
+    public void testConference() {
+        SqlSession session = GetSession.getSession();
+        ConferenceDto conferenceDto = session.getMapper(IConferenceDtoDao.class).findEventByConferenceId("1");
+        System.out.println(conferenceDto);
+
+
+        List<ConferenceDto> list = session.getMapper(IConferenceDtoDao.class).allConference();
+        System.out.println(list.size());
+    }
+
 }

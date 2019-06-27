@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceDtoDao">
+    <resultMap id="conferenceMap" type="com.AAAAAA.pestcontrolproject.entity.Dto.ConferenceDto">
+        <id column="conference_id" property="conferenceId"></id>
+        <result column="even_tName" property="eventName"></result>
+        <result column="occur_Time" property="occurTime"></result>
+        <result column="photo_Path" property="photoPath"></result>
+        <result column="area_name" property="areaName"></result>
+        <result column="event_describe" property="eventDescribe"></result>
+        <result column="event_area" property="eventArea"></result>
+        <result column="disaster_stage" property="disasterStage"></result>
+        <result column="plan" property="plan"></result>
+    </resultMap>
+    <!-- 按会商ID查询事件DTO对象 -->
+    <select id="findEventByConferenceId" resultMap="conferenceMap">
+select * from t_conference c join sys_event e on c.event_id = e.event_Id
+ join sys_area a on a.area_id=e.area_Id
+ where c.conference_id=#{conferenceId}
+</select>
+    <!--查询所有的会商事件-->
+    <select id="allConference" resultMap="conferenceMap">
+    select * from t_conference c join sys_event e on c.event_id = e.event_Id
+ join sys_area a on a.area_id=e.area_Id
+</select>
+
+
+</mapper>

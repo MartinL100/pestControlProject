@@ -1,24 +1,24 @@
 package com.AAAAAA.pestcontrolproject.entity.specialistModule;
 
+
 public class ResultSpecialist {
 
-  private ConferenceResult conferenceResult; //会商结果对象
-  private  TSpecialist specialist;  // 专家对象
+  private long resultId;//结果ID
+  private TSpecialist specialist;//专家对象
 
   public ResultSpecialist() {
   }
 
-  public ResultSpecialist(ConferenceResult conferenceResult, TSpecialist specialist) {
-    this.conferenceResult = conferenceResult;
+  public ResultSpecialist(TSpecialist specialist) {
     this.specialist = specialist;
   }
 
-  public ConferenceResult getConferenceResult() {
-    return conferenceResult;
+  public long getResultId() {
+    return resultId;
   }
 
-  public void setConferenceResult(ConferenceResult conferenceResult) {
-    this.conferenceResult = conferenceResult;
+  public void setResultId(long resultId) {
+    this.resultId = resultId;
   }
 
   public TSpecialist getSpecialist() {
@@ -27,5 +27,13 @@ public class ResultSpecialist {
 
   public void setSpecialist(TSpecialist specialist) {
     this.specialist = specialist;
+  }
+
+  @Override
+  public String toString() {
+    return "ResultSpecialist{" +
+            "resultId=" + resultId +
+            ", specialist=" + specialist +
+            '}';
   }
 }

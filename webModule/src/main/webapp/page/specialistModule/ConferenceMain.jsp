@@ -3,8 +3,8 @@
 <%
     String path = request.getContextPath();
 //http://ip+port+projectName
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String basePathIMG = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/img/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePathIMG = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/";
 %>
 
 <html>
@@ -25,23 +25,23 @@
                 <div style="float: left;margin-left: 250px">
                     <div class="layui-form-item" style="margin-top: 20px">
                         <div class="layui-inline">
-                            <label class="layui-form-label">事件名称</label>
+                            <label class="layui-form-label">事件名称</label>${conferenceDto.eventName}
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">时间</label>
+                            <label class="layui-form-label">时间</label>${conferenceDto.occurTime}
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">发生位置</label>
+                            <label class="layui-form-label">发生位置</label>${conferenceDto.areaName}
                         </div>
                     </div>
 
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">灾情描述</label>
+                            <label class="layui-form-label">灾情描述</label>${conferenceDto.eventDescribe}
                         </div>
                     </div>
 
@@ -53,28 +53,24 @@
                     </div>
                 </div>
 
-
                 <div style="float: left; margin-left: 150px">
                     <div class="layui-form-item" style="margin-top: 30px">
                         <div class="layui-inline">
                             <label class="layui-form-label">照片</label>
+                            <input type="file" name="">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">影响面积</label>
+                            <label class="layui-form-label">影响面积</label>${conferenceDto.eventArea}
                         </div>
                     </div>
 
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <span class="layui-form-label">会商人员</span>
-                            <select style="width: 80px;height: 100px">
-                                <option value="1">2</option>
-                                <option value="2">3</option>
-                                <option value="2">4</option>
-                            </select>
+
 
                         </div>
                     </div>
@@ -99,17 +95,17 @@
                             <th>会商结果</th>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                        </tr>
-
+                        <c:forEach items="${resultList}" var="c">
+                            <tr>
+                                <td>${c.conferenceDate}</td>
+                                <td>
+                                    <c:forEach items="${c.specialistList}" var="d">
+                                        ${d.specialistName},
+                                    </c:forEach>
+                                </td>
+                                <td>${c.conferenceResult}</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
