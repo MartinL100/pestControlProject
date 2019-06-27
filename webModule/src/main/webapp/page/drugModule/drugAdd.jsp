@@ -82,7 +82,7 @@
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">
-                            <button style=" position:absolute;top: -10px; left:200px" type="button" class="layui-btn layui-btn-primary" id="addBtn">添加</button>
+                            <button style=" position:absolute;top: -80px; left:200px" type="button" class="layui-btn layui-btn-primary" id="addBtn">添加</button>
                         </div>
                     </div>
                 </div>

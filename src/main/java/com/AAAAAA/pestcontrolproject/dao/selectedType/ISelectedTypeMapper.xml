@@ -12,6 +12,6 @@
 
 
     <select id="getAllClass" resultType="sysSelectedType">
-        select sclass_id typeKey, sclass_name typeName from sys_class
+        select sclass_id typeKey, sclass_name typeVal from sys_class
     </select>
 </mapper>

@@ -3,8 +3,9 @@ package com.AAAAAA.pestcontrolproject.servlet.drugModule;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug;
 import com.AAAAAA.pestcontrolproject.servic.drugModule.IStockpileService;
-import com.AAAAAA.pestcontrolproject.servic.drugModule.StockpileServiceImpl;
+import com.AAAAAA.pestcontrolproject.servic.impl.drugModule.StockpileServiceImpl;
 import com.AAAAAA.pestcontrolproject.util.PageUtil;
+import com.AAAAAA.pestcontrolproject.util.SplitPage;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +25,8 @@ public class outWareHousePanelServlet extends HttpServlet {
             //获取所有订单前五条数据
             Map<String,Object> map= new HashMap();
             //初始化起始位置和显示数量
-            map.put("startPage",0);
-            map.put("countPage",5);
-
+            map.put("startIndex",0);
+            map.put("rowNum",5);
             //查询出所有数据中前五条
             List<SysStockpile> stockpileList = stockpileService.getSysDrugList(map);
             int count=  stockpileService.GetCounts(map);
@@ -35,7 +35,7 @@ public class outWareHousePanelServlet extends HttpServlet {
             page.setCurrentPage(1,"firstPage");
             //将list放入到request中转发回页面
             request.setAttribute("stockpileList",stockpileList);
-            request.setAttribute("page",page);
+            request.setAttribute("newCurrentPage",page.getCurrentPage());
             request.getRequestDispatcher("page/drugModule/outwarehousePanel.jsp").forward(request,response);
         }
         else if("findByIDbtn".equals(Tag)){
@@ -56,11 +56,41 @@ public class outWareHousePanelServlet extends HttpServlet {
           //转发出去
           request.getRequestDispatcher("page/drugModule/outwarehouseUpdate.jsp").forward(request,response);
         }
+        //将主页面中table中的数据 drugIdList和countNumList转发到子页面
         else if("addBtn".equals(Tag)){
-
+        String[] drugIdList=request.getParameterValues("drugId");
+         String [] countNumList=   request.getParameterValues("countNum");
+         request.setAttribute("drugIdList",drugIdList);
+         request.setAttribute("countNumList",countNumList);
+         request.getRequestDispatcher("outwarehouseAddObjServlet.lovo").forward(request,response);
         }
         else{
-
+         String startTime=     request.getParameter("startTime");
+         String endTime=    request.getParameter("endTime");
+         String className=   request.getParameter("className");
+         Map<String,Object> map=new HashMap<>();
+//            System.out.printf(startTime);
+//            System.out.printf(endTime);
+         map.put("startTime",startTime);
+         map.put("endTime",endTime);
+         map.put("className",className);
+         int count=   stockpileService.GetCounts(map);
+            String currentPage=  request.getParameter("currentPage");
+            Map<String,Object> mapx=  SplitPage.SplitPage(currentPage,Tag,5,count);
+            int newCurrentPage= (Integer)mapx.get("newCurrentPage");
+            int startIndex=(Integer)mapx.get("startIndex");
+            if(startIndex<0){
+                startIndex=0;
+                map.put("startIndex",0);
+            }
+            else{
+                map.put("startIndex",mapx.get("startIndex"));
+            }
+            map.put("rowNum",5);
+            List<SysStockpile> stockpileList = stockpileService.getSysDrugList(map);
+            request.setAttribute("stockpileList",stockpileList);
+            request.setAttribute("newCurrentPage",mapx.get("newCurrentPage"));
+            request.getRequestDispatcher("page/drugModule/outwarehousePanel.jsp").forward(request,response);
         }
     }
 

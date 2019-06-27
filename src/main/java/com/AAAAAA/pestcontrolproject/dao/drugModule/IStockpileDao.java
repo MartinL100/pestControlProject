@@ -1,8 +1,6 @@
 package com.AAAAAA.pestcontrolproject.dao.drugModule;
 
-import com.AAAAAA.pestcontrolproject.entity.drugModule.SysDrug;
-import com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile;
-import com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.*;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +27,13 @@ public interface IStockpileDao {
     /**
      * 添加订单
      */
-    public void saveStockpileDrug();
+    public int saveStockpileDrug(StockpileVo vo);
+
+
+    /**
+     * 添加订单中间表
+     */
+    public int addStockpileDrug(StockpileDrugVo DrugVo);
 
     /**
      * 查询订单总数

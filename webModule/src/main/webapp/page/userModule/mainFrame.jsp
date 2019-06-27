@@ -84,10 +84,11 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">药剂器械管理</a>
+                  <a href="drugPanelPageServlet.lovo" target="frameName">药剂器械管理</a>
                 </dd>
+
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">出库管理</a>
+                  <a href="outwarehousePanelServlet.lovo" target="frameName">出库管理</a>
                 </dd>
               </dl>
             </li>

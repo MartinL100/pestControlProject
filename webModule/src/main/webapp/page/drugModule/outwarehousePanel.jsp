@@ -28,7 +28,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-
+                <h1 align="center">药剂器械出库管理</h1>
                 <div class="layui-form layui-card-header layuiadmin-card-header-auto">
                     <!-- 表单开始 -->
                     <form action="outwarehousePanelServlet.lovo" method="post" id="outWareHousePanelFromId">
@@ -121,8 +121,8 @@
                             <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:100px" id="findByIDbtn">查看出库信息</button>
                         </div>
                     </div>
-                    <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -80px">
-                        <span style=" position:absolute;top:-35px;left:30px">查询虫害信息</span>
+                    <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -130px">
+                        <span style=" position:absolute;top:-35px;left:30px">查询出库信息</span>
                         <span style=" position:absolute;top:20px;left:30px">起始时间</span>
                         <input  name="startTime" type="date" style=" position:absolute;top:30px;left:140px"/>
                         <span style=" position:absolute;top:75px;left:30px">结束时间</span>
@@ -156,7 +156,7 @@ function findById(id) {
 $("#findByIDbtn").click(function () {
 
       var sid=$("#TrId").val();
-      alert(sid)
+     // alert(sid)
       if(sid!=0){
           $("#TrId").val(sid);
           $("#checkTypeId").val("findByIDbtn");
@@ -182,7 +182,10 @@ $("#skipBtn").click(function () {
 $("#addBtn").click(function () {
     location.href="outwarehouseAddServlet.lovo";
 });
-
+$("#findBtn").click(function () {
+    $("#checkTypeId").val("findBtn")
+    $("#outWareHousePanelFromId").submit();
+})
 </script>
 </body>
 </html>

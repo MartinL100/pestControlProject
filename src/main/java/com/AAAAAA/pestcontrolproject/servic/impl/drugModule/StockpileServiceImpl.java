@@ -1,15 +1,19 @@
-package com.AAAAAA.pestcontrolproject.servic.drugModule;
+package com.AAAAAA.pestcontrolproject.servic.impl.drugModule;
 
+import com.AAAAAA.pestcontrolproject.dao.drugModule.IDrugDao;
 import com.AAAAAA.pestcontrolproject.dao.drugModule.IStockpileDao;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileDrugVo;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileVo;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug;
+import com.AAAAAA.pestcontrolproject.servic.drugModule.IStockpileService;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 import java.util.Map;
 
-public class StockpileServiceImpl implements  IStockpileService {
+public class StockpileServiceImpl implements IStockpileService {
 
 
     @Override
@@ -31,8 +35,13 @@ public class StockpileServiceImpl implements  IStockpileService {
     }
 
     @Override
-    public void saveStockpileDrug() {
-
+    public int saveStockpileDrug(StockpileVo vo) {
+        SqlSession session =  GetSession.getSession();
+        IStockpileDao dao =session.getMapper(IStockpileDao.class);
+        int id=dao.saveStockpileDrug(vo);
+        session.commit();
+        session.close();
+        return id;
     }
 
     @Override
@@ -42,6 +51,23 @@ public class StockpileServiceImpl implements  IStockpileService {
         int count=dao.GetCounts(map);
         session.close();
         return count;
+    }
+
+    @Override
+    public int addStockpileDrug(StockpileDrugVo DrugVo) {
+        SqlSession session =  GetSession.getSession();
+        IStockpileDao dao =session.getMapper(IStockpileDao.class);
+        SqlSession session2= GetSession.getSession();
+        IDrugDao drugdao=  session.getMapper(IDrugDao.class);
+     int count=    drugdao.getDrugById(DrugVo.getDrugId()).getDrugNum();
+     session2.close();
+     if(count-DrugVo.getStockpileNum()>=0){
+         dao.addStockpileDrug(DrugVo);
+         session.commit();
+         session.close();
+         return 1;
+      }
+        return -1;
     }
 
     @Override

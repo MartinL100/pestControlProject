@@ -41,8 +41,14 @@ alter table drug_stockpile add constraint FK_Reference_12 foreign key (drug_id)
 alter table drug_stockpile add constraint FK_Reference_13 foreign key (stockpile_id)
       references sys_stockpile (stockpile_id) on delete restrict on update restrict;
 
-
-
+ 创建订单表视图
+CREATE v_drug_tockpile as
+SELECT DISTINCT d.drug_id,d.drug_name,d.drug_type,d.drug_cure_type,d.drug_use_way,
+s.stockpile_id,
+sd.stockpile_num
+from  drug_stockpile s,sys_drug d,drug_stockpile sd
+where s.drug_id=d.drug_id and s.stockpile_id=sd.stockpile_id
+ GROUP BY d.drug_id
 
 /*==============================================================*/
 /* Table: sys_stockpile   出库信息表                                      */
@@ -56,6 +62,68 @@ create table sys_stockpile
    stockpile_num        int,
    primary key (stockpile_id)
 );
+
+
+-- 删除存储过程
+DROP PROCEDURE saveSysDrug
+
+-- 创建存储过程
+DELIMITER $
+CREATE PROCEDURE saveSysDrug
+(IN drugNameIn VARCHAR(32),IN drugCureTypeIdIn BIGINT,
+IN drugTypeIdIn BIGINT,IN drugUseWayIn VARCHAR(32),IN drugNum INT,
+OUT res INT)
+BEGIN
+-- 定查询到的数量变量
+DECLARE  renum INT DEFAULT 0;
+-- 定义接受查询到的drugId
+DECLARE drugId INT DEFAULT 0;
+  -- 根据商品去查询是否存在，存在就返回1否则0
+      SELECT COUNT(*),drug_id INTO renum,drugId FROM sys_drug WHERE  drug_name=drugNameIn;
+   IF renum=1 THEN
+      -- 存在,累加数量
+       UPDATE sys_drug SET drug_num=drug_num+drugNum WHERE drug_name=drugNameIn;
+   commit;
+   ELSE
+        -- 不存在新加一行数据
+        INSERT INTO sys_drug(drug_name,drug_cure_type,drug_type,drug_use_way,drug_num) VALUES(drugNameIn,drugCureTypeIdIn,drugTypeIdIn,drugUseWayIn,drugNum);
+    commit;
+   END IF;
+
+    -- 返回结果
+    SET res:=renum;
+END $
+
+
+
+---   添加中间表数据 存储过程
+
+DELIMITER $
+CREATE PROCEDURE addStockpileDrug
+(IN drugId INT,IN stockpileId INT,
+IN stockpileNum BIGINT)
+BEGIN
+-- 定查询到的数量变量
+DECLARE  renum INT DEFAULT 0;
+-- 定义接受查询到的drugId
+DECLARE drugId INT DEFAULT 0;
+DECLARE num INT DEFAULT 0;
+  -- 根据商品去查询是否存在，存在就返回1否则0
+      SELECT COUNT(*),drug_id,drug_num INTO renum,drugId,num FROM sys_drug WHERE  drug_id=drugId;
+   SET num:=num-stockpileNum;
+   IF renum=1 THEN
+      -- 存在,累加数量
+       UPDATE sys_drug SET drug_num=num WHERE drug_id=drugId;
+         commit;
+       INSERT INTO drug_stockpile(drug_id, stockpile_id, stockpile_num)  VALUES(drugId,stockpileId,stockpileNum);
+  commit;
+   ELSE
+ UPDATE sys_drug SET drug_num=drug_num WHERE drug_id=drugId;
+
+   END IF;
+END $
+
+
 
 
 

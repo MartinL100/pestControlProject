@@ -37,4 +37,12 @@ public interface IDrugService {
     public void saveSysDrug(SysDrugAddVo drug);
 
 
+    /**
+     * 根据id得到相应的Drug
+     * @param DrugId iD
+     * @return  Drug实体类
+     */
+    public SysDrug  getDrugById(int DrugId);
+
+
 }

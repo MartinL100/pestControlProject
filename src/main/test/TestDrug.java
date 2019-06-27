@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,9 @@ public class TestDrug {
         Map<String,Object> map=new HashMap<>();
 //        map.put("drugCureType","虫害");
 //        map.put("drugType","器械");
-        map.put("startPage",0);
-        map.put("countPage",5);
+        map.put("startIndex",0);
+        map.put("rowNum",5);
+
         List<SysDrug> list= dao.getListPageDrugByMap(map);
         for (SysDrug s:list) {
             System.out.println(s);
@@ -34,6 +36,13 @@ public class TestDrug {
 
 
     @Test
+    public void TestGetDrugByID(){
+        SqlSession session= GetSession.getSession();
+        IDrugDao dao=  session.getMapper(IDrugDao.class);
+        System.out.println(dao.getDrugById(1));
+        session.close();
+    }
+    @Test
     public void TestSelectedTypeDao(){
         SqlSession session= GetSession.getSession();
         ISelectedTypeDao dao=  session.getMapper(ISelectedTypeDao.class);
@@ -41,12 +50,12 @@ public class TestDrug {
         for (SysSelectedType s:list) {
             System.out.println(s);
         }
-        System.out.println("================================");
-        System.out.println(dao.getSelectedValueByID(1));
+//        System.out.println("================================");
+//        System.out.println(dao.getSelectedValueByID(1));
 
         List<SysSelectedType> Classlist= dao.getAllClass();
         for (SysSelectedType c: Classlist) {
-            System.out.println(c);
+            System.out.println(c.getTypeVal());
         }
 
         session.close();
@@ -82,8 +91,9 @@ public class TestDrug {
     SqlSession session =  GetSession.getSession();
     IStockpileDao dao =session.getMapper(IStockpileDao.class);
     Map<String,Object> map=new HashMap<>();
-    map.put("startPage",0);
-    map.put("countPage",5);
+    map.put("startIndex",0);
+    map.put("rowNum",5);
+    map.put("startTime",new Date(System.currentTimeMillis()).toString());
     List<SysStockpile> list= dao.getSysDrugList(map);
     for (SysStockpile s:
          list) {

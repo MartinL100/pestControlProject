@@ -29,7 +29,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
 
-
+                <h1 align="center">药剂/器械一览</h1>
                 </form>
                 <div class="layui-form layui-card-header layuiadmin-card-header-auto">
                     <!-- 表单开始 -->
@@ -46,6 +46,7 @@
 
                             <!-- 物品信息表开始-->
                             <div class="layui-card-body">
+
                                 <table class="layui-table">
                                     <colgroup>
                                         <col width="150">
@@ -81,9 +82,9 @@
                             <!-- 物品表格数据结束 -->
                             <div style="margin-bottom: 50px;margin-top: 50px">
                                 <button type="button" class="layui-btn layui-btn-primary" id="prevBtn" onclick="pageSubmit('prev')"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
-                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${page.getCurrentPage()}" id="currentPage">
+                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${newCurrentPage}" id="currentPage">
                                 &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${MaxPage}</span>
-                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="skipBtn"> &nbsp;>|&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="skipBtn"> &nbsp;跳转&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
                                 &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextBtn" value="next" onclick="pageSubmit('next')">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
                             </div>
 
@@ -94,7 +95,7 @@
 
 
 
-                        <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: 50px">
+                        <div style="border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -25px">
                             <span style=" position:absolute;top:-35px;left:30px">查询药剂信息</span>
                             <span style=" position:absolute;top:0px;left:30px">药剂名称</span>
                             <span style=" position:absolute;top:60px;left:30px">防治类型</span>
@@ -120,9 +121,9 @@
 
                     <!-- 按钮开始 -->
                     <div class="layui-card-body">
-                        <div class="layui-btn-container" style="margin-top: 40px">
-                            <button id="addBtn" type="button" class="layui-btn layui-btn-primary" style=" position:relative;left:80px;top: -80px">添加药剂</button>
-                            <button id="findBtn" type="submit" class="layui-btn layui-btn-primary" style=" position:absolute;top:0px;left:600px">查询</button>
+                        <div class="layui-btn-container" style="position: relative;left:0px;top: -55px">
+                            <button id="addBtn" type="button" class="layui-btn layui-btn-primary" style=" position:relative;left:80px;top: -120px">添加药剂</button>
+                            <button id="findBtn" type="submit" class="layui-btn layui-btn-primary" style=" position:absolute;top:-25px;left:550px">查询</button>
                         </div>
 
                     </div>

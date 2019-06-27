@@ -28,15 +28,15 @@
 <select id="getSysDrugList" resultMap="SysDrugMap" parameterType="map">
     select *from  sys_stockpile where 1=1
     <if test="startTime !=null and startTime!=''">
-     and sclass_start_date  &gt;= #{startTime}
+     and stockpile_date  &gt;= #{startTime}
     </if>
     <if test="endTime !=null and endTime!=''">
-        and sclass_start_date  &lt;= #{endTime}
+        and stockpile_date  &lt;= #{endTime}
     </if>
     <if test="sclassName!=null and sclassName!='' ">
         and  sclass_id = (select sclass_id from sys_class where sclass_name=#{sclassName} )
     </if>
-     LIMIT #{startPage},#{countPage}
+    limit #{startIndex},#{rowNum}
 </select>
 
 
@@ -64,8 +64,10 @@
             <!--<result column="drug_num" property="drugNum"></result>-->
             <!--<result column="drug_type" property="drugType"></result>-->
             <!--<result column="drug_cure_type" property="drugCureType"></result>-->
-            <!--&lt;!&ndash;<association select="findByDrugTypeId" column="drug_type" property="drugType"></association>&ndash;&gt;-->
-            <!--&lt;!&ndash;<association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType"></association>&ndash;&gt;-->
+            <!--&lt;!&ndash;<association select="findByDrugTypeId" column="drug_type" property="drugType">
+            </association>&ndash;&gt;-->
+            <!--&lt;!&ndash;<association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType">
+            </association>&ndash;&gt;-->
         <!--</collection>-->
     </resultMap>
 
@@ -79,7 +81,7 @@
      select type_val  from  sys_type where type_id=#{0}
     </select>
     <select id="findStockpileManByID" resultType="String">
-        select   real_name from  t_user where  user_id=#{0};
+        select  real_name from  t_user where  user_id=#{0};
     </select>
     <select id="findStockpileClassByID" resultType="String">
        select sclass_name from sys_class where sclass_id=#{0}
@@ -89,11 +91,17 @@
     <resultMap id="SysDrugMapList" type="stockpileDrug">
         <result  column="drug_id" property="drugId"></result>
         <result column="drug_name" property="drugName"></result>
-        <result column="drug_use_way" property="drugUseWay"></result>
+        <result column="drug_use_way" property="drugUseWay" ></result>
         <result column="drug_num" property="drugNum"></result>
-        <result column="drug_type" property="drugType"></result>
-        <result column="drug_cure_type" property="drugCureType"></result>
+        <!--<result column="drug_type" property="drugType"></result>-->
+        <!--<result column="drug_cure_type" property="drugCureType"></result>-->
+        <association select="findByDrugTypeId" column="drug_type" property="drugType">
+        </association>
+        <association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType">
+        </association>
     </resultMap>
+
+
 
     <select id="getDrugListById" resultMap="SysDrugMapList">
       select  * from v_drug_tockpile where  stockpile_id=#{0}
@@ -117,12 +125,18 @@
         <if test="endTime !=null and endTime!=''">
             and stockpile_date &lt;= #{endTime}
         </if>
-        <!--<if test="sclassNameid !=null sclassNameId!=0" >-->
-            <!--and  sclass_name=#{sclassNameId}-->
-        <!--</if>-->
+        <if test="className !=null and className!=''" >
+            and  stockpile_class = (select sclass_id from sys_class where sclass_name= #{className})
+        </if>
     </select>
 
 
-    <select id="saveStockpileDrug"></select>
+    <insert id="saveStockpileDrug" useGeneratedKeys="true" keyProperty="stockpileId" parameterType="com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileVo">
+        insert into sys_stockpile(stockpile_class, stockpile_man, stockpile_date) values(#{stockpileClassId},#{stockpileUserId},#{stockpileDate})
+    </insert>
+
+    <insert id="addStockpileDrug" useGeneratedKeys="true" keyProperty="stockpileId" parameterType="com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileDrugVo">
+       call addStockpileDrug(#{drugId},#{stockpileId},#{stockpileNum})
+    </insert>
 
 </mapper>

@@ -28,15 +28,13 @@
         <div class="layui-col-md12">
             <div class="layui-card">
 
-
-
                 <div class="layui-form layui-card-header layuiadmin-card-header-auto">
                     <!-- 表单开始 -->
-                    <form action="addInformation.lovo" method="post" id="addInformationFromId">
+                    <form action="outwarehouseAddObjServlet.lovo" method="post" id="AddObjFromId">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input type="hidden" value="${currentPage}" name="currentPage">
-                                <input type="hidden"  id="checkType">
+                                <input type="hidden" value="${newCurrentPage}" name="currentPage">
+                                <input type="hidden"  id="checkType" name="PageTag">
                             </div>
 
 
@@ -52,7 +50,7 @@
                                         </colgroup>
                                         <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>&nbsp;&nbsp;</th>
                                             <th>物品名称</th>
                                             <th>类型</th>
                                             <th>防治类型</th>
@@ -61,17 +59,17 @@
                                         </thead>
                                         <tbody>
                                         <!-- 遍历传入的出入库信息集合  -->
-                                        <c:forEach items="${MessageVolist}" var="MessageVo">
-                                            <tr>
-                                                <td><input type="checkbox" style="display: block"></td>
-                                                <!-- 出库物品名称 -->
-                                                <td>${MessageVo.ObjectName}</td>
-                                                <!-- 出库物品类型 -->
-                                                <td>${MessageVo.ObjectType}</td>
-                                                <!-- 防治类型 -->
-                                                <td>${MessageVo.PreventionType}</td>
-                                                <!-- 领用数量 -->
-                                                <td>${MessageVo.ObjectWays}</td>
+                                        <c:forEach items="${drugList}" var="drug">
+                                            <tr value="${drug.getDrugId()}" name="${drug.getDrugId()}" >
+                                                <td><input style="display: block" type="checkbox"  onchange="AddName(this)" value="${drug.getDrugId()}"></td>
+                                                <!-- 物品名称 -->
+                                                <td>${drug.getDrugName()}</td>
+                                                <!-- 防治品类型 -->
+                                                <td>${drug.getDrugCureType()}</td>
+                                                <!-- 物品类型 -->
+                                                <td>${drug.getDrugType()}</td>
+                                                <!--  物品主要用途-->
+                                                <td>${drug.getDrugUseWay()}</td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -82,11 +80,11 @@
 
                                 <!-- 物品表格数据结束 -->
                             <div style="margin-bottom: 50px;margin-top: 50px">
-                                <button type="button" class="layui-btn layui-btn-primary" id="prevPage" onclick="paging('prevPage')"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
-                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${Page.currentPage}" id="currentPage">
-                                &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${Page.MaxPage}</span>
-                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="lastPage" value="lastBtn" onclick="paging('lastPage')"> &nbsp;>|&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
-                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextPage" value="nextBtn"  onclick="paging('nextPage')">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
+                                <button type="button" class="layui-btn layui-btn-primary" id="prevBtn" onclick="pageSubmit('prev')"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${newCurrentPage}" id="currentPage">
+                                &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${MaxPage}</span>
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="skipBtn"> &nbsp;跳转&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextBtn" value="next" onclick="pageSubmit('next')">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
                             </div>
 
 
@@ -104,7 +102,7 @@
                             <div>
                                 <select name="drugType" id="drugType" style="display: block;width: 200px;float: left" class="layui-input">
                                     <c:forEach items="${drugTypeList}" var="drugType">
-                                        <option>${drugType.getValue()}</option>
+                                        <option value="${drugType.getTypeVal()}">${drugType.getTypeVal()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -114,11 +112,9 @@
                             <label class="layui-form-label">防治类型:</label>
                             <div>
                                 <select name="drugCureType" id="drugCureType" style="display: block;width: 200px;float: left" class="layui-input">
-
-                                    <c:forEach items="${drugCureTypeList}" var="drugcureType">
-                                        <option>${drugcureType.getValue()}</option>
+                                    <c:forEach items="${drugCureTypeList}" var="cureType">
+                                        <option>${cureType.getTypeVal()}</option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                             <!-- 防治类型下拉框结束 -->
@@ -150,6 +146,9 @@
 
     //关闭子窗口 刷新父窗口
     $("#getBtn").click(function (status) {
+        $("#checkType").val("getBtn");
+        $("#AddObjFromId").submit();
+
         if(status=="yes"){
             window.parent.location.reload();//刷新父页面
             var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
@@ -160,9 +159,33 @@
 
     });
 
- function paging(obj) {
-     $("#checkType").val(obj);
- }
+
+    function pageSubmit(tag) {
+        $("#checkType").val(tag)
+        // alert( $("#checkType").val())
+        $("#AddObjFromId").submit();
+    }
+
+    $("#findBtn").click(function () {
+        $("#AddObjFromId").submit();
+    });
+
+    function AddName(obj) {
+      $x= $(obj)
+       var b= obj.checked;
+       // alert(b)
+        if(b){
+            $x.attr("name","box")
+          // alert($(obj).attr("name"))
+        }
+        else{
+            $x.removeAttr("name")
+          // alert($(obj).attr("name"))
+        }
+
+
+    }
+
 </script>
 
 

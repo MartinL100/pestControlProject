@@ -22,7 +22,7 @@
        <if test="drugType !=null and drugType!='' and '不限'!=drugType ">
            and drug_type=(select type_id from sys_type where type_val= #{drugType})
        </if>
-       limit #{startPage},#{countPage}
+        Limit #{startIndex},#{rowNum}
    </select>
 
 
@@ -52,5 +52,9 @@
                                                                               <!--com.AAAAAA.pestcontrolproject.vo.drugModule.SysDrugAddVo-->
     <select id="saveSysDrug" statementType="CALLABLE" parameterType="com.AAAAAA.pestcontrolproject.vo.drugModule.SysDrugAddVo">
            call saveSysDrug(#{drugName},#{drugCureTypeId},#{drugTypeId},#{drugUseWay},#{drugNum},#{res})
+    </select>
+
+    <select id="getDrugById" resultMap="DrugMap">
+        select *from sys_drug where drug_id=#{0}
     </select>
 </mapper>

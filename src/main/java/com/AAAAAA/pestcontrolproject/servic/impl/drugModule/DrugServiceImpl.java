@@ -38,4 +38,13 @@ public class DrugServiceImpl  implements IDrugService {
         dao.saveSysDrug(drug);
         session.close();
     }
+
+    @Override
+    public SysDrug getDrugById(int DrugId) {
+        SqlSession session= GetSession.getSession();
+        IDrugDao dao=  session.getMapper(IDrugDao.class);
+        SysDrug drug= dao.getDrugById(DrugId);
+        session.close();
+        return drug;
+    }
 }

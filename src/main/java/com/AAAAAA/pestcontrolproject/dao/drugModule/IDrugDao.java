@@ -33,4 +33,11 @@ public interface IDrugDao {
      * @return 新增器械为0 为已有的器械增加数量为1
      */
     public  void saveSysDrug(SysDrugAddVo drug);
+
+    /**
+     * 根据id得到相应的Drug
+     * @param DrugId iD
+     * @return  Drug实体类
+     */
+    public SysDrug  getDrugById(int DrugId);
 }

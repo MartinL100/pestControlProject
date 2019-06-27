@@ -1,4 +1,6 @@
 package com.AAAAAA.pestcontrolproject.servic.drugModule;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileDrugVo;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileVo;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug;
 import java.util.List;
@@ -26,7 +28,7 @@ public interface IStockpileService {
     /**
      * 添加订单
      */
-    public void saveStockpileDrug();
+    public int saveStockpileDrug(StockpileVo vo);
 
     /**
      * 查询订单总数
@@ -35,6 +37,10 @@ public interface IStockpileService {
      */
     public int GetCounts(Map map);
 
+    /**
+     * 添加订单中间表
+     */
+    public int addStockpileDrug(StockpileDrugVo DrugVo);
 
     /**
      * 根据订单表查找订单对应的数据集合

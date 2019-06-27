@@ -24,7 +24,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-
+<h1 align="center">查看详细信息</h1>
 
 
                 <div class="layui-form layui-card-header layuiadmin-card-header-auto">
@@ -63,7 +63,7 @@
                                     </thead>
                                     <tbody>
                                     <!-- 遍历传入的出入库信息集合  -->
-                                    <c:forEach items="${Stockpile. getDrugList()}" var="MessageVo">
+                                    <c:forEach items="${Stockpile.getDrugList()}" var="MessageVo">
                                         <tr>
                                             <!-- 出库物品名称 -->
                                             <td>${MessageVo.getDrugName()}</td>
