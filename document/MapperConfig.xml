@@ -26,6 +26,9 @@
 
 
         <!--古成全mapper配置部分-->
+        <!-- 古成全部分 -->
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IDrugDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IStockpileDaoMapper.xml"></mapper>
 
         <!--古成全mapper配置部分-->
 

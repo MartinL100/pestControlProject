@@ -30,6 +30,15 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+//           //获取登录的对象
+//            String userName=request.getParameter("userName");
+//            String password=request.getParameter("password");
+//        Map<String, String> map = new HashMap<>();
+//        map.put("userName",userName);
+//        map.put("password",password);
+//       TUser user= userServic.login(map);
+
+
             String userName=request.getParameter("userName");
             String password=request.getParameter("password");
         Map<String, String> map = new HashMap<>();
@@ -82,6 +91,7 @@ public class LoginServlet extends HttpServlet {
             //添加最后一次循环的菜单栏
             menuObj.setSecendMenu(powerList);
             menuVOList.add(menuObj);
+
 
 
 

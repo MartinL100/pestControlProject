@@ -51,7 +51,7 @@ public class SpecialistAddServlet extends HttpServlet {
                 }
                 //验证成功
                 //重新生产新的文件名
-                fileName = FileStringInfo.getNewFileName(fileName);
+//                fileName = FileStringInfo.getNewFileName(fileName);
                 //把文件名放入到专家对象
                 specialist.setSpecialistPath(fileName);
                 OutputStream out = new FileOutputStream(afterPathDir + fileName);

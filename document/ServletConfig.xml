@@ -1,12 +1,15 @@
 <!--刘聪mapper配置部分-->
+
 <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.LoginServlet</servlet-class>
 </servlet>
+
 <servlet>
 <servlet-name>userPanelServlet</servlet-name>
 <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UserPanelServlet</servlet-class>
 </servlet>
+
 <servlet>
 <servlet-name>userAddServlet</servlet-name>
 <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UserAddServlet</servlet-class>
@@ -40,10 +43,12 @@
 <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.RecordLogsServlet</servlet-class>
 </servlet>
 <servlet>
+
 <servlet-mapping>
 <servlet-name>recordLogsServlet</servlet-name>
 <url-pattern>/recordLogsServlet</url-pattern>
 </servlet-mapping>
+
 <servlet-mapping>
 <servlet-name>updateUserInfoSureServlet</servlet-name>
 <url-pattern>/updateUserInfoSureServlet</url-pattern>
@@ -215,6 +220,58 @@
 
 
 <!--古成全mapper配置部分-->
+
+
+<!-- 药剂器械添加Servlet -->
+<servlet>
+    <servlet-name>drugAddServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.DrugAddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>drugAddServlet</servlet-name>
+    <url-pattern>/drugAddServlet.lovo</url-pattern>
+</servlet-mapping>
+
+<!-- 药剂一览主页面Servlet -->
+<servlet>
+    <servlet-name>drugPanelPageServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.DrugPanelPageServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>drugPanelPageServlet</servlet-name>
+    <url-pattern>/drugPanelPageServlet.lovo</url-pattern>
+</servlet-mapping>
+
+
+<!-- 出库信息管理主页面Servlet -->
+<servlet>
+    <servlet-name>outwarehousePanelServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHousePanelServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>outwarehousePanelServlet</servlet-name>
+    <url-pattern>/outwarehousePanelServlet.lovo</url-pattern>
+</servlet-mapping>
+
+<!-- 出库信息添加页面Servlet-->
+<servlet>
+    <servlet-name>outwarehouseAddServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHouseAddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>outwarehouseAddServlet</servlet-name>
+    <url-pattern>/outwarehouseAddServlet.lovo</url-pattern>
+</servlet-mapping>
+
+<!--添加出库物品Servlet -->
+<servlet>
+    <servlet-name>outwarehouseAddObjServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHouseAddObjServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>outwarehouseAddObjServlet</servlet-name>
+    <url-pattern>/outwarehouseAddObjServlet.lovo</url-pattern>
+</servlet-mapping>
 
 <!--古成全mapper配置部分-->
 

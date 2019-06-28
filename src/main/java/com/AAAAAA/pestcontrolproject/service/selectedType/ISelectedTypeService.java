@@ -22,4 +22,11 @@ public interface ISelectedTypeService {
      * @return 下拉框集合
      */
     public List<SysSelectedType> getSelectValueListByTypeName(String TypeName);
+
+    /**
+     * 得到所有班级下拉框
+     * @return 班级下拉框集合
+     */
+    public List<SysSelectedType> getAllClass();
+
 }

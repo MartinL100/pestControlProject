@@ -26,4 +26,13 @@ public class SelectedTypeImpl implements ISelectedTypeService {
         session.close();
         return list;
     }
+
+    @Override
+    public List<SysSelectedType> getAllClass() {
+        SqlSession session= GetSession.getSession();
+        ISelectedTypeDao dao=  session.getMapper(ISelectedTypeDao.class);
+        List<SysSelectedType> list=dao.getAllClass();
+        session.close();
+        return list;
+    }
 }

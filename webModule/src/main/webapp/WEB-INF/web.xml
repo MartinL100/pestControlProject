@@ -22,26 +22,69 @@
         <servlet-name>addUserInitServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.AddUserInitServlet</servlet-class>
     </servlet>
+
+<!--  古成全部分    -->
+
+
+
+
+   <!-- 药剂器械添加Servlet -->
     <servlet>
-        <servlet-name>isExistUserServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.IsExistUserServlet</servlet-class>
+        <servlet-name>drugAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.DrugAddServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>drugAddServlet</servlet-name>
+        <url-pattern>/drugAddServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+    <!-- 药剂一览主页面Servlet -->
     <servlet>
-        <servlet-name>findUserServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.FindUserServlet</servlet-class>
+        <servlet-name>drugPanelPageServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.DrugPanelPageServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>drugPanelPageServlet</servlet-name>
+        <url-pattern>/drugPanelPageServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 出库信息管理主页面Servlet -->
     <servlet>
-        <servlet-name>delUserServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.DelUserServlet</servlet-class>
+        <servlet-name>outwarehousePanelServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHousePanelServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>outwarehousePanelServlet</servlet-name>
+        <url-pattern>/outwarehousePanelServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+    <!-- 出库信息添加页面Servlet-->
     <servlet>
-        <servlet-name>updateUserInfoServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UpdateUserInfoServlet</servlet-class>
+        <servlet-name>outwarehouseAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHouseAddServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>outwarehouseAddServlet</servlet-name>
+        <url-pattern>/outwarehouseAddServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+    <!--添加出库物品Servlet -->
     <servlet>
-        <servlet-name>updateUserInfoSureServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.UpdateUserInfoSureServlet</servlet-class>
+        <servlet-name>outwarehouseAddObjServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHouseAddObjServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>outwarehouseAddObjServlet</servlet-name>
+        <url-pattern>/outwarehouseAddObjServlet.lovo</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
     <servlet>
         <servlet-name>recordLogsServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.RecordLogsServlet</servlet-class>
@@ -74,26 +117,10 @@
         <servlet-name>recordLogsServlet</servlet-name>
         <url-pattern>/recordLogsServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>updateUserInfoSureServlet</servlet-name>
-        <url-pattern>/updateUserInfoSureServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>updateUserInfoServlet</servlet-name>
-        <url-pattern>/updateUserInfoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>delUserServlet</servlet-name>
-        <url-pattern>/delUserServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>findUserServlet</servlet-name>
-        <url-pattern>/findUserServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>isExistUserServlet</servlet-name>
-        <url-pattern>/isExistUserServlet</url-pattern>
-    </servlet-mapping>
+
+
+
+
     <servlet-mapping>
         <servlet-name>addUserInitServlet</servlet-name>
         <url-pattern>/addUserInitServlet</url-pattern>
@@ -242,9 +269,15 @@
     </servlet-mapping>
     <!--舒俊益mapper配置部分-->
 
+
+
+
     <listener>
         <listener-class>com.AAAAAA.pestcontrolproject.listenner.ContextListenner</listener-class>
     </listener>
+
+
+
     <filter>
         <filter-name>encodeFilter</filter-name>
         <filter-class>com.AAAAAA.pestcontrolproject.filter.EncodeFilter</filter-class>
@@ -255,6 +288,6 @@
     </filter>
     <filter-mapping>
         <filter-name>encodeFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.lovo</url-pattern>
     </filter-mapping>
 </web-app>

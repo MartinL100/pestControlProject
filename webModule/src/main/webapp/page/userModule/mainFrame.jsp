@@ -31,6 +31,80 @@
                 <cite>${menuObj.firstMenu.powerName}</cite>
               </a>
               <dl class="layui-nav-child">
+<<<<<<< HEAD
+                <dd data-name="console" class="layui-this">
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">虫害一览</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">病害一览</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="userPanel.html" target="frameName">鼠害一览</a>
+                </dd>
+              </dl>
+            </li>
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>灾情防治</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">区域一览</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">小班管理</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">事件记录</a>
+                </dd>
+              </dl>
+            </li>
+
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>专家会商</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">专家一览</a>
+                </dd>
+                <dd data-name="console">
+                  <a href="../drugModule/drugPanel.html" target="frameName">会商灾情</a>
+                </dd>
+              </dl>
+            </li>
+
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>药剂器械出库管理</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="drugPanelPageServlet.lovo" target="frameName">药剂器械管理</a>
+                </dd>
+
+                <dd data-name="console">
+                  <a href="outwarehousePanelServlet.lovo" target="frameName">出库管理</a>
+                </dd>
+              </dl>
+            </li>
+
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+
+                <cite>系统信息</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a href="findUserServlet" target="frameName">用户管理</a>
+                </dd>
+=======
 <%--                <dd data-name="console" class="layui-this">--%>
 <%--                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">虫害一览</a>--%>
 <%--                </dd>--%>
@@ -38,6 +112,7 @@
 <%--                  <a href="../drugModule/drugPanel.html" target="frameName">病害一览</a>--%>
 <%--                </dd>--%>
   <c:forEach items="${menuObj.secendMenu}" var="secendMenuObj">
+>>>>>>> origin/master
                 <dd data-name="console">
                   <a href="${secendMenuObj.powerResource}" target="frameName">${secendMenuObj.powerName}</a>
                 </dd>

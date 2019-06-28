@@ -3,7 +3,7 @@
 <configuration>
     <properties resource="jdbc.properties"></properties>
 <typeAliases>
-    <package name="com.AAAAAA.pestcontrolproject.dao"/>
+    <package name="com.AAAAAA.pestcontrolproject.entity"></package>
 </typeAliases>
 
 
@@ -23,6 +23,10 @@
     <!--刘聪部分-->
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/UserMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/RoleMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IDrugDaoMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/selectedType/ISelectedTypeMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IStockpileDaoMapper.xml"></mapper>
+
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/LogMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/areaAndClassModule/AreaMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/areaAndClassModule/ClassMapper.xml"></mapper>
@@ -40,6 +44,11 @@
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IEventDaoMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IAddConfMapper.xml"></mapper>
     <!--舒俊益mapper配置部分-->
+
+
+    <!-- 古成全部分 -->
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IDrugDaoMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IStockpileDaoMapper.xml"></mapper>
 
 </mappers>
 
