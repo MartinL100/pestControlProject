@@ -65,7 +65,7 @@
 
     <!-- 查询总行数 -->
     <select id="findCountRow" resultType="int" parameterType="map">
-        select count(specialist_id) from  t_specialist where 1=1
+        select count(specialist_id) from t_specialist where 1=1
         <if test="null!=specialistName and  ''!=specialistName">
             and specialist_name=#{specialistName}
         </if>
@@ -76,4 +76,9 @@
             and specialist_units=#{specialistUnits}
         </if>
     </select>
+    <!--得到所有的专家名-->
+    <select id="findSpecialistNameList" resultType="com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist">
+        select specialist_id as specialistId,specialist_name as specialistName from t_specialist
+    </select>
+
 </mapper>

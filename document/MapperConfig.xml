@@ -11,6 +11,10 @@
 
 
         <!--龚亮mapper配置部分-->
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/ISpecialistDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceDtoDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceResultDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IResultSpecialistDaoMapper.xml"></mapper>
 
         <!--龚亮mapper配置部分-->
 

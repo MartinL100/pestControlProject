@@ -25,4 +25,12 @@ public interface IConferenceResultDao {
      * @return 受影响的行数
      */
     public int addConferenceResult(ConferenceResult conferenceResult);
+
+    /**
+     * 根据会商ID查询结果ID
+     *
+     * @param ConferenceID 会商ID
+     * @return 结果ID
+     */
+    public String findResultByConference(String ConferenceID);
 }

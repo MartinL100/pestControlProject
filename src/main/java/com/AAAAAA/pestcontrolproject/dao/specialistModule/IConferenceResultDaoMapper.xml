@@ -19,7 +19,7 @@
 
     <!--根据会商ID查询结果集合-->
     <select id="findConferenceByConferenceId" resultMap="resultMap">
-    select from result_specialist rs join conference_result cr on rs.result_id = cr.result_id
+    select* from result_specialist rs join conference_result cr on rs.result_id = cr.result_id
     join t_specialist ts on rs.specialist_id = ts.specialist_id
     where cr.conference_id=#{conferenceId}
     </select>
@@ -28,4 +28,10 @@
     insert into conference_result(conference_id, conference_date, conference_result)
     values(#{conferenceId},#{conferenceDate},#{conferenceResult})
     </insert>
+
+    <select id="findResultByConference"
+            resultType="com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceResultDao">
+        select result_id as resultId  from  conference_result where conference_id=#{conferenceId}
+
+    </select>
 </mapper>

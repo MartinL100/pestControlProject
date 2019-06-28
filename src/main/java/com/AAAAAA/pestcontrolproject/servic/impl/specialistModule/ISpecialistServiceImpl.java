@@ -66,8 +66,16 @@ public class ISpecialistServiceImpl implements ISpecialistService {
 
     @Override
     public int findCountRow(Map map) {
-        SqlSession session=GetSession.getSession();
-      int countRow = session.getMapper(ISpecialistDao.class).findCountRow(map);
+        SqlSession session = GetSession.getSession();
+        int countRow = session.getMapper(ISpecialistDao.class).findCountRow(map);
         return countRow;
+    }
+
+    @Override
+    public List<TSpecialist> findSpecialistNameList() {
+        SqlSession session = GetSession.getSession();
+        List<TSpecialist> list = session.getMapper(ISpecialistDao.class).findSpecialistNameList();
+        session.close();
+        return list;
     }
 }

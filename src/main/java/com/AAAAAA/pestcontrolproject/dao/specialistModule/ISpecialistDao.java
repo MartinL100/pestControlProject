@@ -49,4 +49,10 @@ public interface ISpecialistDao {
      * @return 总行数
      */
     public int findCountRow(Map map);
+
+    /**
+     * 查询所有的专家名
+     * @return 专家名集合
+     */
+    public List<TSpecialist> findSpecialistNameList();
 }
