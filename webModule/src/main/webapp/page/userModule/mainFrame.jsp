@@ -55,7 +55,7 @@
                   <a href="findClassServlet" target="frameName">小班管理</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">事件记录</a>
+                  <a href="eventMainServlet" target="frameName">事件记录</a>
                 </dd>
               </dl>
             </li>

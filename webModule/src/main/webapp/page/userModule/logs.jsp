@@ -8,7 +8,8 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <jsp:include page="../../head.jsp"></jsp:include>
+
+    <%@include file="../../head.jsp"%>
     <title>日志一览</title>
 </head>
 <body>

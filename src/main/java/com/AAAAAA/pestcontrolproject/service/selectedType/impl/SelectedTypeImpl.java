@@ -1,10 +1,9 @@
 package com.AAAAAA.pestcontrolproject.service.selectedType.impl;
 
 import com.AAAAAA.pestcontrolproject.dao.selectedType.ISelectedTypeDao;
-
+import com.AAAAAA.pestcontrolproject.util.GetSession;
 import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
 import com.AAAAAA.pestcontrolproject.service.selectedType.ISelectedTypeService;
-import com.AAAAAA.pestcontrolproject.util.GetSession;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;

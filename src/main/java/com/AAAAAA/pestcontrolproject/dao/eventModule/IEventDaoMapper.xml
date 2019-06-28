@@ -24,7 +24,7 @@
         select*from sys_event
         <where>
             1=1
-            <if test="eventId!=null and eventId!=''">
+            <if test="eventId!=null ">
                 and event_Id=#{eventId}
             </if>
              <if test="eventName!=null and eventName!=''">
@@ -43,6 +43,10 @@
                 and occur_time &lt;=#{endTime}
             </if>
         </where>
+        <if test="startIndex!=null">
+            limit #{startIndex},5
+        </if>
+
 
     </select>
     <!--添加事件 -->
