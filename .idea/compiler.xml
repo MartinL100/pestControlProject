@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="pestControlProject" />
         <module name="Pro" />
-        <module name="webModule" />
+<!--=======-->
+<!--&gt;>>>>>> origin/master-->
+        <!--<module name="webModule" />-->
       </profile>
     </annotationProcessing>
   </component>

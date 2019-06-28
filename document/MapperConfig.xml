@@ -1,0 +1,46 @@
+
+    <mappers>
+        <!--刘聪mapper配置部分-->
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/UserMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/RoleMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/LogMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/areaAndClassModule/AreaMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/areaAndClassModule/ClassMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/powerMapper.xml"></mapper>
+        <!--刘聪mapper配置部分-->
+
+
+        <!--龚亮mapper配置部分-->
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/ISpecialistDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceDtoDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceResultDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IResultSpecialistDaoMapper.xml"></mapper>
+
+        <!--龚亮mapper配置部分-->
+
+
+        <!--舒俊益mapper配置部分-->
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IEventDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IAddConfMapper.xml"></mapper>
+        <!--舒俊益mapper配置部分-->
+
+
+        <!--古成全mapper配置部分-->
+        <!-- 古成全部分 -->
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IDrugDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IStockpileDaoMapper.xml"></mapper>
+
+        <!--古成全mapper配置部分-->
+
+
+        <!--曾贤富mapper配置部分-->
+
+        <!--曾贤富mapper配置部分-->
+
+
+        <!--刘俊麟mapper配置部分-->
+
+        <!--刘俊麟mapper配置部分-->
+    </mappers>
+
+

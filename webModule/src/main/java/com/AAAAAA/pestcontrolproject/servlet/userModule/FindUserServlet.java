@@ -45,6 +45,7 @@ public class FindUserServlet extends HttpServlet {
         request.setAttribute("userList",userList);
         request.setAttribute("maxPage",map.get("maxPage"));
         request.setAttribute("currentPage",map.get("newCurrentPage"));
+        request.setAttribute("roleId",roleId);
         request.getRequestDispatcher("page/userModule/userPanel.jsp").forward(request,response);
     }
 

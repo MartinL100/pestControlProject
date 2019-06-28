@@ -1,8 +1,11 @@
 import com.AAAAAA.pestcontrolproject.dao.userModule.IUserDao;
+import com.AAAAAA.pestcontrolproject.entity.userModule.TLog;
 import com.AAAAAA.pestcontrolproject.entity.userModule.TRole;
 import com.AAAAAA.pestcontrolproject.entity.userModule.TUser;
+import com.AAAAAA.pestcontrolproject.servic.impl.userModule.LogServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.userModule.RoleServicImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.userModule.UserServicImpl;
+import com.AAAAAA.pestcontrolproject.servic.userModule.ILogSevice;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IRoleServic;
 import com.AAAAAA.pestcontrolproject.servic.userModule.IUserServic;
 import com.AAAAAA.pestcontrolproject.util.CheckString;
@@ -76,6 +79,14 @@ public class UserModuleTest {
 //        System.out.println(user.getUserId());
         System.out.println(CheckString.isNum("1"));
     }
+@Test
+    public void logsTest(){
 
+        Map map=new HashMap();
+        map.put("endTime","2019-10-02");
+        ILogSevice sevice=new LogServicImpl();
+        List<TLog> logList=sevice.findLogsList(map);
+        System.out.println(logList.size());
+    }
 
 }

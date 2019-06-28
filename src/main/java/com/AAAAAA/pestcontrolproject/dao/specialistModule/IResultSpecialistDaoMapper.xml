@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.specialistModule.IResultSpecialistDao">
+    <!--添加专家结果-->
+    <insert id="addResultSpecialist">
+        insert into result_specialist(result_id,specialist_id)
+        VALUES(${resultId},${specialistId})
+    </insert>
+</mapper>

@@ -26,6 +26,7 @@ public class UpdateUserInfoSureServlet extends HttpServlet {
 
        String newPwd= request.getParameter("newPwd");
         String sureNewPwd= request.getParameter("newPwd");
+        //判断两次新密码是否一致
         if(newPwd.equals(sureNewPwd)){
             String roleId=request.getParameter("roleId");
             String userId=request.getParameter("userId");
@@ -34,9 +35,9 @@ public class UpdateUserInfoSureServlet extends HttpServlet {
             map.put("roleId",roleId);
             map.put("userId",userId);
             userServic.updateUserInfo(map);
-            request.getRequestDispatcher("findUserInitServlet").forward(request,response);
+            request.getRequestDispatcher("findUserServlet").forward(request,response);
         }else {
-            request.getRequestDispatcher("findUserInitServlet").forward(request,response);
+            request.getRequestDispatcher("findUserServlet").forward(request,response);
         }
 
     }

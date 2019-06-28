@@ -55,7 +55,7 @@
                 <div align="center">
                     <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('prev')"><i class="layui-icon">&#xe603;</i></button>
                     &nbsp&nbsp;
-                    <input type="text"  style="height: 0.68cm;width: 0.8cm" id="targetPageNum"/>
+                    <input type="text"  style="height: 0.68cm;width: 0.8cm" id="targetPageNum" value="${currentPage}"/>
                     <span style="font-size: 16px">/${maxPage}</span>
                     <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('targetPage')">跳转</button>
                     <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="splitPage('next')"><i class="layui-icon">&#xe602;</i></button>
@@ -94,7 +94,7 @@
                                         <select name="roleId" lay-verify="" style="display: inline;width: 60%; margin-left: 10%;" class="layui-input " >
                                             <option value="">所有用户</option>
                                             <c:forEach var="role" items="${roleList}" >
-                                                <option value="${role.roleId}">${role.roleName}</option>
+                                                <option value="${role.roleId}" <c:if test="${role.roleId == roleId}"> selected="selected"</c:if>>${role.roleName}</option>
                                             </c:forEach>
                                         </select>
                                     <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%" type="submit">查询</button>

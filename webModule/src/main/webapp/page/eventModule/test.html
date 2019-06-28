@@ -1,0 +1,210 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>事件记录</title>
+    <%@include file="../../head.jsp"%>
+</head>
+<body>
+
+
+
+<div class="layui-fluid">
+
+    <div class="layui-card">
+        <div class="layui-card-header" align="center"><h1>事件记录</h1></div>
+        <!-- 表格部分-->
+        <div class="layui-card-body">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="250">
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>事件名称</th>
+                    <th>日期</th>
+                    <th>发生位置</th>
+                    <th>防止方案</th>
+                    <th>灾情状态</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${eventsList}" var="e">
+                    <tr>
+                        <td>${e.eventName} </td>
+                        <td>${e.occurTime}</td>
+                        <td><c:if test="${e.areaId==0}">
+                            0
+                        </c:if>
+                            <c:if test="${e.areaId==1}">
+                                1
+                            </c:if>
+                            <c:if test="${e.areaId==2}">
+                                2
+                            </c:if></td>
+
+                        <td>${e.plan}</td>
+                        <td><c:if test="${e.disasterStage==0}">
+                            0
+                        </c:if>
+                            <c:if test="${e.disasterStage==1}">
+                                1
+                            </c:if>
+                            <c:if test="${e.disasterStage==2}">
+                                2
+                            </c:if></td>
+                    </tr>
+                </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- 表格部分结束 -->
+<!-- 翻页按钮部分-->
+<div align="center">
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe603;</i></button>
+    &nbsp&nbsp;
+    <input type="text"  style="height: 0.68cm;width: 0.8cm" value=${currentPage} >
+
+    <span style="font-size: 16px">/66页</span>
+    <button class="layui-btn layui-btn-primary layui-btn-sm">跳转</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe602;</i></button>
+    <br>
+</div>
+<!-- 翻页按钮部分结束 -->
+
+<!-- 按钮部分 -->
+<div style="position: relative;left:100px;top:20px">
+    <button class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:36px" >&nbsp&nbsp&nbsp&nbsp添加事件&nbsp&nbsp&nbsp&nbsp</button>
+
+    <button class="layui-btn layui-btn-primary" style="position: relative;left:28px;top:36px">查询事件信息</button>
+    <p/>
+    <button class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:88px">申请专家会审</button>
+    <button class="layui-btn layui-btn-primary"style="position: relative;left:28px;top:88px">修改事件信息</button>
+</div>
+<!-- 按钮部分结束 -->
+
+<!--删选方框-->
+<div class="layui-col-xs3" style="float: right;margin-right:20%;top:-40px;">
+
+    <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D" >
+        <div class="layui-card-header"><h3>查询用户信息</h3></div>
+        <form class="layui-form" action="" lay-filter="component-form-group">
+            <div class="layui-card-body" >
+                <div class="layui-inline">
+                    <label class="layui-form-label" >事件名称</label>
+                    <div class="layui-input-block" style="width:52%;">
+                        <input id="eventName" type="text" name="username"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline"style="margin-top: 5%">
+                    <label class="layui-form-label">灾情状态</label>
+                    <div class="layui-input-inline" style="width:52%;">
+                        <select name="quiz" id="dx1" >
+                            <option value="">请选择</option>
+                            <option value="0">layer</option>
+                            <option value="1">form</option>
+                            <option value="2">layim</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline"style="margin-top: 5%">
+                    <label class="layui-form-label">发生位置</label>
+                    <div class="layui-input-inline" style="width:52%">
+                        <select name="quiz" id="dx2">
+                            <option value="">请选择</option>
+                            <option value="0">layer</option>
+                            <option value="1">form</option>
+                            <option value="2">layim</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline"style="margin-top: 5%;">
+                    <label class="layui-form-label">开始日期</label>
+                    <div class="layui-input-inline" style=" width:52%">
+                        <input type="text" name="date" id="startTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline"style="margin-top: 5%">
+                    <label class="layui-form-label">结束日期</label>
+                    <div class="layui-input-inline"style="width:52%">
+                        <input type="text" name="date" id="endTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <button id="find" class="layui-btn layui-btn-primary " style="width: 20%;margin-left: 70%;margin-top:3%">查询</button>
+        </form>
+    </div>
+
+</div>
+<!--删选方框结束-->
+
+
+<script>
+    layui.config({
+        base: 'layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index']);
+</script>
+
+<script>
+    layui.config({
+        base: 'layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null,'component-form-group');
+
+        laydate.render({
+            elem: '#startTime'
+
+        });
+
+        laydate.render({
+            elem: '#endTime'
+        });
+    });
+</script>
+<script>
+    // 查询按钮触发事件
+    $("#find").click(function () {
+
+        var eventName=$("#eventName").val();
+        var disasterStage=$("#dx1").val();
+        var areaId=$("#dx2").val();
+        var startTime=$("#startTime").val();
+        var endTime=$("#endTime").val();
+        var str="{'eventName':"+eventName+",'disasterStage':"+disasterStage+",'areaId':"+
+            areaId+",'startTime':"+startTime+",'endTime':"+endTime+"}";
+        alert(str);
+        $.post("eventMainServlet",str,function (result) {
+            alert("结果是"+result);
+
+        } )
+
+    });
+
+</script>
+</body>
+</html>

@@ -8,7 +8,8 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <jsp:include page="../../head.jsp"></jsp:include>
+
+    <%@include file="../../head.jsp"%>
     <title>日志一览</title>
 </head>
 <body>
@@ -31,46 +32,29 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="log" items="${logList}">
                         <tr>
-                            <td>贤心</td>
-                            <td>汉族</td>
+                            <td>${log.logDescrip}</td>
+                            <td>${log.logDate}</td>
 
                         </tr>
-                        <tr>
-                            <td>张爱玲</td>
-                            <td>汉族</td>
-
-                        </tr>
-                        <tr>
-                            <td>张爱玲</td>
-                            <td>汉族</td>
-
-                        </tr>        <tr>
-                            <td>张爱玲</td>
-                            <td>汉族</td>
-
-                        </tr>
-                        <tr>
-                            <td>张爱玲</td>
-                            <td>汉族</td>
-
-                        </tr>
-
-
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- 翻页按钮部分-->
                 <div align="center">
-                    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe603;</i></button>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('prev')"><i class="layui-icon">&#xe603;</i></button>
                     &nbsp&nbsp;
-                    <input type="text"  style="height: 0.68cm;width: 0.8cm" />
-                    <span style="font-size: 16px">/66页</span>
-                    <button class="layui-btn layui-btn-primary layui-btn-sm">跳转</button>
-                    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe602;</i></button>
+                    <input type="text"  style="height: 0.68cm;width: 0.8cm" id="targetPageNum" value="${currentPage}"/>
+                    <span style="font-size: 16px">/${maxPage}</span>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('targetPage')">跳转</button>
+                    <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="splitPage('next')"><i class="layui-icon">&#xe602;</i></button>
                     <br>
                 </div>
+
+
                 <!-- 翻页按钮部分结束 -->
 
  <!--通用模块-->
@@ -94,22 +78,26 @@
                                 <div class="layui-card-header">查询用户信息</div>
                                 <div class="layui-card-body" >
                                     <!-- 填充内容 -->
-                                    <form class="layui-form" action="" lay-filter="component-form-group">
+                                    <form class="layui-form" action="" lay-filter="component-form-group" id="selectForm">
                                         <div class="layui-inline">
-                                            <label class="layui-form-label">验证日期</label>
+                                            <label class="layui-form-label">开始日期</label>
                                             <div class="layui-input-inline">
-                                                <input type="text" name="date" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                                <input type="text" value="${startTime}" name="startTime" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
                                         <!--时间模块-->
                                         <div class="layui-inline"style="margin-top: 10%">
-                                            <label class="layui-form-label">验证日期</label>
+                                            <label class="layui-form-label">结束日期</label>
                                             <div class="layui-input-inline">
-                                                <input type="text" name="date" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                                <input type="text" value="${endTime}" name="endTime" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
                                         <!--时间模块-->
                                         <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%">查询</button>
+                                        <!--分页标记-->
+                                        <input id="currentPageId" name="currentPage" style="display: none" value="${currentPage}"/><!--当前页-->
+                                        <input id="tagId" name="tag" style="display: none" value="${tag}"/><!--操作标记-->
+                                        <!--分页标记-->
                                     </form>
                                     <!-- 填充内容 -->
                                 </div>
@@ -169,6 +157,21 @@
 
 
     });
+</script>
+
+
+<script>
+    //分页公共js
+
+    function splitPage(splitTag) {
+        if("targetPage"==splitTag){
+            var targetPage=$("#targetPageNum").val();
+            $("#tagId").val(targetPage);
+        }else {
+            $("#tagId").val(splitTag);
+        }
+        $("#selectForm").submit();
+    }
 </script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.userModule.ILogDao">
+<select id="findLogsList" resultType="com.AAAAAA.pestcontrolproject.entity.userModule.TLog" parameterType="map">
+    select log_id logId, log_descrip logDescrip, log_date logDate from t_log where 1=1
+
+        <if test="startTime!=null and startTime!=''">
+           and log_date>#{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+        and    log_date &lt; #{endTime}
+        </if>
+
+limit  #{startIndex},#{rowNum}
+</select>
+    <select id="countLogs" parameterType="map" resultType="int">
+        select count(log_id) from t_log where 1=1
+
+            <if test="startTime!=null and startTime!=''">
+                and log_date>#{startTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and log_date &lt; #{endTime}
+            </if>
+
+    </select>
+
+    <insert id="addLog" parameterType="com.AAAAAA.pestcontrolproject.entity.userModule.TLog">
+        insert into t_log (log_descrip, log_date)
+        values (#{logDescrip},#{logDate});
+    </insert>
+</mapper>

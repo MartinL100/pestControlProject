@@ -19,6 +19,7 @@
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
             <h2>森林病虫害防治系统</h2>
+            <h2 style="background-color: red" id="errorInfoId">${errorInfo}</h2>
 
         </div>
         <form action="loginServlet" method="post" id="formId">
@@ -31,7 +32,6 @@
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
                 <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input">
             </div>
-
 
             <div class="layui-form-item">
                 <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit" id="login">登 入</button>
@@ -52,7 +52,16 @@
 <script>
     $("#login").click(function () {
         $("#formId").submit();
+    });
+
+    $(document).ready(function () {
+
+        setTimeout(function () {
+            $("#errorInfoId").hide()
+        },3000)
     })
 </script>
+
+
 </body>
 </html>
