@@ -1,5 +1,7 @@
 package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 
+import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
+import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +30,18 @@ public class eventShowServlet extends HttpServlet {
 
         //查找所有事件对象集合
         List<Event> eventsList =service.findAllByMap(map);
-
         Event event=eventsList.get(0);
+        //模拟查询班级信息
+        evenUTIL eventutil=new evenUTIL();
+
+        evenUTIL util=new evenUTIL();
+        SysClass aClass=util.findClass(event.getAreaId()+"");
+        SysArea  area=util.findArea(event.getAreaId()+"");
+        request.setAttribute("className",aClass.getSclassName());
+        request.setAttribute("area",area.getAreaName());
+        request.setAttribute("disasterStage",util.findDisasterStage(event.getDisasterStage()+""));
+        request.setAttribute("findWay",util.findWay(event.getFindWay()+""));
+        request.setAttribute("disasterType",util.findType(event.getDisasterType()+""));
 
         //将对象放入request
         request.setAttribute("event",event);

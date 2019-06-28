@@ -1,5 +1,6 @@
 package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 
+import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,7 @@ public class eventFindServlet extends HttpServlet {
         Map<String,Object> map=new HashMap<>();
         String areaId=request.getParameter("areaId");
         String disasterStage=request.getParameter("disasterStage");
+
         // 区域id不为空
         if(areaId!=null&&areaId.length()>0){
             map.put("areaId",Integer.parseInt(areaId));
@@ -47,7 +50,22 @@ public class eventFindServlet extends HttpServlet {
         eventsList =service.findAllByMap(map);
         String maxPage=mapSplit.get("maxPage").toString();
         String currentPage=mapSplit.get("newCurrentPage").toString();
+
+        //查询区域LIST
+        //封装页面显示的数据进入map集合
+        List<SysArea> areaList=new ArrayList<>();
+        for (int i=1;i<4;i++){
+            SysArea area=new SysArea();
+            area.setAreaId(i);
+            area.setAreaName("四川"+i+"区");
+            areaList.add(area);
+        }
+
+
+
+
         Map<String,Object> eventsMap=new HashMap<>();
+        eventsMap.put("areaList",areaList);
         eventsMap.put("eventsList",eventsList);
         eventsMap.put("maxPage",maxPage);
         eventsMap.put("currentPage",currentPage);

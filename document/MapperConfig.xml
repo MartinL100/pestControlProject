@@ -20,7 +20,8 @@
 
 
         <!--舒俊益mapper配置部分-->
-
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IEventDaoMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IAddConfMapper.xml"></mapper>
         <!--舒俊益mapper配置部分-->
 
 

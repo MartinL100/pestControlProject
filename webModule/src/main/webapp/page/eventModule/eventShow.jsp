@@ -22,17 +22,18 @@
             <div class="layui-card">
                 <div class="layui-card-header" align="center"><h1>事件记录</h1></div>
                 <!--左边区域-->
-                <div  style="position: relative;width:400px;left:15%;float: left">
+                <div  style=" position: relative;width:400px;left:15%;float: left">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <div class="layui-inline" style="position: relative;left:15px">
-                                <label class="layui-form-label"style="height: 25px">事件名称：${event.eventName}   </label><p/>
-                                <label class="layui-form-label"style="height: 25px">时&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp间：${event.occurTime}   </label><p/>
-                                <label class="layui-form-label"style="height: 25px">灾害类型：${event.disasterStage}</label><p/>
-                                <label class="layui-form-label"style="height: 25px">发现途径：${event.findWay}   </label><p/>
-                                <label class="layui-form-label"style="height: 25px">发生位置：${event.areaId}   </label><p/>
-                                <label class="layui-form-label"style="height: 25px">所在小班：${event.classId}   </label><p/>
-                                <label class="layui-form-label"style="height: 25px">影响面积：${event.eventArea}  </label><p/>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">事件名称：${event.eventName}   </label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">时&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp间：${event.occurTime}   </label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">灾害类别：${disasterType}</label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">灾害状态：${disasterStage}</label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">发现途径：${findWay}   </label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">发生位置：${area}   </label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">所在小班：${className}   </label>
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">影响面积：${event.eventArea}  </label>
 
                             </div>
                         </div>
@@ -47,10 +48,10 @@
                             <label class="layui-form-label">灾区图片：   </label>
                             <div style="position: relative;left:120px;top: -20px">
                                 <img  style="width: 120px;height: 130px" src=${event.photoPath}><p/></div>
-                            <label class="layui-form-label"style="height: 20px">事件描述：${event.eventDescribe}   </label><p/>
-                            <label class="layui-form-label"style="height: 20px">初步损失：${event.eventLoss}   </label><p/>
-                            <label class="layui-form-label"style="height: 20px">专家建议：${event.plan}   </label><p/>
-                            <label class="layui-form-label"style="height: 20px">防治方案：${event.plan}   </label><p/>
+                            <label class="layui-form-label" style="width: 60%;text-align:left;">事件描述：${event.eventDescribe}   </label>
+                            <label class="layui-form-label" style="width: 60%;text-align:left;">初步损失：${event.eventLoss}   </label>
+                            <label class="layui-form-label" style="width: 60%;text-align:left;">专家建议：${event.plan}   </label>
+                            <label class="layui-form-label" style="width: 60%;text-align:left;">防治方案：${event.plan}   </label>
 
                         </div>
                         </div>

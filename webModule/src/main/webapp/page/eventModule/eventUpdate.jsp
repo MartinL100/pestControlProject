@@ -8,52 +8,50 @@
 <head>
     <base href="<%=basePath%>">
     <%@include file="../../head.jsp"%>
-    <title>静态表格</title>
+    <title>修改事件</title>
 </head>
 <body>
+
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header" align="center"><h1>事件记录</h1></div>
+                <div class="layui-card-header" align="center"><h1>修 改 事 件</h1></div>
                 <!--左边区域-->
                 <div  style="position: relative;left:6%;float: left;width: 30%">
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <div class="layui-inline" style="position: relative;left:15px">
-                            <label class="layui-form-label" style="width: 80px">事件名称：</label><span>${event.eventName} </span><p/>
-                            <div style="width: 80px; margin-top: 20px">
-                            <label class="layui-form-label" >时&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp间:</label>
-                            <span >${event.occurTime} </span></div>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">灾害类型：</label>
-                            <span style=" margin-top: 20px">${event.disasterType} </span><p/>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">发现途径： </label>
-                            <span style=" margin-top: 20px">${event.findWay}  <p/>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">发生位置：   </label>
-                            <span style=" margin-top: 20px">${event.areaId} <p/>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">所在小班：   </label>
-                            <span style=" margin-top: 20px">${event.classId} <p/>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">影响面积：   </label>
-                            <span style=" margin-top: 20px">${event.eventArea} <p/>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">初步损失：   </label>
-                            <span style=" margin-top: 20px">${event.eventLoss} <p/>
-                            <label class="layui-form-label"style="width: 80px; margin-top: 20px">专家建议：   </label>
-                            <span style=" margin-top: 20px">${event.plan} <p/>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <div class="layui-inline" style="position: relative;left:15px">
+                                <label class="layui-form-label" style="width: 60%;text-align:left;">事件名称：${event.eventName}</label>
+                                <label class="layui-form-label" style="width: 60%; margin-top: 20px;text-align:left;">时间:${event.occurTime}</label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;" id="disasterType">灾害类型：${disasterType}</label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;" id="findWay">发现途径：${findWay}  </label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;" id="areaId">发生位置：${area}   </label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;" id="classId">所在小班：${className}   </label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;">影响面积：${event.eventArea}   </label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;">初步损失：${event.eventLoss}   </label>
+
+                                <label class="layui-form-label"style="width: 60%; margin-top: 20px;text-align:left;">专家建议：${event.plan}   </label>
+
+                            </div>
                         </div>
+                    </div>
                 </div>
-                </div>
-            </div>
 
                 <!--右边区域-->
                 <div  style="position: relative;left:10%;float: left">
                     <div class="layui-form-item">
-                            <div class="layui-inline" style="position: relative;left:15px">
-                                <label class="layui-form-label">灾区图片：   </label>
-                                    <img src="${event.photoPath}" style="width: 120px;height: 140px"><p/>
-
-
-                            </div>
+                        <div class="layui-inline" style="position: relative;left:15px">
+                            <label class="layui-form-label">灾区图片：   </label>
+                            <img src="${event.photoPath}" style="width: 120px;height: 140px"><p/>
+                        </div>
                     </div>
 
                 </div>
@@ -62,39 +60,66 @@
         </div>
     </div>
 </div>
-<!-- 表格部分结束 -->
+
+
+
+<div style="left:42%;position: relative; top:-300px ;padding: 15px;">
+    <form id="f1" class="layui-form" action="eventUpdateServlet" >
+        <div class="layui-inline" >
+            <label>发现途径</label>
+            <div class="layui-input-inline" style="width:65%;">
+                <select id="findWaySelect" name="findWay" >
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="1">已得到控制</option>
+                    <option value="2">防治中</option>
+                    <option value="3">无法解决申请会商</option>
+                </select>
+            </div>
+        </div><p/>
+        <div class="layui-inline" style="margin-top: 50px;" >
+            <label>防治方案</label>
+            <div class="layui-input-block">
+                <textarea id="plan" name="plan" placeholder="${event.plan}" class="layui-textarea" style="width: 400px;margin-top: -16px;margin-left: -49px"></textarea>
+            </div>
+            <hide id="hide">
+                <input  id="disasterStage" name="disasterStage" type="text"  value="${event.disasterStage}"  />
+                <input  id="findId" type="text"  value="${event.findWay}"  />
+            <input  type="text" name="eventId" value="${event.eventId}"  />
+            </hide>
+        </div>
+
+    </form>
+</div>
 <!--提交按钮-->
 <div class="layui-form-item layui-layout-admin">
     <div class="layui-input-block">
         <div class="layui-footer" style="left: 0;">
-            <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1">修改</button>
+            <button id="changeButton" class="layui-btn" lay-submit="" lay-filter="component-form-demo1">修改</button>
         </div>
     </div>
 </div>
 <!--提交按钮结束-->
 
-<div class="layui-card-body" style="left:42%;position: relative; top:-300px ;padding: 15px;">
-    <form id="f1" class="layui-form" action="eventUpdateServlet" lay-filter="component-form-group">
-        <label class="layui-form-label">发生位置</label>
-        <div class="layui-input-inline">
-            <select name="quiz">
-                <option value="">请选择</option>
-                <option value="1">layer</option>
-                <option value="2">form</option>
-                <option value="3">layim</option>
-            </select>
-        </div><p/>
-        <label class="layui-form-label" style="margin-top: 50px">防治方案</label>
-        <div class="layui-input-block">
-            <textarea name="text" placeholder="请输入内容" class="layui-textarea" style="width: 400px;margin-top: 50px"></textarea>
-        </div>
-    </form>
-</div>
 
 
 
+<script>
+    $(document).ready(function () {
+        $("#hide").hide();
+       var findid=$("#findId").val();
+        $("#findWaySelect").val(findid);
 
 
+    })
+  $("#changeButton").click(function () {
+      $("#plan1").val( $("#plan").val());
+      if($("#plan").val().length!=0){
+        alert($("#disasterStage").val());
+      $("#f1").submit();}
+  })
+
+
+</script>
 
 <script src="layuiadmin/layui/layui.js"></script>
 <script>

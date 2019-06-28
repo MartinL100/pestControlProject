@@ -33,7 +33,6 @@
                 <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input">
             </div>
 
-
             <div class="layui-form-item">
                 <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit" id="login">登 入</button>
             </div>
