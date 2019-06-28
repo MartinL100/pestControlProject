@@ -157,6 +157,7 @@
     <input id="tid" type="text" name="eventId"/>
     <input id="showOrUp" type="text" name="showOrUp" />
     <input type="text" id="pageNow" name="currentPage" value="${currentPage}"/>
+    <input type="text" id="disasterstage" name="disasterstage" />
 </form>
 </hide>
 
@@ -226,9 +227,8 @@
     });
     // 选择行触发事件
     function  choose(obj) {
-        alert($(obj).attr("id"));
-        $("#tid").val(id);
-
+        $("#tid").val($(obj).attr("id"));
+        $("#disasterstage").val($(obj).children().last().text());
         $("#error").text("");
     }
     // 添加、查看、修改、申请会审按钮点击
@@ -246,12 +246,15 @@
     });
     $("#b3").click(function () {
         var id=$("#tid").val();
-        if($("#tid").val()!=null&&$("#tid").val().length>0){
+        if($("#tid").val()==null||$("#tid").val().length<1){
+            $("#error").text("请选中行");
+        }else if ($("#disasterstage").val()!="无法解决,申请会商") {
+            $("#error").text("请选中需要申请会商的行");
+        }
+        else{
             $.post("eventConferenceServlet",{"eventId":id});
             $("#f1").attr("action","eventConferenceServlet");
             $("#f1").submit();
-        } else{
-            $("#error").text("请选中行");
         }
     });
     $("#b4").click(function () {
