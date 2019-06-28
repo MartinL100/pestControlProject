@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.userModule.IPowerDao">
+    <select id="findMenuPowers" resultType="com.AAAAAA.pestcontrolproject.entity.userModule.TPower">
+        select
+         power_id powerId,  power_name powerName, power_resource powerResource, power_tag powerTag
+         from t_power where role_id=#{roleId} and power_tag !=0 order by power_tag
+    </select>
+</mapper>
