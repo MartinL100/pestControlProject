@@ -2,31 +2,45 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="jdbc.properties"></properties>
-
-    <typeAliases>
-        <package name="com.AAAAAA.pestcontrolproject.dao"/>
-    </typeAliases>
+<typeAliases>
+    <package name="com.AAAAAA.pestcontrolproject.dao"/>
+</typeAliases>
 
 
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC"/>
+            <transactionManager type="JDBC" />
             <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
-                <property name="driver" value="${jdbc_driver}"/>
-                <property name="url" value="${jdbc_url}"/>
-                <property name="username" value="${jdbc_user}"/>
-                <property name="password" value="${jdbc_password}"/>
+                <property name="driver" value="${jdbc_driver}" />
+                <property name="url" value="${jdbc_url}" />
+                <property name="username" value="${jdbc_user}" />
+                <property name="password" value="${jdbc_password}" />
             </dataSource>
         </environment>
     </environments>
-    <mappers>
-        <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/UserMapper.xml"></mapper>
-        <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/RoleMapper.xml"></mapper>
-        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/ISpecialistDaoMapper.xml"></mapper>
-        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceDtoDaoMapper.xml"></mapper>
-        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceResultDaoMapper.xml"></mapper>
-        <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IResultSpecialistDaoMapper.xml"></mapper>
-    </mappers>
+<mappers>
+    <!--刘聪部分-->
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/UserMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/RoleMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/LogMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/areaAndClassModule/AreaMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/areaAndClassModule/ClassMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/powerMapper.xml"></mapper>
+<!--刘聪部分-->
+
+<!--龚亮部分-->
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/ISpecialistDaoMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceDtoDaoMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IConferenceResultDaoMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/specialistModule/IResultSpecialistDaoMapper.xml"></mapper>
+<!--龚亮部分-->
+
+    <!--舒俊益mapper配置部分-->
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IEventDaoMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IAddConfMapper.xml"></mapper>
+    <!--舒俊益mapper配置部分-->
+
+</mappers>
 
 </configuration>

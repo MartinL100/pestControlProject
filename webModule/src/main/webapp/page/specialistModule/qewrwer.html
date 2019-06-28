@@ -67,19 +67,19 @@
                         <span class="layui-form-label">会商人员</span>
                         <div  style="overflow: hidden">
                             <div style="float: left;margin-left: 350px ;
-                            width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid">
-                                <input type="checkbox" name="we" value="1" onchange="inputChange(this)"><span>wqdasd1</span>
-                                <input type="checkbox" name="we" value="2" onchange="inputChange(this)"><span>wqdasd2</span>
-                                <input type="checkbox" name="we" value="3" onchange="inputChange(this)"><span>wqdasd3</span>
-                                <input type="checkbox" name="we" value="4" onchange="inputChange(this)"><span>wqdasd4</span>
-                                <input type="checkbox" name="we" value="5" onchange="inputChange(this)"><span>wqdasd5</span>
-                                <input type="checkbox" name="we" value="6" onchange="inputChange(this)"><span>wqdasd6</span>
+                            width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid" id="box1">
+                               <span> <input type="checkbox" name="we" value="1" ><span>wqdasd1</span></span>
+                                <span>  <input type="checkbox" name="we" value="2" ><span>wqdasd2</span></span>
+                                <span> <input type="checkbox" name="we" value="3" ><span>wqdasd3</span></span>
+                                <span>    <input type="checkbox" name="we" value="4" ><span>wqdasd4</span></span>
+                                <input type="checkbox" name="we" value="5" ><span>wqdasd5</span>
+                                <input type="checkbox" name="we" value="6" ><span>wqdasd6</span>
                             </div>
-                            <button type="button" id="dtid" style="width:40px;margin-top:40px" onclick="addConferenceSpecialist()">添加
+                            <button type="button" id="dtid" style="width:40px;margin-top:40px" >添加
                             </button>
                             <div style="float: right;margin-left: 90px ;
                             width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid" id="box2">
-
+                                <span> <input type="checkbox" name="we" value="1" ><span>wqdasd1</span></span>
                             </div>
                         </div>
                     </div>
@@ -155,6 +155,42 @@ alert(strSpecialistName)
             elem: '#LAY-component-form-group-date'
         });
     });
+</script>
+
+
+
+
+<script>
+    $("#dtid").click(function () {
+        //获取box1中被选中的节点
+       var box1Check= $("#box1 :checked");
+       $.each(box1Check,function () {
+
+            //将选中的节点添加到box2
+           $("#box2").append(this.parentNode)
+
+       })
+
+           //获取第box2中所有input
+        var  box2Unchecked=$("#box2 input")
+
+
+        $.each(box2Unchecked,function () {
+
+            //判断是否是选中的
+           var key= this.checked
+
+            if(key==false){
+                //将未选中的节点添加到box1
+                $("#box1").append(this.parentNode)
+            }
+
+        })
+
+    })
+
+
+
 </script>
 </body>
 </html>
