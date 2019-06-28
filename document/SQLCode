@@ -96,6 +96,10 @@ create table result_specialist
    result_id            bigint comment '结果ID',
    specialist_id        bigint comment '专家ID'
 );
+
+
+
+
 alter table result_specialist add constraint FK_Reference_10 foreign key (result_id)
       references conference_result (result_id) on delete restrict on update restrict;
 
@@ -111,7 +115,7 @@ alter table result_specialist add constraint FK_Reference_11 foreign key (specia
 alter table conference_result comment '专家会商结果表';
 create table conference_result
 (
-   result_id            bigint not null comment '结果ID',
+   result_id            bigint not null auto_increment comment '结果ID',
    conference_id        bigint comment '专家会商ID',
    conference_date      varchar(48) comment '专家会审日期',
    conference_result    text comment '专家会商结果',

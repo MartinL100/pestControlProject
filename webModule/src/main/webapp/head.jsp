@@ -7,4 +7,5 @@
 <link rel="stylesheet" href="layuiadmin/style/login.css" media="all">
 <script src="lib/jquery.js"></script>
 <script src="layuiadmin/layui/layui.js"></script>
+<script src="lib/commonJS.js"></script>
 <!--公共文件，谨慎修改-->
