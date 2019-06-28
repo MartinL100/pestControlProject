@@ -26,7 +26,7 @@ public class SpecialistModuleTest {
         SqlSession session = GetSession.getSession();
         ISpecialistDao dao = session.getMapper(ISpecialistDao.class);
         //增
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i <42; i++) {
             dao.addSpecialist(new TSpecialist("cc", "男",
                     "1991-10-10", "1.jpg", "rfdf",
                     "dfd", "13111445566", "432423",

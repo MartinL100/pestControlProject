@@ -8,9 +8,9 @@ public class PageUtil {
     //总页数
     private  int allPage=0;
     //起始位置
-    private  int startPage=0;
+    private  int start=0;
     //每页显示多少行
-    private  int countPage=5;
+    private  int countPage=10;
 
     /**
      * 修改当前页
@@ -18,24 +18,24 @@ public class PageUtil {
      */
     public void setCurrentPage(int currentPage,String pageTag) {
         switch (pageTag){
-            case "firstPage":
+            case "first":
                 this.currentPage=1;
                 break;
-            case "nextPage":
+            case "next":
                 if(currentPage==this.allPage){
                     this.currentPage=1;
                 }else {
                     this.currentPage = currentPage + 1;
                 }
                 break;
-            case "prevPage":
+            case "prev":
                 if(currentPage==1){
                     this.currentPage=this.allPage;
                 }else {
                     this.currentPage = currentPage - 1;
                 }
                 break;
-            case "lastPage":
+            case "last":
                 this.currentPage=this.allPage;
                 break;
                 default:
@@ -46,6 +46,11 @@ public class PageUtil {
     //计算总页数
     public void setAllPage() {
         //获得总行数
+
+//        this.allPage=(this.allCount+this.countPage-1)/this.countPage;
+
+
+
         if(this.allCount%this.countPage==0){
                  this.allPage=allCount/this.countPage;
         }else{
@@ -56,8 +61,8 @@ public class PageUtil {
     /**
      * 计算起始位置
      */
-    public void setStartPage() {
-       this.startPage=(this.currentPage-1)*countPage;
+    public void setStart() {
+       this.start=(this.currentPage-1)*countPage;
     }
 
 
@@ -86,8 +91,8 @@ public class PageUtil {
     }
 
 
-    public int getStartPage() {
-        return startPage;
+    public int getStart() {
+        return start;
     }
 
 
