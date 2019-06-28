@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class drugAddServlet extends HttpServlet {
+public class DrugAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IDrugService drugService=new DrugServiceImpl();
         String drugName=  request.getParameter("drugName");
@@ -25,8 +25,8 @@ public class drugAddServlet extends HttpServlet {
         addVo.setDrugName(drugName);
         drugService.saveSysDrug(addVo);
        // request.setAttribute("checkType","firstPage");
-      //  request.getRequestDispatcher("page/drugModule/drugPanel.jsp").forward(request,response);
-        response.sendRedirect("page/drugModule/drugPanel.jsp");
+      //  request.getRequestDispatcher("page/drugModule/DrugPanel.jsp").forward(request,response);
+        response.sendRedirect("page/drugModule/DrugPanel.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

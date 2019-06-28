@@ -2,6 +2,7 @@ import com.AAAAAA.pestcontrolproject.dao.drugModule.IDrugDao;
 import com.AAAAAA.pestcontrolproject.dao.drugModule.IStockpileDao;
 import com.AAAAAA.pestcontrolproject.dao.selectedType.ISelectedTypeDao;
 import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileDrugVo;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.SysDrug;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile;
 import com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug;
@@ -118,10 +119,21 @@ public class TestDrug {
         SqlSession session =  GetSession.getSession();
         IStockpileDao dao =session.getMapper(IStockpileDao.class);
         List<stockpileDrug> list=dao.getDrugListById(1);
-        session.close();
+
+
         for (stockpileDrug s:list
              ) {
             System.out.println(s);
         }
+
+        System.out.printf("============================");
+        StockpileDrugVo drugVo=new StockpileDrugVo();
+        drugVo.setDrugId(4);
+        drugVo.setStockpileId(4);
+        drugVo.setStockpileNum(20);
+        System.out.println(dao.addStockpileDrug(drugVo));
+        session.close();
     }
+
+
 }

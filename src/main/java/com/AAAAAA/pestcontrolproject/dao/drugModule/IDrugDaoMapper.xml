@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.AAAAAA.pestcontrolproject.dao.drugModule.IDrugDao">
 
-    <resultMap id="DrugMap" type="sysDrug">
+    <resultMap id="DrugMap" type="com.AAAAAA.pestcontrolproject.entity.drugModule.SysDrug">
         <id property="drugId" column="drug_id"></id>
         <result property="drugName" column="drug_name"></result>
         <result property="drugUseWay" column="drug_use_way"></result>

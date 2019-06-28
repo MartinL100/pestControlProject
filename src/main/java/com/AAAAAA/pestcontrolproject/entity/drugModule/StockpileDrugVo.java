@@ -14,6 +14,8 @@ public class StockpileDrugVo {
      */
     private int stockpileNum;
 
+    private int res;
+
     public StockpileDrugVo(int drugId, int stockpileId, int stockpileNum) {
         this.drugId = drugId;
         this.stockpileId = stockpileId;
@@ -45,6 +47,14 @@ public class StockpileDrugVo {
 
     public void setStockpileNum(int stockpileNum) {
         this.stockpileNum = stockpileNum;
+    }
+
+    public int getRes() {
+        return res;
+    }
+
+    public void setRes(int res) {
+        this.res = res;
     }
 
     @Override

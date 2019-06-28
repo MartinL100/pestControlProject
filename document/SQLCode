@@ -96,30 +96,26 @@ END $
 
 
 
----   添加中间表数据 存储过程
+--------------------------  添加中间表数据 存储过程----------------------------------------
 
 DELIMITER $
 CREATE PROCEDURE addStockpileDrug
 (IN drugId INT,IN stockpileId INT,
-IN stockpileNum BIGINT)
+IN stockpileNum INT)
 BEGIN
 -- 定查询到的数量变量
 DECLARE  renum INT DEFAULT 0;
 -- 定义接受查询到的drugId
-DECLARE drugId INT DEFAULT 0;
-DECLARE num INT DEFAULT 0;
-  -- 根据商品去查询是否存在，存在就返回1否则0
-      SELECT COUNT(*),drug_id,drug_num INTO renum,drugId,num FROM sys_drug WHERE  drug_id=drugId;
-   SET num:=num-stockpileNum;
-   IF renum=1 THEN
-      -- 存在,累加数量
-       UPDATE sys_drug SET drug_num=num WHERE drug_id=drugId;
-         commit;
+DECLARE currenNum INT DEFAULT 0;
+-- 根据商品去查询是否存在，存在就返回1否则0
+      SELECT COUNT(*),drug_num INTO renum,currenNum FROM sys_drug WHERE  drug_id=drugId;
+     SET currenNum:=currenNum-stockpileNum;
+     IF (renum=1) THEN
+      -- 存在,减少
+       UPDATE sys_drug SET drug_num=currenNum  WHERE drug_id=drugId;
+    COMMIT;
        INSERT INTO drug_stockpile(drug_id, stockpile_id, stockpile_num)  VALUES(drugId,stockpileId,stockpileNum);
-  commit;
-   ELSE
- UPDATE sys_drug SET drug_num=drug_num WHERE drug_id=drugId;
-
+    COMMIT;
    END IF;
 END $
 

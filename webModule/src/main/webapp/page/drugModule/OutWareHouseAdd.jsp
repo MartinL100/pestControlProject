@@ -323,7 +323,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         trid= $("#checkTypeId").val("outBtn");
         $("#addInformationFromId").submit();
         // trid= $("#checkTypeId").val("");
-        // location.href='outwarehouseAddServlet.lovo'
+        location.href='outwarehouseAddServlet.lovo'
     });
 
     //移除按钮
@@ -378,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var drugNames=$("#drugName").val();
             var  SonTy = $("#checkType").val();
             var currentPages=$("#currentPage").val();
-            $.post('outwarehouseAddObjServlet.lovo',{'PageTag':SonTy,"drugCureType":drugCureTypes,"drugType":drugTypes,"drugName":drugNames,"currentPage":currentPages},function(resultHtml){
+            $.post('OutWareHouseAddObjServlet.lovo',{'PageTag':SonTy,"drugCureType":drugCureTypes,"drugType":drugTypes,"drugName":drugNames,"currentPage":currentPages},function(resultHtml){
             var JSonobj=  eval("("+resultHtml+")")
             //$("#fatherTBodyId").append(getFatherTableHtml(JSonobj));
             $("#MotaiTableView").html(getSonTableHtml(JSonobj))
@@ -468,10 +468,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         //alert(maxCount)
         if(currentCount>maxCount){
             $(obj).next().text("最多可以领取"+maxCount+"个")
-            $(obj).val("")
+            $(obj).val(1)
         }
         else{
             $(obj).next().html("")
+
         }
     }
 

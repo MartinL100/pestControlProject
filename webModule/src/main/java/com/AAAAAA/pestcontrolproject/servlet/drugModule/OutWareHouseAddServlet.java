@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class outwarehouseAddServlet extends HttpServlet {
+public class OutWareHouseAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tag=request.getParameter("checkType");
         ISelectedTypeService typeService=new SelectedTypeImpl();
@@ -95,7 +95,7 @@ public class outwarehouseAddServlet extends HttpServlet {
     //      String[] countNumList=  request.getParameterValues("countNum");
     //      request.setAttribute("drugIdList",drugIdList);
     //      request.setAttribute("countNumList",countNumList);
-    //      request.getRequestDispatcher("outwarehouseAddObjServlet.lovo").forward(request,response);
+    //      request.getRequestDispatcher("OutWareHouseAddObjServlet.lovo").forward(request,response);
     //    }
 
 
@@ -124,8 +124,9 @@ public class outwarehouseAddServlet extends HttpServlet {
             int stoID=0;
             if(null!=countNumArr&&null!=drugIdArr){
                 //得到当前用户id
-//             long userId=user.getUserId();
-                long userId=1;
+//            long userId=user.getUserId();
+//           String RealName= user.getRealName();
+               long userId=1;
                 StockpileVo vo= new StockpileVo();
                 vo.setStockpileUserId(userId);
                 vo.setStockpileClassId(classid);

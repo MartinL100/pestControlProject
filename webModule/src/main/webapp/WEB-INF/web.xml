@@ -25,21 +25,30 @@
 
     <servlet>
         <servlet-name>drugAddServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.drugAddServlet</servlet-class>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.DrugAddServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>drugPanelPageServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.drugPanelPageServlet</servlet-class>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.DrugPanelPageServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>outwarehousePanelServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.outWareHousePanelServlet</servlet-class>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHousePanelServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>outwarehouseAddServlet</servlet-name>
-        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.outwarehouseAddServlet</servlet-class>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHouseAddServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>outwarehouseAddObjServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.drugModule.OutWareHouseAddObjServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>outwarehouseAddObjServlet</servlet-name>
+        <url-pattern>/outwarehouseAddObjServlet.lovo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>outwarehouseAddServlet</servlet-name>
         <url-pattern>/outwarehouseAddServlet.lovo</url-pattern>

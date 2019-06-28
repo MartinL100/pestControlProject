@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class outWareHousePanelServlet extends HttpServlet {
+public class OutWareHousePanelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String Tag= request.getParameter("checkType");
         IStockpileService stockpileService=new StockpileServiceImpl();
@@ -36,7 +36,7 @@ public class outWareHousePanelServlet extends HttpServlet {
             //将list放入到request中转发回页面
             request.setAttribute("stockpileList",stockpileList);
             request.setAttribute("newCurrentPage",page.getCurrentPage());
-            request.getRequestDispatcher("page/drugModule/outwarehousePanel.jsp").forward(request,response);
+            request.getRequestDispatcher("page/drugModule/OutWareHousePanel.jsp").forward(request,response);
         }
         else if("findByIDbtn".equals(Tag)){
            String Trid=request.getParameter("TrId");
@@ -46,6 +46,7 @@ public class outWareHousePanelServlet extends HttpServlet {
             }
             int id= Integer.parseInt(request.getParameter("TrId"));
           //得到该订单下的商品详情
+            // List<stockpileDrug> list=dao.getDrugListById(1);
             List<stockpileDrug> Druglist= stockpileService.getDrugListById(id);
             //得到该订单对象
           SysStockpile Stockpile=  stockpileService.getSysDrugByID(id);
@@ -54,7 +55,7 @@ public class outWareHousePanelServlet extends HttpServlet {
             //放入到request中
           request.setAttribute("Stockpile",Stockpile);
           //转发出去
-          request.getRequestDispatcher("page/drugModule/outwarehouseUpdate.jsp").forward(request,response);
+          request.getRequestDispatcher("page/drugModule/OutWareHouseUpdate.jsp").forward(request,response);
         }
         //将主页面中table中的数据 drugIdList和countNumList转发到子页面
         else if("addBtn".equals(Tag)){
@@ -62,7 +63,7 @@ public class outWareHousePanelServlet extends HttpServlet {
          String [] countNumList=   request.getParameterValues("countNum");
          request.setAttribute("drugIdList",drugIdList);
          request.setAttribute("countNumList",countNumList);
-         request.getRequestDispatcher("outwarehouseAddObjServlet.lovo").forward(request,response);
+         request.getRequestDispatcher("OutWareHouseAddObjServlet.lovo").forward(request,response);
         }
         else{
          String startTime=     request.getParameter("startTime");
@@ -90,7 +91,7 @@ public class outWareHousePanelServlet extends HttpServlet {
             List<SysStockpile> stockpileList = stockpileService.getSysDrugList(map);
             request.setAttribute("stockpileList",stockpileList);
             request.setAttribute("newCurrentPage",mapx.get("newCurrentPage"));
-            request.getRequestDispatcher("page/drugModule/outwarehousePanel.jsp").forward(request,response);
+            request.getRequestDispatcher("page/drugModule/OutWareHousePanel.jsp").forward(request,response);
         }
     }
 

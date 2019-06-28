@@ -56,12 +56,10 @@ public class StockpileServiceImpl implements IStockpileService {
     @Override
     public int addStockpileDrug(StockpileDrugVo DrugVo) {
         SqlSession session =  GetSession.getSession();
-        IStockpileDao dao =session.getMapper(IStockpileDao.class);
-        SqlSession session2= GetSession.getSession();
         IDrugDao drugdao=  session.getMapper(IDrugDao.class);
-     int count=    drugdao.getDrugById(DrugVo.getDrugId()).getDrugNum();
-     session2.close();
-     if(count-DrugVo.getStockpileNum()>=0){
+        int count= drugdao.getDrugById(DrugVo.getDrugId()).getDrugNum();
+        IStockpileDao dao =session.getMapper(IStockpileDao.class);
+        if(count-DrugVo.getStockpileNum()>=0){
          dao.addStockpileDrug(DrugVo);
          session.commit();
          session.close();

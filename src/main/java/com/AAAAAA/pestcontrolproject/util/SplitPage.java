@@ -72,8 +72,8 @@ public class SplitPage {
         }
         int startIndex=(currentPage-1)*rowNum;
         map.put("newCurrentPage",currentPage);
-       map.put("maxPage",countPage);
-       map.put("startIndex",startIndex);
+        map.put("maxPage",countPage);
+        map.put("startIndex",startIndex);
         map.put("rowNum",rowNum);
         return map;
     }

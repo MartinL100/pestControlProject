@@ -3,7 +3,7 @@
 <mapper namespace="com.AAAAAA.pestcontrolproject.dao.drugModule.IStockpileDao">
 
 
-    <resultMap id="SysDrugMap" type="sysStockpile">
+    <resultMap id="SysDrugMap" type="com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile">
         <id column="stockpile_id" property="stockpileId"></id>
         <result column="stockpile_date" property="stockpileDate"></result>
         <association select="findStockpileClassByID" column="stockpile_class" property="stockpileClass">
@@ -46,7 +46,7 @@
 
 
 
-    <resultMap id="SysDrugMap2" type="sysStockpile">
+    <resultMap id="SysDrugMap2" type="com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile">
         <id column="stockpile_id" property="stockpileId"></id>
         <result column="stockpile_date" property="stockpileDate"></result>
         <association select="findStockpileClassByID" column="stockpile_class" property="stockpileClass">
@@ -88,11 +88,11 @@
    </select>
 
 
-    <resultMap id="SysDrugMapList" type="stockpileDrug">
+    <resultMap id="SysDrugMapList" type="com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug">
         <result  column="drug_id" property="drugId"></result>
         <result column="drug_name" property="drugName"></result>
         <result column="drug_use_way" property="drugUseWay" ></result>
-        <result column="drug_num" property="drugNum"></result>
+        <result column="stockpile_num" property="drugNum"></result>
         <!--<result column="drug_type" property="drugType"></result>-->
         <!--<result column="drug_cure_type" property="drugCureType"></result>-->
         <association select="findByDrugTypeId" column="drug_type" property="drugType">

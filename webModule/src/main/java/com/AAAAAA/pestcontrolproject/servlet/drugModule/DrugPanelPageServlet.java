@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class drugPanelPageServlet extends HttpServlet {
+public class DrugPanelPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IDrugService drugService=new DrugServiceImpl();
         ISelectedTypeService typeService=new SelectedTypeImpl();
@@ -84,11 +84,11 @@ public class drugPanelPageServlet extends HttpServlet {
              request.setAttribute("drugTypeList",drugTypeList);
              request.setAttribute("drugList",drugList);
              request.setAttribute("newCurrentPage",newCurrentPage);
-            request.getRequestDispatcher("page/drugModule/drugPanel.jsp").forward(request,response);
+            request.getRequestDispatcher("page/drugModule/DrugPanel.jsp").forward(request,response);
         }
           else{
              if ("addBtn".equals(pageTag)){
-                 request.getRequestDispatcher("page/drugModule/drugAdd.jsp").forward(request,response);
+                 request.getRequestDispatcher("page/drugModule/DrugAdd.jsp").forward(request,response);
                  return;
              }
          }
