@@ -5,7 +5,7 @@ import java.util.List;
 public class ConferenceResult {
 
     private long resultId;  //会商结果ID
-    private TConference tConference;//会商对象
+    private String conferenceId;//会商ID
     private String conferenceDate; // 专家会商日期
     private String conferenceResult; // 专家会商结果
     private List<TSpecialist> specialistList;//专家集合
@@ -13,11 +13,15 @@ public class ConferenceResult {
     public ConferenceResult() {
     }
 
-    public ConferenceResult(TConference tConference, String conferenceDate, String conferenceResult, List<TSpecialist> specialistList) {
-        this.tConference = tConference;
-        this.conferenceDate = conferenceDate;
-        this.conferenceResult = conferenceResult;
-        this.specialistList = specialistList;
+    @Override
+    public String toString() {
+        return "ConferenceResult{" +
+                "resultId=" + resultId +
+                ", conferenceId='" + conferenceId + '\'' +
+                ", conferenceDate='" + conferenceDate + '\'' +
+                ", conferenceResult='" + conferenceResult + '\'' +
+                ", specialistList=" + specialistList +
+                '}';
     }
 
     public long getResultId() {
@@ -28,12 +32,12 @@ public class ConferenceResult {
         this.resultId = resultId;
     }
 
-    public TConference gettConference() {
-        return tConference;
+    public String getConferenceId() {
+        return conferenceId;
     }
 
-    public void settConference(TConference tConference) {
-        this.tConference = tConference;
+    public void setConferenceId(String conferenceId) {
+        this.conferenceId = conferenceId;
     }
 
     public String getConferenceDate() {
@@ -60,14 +64,10 @@ public class ConferenceResult {
         this.specialistList = specialistList;
     }
 
-    @Override
-    public String toString() {
-        return "ConferenceResult{" +
-                "resultId=" + resultId +
-                ", tConference=" + tConference +
-                ", conferenceDate='" + conferenceDate + '\'' +
-                ", conferenceResult='" + conferenceResult + '\'' +
-                ", specialistList=" + specialistList +
-                '}';
+    public ConferenceResult(String conferenceId, String conferenceDate, String conferenceResult, List<TSpecialist> specialistList) {
+        this.conferenceId = conferenceId;
+        this.conferenceDate = conferenceDate;
+        this.conferenceResult = conferenceResult;
+        this.specialistList = specialistList;
     }
 }

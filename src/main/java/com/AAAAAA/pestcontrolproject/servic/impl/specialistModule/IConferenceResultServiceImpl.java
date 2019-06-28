@@ -34,4 +34,12 @@ public class IConferenceResultServiceImpl implements IConferenceResultService {
 
         return true;
     }
+
+    @Override
+    public String findResultByConference(String ConferenceID) {
+        SqlSession session = GetSession.getSession();
+        String resultId = session.getMapper(IConferenceResultDao.class).findResultByConference(ConferenceID);
+        session.close();
+        return resultId;
+    }
 }

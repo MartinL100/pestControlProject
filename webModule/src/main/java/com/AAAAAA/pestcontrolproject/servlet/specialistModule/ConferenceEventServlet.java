@@ -31,15 +31,8 @@ IConferenceResultService resultService=new IConferenceResultServiceImpl();
             //将事件集合转发到ConferenceEvent.jsp进行初始化
             req.getRequestDispatcher("page/specialistModule/ConferenceEvent.jsp").forward(req, resp);
         } else {
-
-            //得到用户选择行的事件记录对象
-            ConferenceDto conferenceDto = service.findEventByConferenceId(findEvent);
-            //得到事件记录对象会审的结果集合
-            List<ConferenceResult> resultList=   resultService.findConferenceByConferenceId(findEvent);
-            //将事件记录对象和结果集合转发到会审界面ConferenceMain.jsp
-            req.setAttribute("conferenceDto",conferenceDto);
-            req.setAttribute("resultList",resultList);
-            req.getRequestDispatcher("page/specialistModule/ConferenceMain.jsp").forward(req, resp);
+            req.setAttribute("findEvent",findEvent);
+            req.getRequestDispatcher("conferenceMain").forward(req, resp);
         }
     }
 }

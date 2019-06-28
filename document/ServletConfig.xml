@@ -84,6 +84,71 @@
 
 <!--龚亮mapper配置部分-->
 
+<!-- 专家主界面servlet开始 -->
+<servlet>
+    <servlet-name>specialistMainServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistMainServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>specialistMainServlet</servlet-name>
+    <url-pattern>/specialistMain</url-pattern>
+</servlet-mapping>
+<!-- 专家主界面servlet结束 -->
+
+<!-- 专家添加servlet开始 -->
+<servlet>
+    <servlet-name>specialistAddServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistAddServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>specialistAddServlet</servlet-name>
+    <url-pattern>/specialistAdd</url-pattern>
+</servlet-mapping>
+<!-- 专家添加servlet结束 -->
+
+<!-- 专家查看servlet开始 -->
+<servlet>
+    <servlet-name>specialistFindServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistFindServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>specialistFindServlet</servlet-name>
+    <url-pattern>/specialistFind</url-pattern>
+</servlet-mapping>
+<!-- 专家查看servlet结束 -->
+
+<!-- 专家修改servlet开始 -->
+<servlet>
+    <servlet-name>specialistUpdateServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.SpecialistUpdateServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>specialistUpdateServlet</servlet-name>
+    <url-pattern>/specialistUpdate</url-pattern>
+</servlet-mapping>
+<!-- 专家修改servlet结束 -->
+
+<!-- 需要专家会审的事件记录servlet开始 -->
+<servlet>
+    <servlet-name>conferenceEventServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.ConferenceEventServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>conferenceEventServlet</servlet-name>
+    <url-pattern>/conferenceEvent</url-pattern>
+</servlet-mapping>
+<!-- 需要专家会审的事件记录servlet结束 -->
+
+<!--会审事件主页面servlet开始-->
+<servlet>
+    <servlet-name>conferenceMainServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.specialistModule.ConferenceMainServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>conferenceMainServlet</servlet-name>
+    <url-pattern>/conferenceMain</url-pattern>
+</servlet-mapping>
+<!--会审事件主页面结束-->
 <!--龚亮mapper配置部分-->
 
 

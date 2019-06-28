@@ -58,7 +58,7 @@
                     </div>
 
                     <!-- 翻页按钮部分-->
-                    <div align="center">
+                    <div style="margin-left: 35%; ">
                         <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="addSpecialist('prev')"><i
                                 class="layui-icon">&#xe603;</i></button>
                         &nbsp;&nbsp;

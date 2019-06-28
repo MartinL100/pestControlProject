@@ -22,8 +22,8 @@
             <form  id="fid" class="layui-form" method="post" action="specialistUpdate" lay-filter="component-form-group" >
                 <input type="hidden" name="updateTag" value="" id="updateId">
                 <input type="hidden" name="specialistId" value="${specialistObj.specialistId}" id="specialistId">
-                <div style="float: left;margin-left: 250px">
-                    <div class="layui-form-item" style="margin-top: 55px">
+                <div style="float: left;margin-left: 50px">
+                    <div class="layui-form-item" style="margin-top: 50px">
                         <div class="layui-inline">
                             <label class="layui-form-label">姓名</label>${specialistObj.specialistName}
                         </div>
@@ -43,22 +43,22 @@
                     </div>
 
                 </div>
-                <div style="float: left; margin-left: 400px">
+                <div style="float: left; margin-left: 300px">
                     <div class="layui-form-item" style="margin-top: 30px">
                         <div class="layui-inline">
-                            <label class="layui-form-label">照片</label>
-                            <img src="<%=basePathIMG%>${specialist.specialistPath}" style="width: 40px;height: 60px">
+                            <%--<label class="layui-form-label">照片</label>--%>
+                            <img src="<%=basePathIMG%>${specialistObj.specialistPath}" style="width: 100px;height: 120px">
                         </div>
                     </div>
                 </div>
 
 
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <div class="layui-inline" style="margin-left: 250px">
+                    <div class="layui-inline" style="margin-left: 50px">
                         <label class="layui-form-label">专长</label>${specialistObj.specialistSpeciality}
 
                     </div>
-                    <div class="layui-inline" style="margin-left: 400px">
+                    <div class="layui-inline" style="margin-left: 300px">
                         <label class="layui-form-label">职务</label>
                         <div class="layui-input-inline">
                             <input type="text" value="${specialistObj.specialistDuty}" name="specialistDuty"
@@ -69,14 +69,14 @@
 
 
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <div class="layui-inline" style="margin-left: 250px">
+                    <div class="layui-inline" style="margin-left: 50px">
                         <label class="layui-form-label">电话</label>
                         <div class="layui-input-inline">
                             <input type="tel" name="specialistTel" lay-verify="phone" autocomplete="off"
                                    class="layui-input" value="${specialistObj.specialistTel}">
                         </div>
                     </div>
-                    <div class="layui-inline" style="margin-left: 200px">
+                    <div class="layui-inline" style="margin-left: 300px">
                         <label class="layui-form-label">工作单位</label>
                         <div class="layui-input-inline">
                             <input type="text" value="${specialistObj.specialistUnits}" name="specialistUnits"
@@ -87,12 +87,12 @@
 
 
                 <div class="layui-form-item" style="margin-top: 30px">
-                    <div class="layui-inline">
+                    <div class="layui-inline"  style="margin-left: 50px">
                         <label class="layui-form-label"
-                               style="margin-left: 250px">通讯地址</label>${specialistObj.specialistSite}
+                              >通讯地址</label>${specialistObj.specialistSite}
 
                     </div>
-                    <div class="layui-inline" style="margin-left: 400px">
+                    <div class="layui-inline" style="margin-left: 300px">
                         <label class="layui-form-label">邮箱</label>
                         <div class="layui-input-inline">
                             <input type="text" value="${specialistObj.specialistEmail}" name="specialistEmail"
