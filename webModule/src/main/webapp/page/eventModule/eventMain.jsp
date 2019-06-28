@@ -43,13 +43,13 @@
                         <td>${e.eventName}</td>
                         <td>${e.occurTime}</td>
                         <td><c:if test="${e.areaId==0}">
-                           金牛区
+
                         </c:if>
                             <c:if test="${e.areaId==1}">
-                                武侯区
+
                             </c:if>
                             <c:if test="${e.areaId==2}">
-                                郫都区
+
                             </c:if></td>
 
                         <td>${e.plan}</td>
@@ -91,7 +91,10 @@
     <p/>
     <button id="b3" class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:88px">申请专家会审</button>
     <button id="b4" class="layui-btn layui-btn-primary"style="position: relative;left:28px;top:88px">修改事件信息</button>
+    <p/>
+    <error ><h3 id="error" style="color: red "> </h3> </error>
 </div>
+
 <!-- 按钮部分结束 -->
 
 <!--删选方框-->
@@ -114,7 +117,7 @@
                             <option value="">请选择</option>
                             <option value="1">已得到控制</option>
                             <option value="2">防治中</option>
-                            <option value="3">无法解决申请会商</option>
+                            <option value="3">无法解决,申请会商</option>
                         </select>
                     </div>
                 </div>
@@ -123,16 +126,16 @@
                     <div class="layui-input-inline" style="width:52%">
                         <select name="quiz" id="dx2">
                             <option value="">请选择</option>
-                            <option value="1">电信一区</option>
-                            <option value="2">电信二区</option>
-                            <option value="3">电信三区</option>
+                           <c:forEach items="${areaList}" var="area">
+                               <option value="${area.areaId}">${area.areaName}</option>
+                             </c:forEach>
                         </select>
                     </div>
                 </div>
                 <div class="layui-inline"style="margin-top: 5%;">
                     <label class="layui-form-label">开始日期</label>
                     <div class="layui-input-inline" style=" width:52%">
-                        <input type="text" name="date" id="startTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input  type="text" name="date" id="startTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline"style="margin-top: 5%">
@@ -151,15 +154,14 @@
 <%--隐藏标签--%>
 <hide id="hide1">
 <form action="" method="post" id="f1">
-    <input id="tid" type="text" name="eventId">
-
-    <input id="showOrUp" type="text" name="showOrUp" >
-    <input type="text" id="pageNow" name="currentPage" value="${currentPage}">
+    <input id="tid" type="text" name="eventId"/>
+    <input id="showOrUp" type="text" name="showOrUp" />
+    <input type="text" id="pageNow" name="currentPage" value="${currentPage}"/>
 </form>
 </hide>
 
 <script>
-
+    var disasterStageMap=[{'name':'已得到控制'},{'name':'防治中'},{'name':'无法解决,申请会商'}];
     function split(pagetag) {
         var eventName=$("#eventName").val();
         var disasterStage=$("#dx1").val();
@@ -175,14 +177,26 @@
             fullTable(jsonStr.eventsList);
         });
     }
-    function fullTable(eventsList) {
+    function fullTable(eventsList,areaList) {
         //组织行
         var html="<colgroup><col width=\"250\"><col width=\"150\"><col width=\"200\"><col></colgroup><thead>" +
             "<tr><th>事件名称</th><th>日期</th> <th>发生位置</th> <th>防止方案</th> <th>灾情状态</th></tr></thead>"
         //组装身体
         $.each(eventsList,function () {
-            html+="<tr  onclick=choose("+this.eventId+")><td>"+this.eventName+"</td><td>"+this.occurTime+"</td><td>"+this.areaId+"</td>" +
-                "<td>"+this.plan+"</td><td>"+this.disasterStage+"</td></tr>"
+            var area=this.areaId;
+            var disasterStage=this.disasterStage;
+            for (var i=0;i<disasterStageMap.length;i++){
+                if(i+1==disasterStage){
+                    disasterStage=disasterStageMap[i].name;
+                }
+            }
+            $.each(areaList,function () {
+                if (area==this.areaId) {
+                    area=this.areaName;
+                }
+            });
+            html+="<tr   onclick='choose(this)' id='"+this.eventId+"' ><td>"+this.eventName+"</td><td>"+this.occurTime+"</td><td>"+area+"</td>" +
+                "<td>"+this.plan+"</td><td>"+disasterStage+"</td></tr>"
         });
 
         //放入到table标签
@@ -196,7 +210,7 @@
             $("#currentPage").val(jsonStr.currentPage);
             $("#pageNow").val(jsonStr.currentPage);
             $("#maxPage").text(jsonStr.maxPage);
-            fullTable(jsonStr.eventsList);
+            fullTable(jsonStr.eventsList,jsonStr.areaList);
         } );
     });
 
@@ -211,33 +225,42 @@
         split("next");
     });
     // 选择行触发事件
-    function  choose(id) {
+    function  choose(obj) {
+        alert($(obj).attr("id"));
         $("#tid").val(id);
 
+        $("#error").text("");
     }
     // 添加、查看、修改、申请会审按钮点击
     $("#b1").click(function () {
         location.href="page/eventModule/eventAdd.jsp"
-    })
+    });
     $("#b2").click(function () {
-        if($("#tid").val()!=null){
+        if($("#tid").val()!=null&&$("#tid").val().length>0){
             $("#f1").attr("action","eventShowServlet");
             $("#showOrUp").val("show");
             $("#f1").submit();}
+        else{
+            $("#error").text("请选中行");
+        }
     });
     $("#b3").click(function () {
-        var id=$("#tid").val()
-        if($("#tid").val()!=null){
-            $.post("eventConferenceServlet",{"eventId":id})
+        var id=$("#tid").val();
+        if($("#tid").val()!=null&&$("#tid").val().length>0){
+            $.post("eventConferenceServlet",{"eventId":id});
+            $("#f1").attr("action","eventConferenceServlet");
+            $("#f1").submit();
+        } else{
+            $("#error").text("请选中行");
         }
-        $("#f1").attr("action","eventConferenceServlet");
-        $("#f1").submit();
     });
     $("#b4").click(function () {
-        if($("#tid").val()!=null){
+        if($("#tid").val()!=null&&$("#tid").val().length>0){
             $("#f1").attr("action","eventShowServlet");
             $("#showOrUp").val("update");
-            $("#f1").submit();}
+            $("#f1").submit();} else{
+            $("#error").text("请选中行");
+        }
     });
 
     // 查询按钮触发事件
@@ -249,15 +272,12 @@
         var endTime=$("#endTime").val();
         $.post("eventFindServlet",{ "eventName":eventName, "disasterStage":disasterStage, "areaId":areaId, "startTime":startTime,"endTime":endTime},function (result) {
             var jsonStr=eval("("+result+")");
-            fullTable(jsonStr.eventsList);
+            fullTable(jsonStr.eventsList,jsonStr.areaList);
             $("#currentPage").val(jsonStr.currentPage);
             $("#pageNow").val(jsonStr.currentPage);
             $("#maxPage").text(jsonStr.maxPage)
-        } );
+        });
     });
-
-
-
 </script>
 
 

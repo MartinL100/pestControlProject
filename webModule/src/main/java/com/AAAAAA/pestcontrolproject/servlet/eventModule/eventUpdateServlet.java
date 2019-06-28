@@ -27,8 +27,8 @@ public class eventUpdateServlet extends HttpServlet {
         //更新对应数据
         service.eventUpdate(event);
 
-        //返回事件主页面
-        request.getRequestDispatcher("page/eventModule/eventMain.jsp").forward(request,response);
+       //返回事件主页面
+        response.sendRedirect("eventMainServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

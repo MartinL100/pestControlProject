@@ -63,7 +63,7 @@ public class eventAddServlet extends HttpServlet {
             //获得文件集合
             List<FileItem> listFile=   map.get("listFile");
 
-            String  afterPathDir= FileStringInfo.FILEPATH; //文件放入的文件夹名
+            String  afterPathDir= FileStringInfo.filePath; //文件放入的文件夹名
             //获得文件
             for (FileItem file:listFile) {
                 String fileName=   file.getName();//上传图片的名字
@@ -101,12 +101,12 @@ public class eventAddServlet extends HttpServlet {
         service.eventAdd(event);
 
         //返回事件主页面
-        request.getRequestDispatcher("page/eventModule/eventMain.jsp").forward(request,response);
+        response.sendRedirect("eventMainServlet");
 
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request,response);
+        doPost(request,response);
     }
 }

@@ -30,8 +30,8 @@
              <if test="eventName!=null and eventName!=''">
                 and event_Name=#{eventName}
              </if>
-            <if test="disasterType!=null">
-               and disaster_type=#{disasterType}
+            <if test="disasterStage!=null">
+               and disaster_stage=#{disasterStage}
             </if>
             <if test="areaId!=null">
                and area_Id=#{areaId}

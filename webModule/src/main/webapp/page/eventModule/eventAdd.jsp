@@ -53,17 +53,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">发生位置</label>
-                        <div class="layui-input-inline">
-                            <select id="areaId" name="areaId">
-                                <option value="">请选择</option>
-                                <option value="1">电信一区</option>
-                                <option value="2">电信二区</option>
-                                <option value="3">电信三区</option>
+                        <div class="layui-input-inline" >
+                            <select id="area" name="areaId" lay-verify="" lay-filter="aihao" class="layui-form">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="1" onclick="fullClass(this)">电信一区</option>
+                                <option value="2" onclick="fullClass(this)" >电信二区</option>
+                                <option value="3" onclick="fullClass(this)">电信三区</option>
                             </select>
                         </div>
                     </div>
                     <div class="layui-inline" style="position: relative;left:15px">
-                        <label class="layui-form-label">所在小班:</label><label  name="classId" id="theClass" class="layui-form-label" >0</label>
+                        <label class="layui-form-label">所在小班:</label><label  name="classId" id="theClass"  class="layui-form-label" ></label>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="layui-form-label">发现途径</label>
                         <div class="layui-input-inline">
                             <select name="findWay" lay-verify="required" lay-search="">
-                                <option value="">直接选择或搜索选择</option>
+                                <option value="" >直接选择或搜索选择</option>
                                 <option value="1">小班巡查发现</option>
                                 <option value="2">公众发现</option>
                                 <option value="3">上级部门巡查通报</option>
@@ -144,43 +144,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <!--提交按钮结束-->
                 <hide>
-
                     <input type="text" id="classId" name="classId" value="1" />
                 </hide>
             </form>
 
-
+        </div>
 
 
 <script>
     $(document).ready(function () {
         $("#img").hide();
         $("#classId").hide();
-    })
+        alert($("#area"))
+    });
     // 提交按钮触发事件
     $("#addButton").click(function () {
 
         $(f1).submit();
     })
     // 选择区域触发事件
-    $("#areaId").click(function () {
-        var areaId=$("#areaId").val();
-        fullClassLabel(areaId)
-    })
-    //
-    function fullClassLabel(areaId) {
-        // $.post("",{"areaId":areaId },function (result) {
-        //      var jsonStr= eval("("+result+")");
-        // })；
-        if(areaId==1){
-$("#theClass").text("一班");
-        }else if (areaId==2) {
-            $("#theClass").text("二班");
-        }else if (areaId==3) {
-            $("#theClass").text("三班");
-        }
+   function fullClass(areaId){
 
-    }
+        $.post("eventFindClassByAreaServlet",{"areaId":areaId},function (result) {
+           json=eval("("+result+")");
+           $("#classId").val(json.sclassId);
+            $("#theClass").text(json.sclassName);
+        })
+    };
+    //
+
 </script>
 
 
@@ -201,6 +193,13 @@ $("#theClass").text("一班");
             ,form = layui.form;
 
         form.render(null, 'component-form-group');
+        form.on('select(aihao)',function () {
+            var option=$("#area option:selected");
+
+            var areaId=option.val();
+           fullClass(areaId);
+
+        })
 
         laydate.render({
             elem: '#LAY-component-form-group-date'
@@ -209,26 +208,6 @@ $("#theClass").text("一班");
     });
 
 </script>
-<script>
-    layui.config({
-        base: 'layuiadmin/' //静态资源所在路径
-    }).extend({
-        index: 'lib/index' //主入口模块
-    }).use(['index', 'form', 'laydate'], function(){
-        var $ = layui.$
-            ,admin = layui.admin
-            ,element = layui.element
-            ,layer = layui.layer
-            ,laydate = layui.laydate
-            ,form = layui.form;
 
-        form.render(null, 'component-form-group');
-
-        laydate.render({
-            elem: '#LAY-component-form-group-date'
-        });
-    });
-
-</script>
 </body>
 </html>
