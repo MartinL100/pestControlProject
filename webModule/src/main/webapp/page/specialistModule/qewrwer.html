@@ -1,21 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-//http://ip+port+projectName
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-    String basePathIMG = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/";
-%>
-
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>2345</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <base href="<%=basePath%>">
-    <jsp:include page="../../head.jsp"></jsp:include>
-    <title>专家会商</title>
+    <script src="../../lib/jquery.js"></script>
 </head>
 <body>
-
 <div class="layui-fluid">
     <div class="layui-card">
         <h1 align="center" style="font-size: 35px">专家会商</h1>
@@ -69,17 +63,19 @@
                         </div>
                     </div>
 
-                    <div class="layui-form-item">
+                    <div >
                         <span class="layui-form-label">会商人员</span>
-                        <div class="layui-inline" style="overflow: hidden">
+                        <div  style="overflow: hidden">
                             <div style="float: left;margin-left: 350px ;
                             width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid">
-                                <c:forEach items="${specialistList}" var="c">
-                                    <input type="checkbox" name="test" onchange="inputChange(this)"
-                                           value="${c.specialistId}"/><span>${c.specialistName}</span>
-                                </c:forEach>
+                                <input type="checkbox" name="we" value="1" onchange="inputChange(this)"><span>wqdasd1</span>
+                                <input type="checkbox" name="we" value="2" onchange="inputChange(this)"><span>wqdasd2</span>
+                                <input type="checkbox" name="we" value="3" onchange="inputChange(this)"><span>wqdasd3</span>
+                                <input type="checkbox" name="we" value="4" onchange="inputChange(this)"><span>wqdasd4</span>
+                                <input type="checkbox" name="we" value="5" onchange="inputChange(this)"><span>wqdasd5</span>
+                                <input type="checkbox" name="we" value="6" onchange="inputChange(this)"><span>wqdasd6</span>
                             </div>
-                            <button style="width:40px;margin-top:40px" onclick="addConferenceSpecialist()">添加
+                            <button type="button" id="dtid" style="width:40px;margin-top:40px" onclick="addConferenceSpecialist()">添加
                             </button>
                             <div style="float: right;margin-left: 90px ;
                             width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid" id="box2">
@@ -108,17 +104,7 @@
                             <th>会商结果</th>
                         </thead>
                         <tbody>
-                        <c:forEach items="${resultList}" var="c">
-                            <tr>
-                                <td>${c.conferenceDate}</td>
-                                <td>
-                                    <c:forEach items="${c.specialistList}" var="d">
-                                        ${d.specialistName},
-                                    </c:forEach>
-                                </td>
-                                <td>${c.conferenceResult}</td>
-                            </tr>
-                        </c:forEach>
+
                         </tbody>
                     </table>
                 </div>
@@ -129,67 +115,30 @@
 </div>
 
 <script>
-    //添加会商专家
     var strId = "";
     var strSpecialistName = "";
 
     function inputChange(obj) {
         strId += obj.value + "-";
         strSpecialistName += $(obj).next().eq(0).text() + "-";
-
+alert(strSpecialistName)
     }
+
 
     function addConferenceSpecialist() {
         strSpecialistName = strSpecialistName.substring(0, strSpecialistName.length - 1);
         var specialistArray = strSpecialistName.split("-");
+        alert(specialistArray)
         var s = "";
         specialistArray.each(function () {
             s += "<span>" + this + "</span>"
         });
+        alert(s);
         $("#box2").html(s);
-
-
-        // var obj = document.getElementsByName("test");
-        // var check_val = [];
-        // var check_specialistId = [];
-        // //得到选中的专家
-        // for (k in obj) {
-        //     if (obj[k].checked) {
-        //         check_val.push(obj[k].next().text);
-        //     }
-        //     alert(check_val)
-        // }
-        //
-        // //将数组遍历到另一个div
-        // var nameHtml = "<span>";
-        // for (a in check_val) {
-        //     nameHtml = nameHtml + check_val[a] + "</span><br/>";
-        // }
-        // $("#box2").innerHTML = nameHtml;
-    }
-
-
-    function addResult1(r) {
-
-        var obj = document.getElementsByName("test");
-        var check_specialistId = [];
-        //得到选中的专家ID
-        var a = "";
-        for (k in obj) {
-            if (obj[k].checked) {
-                a += obj[k].value + ",";
-            }
-        }
-        a = a.substring(0, a.length - 1);
-        $.post("conferenceMain", {"specialist": a}, function (r) {
-        });
-        $("#addResultId").val(r);
-        $("#fid").submit();
-
     }
 
     layui.config({
-        base: 'layuiadmin/' //静态资源所在路径
+        base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'form', 'laydate'], function () {
