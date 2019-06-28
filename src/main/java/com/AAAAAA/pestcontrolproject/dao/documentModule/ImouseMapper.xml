@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.documentModule.ImouseDao">
+
+    <resultMap id="spcialistObj" type="com.AAAAAA.pestcontrolproject.entity.documentModule.mouseBean">
+          <id column="id" property="id" ></id>
+        <result column="mouse_name " property="mouseName"></result>
+        <result column="mouse_breed" property="mouseBreed"></result>
+        <result column="mouse_food" property="mouseFood"></result>
+        <result column="mouse_harm" property="mouseHarm"></result>
+        <result column="mouse_natural" property="mouseNatural"></result>
+        <result column="mouse_photo" property="mousePhoto"></result>
+        <result column="mouse_prevent" property="mousePrevent"></result>
+    </resultMap>
+    <select id="getListMouse" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.mouseBean">
+        select
+        mouse_id as id,
+         mouse_name as mouseName,
+         mouse_food as mouseFood,
+         mouse_harm as mouseHarm
+        from t_mouse;
+    </select>
+    <select id="AllMouse"  resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.mouseBean" >
+       select
+        mouse_id as id,
+        mouse_harm as mouseHarm,
+        mouse_food as mouseFood,
+        mouse_name as mouseName,
+        mouse_breed as mouseBreed,
+        mouse_natural as mouseNatural,
+        mouse_photo as mousePhoto,
+        mouse_prevent as mousePrevent
+        from t_mouse where mouse_id=#{mouseId} ;
+    </select>
+    <insert id="AddMouse" parameterType="mouseBean">
+        insert into t_mouse(mouse_name, mouse_breed, mouse_food, mouse_natural, mouse_prevent, mouse_photo, mouse_harm)
+        values(#{mouseName},#{mouseBreed},#{mouseFood},#{mouseNatural},#{mousePrevent},#{mousePhoto},#{mouseHarm})
+
+    </insert>
+    <select id="getMouseByName" resultType="int">
+          select count(*)  from  t_mouse where mouse_name=#{mouseName}   ;
+    </select>
+    <!--动态查询-->
+    <select id="getByMouse" resultMap="spcialistObj" parameterType="map">
+           select * from t_mouse where 1=1
+        <if test="mouseName!=null and mouseName!=''" >
+            and mouse_name=#{mouseName}
+        </if>
+        limit #{startIndex},#{rowNum}
+
+    </select>
+    <!--获得总行数-->
+    <select id="getCountMouse" resultType="int">
+        select count (mouse_id) from t_mouse where 1=1
+        <if test="mouseName != null and mouseName!='' ">
+            and mouse_name= #{mouseName}
+        </if>
+        <if test="mouseFood != null and mouseFood !='' " >
+            and mouse_food=#{mouseFood}
+        </if>
+        <if test="mouseHarm != null and mouseHarm!='' ">
+            and mouse_harm=#{mouseHarm}
+        </if>
+
+    </select>
+
+
+</mapper>

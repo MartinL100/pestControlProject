@@ -33,13 +33,13 @@
               <dl class="layui-nav-child">
 <<<<<<< HEAD
                 <dd data-name="console" class="layui-this">
-                  <a href="../drugModule/outwarehouseUpdate.html" target="frameName">虫害一览</a>
+                  <a href="/pestisIndex" target="frameName">虫害一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="../drugModule/drugPanel.html" target="frameName">病害一览</a>
+                  <a href="/diseaseIndex" target="frameName">病害一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a href="userPanel.html" target="frameName">鼠害一览</a>
+                  <a href="/mouseIndex" target="frameName">鼠害一览</a>
                 </dd>
               </dl>
             </li>

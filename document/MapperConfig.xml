@@ -34,7 +34,9 @@
 
 
         <!--曾贤富mapper配置部分-->
-
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/documentModule/IdiseaseMapper.xml"/>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/documentModule/IpestisMapper.xml"></mapper>
+        <mapper resource="com/AAAAAA/pestcontrolproject/dao/documentModule/ImouseMapper.xml"></mapper>
         <!--曾贤富mapper配置部分-->
 
 
