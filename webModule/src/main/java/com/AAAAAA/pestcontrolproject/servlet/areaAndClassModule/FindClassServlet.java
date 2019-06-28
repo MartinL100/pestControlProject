@@ -27,12 +27,12 @@ public class FindClassServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      //查询条件集合
         Map map = new HashMap();
-
         //获取查找条件
         String sclassName=request.getParameter("sclassName");
         map.put("sclassName",sclassName);
         String areaName=request.getParameter("areaName");
         map.put("areaName",areaName);
+
         //获取操作标记
         String tag=request.getParameter("tag");
         //获取前端传递的当前页

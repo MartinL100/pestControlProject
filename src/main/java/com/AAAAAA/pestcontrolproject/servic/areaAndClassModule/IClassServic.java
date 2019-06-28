@@ -33,7 +33,7 @@ public interface IClassServic {
 
     /**
      * 修改小班信息
-     * @param map   条件集合
+     * @param map 条件集合
      * @return  出错信息
      */
     String updateClass(Map map);

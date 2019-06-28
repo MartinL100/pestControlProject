@@ -657,10 +657,10 @@ DROP TABLE IF EXISTS sys_area;
 CREATE TABLE sys_area
 (
    area_id              INT NOT NULL AUTO_INCREMENT,
-   area_name            VARCHAR(32),
-   area_tree_type       VARCHAR(48),
-   area_good_tree       VARCHAR(48),
-   area_adress_id       BIGINT,
+   area_name            VARCHAR(32),   -- 区域名字
+   area_tree_type       VARCHAR(48),   --  林种
+   area_good_tree       VARCHAR(48),   -- 优势树种
+   area_adress_id       BIGINT,        -- 地类ID
    PRIMARY KEY (area_id)
 );
 
@@ -677,11 +677,11 @@ CREATE TABLE sys_class
 (
    sclass_id            INT NOT NULL AUTO_INCREMENT,
    area_id              INT,
-   sclass_name          VARCHAR(32),
-   sclass_leader        VARCHAR(32),
-   sclass_leader_tel    VARCHAR(48),
-   sclass_num           INT,
-   sclass_start_date    VARCHAR(48),
+   sclass_name          VARCHAR(32),     --  小班名称
+   sclass_leader        VARCHAR(32),     --  小班负责人
+   sclass_leader_tel    VARCHAR(48),     --  负责人电话
+   sclass_num           INT,             --  小班人数
+   sclass_start_date    VARCHAR(48),     --  开班时间
    PRIMARY KEY (sclass_id)
 );
 

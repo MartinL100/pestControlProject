@@ -17,6 +17,7 @@
             <result column="sclass_name" property="sclassName"></result>
         </association>
     </resultMap>
+
     <insert id="addArea" parameterType="com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea">
     insert into sys_area (area_name, area_tree_type, area_good_tree, area_adress_id)
      values (#{areaName},#{areaTreeType},#{areaGoodTree},#{selectedType.typeId});

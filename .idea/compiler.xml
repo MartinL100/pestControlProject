@@ -6,11 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="webModule" />
         <module name="pestControlProject" />
-        <module name="Pro" />
-<!--=======-->
-<!--&gt;>>>>>> origin/master-->
-        <!--<module name="webModule" />-->
       </profile>
     </annotationProcessing>
   </component>

@@ -4,7 +4,6 @@ package com.AAAAAA.pestcontrolproject.entity.areaAndClassModule;
 public class SysClass {
 
   private long sclassId;
-
   private String sclassName;
   private String sclassLeader;
   private String sclassLeaderTel;

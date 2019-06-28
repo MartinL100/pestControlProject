@@ -14,7 +14,7 @@
 <!--用于控制页面跳转-->
 <form action="findAreaServlet" method="post" id="addUserForm"></form>
 
-<div class="layui-fluid">
+<div class="layui-fluid" id="divId1">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -80,8 +80,9 @@
 
 
                     <div class="layui-row layui-col-space10" >
+
                         <div style="width: 40%; float: left;margin-top: 4%" >
-                            <button id="addArea" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加区域</button>
+                            <a href="addAreaInitServlet"><button id="addArea" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加区域</button></a>
 
                         </div>
 
@@ -124,54 +125,10 @@
 </div>
 
 <script>
-    //点击某行，保存该行对应用户对象的id
-    function saveId(obj) {
-        //获取点中行对应的用户id
-   var id = obj.lastChild.previousSibling.firstChild.nodeValue;
-        //将用户id保存到隐藏div  userId中
-   $("#userId").val(id);
-    }
 
 
-    //点击删除按钮
-    $("#delUser").click(function () {
-        $("#userIdRecord").attr('action','delUserServlet');
-        //从隐藏div中获取选中id
-        var userId=$("#userId").val();
-        if(userId==null||""==userId){
-            $("#erroInfo").text("请点击需要删除的行");
-            setTimeout(function(){
-                $("#erroInfo").hide();
-            }, 3000);
-        }else {
-            $("#userIdRecord").submit();
-        }
-    })
 
-    //点击修改按钮
-
-    $("#updateUserInfo").click(function () {
-        $("#userIdRecord").attr('action','updateUserInfoServlet');
-
-        //从隐藏div中获取选中id
-        var userId=$("#userId").val();
-        if(userId==null||""==userId){
-            $("#erroInfo").text("请点击需要删除的行");
-            setTimeout(function(){
-                $("#erroInfo").hide();
-            }, 3000);
-        }else {
-            $("#userIdRecord").submit();
-        }
-
-    })
-
-    //点击添加用户
-    $("#addUser").click(function () {
-        $("#addUserForm").submit();
-    })
     //分页公共js
-
     function splitPage(splitTag) {
         if("targetPage"==splitTag){
             var targetPage=$("#targetPageNum").val();
@@ -179,7 +136,7 @@
         }else {
             $("#tagId").val(splitTag);
         }
-        $("#selectForm").submit();
+            $("#selectForm").submit();
     }
 
 

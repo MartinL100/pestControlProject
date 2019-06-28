@@ -13,19 +13,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <Main style="width: 90% ;margin: auto">
-<form id="f1" class="layui-form" action="eventAddServlet" lay-filter="component-form-group">
+<form id="f1" class="layui-form" action="addClassServlet" lay-filter="component-form-group">
 
     <div class="layui-form-item"STYLE="margin-top: 50px">
         <div style="margin-top: 20px;float: left;width: 40%" >
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
-                <input type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="sclassName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div style="margin-top: 20px;float: left;width: 48%">
             <label class="layui-form-label">负责人电话</label>
             <div class="layui-input-block">
-                <input type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="sclassLeaderTel" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -35,13 +35,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div style="margin-top: 20px;float: left;width: 40%" >
             <label class="layui-form-label">负责人</label>
             <div class="layui-input-block">
-                <input type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="sclassLeader" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div style="margin-top: 20px;float: left;width: 48%">
             <label class="layui-form-label">数量</label>
             <div class="layui-input-block">
-                <input type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="sclassNum" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
@@ -50,12 +50,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div style="margin-top: 100px">
         <label class="layui-form-label">负责区域</label>
         <div class="layui-input-inline">
-            <select id="areaId" name="areaId">
-
-                <c:forEach var="areaObj" items="${areaList}" >
-                    <option value="${areaObj.areaId}">${areaObj.areaName}</option>
+            <select id="areaId" name="selectedType">
+                <c:forEach var="classObj" items="${classList}" >
+                    <option value="${classObj.typeId}">${classObj.typeVal}</option>
                 </c:forEach>
-
             </select>
         </div>
     </div>
@@ -82,6 +80,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <script>
+
+
+
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
@@ -103,6 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
 
 </script>
+
 <script>
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径

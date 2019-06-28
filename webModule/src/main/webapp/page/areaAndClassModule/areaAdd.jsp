@@ -13,16 +13,14 @@
 </head>
 <body>
 
-<div class="layui-fluid" >
+<div class="layui-fluid" id="addDivId">
 
     <div class="layui-card">
 
         <h1 align="center" style="padding: 15px;">添 加 区 域</h1>
         <h3 style="color: red" align="center" id="erroInfo">${erroInfo}</h3>
-
-
         <div class="layui-card-body" style="padding: 15px;">
-            <form class="layui-form" action="userAddServlet" lay-filter="component-form-group" method="post">
+            <form class="layui-form" action="addAreaServlet" lay-filter="component-form-group" method="post">
 
                 <div class="layui-form-item" align="center">
 
@@ -39,7 +37,7 @@
                     <label class="layui-form-label" style="margin-left: 27%">林种</label>
 
                     <div class="layui-input-block" style="width: 30%" >
-                        <input type="text" name="password" lay-verify="required" placeholder="林种" autocomplete="off" class="layui-input" >
+                        <input type="text" name="areaTreeType" lay-verify="required" placeholder="林种" autocomplete="off" class="layui-input" >
                     </div>
                 </div>
 
@@ -49,7 +47,7 @@
 
                     <div class="layui-input-block" style="width: 30% ;" >
 
-                        <input type="text" name="passwordSure" lay-verify="required" placeholder="优势树种" autocomplete="off" class="layui-input" >
+                        <input type="text" name="areaGoodTree" lay-verify="required" placeholder="优势树种" autocomplete="off" class="layui-input" >
                     </div>
                 </div>
 
@@ -57,25 +55,18 @@
                 <div class="layui-form-item" align="center">
                     <label class="layui-form-label" style="margin-left: 27%">地类</label>
                     <div class="layui-input-block" style="width: 30%" >
-                        <select name="roleId" lay-filter="aihao">
+                        <select name="selectedType" lay-filter="aihao">
                             <c:forEach var="areaObj" items="${areaList}" >
-                                <option value="${areaObj.areaId}">${areaObj.roleName}</option>
+                                <option value="${areaObj.typeId}">${areaObj.typeVal}</option>
                             </c:forEach>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item" align="center">
-
                     <div class="layui-input-block" style="width: 30%;margin-top: 8%" >
                         <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1">立即提交</button>
                     </div>
                 </div>
-
-
-
-
-
-
             </form>
         </div>
     </div>
@@ -114,21 +105,10 @@
         setTimeout(function(){
             $("#erroInfo").hide();
         }, 3000);
-
-
-        $("#userName").mouseleave(function () {
-            var userName=$("#userName").val()
-
-            $.post("isExistUserServlet",{"userName":userName},function (result) {
-                $("#erroInfo").show();
-                $("#erroInfo").text(result);
-                setTimeout(function(){
-                    $("#erroInfo").hide();
-                }, 3000);
-
-            })
-        })
     })
+
+
+
 
 </script>
 </body>
