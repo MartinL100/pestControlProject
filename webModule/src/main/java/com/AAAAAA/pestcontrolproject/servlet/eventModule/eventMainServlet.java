@@ -3,7 +3,7 @@ package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 
-import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
+import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
 import com.AAAAAA.pestcontrolproject.util.SplitPage;
 

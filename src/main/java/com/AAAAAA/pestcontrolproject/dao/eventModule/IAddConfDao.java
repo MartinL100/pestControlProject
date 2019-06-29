@@ -1,5 +1,7 @@
 package com.AAAAAA.pestcontrolproject.dao.eventModule;
 
+import java.util.List;
+
 public interface IAddConfDao {
 
     /**
@@ -7,5 +9,12 @@ public interface IAddConfDao {
      * @param eventId
      */
     void addConf(int eventId);
+
+    /**
+     * 根据事件Id查询专家会商ID
+     * @param EventId
+     * @return
+     */
+    int[] findConfIdByEventId(int EventId);
 
 }

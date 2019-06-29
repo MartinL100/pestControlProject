@@ -1,4 +1,4 @@
-package com.AAAAAA.pestcontrolproject.servic.eventModule;
+package com.AAAAAA.pestcontrolproject.servic.impl.eventModule;
 
 import com.AAAAAA.pestcontrolproject.dao.eventModule.IAddConfDao;
 import com.AAAAAA.pestcontrolproject.dao.eventModule.IEventDao;
@@ -15,5 +15,17 @@ public class AddConfServiceImpl implements IAddConfDao {
         dao.addConf(eventId);
         session.commit();
         session.close();
+    }
+
+    @Override
+    public int[] findConfIdByEventId(int EventId) {
+
+        SqlSession session= GetSession.getSession();
+        IAddConfDao dao=session.getMapper(IAddConfDao.class);
+        int[] idArr=dao.findConfIdByEventId(EventId);
+
+        session.commit();
+        session.close();
+        return  idArr;
     }
 }

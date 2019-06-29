@@ -3,16 +3,18 @@ package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
-import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
+import com.AAAAAA.pestcontrolproject.entity.specialistModule.ConferenceResult;
+import com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist;
+import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.AddConfServiceImpl;
+import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.AAAAAA.pestcontrolproject.servic.impl.specialistModule.IConferenceResultServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.Map;
 
 public class eventShowServlet extends HttpServlet {
     IEventService service = new EventServiceImpl();
+    IConferenceResultServiceImpl iConferenceResultService=new IConferenceResultServiceImpl();
+    AddConfServiceImpl addConfService=new AddConfServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -49,6 +53,21 @@ public class eventShowServlet extends HttpServlet {
         //判段是修改请求还是查看信息请求
         String showOrUpdate=request.getParameter("showOrUp");
         if("show".equals(showOrUpdate)){
+
+            //查找会商信息,并保存到request中
+//            int[]idArr=addConfService.findConfIdByEventId(eventId);iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
+            List<ConferenceResult> conferenceResults=new ArrayList<>();
+            ConferenceResult test=new ConferenceResult();
+            test.setConferenceDate("2001-01-01");
+            test.setConferenceResult("66666");
+            List<TSpecialist> specialist= new ArrayList<>();
+            TSpecialist special=new TSpecialist();
+            special.setSpecialistName("hagou");
+            specialist.add(special);
+            test.setSpecialistList(specialist);
+            conferenceResults.add(test);
+
+            request.setAttribute("conferenceResults",conferenceResults);
             request.getRequestDispatcher("page/eventModule/eventShow.jsp").forward(request,response);
         }
         else if("update".equals(showOrUpdate)){

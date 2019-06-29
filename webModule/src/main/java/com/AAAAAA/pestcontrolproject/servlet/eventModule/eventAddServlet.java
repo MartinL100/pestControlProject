@@ -1,9 +1,8 @@
 package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
-import com.AAAAAA.pestcontrolproject.servic.eventModule.EventServiceImpl;
+import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
-import com.AAAAAA.pestcontrolproject.util.FileStringInfo;
 import com.AAAAAA.pestcontrolproject.util.UploadUtil;
 import com.AAAAAA.pestcontrolproject.util.Verify;
 import org.apache.commons.fileupload.FileItem;
@@ -23,29 +22,39 @@ public class eventAddServlet extends HttpServlet {
     IEventService service = new EventServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        System.out.println(111);
         Event event=new Event();
         UploadUtil uploadUtil= new UploadUtil();
         boolean bl=false;
         try {
             Map<String, List<FileItem>> map= uploadUtil.getFileItem(request);
             //获得表单集合
-            List<FileItem> listForm=   map.get("listForm");
+            List<FileItem> listForm= map.get("listForm");
             //获得表单数据
             for (FileItem form : listForm) {
                 String filedName = form.getFieldName();
                 String val = form.getString("UTF-8");
+                String regex="\\d+";
+
+                //验证数据格式
                 if (filedName.equals("plan")) {
                     event.setPlan(val);
                 } else if (filedName.equals("occurTime")) {
                    event.setOccurTime(val);
                 }else if (filedName.equals("areaId")) {
+                    if (!val.matches(regex)){
+                        break;}
                     event.setAreaId(Integer.parseInt(val));
                 }else if (filedName.equals("classId")) {
+                    if (!val.matches(regex)){
+                        break;}
                     event.setClassId(Integer.parseInt(val));
                 }else if (filedName.equals("disasterStage")) {
+                    if (!val.matches(regex)){
+                        break;}
                     event.setDisasterStage(Integer.parseInt(val));
                 } else if (filedName.equals("disasterType")) {
+                    if (!val.matches(regex)){
+                        break;}
                     event.setDisasterType(Integer.parseInt(val));
                 } else if (filedName.equals("eventArea")) {
                     event.setEventArea(val);
@@ -56,6 +65,8 @@ public class eventAddServlet extends HttpServlet {
                 }else if (filedName.equals("eventName")) {
                     event.setEventName(val);
                 }else if (filedName.equals("findWay")) {
+                    if (!val.matches(regex)){
+                        break;}
                     event.setFindWay(Integer.parseInt(val));
                 }
             }
@@ -63,7 +74,7 @@ public class eventAddServlet extends HttpServlet {
             //获得文件集合
             List<FileItem> listFile=   map.get("listFile");
 
-            String  afterPathDir= FileStringInfo.filePath; //文件放入的文件夹名
+            String  afterPathDir= FileStringInfo.FILEPATH; //文件放入的文件夹名
             //获得文件
             for (FileItem file:listFile) {
                 String fileName=   file.getName();//上传图片的名字
@@ -75,7 +86,7 @@ public class eventAddServlet extends HttpServlet {
                 //验证成功
                 //重新生产新的文件名
                 Date date=new Date();
-                fileName= date.getTime()+fileName.substring(fileName.lastIndexOf("."),fileName.length());
+                fileName= date.getTime()+FileStringInfo.getNewFileName(fileName);
 
                 //把文件名放入到实体对象中
                 event.setPhotoPath(fileName);

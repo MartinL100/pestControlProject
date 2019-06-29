@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-inline">
                             <label class="layui-form-label">事件名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                                <input id="eventName" type="text" name="eventName" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                             </div>
                             <label class="layui-form-label"></label>
 
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                     <div class="layui-inline" style="position: relative;left:15px">
-                        <label class="layui-form-label">所在小班:</label><label  name="classId" id="theClass"  class="layui-form-label" ></label>
+                        <label style="margin-left: -6px" class="layui-form-label">所在小班:</label><label  name="classId" id="theClass"  class="layui-form-label" ></label>
                     </div>
                 </div>
 
@@ -109,19 +109,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="layui-inline">
                         <label class="layui-form-label">初步损失</label>
                         <div class="layui-input-block">
-                            <input type="text" name="eventLoss" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input  id="loss" type="text" name="eventLoss" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline" style="position: relative;left:10px">
                         <label class="layui-form-label">影响面积</label>
                         <div class="layui-input-block">
-                            <input type="text" name="eventArea" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input id="eventArea" type="text" name="eventArea" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline"style="position: relative;left:20px">
                         <label class="layui-form-label">防治方案</label>
                         <div class="layui-input-block">
-                            <input type="text" name="plan" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input id="plan" type="text" name="plan" style="width: 190px" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -134,6 +134,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <textarea name="eventDescribe" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
+                <%--数据验证信息--%>
+                <error>
+                    <h3 style="color: red" id="error" ></h3>
+                </error>
+
+
                 <!--提交按钮-->
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
@@ -155,13 +161,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $(document).ready(function () {
         $("#img").hide();
         $("#classId").hide();
-        alert($("#area"))
     });
     // 提交按钮触发事件
     $("#addButton").click(function () {
-
-        $(f1).submit();
-    })
+         var yes="yes";
+       $.each( $(":selected"),function () {
+          if($(this).val()==null||$(this).val().length==0){
+              yes="no"
+          }
+       })
+        if(yes=="yes"){
+            alert(yes);
+        $(f1).submit();}else {
+            sendErroInfo("请选择下拉选项")
+        }
+    });
     // 选择区域触发事件
    function fullClass(areaId){
 
@@ -171,8 +185,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#theClass").text(json.sclassName);
         })
     };
-    //
+    //名称格式输入验证
+    $("#eventName").change(function () {
+        var str= $("#eventName").val();
+        check(str);
+    });
+    $("#loss").change(function () {
+        var str= $("#loss").val();
+        check(str);
+    });
+    $("#eventArea").change(function () {
+        var str= $("#eventArea").val();
+        check(str);
+    });
+    $("#plan").change(function () {
+        var str= $("#plan").val();
+        check(str);
+    });
 
+
+
+
+
+
+    function check(str) {
+            var uPattern = /^[a-zA-Z0-9\u4E00-\u9FA5]{2,16}$/;
+            if(!uPattern.test(str)){
+              sendErroInfo("仅支持两位汉字、数字、字母的组合")
+            }
+
+    }
+    function IsDate(){
+        var str = $("#LAY-component-form-group-date").val().trim();
+        if(str.length!=0){
+            var reg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/;
+            var r = str.match(reg);
+            if(r==null){
+                $("#error").text('对不起，您输入的日期格式不正确!');
+            }else{
+                $("#error").text('');
+            }
+        }
+    }
 </script>
 
 

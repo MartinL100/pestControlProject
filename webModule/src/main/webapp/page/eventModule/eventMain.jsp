@@ -175,29 +175,31 @@
             $("#currentPage").val(jsonStr.currentPage);
             $("#maxPage").text("/"+jsonStr.maxPage);
             $("#pageNow").val(jsonStr.currentPage);
-            fullTable(jsonStr.eventsList);
+            fullTable(jsonStr.eventsList,jsonStr.areaList,jsonStr.disasterStageList);
         });
     }
-    function fullTable(eventsList,areaList) {
+    function fullTable(eventsList,areaList,disasterStageList) {
         //组织行
         var html="<colgroup><col width=\"250\"><col width=\"150\"><col width=\"200\"><col></colgroup><thead>" +
             "<tr><th>事件名称</th><th>日期</th> <th>发生位置</th> <th>防止方案</th> <th>灾情状态</th></tr></thead>"
         //组装身体
         $.each(eventsList,function () {
             var area=this.areaId;
-            var disasterStage=this.disasterStage;
-            for (var i=0;i<disasterStageMap.length;i++){
-                if(i+1==disasterStage){
-                    disasterStage=disasterStageMap[i].name;
+            var disasterStageName=this.disasterStage;
+
+            $.each(disasterStageList,function () {
+                if (disasterStageName==this.typeKey) {
+                    disasterStageName=this.typeVal;
                 }
-            }
+            });
+
             $.each(areaList,function () {
                 if (area==this.areaId) {
                     area=this.areaName;
                 }
             });
             html+="<tr   onclick='choose(this)' id='"+this.eventId+"' ><td>"+this.eventName+"</td><td>"+this.occurTime+"</td><td>"+area+"</td>" +
-                "<td>"+this.plan+"</td><td>"+disasterStage+"</td></tr>"
+                "<td>"+this.plan+"</td><td>"+disasterStageName+"</td></tr>"
         });
 
         //放入到table标签
@@ -211,7 +213,7 @@
             $("#currentPage").val(jsonStr.currentPage);
             $("#pageNow").val(jsonStr.currentPage);
             $("#maxPage").text(jsonStr.maxPage);
-            fullTable(jsonStr.eventsList,jsonStr.areaList);
+            fullTable(jsonStr.eventsList,jsonStr.areaList,jsonStr.disasterStageList);
         } );
     });
 
@@ -275,7 +277,7 @@
         var endTime=$("#endTime").val();
         $.post("eventFindServlet",{ "eventName":eventName, "disasterStage":disasterStage, "areaId":areaId, "startTime":startTime,"endTime":endTime},function (result) {
             var jsonStr=eval("("+result+")");
-            fullTable(jsonStr.eventsList,jsonStr.areaList);
+            fullTable(jsonStr.eventsList,jsonStr.areaList,jsonStr.disasterStageList);
             $("#currentPage").val(jsonStr.currentPage);
             $("#pageNow").val(jsonStr.currentPage);
             $("#maxPage").text(jsonStr.maxPage)
@@ -308,11 +310,12 @@
 
         laydate.render({
             elem: '#startTime'
-
+            ,trigger:"click"
         });
 
         laydate.render({
                 elem: '#endTime'
+            ,trigger:"click"
         });
     });
 </script>
