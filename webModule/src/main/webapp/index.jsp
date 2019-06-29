@@ -56,9 +56,9 @@
 
     $(document).ready(function () {
         var str=$("#errorInfoId").text();
-        if(str!=null&&str!=""){
+
             sendErroInfo(str);
-        }
+
 
 
     })
