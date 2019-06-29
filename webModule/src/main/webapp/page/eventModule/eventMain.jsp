@@ -243,15 +243,15 @@
             $("#showOrUp").val("show");
             $("#f1").submit();}
         else{
-            $("#error").text("请选中行");
+           sendErroInfo("请选中行");
         }
     });
     $("#b3").click(function () {
         var id=$("#tid").val();
         if($("#tid").val()==null||$("#tid").val().length<1){
-            $("#error").text("请选中行");
+            sendErroInfo("请选中行");
         }else if ($("#disasterstage").val()!="无法解决,申请会商") {
-            $("#error").text("请选中需要申请会商的行");
+            sendErroInfo("请选中无法解决,申请会商的行");
         }
         else{
             $.post("eventConferenceServlet",{"eventId":id});

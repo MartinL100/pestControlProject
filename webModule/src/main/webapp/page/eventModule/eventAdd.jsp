@@ -144,7 +144,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">
-                            <button id="addButton" class="layui-btn" >立即提交</button>
+                            <form  action="" method="">
+                                <button id="ad" class="layui-btn" lay-submit="" lay-filter="component-form-demo1">立即提交</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -163,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#classId").hide();
     });
     // 提交按钮触发事件
-    $("#addButton").click(function () {
+    $("#ad").click(function () {
          var yes="yes";
        $.each( $(":selected"),function () {
           if($(this).val()==null||$(this).val().length==0){
