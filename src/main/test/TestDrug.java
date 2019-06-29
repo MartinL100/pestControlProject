@@ -2,10 +2,9 @@ import com.AAAAAA.pestcontrolproject.dao.drugModule.IDrugDao;
 import com.AAAAAA.pestcontrolproject.dao.drugModule.IStockpileDao;
 import com.AAAAAA.pestcontrolproject.dao.selectedType.ISelectedTypeDao;
 import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
-import com.AAAAAA.pestcontrolproject.entity.drugModule.StockpileDrugVo;
-import com.AAAAAA.pestcontrolproject.entity.drugModule.SysDrug;
-import com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile;
-import com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug;
+import com.AAAAAA.pestcontrolproject.entity.drugModule.*;
+import com.AAAAAA.pestcontrolproject.servic.drugModule.IStockpileService;
+import com.AAAAAA.pestcontrolproject.servic.impl.drugModule.StockpileServiceImpl;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import com.AAAAAA.pestcontrolproject.vo.drugModule.SysDrugAddVo;
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +12,7 @@ import org.junit.Test;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,9 @@ public class TestDrug {
     public void TestSelectedTypeDao(){
         SqlSession session= GetSession.getSession();
         ISelectedTypeDao dao=  session.getMapper(ISelectedTypeDao.class);
-        List<SysSelectedType> list=dao.getSelectValueListByTypeName("drugCureType");
+       List<SysSelectedType> list=dao.getSelectValueListByTypeName("drugCureType");
+    //    List<SysSelectedType> list=dao.getSelectValueListByTypeName("drugType");
+//        System.out.println(list2);
         for (SysSelectedType s:list) {
             System.out.println(s);
         }
@@ -118,7 +120,7 @@ public class TestDrug {
     public void TestGetListByid(){
         SqlSession session =  GetSession.getSession();
         IStockpileDao dao =session.getMapper(IStockpileDao.class);
-        List<stockpileDrug> list=dao.getDrugListById(1);
+        List<stockpileDrug> list=dao.getDrugListById(22);
 
 
         for (stockpileDrug s:list
@@ -135,5 +137,38 @@ public class TestDrug {
         session.close();
     }
 
+    @Test
+    public void TestAddStoDrug(){
+//        SqlSession session =  GetSession.getSession();
+//        IStockpileDao dao =session.getMapper(IStockpileDao.class);
+        IStockpileService dao=new StockpileServiceImpl();
+        StockpileDrugVo drugVo=new StockpileDrugVo();
+        StockpileDrugVo drugVo2=new StockpileDrugVo();
+        drugVo.setDrugId(3);
+        drugVo.setStockpileId(2);
+        drugVo.setStockpileNum(2);
+
+        drugVo2.setDrugId(4);
+        drugVo2.setStockpileId(6);
+        drugVo2.setStockpileNum(1);
+        List<StockpileDrugVo> list=new ArrayList<>();
+        list.add(drugVo);
+        list.add(drugVo2);
+        for (StockpileDrugVo svo:list) {
+            System.out.println(dao.addStockpileDrug(svo));
+        }
+    }
+
+@Test
+    public void TestSaveSto(){
+    SqlSession session =  GetSession.getSession();
+    IStockpileDao dao =session.getMapper(IStockpileDao.class);
+    StockpileVo vo=new StockpileVo();
+    vo.setStockpileClassId(6);
+    vo.setStockpileUserId(9);
+    dao.saveStockpileDrug(vo);
+    int id=vo.getStockpileId();
+    System.out.println(id);
+    }
 
 }

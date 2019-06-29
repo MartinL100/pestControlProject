@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.AAAAAA.pestcontrolproject.dao.drugModule.IStockpileDao">
 
+    <select id="findByDrugTypeId" resultType="String">
+       select type_val  from  sys_type where type_id=#{0}
+    </select>
+    <select id="findByDrugCureTypeId" resultType="String">
+     select type_val  from  sys_type where type_id=#{0}
+    </select>
+    <select id="findStockpileManByID" resultType="String">
+        select  real_name from  t_user where  user_id=#{0};
+    </select>
+    <select id="findStockpileClassByID" resultType="String">
+       select sclass_name from sys_class where sclass_id=#{0}
+   </select>
+
 
     <resultMap id="SysDrugMap" type="com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile">
         <id column="stockpile_id" property="stockpileId"></id>
@@ -46,17 +59,7 @@
 
 
 
-    <resultMap id="SysDrugMap2" type="com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile">
-        <id column="stockpile_id" property="stockpileId"></id>
-        <result column="stockpile_date" property="stockpileDate"></result>
-        <association select="findStockpileClassByID" column="stockpile_class" property="stockpileClass">
-            <id/>
-            <result column="sclass_name" property="sclassName"></result>
-        </association>
-        <association select="findStockpileManByID" column="stockpile_man" property="stockpileMan">
-            <id/>
-            <result column="user_name" property="userName"></result>
-        </association>
+
         <!--<collection select="getDrugListById" column="stockpile_id" property="DrugList" ofType="stockpileDrug">-->
             <!--<id  column="drug_id" property="drugId"></id>-->
             <!--<result column="drug_name" property="drugName"></result>-->
@@ -69,24 +72,25 @@
             <!--&lt;!&ndash;<association select="findByDrugCureTypeId" column="drug_cure_type" property="drugCureType">
             </association>&ndash;&gt;-->
         <!--</collection>-->
+
+
+
+
+
+
+
+    <resultMap id="SysDrugMap2" type="com.AAAAAA.pestcontrolproject.entity.drugModule.SysStockpile">
+        <id column="stockpile_id" property="stockpileId"></id>
+        <result column="stockpile_date" property="stockpileDate"></result>
+        <association select="findStockpileClassByID" column="stockpile_class" property="stockpileClass">
+            <id/>
+            <result column="sclass_name" property="sclassName"></result>
+        </association>
+        <association select="findStockpileManByID" column="stockpile_man" property="stockpileMan">
+            <id/>
+            <result column="user_name" property="userName"></result>
+        </association>
     </resultMap>
-
-
-
-
-    <select id="findByDrugTypeId" resultType="String">
-       select type_val  from  sys_type where type_id=#{0}
-    </select>
-    <select id="findByDrugCureTypeId" resultType="String">
-     select type_val  from  sys_type where type_id=#{0}
-    </select>
-    <select id="findStockpileManByID" resultType="String">
-        select  real_name from  t_user where  user_id=#{0};
-    </select>
-    <select id="findStockpileClassByID" resultType="String">
-       select sclass_name from sys_class where sclass_id=#{0}
-   </select>
-
 
     <resultMap id="SysDrugMapList" type="com.AAAAAA.pestcontrolproject.entity.drugModule.stockpileDrug">
         <result  column="drug_id" property="drugId"></result>
@@ -102,10 +106,11 @@
     </resultMap>
 
 
-
     <select id="getDrugListById" resultMap="SysDrugMapList">
       select  * from v_drug_tockpile where  stockpile_id=#{0}
     </select>
+
+
   <!--select  s.stockpile_num,s.stockpile_id,d.* from drug_stockpile s ,sys_drug d-->
      <!--where s.drug_id= d.drug_id and s.drug_id=#{0}-->
 

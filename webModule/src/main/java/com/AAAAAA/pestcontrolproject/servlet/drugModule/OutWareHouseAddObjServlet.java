@@ -38,7 +38,7 @@ public class OutWareHouseAddObjServlet extends HttpServlet {
             drugCureType = request.getParameter("drugCureType");
             drugType = request.getParameter("drugType");
             drugName = request.getParameter("drugName");
-            String currentPage = request.getParameter("currentPage");
+            String currentPage = request.getParameter("sonCurrentPage");
             Map<String, Object> map = new HashMap<>();
             map.put("drugName", drugName);
             map.put("drugCureType", drugCureType);
@@ -61,7 +61,7 @@ public class OutWareHouseAddObjServlet extends HttpServlet {
             List<SysDrug> drugList = drugService.getListPageDrugByMap(map);
             //得到下拉框集合
 //            request.setAttribute("drugList", drugList);
-//            request.setAttribute("newCurrentPage", newCurrentPage);
+            //request.setAttribute("sonCurrentPage", newCurrentPage);
             ObjectMapper objectMapper=new ObjectMapper();
             String JsonStr= objectMapper.writeValueAsString(drugList);
             pw.write(JsonStr);

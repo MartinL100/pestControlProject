@@ -62,7 +62,7 @@ public class DrugPanelPageServlet extends HttpServlet {
              map.put("drugType",drugType);
 //        //总数量
              int allCount= drugService.getAllCount(map);
-          Map<String,Object> mapx=  SplitPage.SplitPage(currentPage,pageTag,5,allCount);
+             Map<String,Object> mapx=  SplitPage.SplitPage(currentPage,pageTag,5,allCount);
 //             int startIndex=(Integer) mapx.get("startIndex");
 //             int rowNum=(Integer) mapx.get("rowNum");
                 int newCurrentPage= (Integer)mapx.get("newCurrentPage");
@@ -84,10 +84,20 @@ public class DrugPanelPageServlet extends HttpServlet {
              request.setAttribute("drugTypeList",drugTypeList);
              request.setAttribute("drugList",drugList);
              request.setAttribute("newCurrentPage",newCurrentPage);
+            if("".equals(newCurrentPage)){
+                request.setAttribute("newCurrentPage",1);
+            }
+            if(0==newCurrentPage){
+                request.setAttribute("newCurrentPage",1);
+            }
             request.getRequestDispatcher("page/drugModule/DrugPanel.jsp").forward(request,response);
         }
           else{
              if ("addBtn".equals(pageTag)){
+                 List<SysSelectedType> drugCureTypeList= typeService.getSelectValueListByTypeName("drugCureType");
+                 List<SysSelectedType> drugTypeList=  typeService.getSelectValueListByTypeName("drugType");
+                 request.setAttribute("drugCureTypeList",drugCureTypeList);
+                 request.setAttribute("drugTypeList",drugTypeList);
                  request.getRequestDispatcher("page/drugModule/DrugAdd.jsp").forward(request,response);
                  return;
              }

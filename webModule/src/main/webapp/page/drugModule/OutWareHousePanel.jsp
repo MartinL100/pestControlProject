@@ -77,9 +77,9 @@
 
                             <div style="margin-bottom: 50px;margin-top: 50px">
                                 <button type="button" class="layui-btn layui-btn-primary" id="prevBtn" onclick="pageSubmit('prev')"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
-                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${page.getCurrentPage()}" id="currentPage">
+                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${newCurrentPage}" id="currentPage">
                                 &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${MaxPage}</span>
-                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="skipBtn" > &nbsp;>|&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="skipBtn" > &nbsp;跳转&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
                                 &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextBtn" value="nextBtn" onclick="pageSubmit('next')">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
                             </div>
 
