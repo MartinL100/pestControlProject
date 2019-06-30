@@ -1,5 +1,7 @@
 package com.AAAAAA.pestcontrolproject.dao.eventModule;
 
+import com.AAAAAA.pestcontrolproject.entity.specialistModule.TConference;
+
 import java.util.List;
 
 public interface IAddConfDao {
@@ -15,6 +17,6 @@ public interface IAddConfDao {
      * @param EventId
      * @return
      */
-    int[] findConfIdByEventId(int EventId);
+    List<TConference> findConfIdByEventId(int EventId);
 
 }

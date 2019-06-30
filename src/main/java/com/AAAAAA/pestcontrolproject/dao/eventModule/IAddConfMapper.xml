@@ -6,8 +6,8 @@
     insert into t_conference (event_id)values (#{0})
 </insert>
 
-<select id="findConfIdByEventId" parameterType="int" resultType="int">
-    select conference_id  from t_conference where event_id=#{0}
+<select id="findConfIdByEventId" parameterType="int" resultType="com.AAAAAA.pestcontrolproject.entity.specialistModule.TConference" >
+    select conference_id as conferenceId from t_conference where event_id=#{0}
 </select>
 
 

@@ -31,7 +31,7 @@ public class eventAddInitServlet extends HttpServlet {
 
         //查询区域LIST
         Map<String,Object> map0 =new HashMap<>();
-        map0.put("startIndex",0);
+        map0.put("startIndex",266);
         map0.put("rowNum",5);
         List<SysArea> areaList =areaService.findAreaList(map0);
 

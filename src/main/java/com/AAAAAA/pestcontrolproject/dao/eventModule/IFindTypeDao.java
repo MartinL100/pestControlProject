@@ -20,10 +20,10 @@ public interface IFindTypeDao {
      * @param id
      * @return
      */
-    SysClass findClaaByAreaId(int id);
+    List<SysClass> findClaaByAreaId(int id);
 
 
-    SysArea findAreaByAreaId(int id);
+    List<SysArea>  findAreaByAreaId(int id);
 
 
 }

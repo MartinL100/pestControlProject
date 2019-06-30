@@ -26,7 +26,7 @@ public class eventFindClassByAreaServlet extends HttpServlet {
         Map<String,Object> map=new HashMap<>();
         String areaId=request.getParameter("areaId");
         int id=Integer.parseInt(areaId);
-        SysClass aClass=  findTypeService.findClaaByAreaId(id);
+        SysClass aClass=  findTypeService.findClaaByAreaId(id).get(0);
 
 
         ObjectMapper objectMapper=new ObjectMapper();

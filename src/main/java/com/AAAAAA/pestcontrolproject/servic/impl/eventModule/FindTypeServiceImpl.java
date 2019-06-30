@@ -8,6 +8,7 @@ import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,30 +26,28 @@ public class FindTypeServiceImpl implements IFindTypeDao {
     }
 
     @Override
-    public SysClass findClaaByAreaId(int id) {
+    public List<SysClass> findClaaByAreaId(int id) {
 
         SqlSession session= GetSession.getSession();
         IFindTypeDao dao=session.getMapper(IFindTypeDao.class);
-
-        SysClass aClass = dao.findClaaByAreaId(id);
+        List<SysClass> list= dao.findClaaByAreaId(id);
         session.commit();
         session.close();
-        return aClass;
+        return list;
 
 
 
     }
 
     @Override
-    public SysArea findAreaByAreaId(int id) {
+    public List<SysArea> findAreaByAreaId(int id) {
 
         SqlSession session= GetSession.getSession();
         IFindTypeDao dao=session.getMapper(IFindTypeDao.class);
-
-        SysArea area = dao.findAreaByAreaId(id);
+        List<SysArea> list=dao.findAreaByAreaId(id);
         session.commit();
         session.close();
-        return area;
+        return list;
 
 
     }

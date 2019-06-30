@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <!-- 表格部分-->
-                <div class="layui-card-body">
+                <div class="layui-card-body" STYLE="width: 99%">
                     <table class="layui-table">
                         <colgroup>
                             <col >
@@ -66,7 +66,9 @@
                         </tr>
                         </thead>
                         <tbody>
+
                             <c:forEach items="${conferenceResults}" var="conf">
+                            <tr>
                                 <td>
                                         ${conf.conferenceDate}
                                 </td>
@@ -78,7 +80,9 @@
                                 <td>
                                         ${conf.conferenceResult}
                                 </td>
+                            </tr>
                             </c:forEach>
+
                         </tbody>
                     </table>
                 </div>

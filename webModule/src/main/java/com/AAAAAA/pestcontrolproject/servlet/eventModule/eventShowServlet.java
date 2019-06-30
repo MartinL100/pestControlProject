@@ -4,6 +4,7 @@ import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 import com.AAAAAA.pestcontrolproject.entity.specialistModule.ConferenceResult;
+import com.AAAAAA.pestcontrolproject.entity.specialistModule.TConference;
 import com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.AddConfServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
@@ -40,8 +41,8 @@ public class eventShowServlet extends HttpServlet {
         Event event=eventsList.get(0);
         //查询班级、区域信息
         evenUTIL util=new evenUTIL();
-        SysClass aClass=findTypeService.findClaaByAreaId(event.getAreaId());
-        SysArea  area=findTypeService.findAreaByAreaId(event.getAreaId());
+        SysClass aClass=findTypeService.findClaaByAreaId(event.getAreaId()).get(0);
+        SysArea  area=findTypeService.findAreaByAreaId(event.getAreaId()).get(0);
 
         request.setAttribute("className",aClass.getSclassName());
         request.setAttribute("area",area.getAreaName());
@@ -57,9 +58,11 @@ public class eventShowServlet extends HttpServlet {
         if("show".equals(showOrUpdate)){
 
 //            查找会商信息,并保存到request中
-          int[]idArr=addConfService.findConfIdByEventId(eventId);
-            List<ConferenceResult> conferenceResults=iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
-//            List<ConferenceResult> conferenceResults1=new ArrayList<>();
+            List<TConference> tConferences=addConfService.findConfIdByEventId(eventId);
+            Long i=tConferences.get(0).getConferenceId();
+            int a=i.intValue();
+            List<ConferenceResult> conferenceResults=iConferenceResultService.findConferenceByConferenceId(a+"");
+//            List<ConferenceResult> conferenceResults=new ArrayList<>();
 //            ConferenceResult test=new ConferenceResult();
 //            List<TSpecialist> specialist= new ArrayList<>();
 //            TSpecialist special=new TSpecialist();
