@@ -74,6 +74,9 @@
                             <button class="layui-btn layui-btn-primary layui-btn-sm" type="button" id="dtid"
                                     style="float: left; width:40px;margin-top:40px">添加
                             </button>
+                            <button class="layui-btn layui-btn-primary layui-btn-sm" type="button" id="butId"
+                                    style="float: left; width:40px;margin-top:90px;margin-left: -40px">删除
+                            </button>
                             <div style=" float: left;
                             width: 110px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid" id="box2">
 
@@ -141,31 +144,34 @@
 
         });
 
-        //获取第box2中所有input
-        var box2Unchecked = $("#box2 input");
-
-
-        $.each(box2Unchecked, function () {
-
-            //判断是否是选中的
-            var key = this.checked;
-
-            if (key == false) {
-                //将未选中的节点添加到box1
-                $("#box1").append(this.parentNode)
-            }
-
-        })
-
     });
+$("#butId").click(function () {
+    //获取第box2中所有input
+    var box2Unchecked = $("#box2 input");
 
+
+    $.each(box2Unchecked, function () {
+
+        //判断是否是选中的
+        var key = this.checked;
+
+        if (key == false) {
+            //将未选中的节点添加到box1
+            $("#box1").append(this.parentNode)
+        }
+
+    })
+});
 
     function resultAdd(r) {
 
         var textVal = $("#textId").val();
         var bl = true;
         if (textVal == null || textVal.length == 0) {
+            bl=false;
             sendErroInfo("请输入会商结果");
+        }else {
+            bl=true;
         }
         if (bl) {
             var a = "";
