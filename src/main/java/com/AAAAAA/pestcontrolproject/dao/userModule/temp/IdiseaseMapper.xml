@@ -15,7 +15,7 @@
     </resultMap>
         <!--添加-->
       <insert id="AddDisease" parameterType="DiseaseBean" >
-        insert into t_disease( disease_name ,disease_ source,disease_symptom, disease_law, disease_harm, disease_photo, disease_measure)
+        insert into t_disease( disease_name ,disease_source,disease_symptom, disease_law, disease_harm, disease_photo, disease_measure)
         values (#{diseaseName} ,#{diseaseSource} ,#{diseaseSymptom} ,#{diseaseLaw} ,#{diseaseHarm} ,#{diseasePhoto} ,#{diseaseMeasure});
       </insert>
            <!--按id查询详细信息-->

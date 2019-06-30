@@ -435,6 +435,38 @@
         <servlet-name>addDiseaseeServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.AddDiseaseServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>findDiseaseServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.FindDiseaseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mouseIntitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.MouseIntitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addMouseServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.AddMouseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findMouseServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.FindMouseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findMouseServlet</servlet-name>
+        <url-pattern>/findMouseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addMouseServlet</servlet-name>
+        <url-pattern>/addMouseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mouseIntitServlet</servlet-name>
+        <url-pattern>/mouseIntitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findDiseaseServlet</servlet-name>
+        <url-pattern>/findDiseaseServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addDiseaseeServlet</servlet-name>
         <url-pattern>/addDiseaseeServlet</url-pattern>
@@ -477,7 +509,7 @@
     </filter>
     <filter-mapping>
         <filter-name>powerFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/fhsikjf</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>encodeFilter</filter-name>

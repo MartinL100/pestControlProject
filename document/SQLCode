@@ -332,7 +332,7 @@ SELECT * FROM t_pestis
 -- Table structure for t_disease  病害表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_disease`;
-CREATE TABLE `t_disease` (
+CREATE TABLE `t_diseases` (
  `disease_id` INT NULL DEFAULT NULL AUTO_INCREMENT COMMENT '病害id',
  `disease_name` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害名称',
  `disease_ source` VARCHAR(48) NULL DEFAULT NULL COMMENT '病害病源',

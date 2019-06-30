@@ -11,14 +11,12 @@
     <title>用户管理</title>
 </head>
 <body>
-<!--用于控制页面跳转-->
-<form action="addUserInitServlet" method="post" id="addUserForm"></form>
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <h1 align="center">病害一览</h1>
+                <h1 align="center">鼠害一览</h1>
                 <h2 style="color: red" id="erroInfo" align="center"></h2>
                 <div class="layui-card-body">
                     <table class="layui-table">
@@ -26,17 +24,17 @@
                         <thead>
                         <tr>
                             <th>名称</th>
+                            <th>食物</th>
                             <th>主要危害</th>
-                            <th>发病规律</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${diseaseBeanList}" var="diseaseBean" >
+                        <c:forEach items="${mouseBeanList}" var="mouseBean" >
                             <tr onclick="saveId(this)">
-                                <td>${diseaseBean.diseaseName}</td>
-                                <td>${diseaseBean.diseaseHarm}</td>
-                                <td>${diseaseBean.diseaseLaw}</td>
-                                <td style="display: none">${diseaseBean.diseaseId}</td>
+                                <td>${mouseBean.mouseName}</td>
+                                <td>${mouseBean.mouseFood}</td>
+                                <td>${mouseBean.mouseHarm}</td>
+                                <td style="display: none">${mouseBean.id}</td>
                             </tr>
                         </c:forEach>
 
@@ -45,9 +43,9 @@
 
                 </div>
 
-                <form action="findDiseaseServlet" id="userIdRecord" method="post">
+                <form action="findMouseServlet" id="userIdRecord" method="post">
                     <!--隐藏div，用于记录点击的用户的id-->
-                    <input id="userId" name="checkedDisease" style="display: none"/>
+                    <input id="userId" name="checkedMouse" style="display: none"/>
                 </form>
                 <!-- 翻页按钮部分-->
                 <div align="center">
@@ -77,29 +75,24 @@
 
                     <div class="layui-row layui-col-space10" >
                         <div style="width: 40%; float: left;margin-top: 4%" >
-                           <a href="page/userModule/temp/disease/diseaseAdd.jsp"><button id="addUser" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加新病害</button></a>
+                           <a href="page/userModule/temp/mouse/mouseAdd.jsp"><button id="addUser" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加新鼠害</button></a>
                             <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">查看详细信息</button><br/>
                         </div>
 
                         <div class="layui-col-xs3" style="float: right;margin-right: 20%;">
 
                             <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D">
-                                <div class="layui-card-header">查询病害信息</div>
+                                <div class="layui-card-header">查询鼠害信息</div>
                                 <div class="layui-card-body" >
-                                    <form action="diseaseIntitServlet" method="post" id="selectForm">
+                                    <form action="mouseIntitServlet" method="post" id="selectForm">
                                     <!-- 填充内容 -->
                                         <div class="layui-inline">
-                                            <label class="layui-form-label" >病害名称</label>
+                                            <label class="layui-form-label" >鼠害名称</label>
                                             <div class="layui-input-block" style="width:52%;">
-                                                <input  value="${diseaseName}" type="text" name="diseaseName"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                                                <input  value="${mouseName}" type="text" name="mouseName"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
-                                        <div class="layui-inline" style="margin-top: 10%">
-                                            <label class="layui-form-label" >发病症状</label>
-                                            <div class="layui-input-block" style="width:52%;">
-                                                <input  value="${diseaseSymptom}" type="text" name="diseaseSymptom"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-                                            </div>
-                                        </div>
+
                                     <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%" type="submit">查询</button>
 <!--分页标记-->
                                         <input id="currentPageId" name="currentPage" style="display: none" value="${currentPage}"/><!--当前页-->
@@ -130,7 +123,7 @@
 
     //点击删除按钮
     $("#delUser").click(function () {
-        $("#userIdRecord").attr('action','findDiseaseServlet');
+        $("#userIdRecord").attr('action','findMouseServlet');
         //从隐藏div中获取选中id
         var userId=$("#userId").val();
         if(userId==null||""==userId){

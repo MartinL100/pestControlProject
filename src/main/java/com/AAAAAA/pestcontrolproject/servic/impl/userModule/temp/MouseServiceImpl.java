@@ -37,7 +37,7 @@ public class MouseServiceImpl implements IMouseService {
         }else {
            session.getMapper(ImouseDao.class).AddMouse(mouseBean);
            session.commit();
-
+            session.close();
         return false;
         }
     }

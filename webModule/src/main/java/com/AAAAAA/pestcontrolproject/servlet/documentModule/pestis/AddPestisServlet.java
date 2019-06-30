@@ -7,6 +7,7 @@ import com.AAAAAA.pestcontrolproject.servic.impl.documentModule.PestisServiceImp
 import com.AAAAAA.pestcontrolproject.util.CheckString;
 import com.AAAAAA.pestcontrolproject.util.FileStringInfo;
 import com.AAAAAA.pestcontrolproject.util.UploadUtil;
+import com.AAAAAA.pestcontrolproject.util.UserModuleStringInfo;
 import org.apache.commons.fileupload.FileItem;
 
 import javax.servlet.ServletException;
@@ -36,8 +37,8 @@ public class AddPestisServlet extends HttpServlet {
             List<FileItem> listFile = map.get("listFile");
             String afterPathDir = FileStringInfo.filePath; //文件放入的文件夹名
             //获得图片
-            for (FileItem file : listFile) {
-                String fileName = file.getName();//上传图片的名字
+            for (int i=0;i<listFile.size();i++) {
+                String fileName = listFile.get(i).getName();//上传图片的名字
                 //验证图片后缀名
                 bl = CheckString.verifyFile(fileName, new String[]{"jpg", "png", "gif"});
                 if (!bl) {
@@ -47,9 +48,14 @@ public class AddPestisServlet extends HttpServlet {
                 //重新生产新的文件名
                 fileName = FileStringInfo.getNewFileName(fileName);
                 //把文件名放入到虫害害对象
-              pestssBean.setPestisPhoto(fileName);
+                if(i==0){
+                    pestssBean.setPestisPhoto(fileName);
+                }else {
+                    pestssBean.setPestisAdultImages(fileName);
+                }
+
                 OutputStream out = new FileOutputStream(afterPathDir + fileName);
-                InputStream in = file.getInputStream();
+                InputStream in = listFile.get(i).getInputStream();
                 byte[] bytes = new byte[1024 * 3];
                 int len = 0;
                 while ((len = in.read(bytes)) > 0) {
@@ -58,7 +64,7 @@ public class AddPestisServlet extends HttpServlet {
                 }
                 out.close();
                 in.close();
-
+            }
                 //图片合法则获取表单数据
                 if (bl) {
                     for (FileItem form : listForm) {
@@ -85,14 +91,14 @@ public class AddPestisServlet extends HttpServlet {
                     }
 
                 }
-            }
+
             if (bl) {
                 //验证成功，将数据保存，并返回SpecialistMain.jsp
               ipestisService.AddPestis(pestssBean);
 
-                response.sendRedirect("/pestisIndex");
+                response.sendRedirect("wormIntitServlet");
             } else {
-                //验证失败，返回到错误页面
+
             }
         } catch (Exception e1) {
             e1.printStackTrace();
