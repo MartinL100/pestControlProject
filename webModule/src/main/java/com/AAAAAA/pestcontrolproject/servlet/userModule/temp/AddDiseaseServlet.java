@@ -1,7 +1,10 @@
 package com.AAAAAA.pestcontrolproject.servlet.userModule.temp;
 
+import com.AAAAAA.pestcontrolproject.entity.documentModule.DiseaseBean;
 import com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean;
+import com.AAAAAA.pestcontrolproject.servic.impl.userModule.temp.DiseaseServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.userModule.temp.PestisServiceImpl;
+import com.AAAAAA.pestcontrolproject.servic.userModule.temp.IDiseaseService;
 import com.AAAAAA.pestcontrolproject.servic.userModule.temp.IPestisService;
 import com.AAAAAA.pestcontrolproject.util.CheckString;
 import com.AAAAAA.pestcontrolproject.util.FileStringInfo;
@@ -20,14 +23,15 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
-public class AddWormServlet extends HttpServlet {
+public class AddDiseaseServlet extends HttpServlet {
+    IDiseaseService diseaseService =new DiseaseServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IPestisService ipestisService=new PestisServiceImpl();
+
         //获得页面的文件和表单文本map
         UploadUtil uploadUtil = new UploadUtil();
         boolean bl = false;
         //得到虫害对象
-        pestisBean pestssBean =new pestisBean();
+        DiseaseBean diseaseBean =new DiseaseBean();
         try {
             Map<String, List<FileItem>> map = uploadUtil.getFileItem(request);
             //获得表单集合
@@ -47,11 +51,7 @@ public class AddWormServlet extends HttpServlet {
                 //重新生产新的文件名
                 fileName = FileStringInfo.getNewFileName(fileName);
                 //把文件名放入到虫害害对象
-                if(i==0){
-                    pestssBean.setPestisPhoto(fileName);
-                }else {
-                    pestssBean.setPestisAdultImages(fileName);
-                }
+                diseaseBean.setDiseasePhoto(fileName);
 
                 OutputStream out = new FileOutputStream(afterPathDir + fileName);
                 InputStream in = listFile.get(i).getInputStream();
@@ -70,22 +70,18 @@ public class AddWormServlet extends HttpServlet {
                     String filedName = form.getFieldName();
                     String val = form.getString("UTF-8");
                     //添加数据
-                    if ("pestisName".equals(filedName)) {
-                        pestssBean.setPestisName(val);
-                    } else if ("pestisBreed".equals(filedName)) {
-                        pestssBean.setPestisBreed(val);
-                    } else if ("pestisHost".equals(filedName)) {
-                        pestssBean.setPestisHost(val);
-                    } else if ("pestisEnemy".equals(filedName)) {
-                        pestssBean.setPestisEnemy(val);
-                    } else if ("pestisHarm".equals(filedName)) {
-                        pestssBean.setPestisHarm(val);
-                    } else if ("pestisDefense".equals(filedName)) {
-                        pestssBean.setPestisDefense(val);
-                    } else if ("pestisPhoto".equals(filedName)) {
-                        pestssBean.setPestisPhoto(val);
-                    }else if ("pestisAdultImages".equals(filedName)){
-                        pestssBean.setPestisAdultImages(val);
+                    if ("diseaseName".equals(filedName)) {
+                        diseaseBean.setDiseaseName(val);
+                    } else if ("diseaseSource".equals(filedName)) {
+                        diseaseBean.setDiseaseSource(val);
+                    } else if ("diseaseSymptom".equals(filedName)) {
+                        diseaseBean.setDiseaseSymptom(val);
+                    } else if ("diseaseLaw".equals(filedName)) {
+                        diseaseBean.setDiseaseLaw(val);
+                    } else if ("diseaseMeasure".equals(filedName)) {
+                        diseaseBean.setDiseaseMeasure(val);
+                    } else if ("diseaseHarm".equals(filedName)) {
+                        diseaseBean.setDiseaseHarm(val);
                     }
                 }
 
@@ -93,13 +89,13 @@ public class AddWormServlet extends HttpServlet {
 
             if (bl) {
                 //验证成功，将数据保存，并返回SpecialistMain.jsp
-                ipestisService.AddPestis(pestssBean);
+                diseaseService.AddDisease(diseaseBean);
 
                 response.sendRedirect("wormIntitServlet");
             } else {
                 //验证失败，返回到错误页面
                 request.setAttribute("errorInfo", UserModuleStringInfo.FILE_ISNOT_ALLOWED);
-                request.getRequestDispatcher("page/userModule/temp/worm/wormAdd.jsp").forward(request,response);
+                request.getRequestDispatcher("page/userModule/temp/disease/diseaseAdd.jsp").forward(request,response);
             }
         } catch (Exception e1) {
             e1.printStackTrace();

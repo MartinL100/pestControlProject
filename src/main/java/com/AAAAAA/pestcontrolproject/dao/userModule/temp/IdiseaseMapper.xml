@@ -15,7 +15,7 @@
     </resultMap>
         <!--添加-->
       <insert id="AddDisease" parameterType="DiseaseBean" >
-        insert into t_disease( disease_name , disease_source , disease_symptom, disease_law, disease_harm, disease_photo, disease_measure)
+        insert into t_disease( disease_name ,disease_ source,disease_symptom, disease_law, disease_harm, disease_photo, disease_measure)
         values (#{diseaseName} ,#{diseaseSource} ,#{diseaseSymptom} ,#{diseaseLaw} ,#{diseaseHarm} ,#{diseasePhoto} ,#{diseaseMeasure});
       </insert>
            <!--按id查询详细信息-->
@@ -52,12 +52,10 @@
             <if test="diseaseName != null and diseaseName!='' ">
              and disease_name= #{diseaseName}
             </if>
-             <if test="diseaseHarm != null and diseaseHarm !='' " >
-                 and disease_harm=#{diseaseHarm}
+             <if test="diseaseSymptom != null and diseaseSymptom !='' " >
+                 and disease_symptom=#{diseaseSymptom}
              </if>
-              <if test="diseaseLaw != null and diseaseLaw!='' ">
-                  and disease_law=#{diseaseLaw}
-              </if>
+
       </select>
 
       <!--初始化页面-->
