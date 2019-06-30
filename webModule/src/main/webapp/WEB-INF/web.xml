@@ -407,8 +407,70 @@
     <!--曾贤富mapper配置部分-->
 
     <!--刘俊麟mapper配置部分-->
-
-
+<servlet>
+    <servlet-name>addAreaInitServlet</servlet-name>
+    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.AddAreaInitServlet</servlet-class>
+</servlet>
+    <servlet>
+        <servlet-name>addAreaServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.AddAreaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addClassInitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.AddClassInitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addClassServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.AddClassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findAreaServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.FindAreaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findClassServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.FindClassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showClassServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.ShowClassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateClassServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.areaAndClassModule.UpdateClassServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateClassServlet</servlet-name>
+        <url-pattern>/updateClassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showClassServlet</servlet-name>
+        <url-pattern>/showClassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findClassServlet</servlet-name>
+        <url-pattern>/findClassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findAreaServlet</servlet-name>
+        <url-pattern>/findAreaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addClassServlet</servlet-name>
+        <url-pattern>/addClassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addClassInitServlet</servlet-name>
+        <url-pattern>/addClassInitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addAreaServlet</servlet-name>
+        <url-pattern>/addAreaServlet</url-pattern>
+    </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>addAreaInitServlet</servlet-name>
+    <url-pattern>/addAreaInitServlet</url-pattern>
+</servlet-mapping>
     <!--刘俊麟mapper配置部分-->
 
 
@@ -509,7 +571,7 @@
     </filter>
     <filter-mapping>
         <filter-name>powerFilter</filter-name>
-        <url-pattern>/fhsikjf</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>encodeFilter</filter-name>

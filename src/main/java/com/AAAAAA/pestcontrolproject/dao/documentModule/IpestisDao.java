@@ -11,7 +11,7 @@ public interface IpestisDao {
      *  虫害害查询初始化
      * @return 虫害集合
      */
-    public List<pestisBean> getListPestis();
+    public List<pestisBean> getListPestis(Map map);
 
     /**
      * 按id查询
