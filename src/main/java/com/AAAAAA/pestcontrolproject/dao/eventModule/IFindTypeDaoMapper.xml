@@ -25,4 +25,11 @@
 
 </select>
 
+    <select id="findAreaByAreaId" parameterType="int" resultType="com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea">
+
+    select area_id as areaId, area_name as areaName from sys_area where area_id=#{0}
+
+</select>
+
+
 </mapper>

@@ -81,10 +81,10 @@
 
 <!-- 按钮部分 -->
 <div style="position: relative;left:100px;top:20px">
-    <a id="add" href="eventAddInitServlet" method="post">
+    <a id="add" href="eventAddInitServlet" method="post" >
     <button id="b1" class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:36px" >&nbsp&nbsp&nbsp&nbsp添加事件&nbsp&nbsp&nbsp&nbsp</button>
     </a>
-    <button id="b2" class="layui-btn layui-btn-primary" style="position: relative;left:28px;top:36px">查询事件信息</button>
+    <button id="b2" class="layui-btn layui-btn-primary" style="position: relative;left:35px;top:36px">查询事件信息</button>
     <p/>
     <button id="b3" class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:88px">申请专家会审</button>
     <button id="b4" class="layui-btn layui-btn-primary"style="position: relative;left:28px;top:88px">修改事件信息</button>

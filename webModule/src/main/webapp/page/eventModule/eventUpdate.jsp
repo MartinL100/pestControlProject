@@ -68,7 +68,7 @@
         <div class="layui-inline" >
             <label>发现途径</label>
             <div class="layui-input-inline" style="width:65%;">
-                <select id="findWaySelect" name="findWay" >
+                <select id="findWaySelect" name="findWay"  lay-verify="required" lay-search="" >
                     <option value="">直接选择或搜索选择</option>
                     <option value="1">已得到控制</option>
                     <option value="2">防治中</option>
@@ -82,12 +82,11 @@
                 <textarea id="plan" name="plan" placeholder="${event.plan}" class="layui-textarea" style="width: 400px;margin-top: -16px;margin-left: -49px"></textarea>
             </div>
             <hide id="hide">
-                <input  id="disasterStage" name="disasterStage" type="text"  value="${event.disasterStage}"  />
-                <input  id="findId" type="text"  value="${event.findWay}"  />
-            <input  type="text" name="eventId" value="${event.eventId}"  />
+                <input  id="disasterStage" name="disasterStage" type="text"value="${event.disasterStage}"  />
+                <input  id="findId" type="text"  value="${event.findWay}"/>
+            <input  type="text" name="eventId" value="${event.eventId}"/>
             </hide>
         </div>
-
     </form>
 </div>
 <!--提交按钮-->
@@ -108,17 +107,15 @@
         $("#hide").hide();
        var findid=$("#findId").val();
         $("#findWaySelect").val(findid);
-    })
+    });
   $("#changeButton").click(function () {
       $("#plan1").val( $("#plan").val());
-      if($("#plan").val().length!=0){
+      if($("#plan").val().length!=0&&$("#findWaySelect").val().length!=0){
       $("#f1").submit();}
       else {
           sendErroInfo("修改项不能为空！")
       }
-  })
-
-
+  });
 </script>
 
 <script src="layuiadmin/layui/layui.js"></script>
@@ -134,14 +131,11 @@
             ,layer = layui.layer
             ,laydate = layui.laydate
             ,form = layui.form;
-
         form.render(null, 'component-form-group');
-
         laydate.render({
             elem: '#LAY-component-form-group-date'
         });
     });
-
 </script>
 </body>
 </html>
