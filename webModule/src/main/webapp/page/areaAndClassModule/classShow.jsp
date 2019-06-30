@@ -4,20 +4,11 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">
-    <script src="../../lib/jquery.js"></script>
-    <script src="../../layuiadmin/layui/layui.js"></script>
-    <script src="../../lib/userModule/userModule.js"></script>
-    <title>Title</title>
+ <jsp:include page="../../head.jsp"></jsp:include>
+    <title>小班信息</title>
 </head>
 <body>
 <Main style="width: 90% ;margin: auto">
@@ -28,44 +19,45 @@
                 <div class="layui-card">
                     <div class="layui-card-header" align="center"><h1>查看小班信息</h1></div>
 
-    <!--左边区域-->
-    <div  style="position: relative;width:400px;left:15%;float: left">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <div class="layui-inline" style="position: relative;left:15px">
-                    <label class="layui-form-label"style="margin-top: 20px;height: 25px">名称：${classShow.sclassName}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px;width: 100px">负责人电话：${classShow.sclassLeaderTel}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">负责区域：${classShow.area.areaName}</label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">地类：${classShow.area.selectedType.typeVal}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">创建时间：${classShow.sclassStartDate}   </label><p/>
+                    <!--左边区域-->
+                    <div  style="position: relative;width:400px;left:5%;float: left ;" >
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <div class="layui-inline" style="position: relative;left:15px;" >
+                                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width:100%;text-align:left;">名称：${classShow.sclassName}   </label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">负责人电话：${classShow.sclassLeaderTel}   </label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">负责区域：${classShow.area.areaName}</label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">地类：${classShow.area.selectedType.typeVal}   </label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">创建时间：${classShow.sclassStartDate}   </label><p/>
 
 
-                </div>
-            </div>
-        </div>
-    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!--右边区域-->
-    <div  style="position: relative;width:400px;left:15%;float: left">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <div class="layui-inline" style="position: relative;left:15px">
-                    <label class="layui-form-label"style="margin-top: 20px; height: 25px">负责人：${classShow.sclassLeader}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">人员数量：${classShow.sclassNum}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">林种：${classShow.area.areaTreeType}</label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">优势树种：${classShow.area.areaGoodTree}   </label><p/>
+                    </div>
 
-                </div>
-            </div>
-        </div>
+                    <!--右边区域-->
+                    <div  style="position: relative;width:400px;left:15%;float: left">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <div class="layui-inline" style="position: relative;left:15px">
+                                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 100%;text-align:left;">负责人：${classShow.sclassLeader}   </label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">人员数量：${classShow.sclassNum}   </label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">林种：${classShow.area.areaTreeType}</label><p/>
+                                    <label class="layui-form-label"style="margin-top: 40px;height: 25px;width: 100%;text-align:left;">优势树种：${classShow.area.areaGoodTree}   </label><p/>
 
-    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <!--提交按钮-->
                     <div class="layui-form-item layui-layout-admin">
                         <div class="layui-input-block">
                             <div class="layui-footer" style="left: 0;">
-                                <form  action="eventMainServlet" method="post">
+                                <form  action="findClassServlet" method="post">
                                     <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1" id="buttonID0">返回</button>
                                 </form>
                             </div>

@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class PestisServiceImpl implements IpestisService {
     @Override
-    public List<pestisBean> getListPestis() {
+    public List<pestisBean> getListPestis(Map map) {
         SqlSession session = GetSession.getSession();
-        List<pestisBean> listPestis = session.getMapper(IpestisDao.class).getListPestis();
+        List<pestisBean> listPestis = session.getMapper(IpestisDao.class).getListPestis(map);
         return listPestis;
     }
 

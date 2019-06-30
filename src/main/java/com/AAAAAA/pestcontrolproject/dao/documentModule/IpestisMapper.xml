@@ -13,13 +13,21 @@
         <result column="pestis_adult_images" property="pestisAdultImages"></result>
     </resultMap>
 
-    <select id="getListPestis" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean">
+    <select id="getListPestis" parameterType="map" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean">
         select
          pestis_id as id,
          pestis_name as pestisName,
          pestis_harm as pestisHost,
           pestis_harm as pestisHarm
-        from t_pestis;
+        from t_pestis where 1=1
+        <if test="pestisName!=null and pestisName!=''" >
+            and pestis_name=#{pestisName}
+        </if>
+        <if test="pestisHost != null and pestisHost!=''">
+            and pestis_host=#{pestisHost}
+        </if>
+        limit #{startIndex},#{rowNum}
+
     </select>
 
     <select id="AllPestis" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean">
@@ -49,7 +57,7 @@
         <if test="pestisName!=null and pestisName!=''" >
             and pestis_name=#{pestisName}
         </if>
-         <if test="pestisHost != null and pestisHost=''">
+         <if test="pestisHost != null and pestisHost!=''">
               and pestis_host=#{pestisHost}
          </if>
         limit #{startIndex},#{rowNum}

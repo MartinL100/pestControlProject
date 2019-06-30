@@ -11,7 +11,7 @@ public interface IpestisService {
      * 初始化
      * @return
      */
-    public List<pestisBean>getListPestis();
+    public List<pestisBean>getListPestis(Map map);
 
     /**
      * 按id查询详细信息
