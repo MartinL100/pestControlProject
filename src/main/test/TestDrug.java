@@ -25,6 +25,7 @@ public class TestDrug {
         Map<String,Object> map=new HashMap<>();
 //        map.put("drugCureType","虫害");
 //        map.put("drugType","器械");
+        map.put("drugName","草");
         map.put("startIndex",0);
         map.put("rowNum",5);
 
@@ -32,6 +33,8 @@ public class TestDrug {
         for (SysDrug s:list) {
             System.out.println(s);
         }
+        int c=dao.getAllCount(map);
+        System.out.println(c);
         session.close();
     }
 
@@ -111,7 +114,9 @@ public class TestDrug {
         SqlSession session =  GetSession.getSession();
         IStockpileDao dao =session.getMapper(IStockpileDao.class);
         Map<String,Object> map=new HashMap<>();
-        System.out.println(dao.GetCounts(map));
+        map.put("drugName","虫");
+        int count=dao.GetCounts(map);
+        System.out.println(count);
         session.close();
     }
 

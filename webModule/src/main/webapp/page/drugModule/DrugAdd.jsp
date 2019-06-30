@@ -30,7 +30,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">名称</label>
                         <div class="layui-input-inline">
-                            <input style="width: 212px" type="articleName" id="drugName" name="drugName" lay-verify="pass" placeholder="请输入物品名称" autocomplete="off" class="layui-input">
+                            <input style="width: 212px" onblur="verifyContent(this)" type="articleName" id="drugName" name="drugName" lay-verify="pass" placeholder="请输入物品名称" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -69,14 +69,15 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">主要用途</label>
                     <div class="layui-input-block">
-                        <textarea style="width: 350px;height: 200px" id="purpose" name="DrugUseWay" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea onblur="verifyContent(this)" style="width: 350px;height: 200px" id="purpose" name="DrugUseWay" placeholder="请输入主要内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">数量</label>
                     <div class="layui-input-block">
-                        <input type="number" placeholder="请输入数量" id="drugNum" name="drugNum" style="width: 205px;height: 34px">
+                        <input onblur="verifyContent(this)" type="number" placeholder="请输入数量" id="drugNum" name="drugNum" style="width: 205px;height: 34px">
+                   <span style="color: red"></span>
                     </div>
                 </div>
                 <div class="layui-form-item layui-layout-admin">
@@ -96,6 +97,17 @@
 </script>
 
 <script>
+
+    function verifyContent(obj){
+       var placeholder=  $(obj).attr("placeholder")
+       var  txt=$(obj).text();
+       if(''==txt){
+           $(obj).attr("placeholder",placeholder)
+       }
+       alert(placeholder)
+    }
+
+
     layui.config({
         base: '/web/layuiadmin/' //静态资源所在路径
     }).extend({
@@ -119,7 +131,10 @@
         var drugCureType= $("#drugCureType").val()
         var drugType= $("#drugType").val()
         var drugNum= $("#drugNum").val()
-        if (''!=drugName){
+        if(''==drugName){
+            $("#drugName").next().eq(0).text("请输入名字")
+        }
+        if (''!=drugName&&''!=drugNum&&drugNum>0){
             // alert(drugName+"   "+drugCureType+"  "+drugType+"   "+drugNum)
             $("#AddFormId").submit();
           $("#AddFormId").reset();
