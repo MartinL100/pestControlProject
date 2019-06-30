@@ -37,15 +37,17 @@ public class ConferenceMainServlet extends HttpServlet {
         String findEvent = req.getParameter("findEvent");//会商ID
         String addResultOrRevert = req.getParameter("addResultOrRevert");//添加、返回
         String conferenceResult1 = req.getParameter("conferenceResult");//会商结果
+        ConferenceDto conferenceDto = service.findEventByConferenceId(findEvent);
+
+        //查询所有的专家
+        List<TSpecialist> specialistList = specialistService.findSpecialistNameList();
+        //将事件记录对象和结果集合转发到会审界面ConferenceMainServlet
+        req.setAttribute("findEvent", findEvent);
+        req.setAttribute("conferenceDto", conferenceDto);
+
         if (null == addResultOrRevert || "".equals(addResultOrRevert)) {
-            ConferenceDto conferenceDto = service.findEventByConferenceId(findEvent);
             //得到事件记录对象会审的结果集合
             List<ConferenceResult> resultList = resultService.findConferenceByConferenceId(findEvent);
-            //查询所有的专家
-            List<TSpecialist> specialistList = specialistService.findSpecialistNameList();
-            //将事件记录对象和结果集合转发到会审界面ConferenceMainServlet
-            req.setAttribute("findEvent", findEvent);
-            req.setAttribute("conferenceDto", conferenceDto);
             req.setAttribute("resultList", resultList);
             req.setAttribute("specialistList", specialistList);
             req.getRequestDispatcher("page/specialistModule/ConferenceMain.jsp").forward(req, resp);
@@ -54,10 +56,10 @@ public class ConferenceMainServlet extends HttpServlet {
             ConferenceResult conferenceResult = new ConferenceResult();
             conferenceResult.setConferenceDate(new Date(System.currentTimeMillis()).toString());//得到当前时间
             conferenceResult.setConferenceResult(conferenceResult1);
-            conferenceResult.setConferenceId(findEvent);//会商ID
+            conferenceResult.setConferenceId(Long.parseLong(findEvent));//会商ID
             resultService.addConferenceResult(conferenceResult);//添加事件结果
             //得到参与专家
-            String resultId = resultService.findResultByConference(findEvent);//得到结果ID
+            ConferenceResult resultId = resultService.findResultByConference(findEvent);//得到结果ID
             String specialist = req.getParameter("specialist");//专家ID字符串
 
             String[] str = specialist.split("\\,");
@@ -65,14 +67,17 @@ public class ConferenceMainServlet extends HttpServlet {
                 System.out.println(s);
             }
             for (int i = 0; i < str.length; i++) {
-                resultSpecialistService.addResultSpecialist(resultId, str[i]);
+                resultSpecialistService.addResultSpecialist(resultId.getResultId(), str[i]);
             }
-            resp.sendRedirect("conferenceMain");
+            //得到事件记录对象会审的结果集合
+            List<ConferenceResult> resultList = resultService.findConferenceByConferenceId(findEvent);
+            req.setAttribute("resultList", resultList);
+            req.setAttribute("specialistList", specialistList);
+            req.getRequestDispatcher("page/specialistModule/ConferenceMain.jsp").forward(req, resp);
         } else if ("revert".equals(addResultOrRevert)) {
             //点击返回
             //重定向到ConferenceEvent.jsp
             resp.sendRedirect("conferenceEvent");
         }
-
     }
 }

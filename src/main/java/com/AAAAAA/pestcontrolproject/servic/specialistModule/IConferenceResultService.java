@@ -29,5 +29,5 @@ public interface IConferenceResultService {
      * @param ConferenceID 会商ID
      * @return 结果ID
      */
-    public String findResultByConference(String ConferenceID);
+    public ConferenceResult findResultByConference(String ConferenceID);
 }

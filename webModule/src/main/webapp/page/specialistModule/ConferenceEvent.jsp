@@ -21,9 +21,9 @@
         <div class="layui-col-md12">
             <form action="conferenceEvent" method="post" id="fid">
                 <input type="hidden" name="findEvent" value="" id="conferenceEventId"> <!-- 会商ID -->
-                <div class="layui-card" >
+                <div class="layui-card">
                     <h1 align="center">事件记录</h1>
-                    <div class="layui-card-body">
+                    <div class="layui-card-body" style="overflow-y: auto;height: 70%;">
                         <table class="layui-table">
                             <thead>
                             <tr>

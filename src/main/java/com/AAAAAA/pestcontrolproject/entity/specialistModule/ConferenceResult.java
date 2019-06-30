@@ -5,19 +5,12 @@ import java.util.List;
 public class ConferenceResult {
 
     private long resultId;  //会商结果ID
-    private String conferenceId;//会商ID
+    private long conferenceId;//会商ID
     private String conferenceDate; // 专家会商日期
     private String conferenceResult; // 专家会商结果
     private List<TSpecialist> specialistList;//专家集合
 
     public ConferenceResult() {
-    }
-
-    public ConferenceResult(String conferenceId, String conferenceDate, String conferenceResult, List<TSpecialist> specialistList) {
-        this.conferenceId = conferenceId;
-        this.conferenceDate = conferenceDate;
-        this.conferenceResult = conferenceResult;
-        this.specialistList = specialistList;
     }
 
     public long getResultId() {
@@ -28,11 +21,11 @@ public class ConferenceResult {
         this.resultId = resultId;
     }
 
-    public String getConferenceId() {
+    public long getConferenceId() {
         return conferenceId;
     }
 
-    public void setConferenceId(String conferenceId) {
+    public void setConferenceId(long conferenceId) {
         this.conferenceId = conferenceId;
     }
 
@@ -64,7 +57,7 @@ public class ConferenceResult {
     public String toString() {
         return "ConferenceResult{" +
                 "resultId=" + resultId +
-                ", conferenceId='" + conferenceId + '\'' +
+                ", conferenceId=" + conferenceId +
                 ", conferenceDate='" + conferenceDate + '\'' +
                 ", conferenceResult='" + conferenceResult + '\'' +
                 ", specialistList=" + specialistList +

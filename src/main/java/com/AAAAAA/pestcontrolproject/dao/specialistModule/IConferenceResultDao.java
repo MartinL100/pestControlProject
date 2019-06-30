@@ -30,7 +30,7 @@ public interface IConferenceResultDao {
      * 根据会商ID查询结果ID
      *
      * @param ConferenceID 会商ID
-     * @return 结果ID
+     * @return 会商结果对象
      */
-    public String findResultByConference(String ConferenceID);
+    public ConferenceResult findResultByConference(String ConferenceID);
 }

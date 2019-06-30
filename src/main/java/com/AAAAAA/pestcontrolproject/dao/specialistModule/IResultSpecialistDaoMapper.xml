@@ -4,6 +4,6 @@
     <!--添加专家结果-->
     <insert id="addResultSpecialist">
         insert into result_specialist(result_id,specialist_id)
-        VALUES(${resultId},${specialistId})
+        VALUES(#{0},#{1})
     </insert>
 </mapper>

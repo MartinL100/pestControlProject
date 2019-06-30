@@ -16,6 +16,7 @@
 </head>
 <body>
 
+
 <div class="layui-fluid">
     <div class="layui-card">
         <h1 align="center" style="font-size: 35px">专家会商</h1>
@@ -24,57 +25,65 @@
                 <input type="hidden" value="" name="addResultOrRevert" id="addResultOrRevert"/>
                 <input type="hidden" value="${findEvent}" name="findEvent" id="findEventId"/>
                 <input type="hidden" value="" name="specialist" id="specialist">
-                <div style=" position: relative;width:400px;left:15%;float: left">
+
+
+                <div style=" position: relative;width:40%;left:15%;float: left">
                     <div class="layui-form-item" style="margin-top: 20px">
                         <div class="layui-inline">
                             <label class="layui-form-label"
-                                   style="text-align:left;">事件名称</label><span>${conferenceDto.eventName}</span><br/>
+                                   style="text-align:left;width: 90%">事件名称&nbsp;&nbsp;&nbsp;${conferenceDto.eventName}</label><br/>
                             <label class="layui-form-label"
-                                   style="text-align:left;">时间</label><span>${conferenceDto.occurTime}</span><br/>
+                                   style="text-align:left;width: 90%">时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${conferenceDto.occurTime}</label><br/>
                             <label class="layui-form-label"
-                                   style="text-align:left;">发生位置</label><span>${conferenceDto.areaName}</span><br/>
+                                   style="text-align:left;width: 90%">发生位置&nbsp;&nbsp;&nbsp; ${conferenceDto.areaName}</label><br/>
                             <label class="layui-form-label"
-                                   style="text-align:left;">灾情描述</label><span>${conferenceDto.eventDescribe}</span><br/>
+                                   style="text-align:left;width: 90%">灾情描述&nbsp;&nbsp;&nbsp; ${conferenceDto.eventDescribe}</label><br/>
                         </div>
                     </div>
 
                     <div class="layui-form-item layui-form-text">
-                        <label class="layui-form-label">会商结果</label>
-                        <div class="layui-input-block">
+                        <label class="layui-form-label" style="text-align:left;">会商结果</label>
+                        <div class="layui-input-block" style="display: inline-block;margin-left: 0px">
                             <textarea style="width:200px;" name="conferenceResult" placeholder="请输入内容"
-                                      class="layui-textarea"></textarea>
+                                      class="layui-textarea" id="textId"></textarea>
                         </div>
                     </div>
                 </div>
 
 
-                <div style="position: relative;width:400px;left:15%;float: left;margin-top: 20px">
+                <div style="position: relative;width:50%;left:15%;float: left;margin-top: 20px">
                     <div class="layui-inline">
-                        <label class="layui-form-label">照片</label>
-                        <img src="<%=basePathIMG%>${conferenceDto.photoPath}" style="width: 100px;height: 120px">
-                        <label class="layui-form-label">影响面积</label>${conferenceDto.eventArea}<br/>
-                        <label class="layui-form-label">会商人员</label>
+                        <div>
+                            <label class="layui-form-label" style="text-align:left;">灾区图片</label>
+                            <img src="<%=basePathIMG%>${conferenceDto.photoPath}"
+                                 style="display: inline-block; width: 120px;height: 120px">
+                        </div>
+                        <label class="layui-form-label"
+                               style="text-align:left;width: 90%">影响面积 ${conferenceDto.eventArea}</label><br/>
+                        <label class="layui-form-label" style="text-align:left;">会商人员</label>
 
-                        <div style="overflow: hidden">
+                        <div style="overflow: hidden;display: inline-block">
 
                             <div id="box1" style="float: left;
-                           width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid">
+                           width: 110px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid">
                                 <c:forEach items="${specialistList}" var="c">
                                     <span><input type="checkbox" onchange="inputChange(this)"
                                                  value="${c.specialistId}"/><span>${c.specialistName}</span></span><br/>
                                 </c:forEach>
                             </div>
-                            <button type="button" id="dtid" style="float: left; width:40px;margin-top:40px">添加</button>
-                            <div style="float: left;margin-left: 150px;
-                            width: 100px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid" id="box2">
+                            <button class="layui-btn layui-btn-primary layui-btn-sm" type="button" id="dtid"
+                                    style="float: left; width:40px;margin-top:40px">添加
+                            </button>
+                            <div style=" float: left;
+                            width: 110px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid" id="box2">
 
                             </div>
                         </div>
                     </div>
 
 
-                    <div>
-                        <button class="layui-btn layui-btn-primary layui-btn-sm"
+                    <div style="margin-left: 10px">
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm"
                                 style="width:120px;margin-top:40px" onclick="resultAdd('resultAdd')">添加会商信息
                         </button>
 
@@ -85,7 +94,7 @@
                 </div>
 
 
-                <div>
+                <div style="float: left; overflow-y: auto;height: 20%;width: 100%">
                     <table class="layui-table">
                         <thead>
                         <tr>
@@ -107,7 +116,6 @@
                                 <td>
                                         ${c.conferenceResult}
                                 </td>
-                                >
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -128,9 +136,8 @@
         //获取box1中被选中的节点
         var box1Check = $("#box1 :checked");
         $.each(box1Check, function () {
-
             //将选中的节点添加到box2
-            $("#box2").append(this.parentNode)
+            $("#box2").append( this.parentNode);
 
         });
 
@@ -154,17 +161,24 @@
 
 
     function resultAdd(r) {
-        var a = "";
-        var specialistId = $(":checked");
-        specialistId.each(function () {
-            a = a + this.value + ",";
-        });
-        a = a.substring(0, a.length - 1);
-        $("#specialist").val(a);
-        $("#addResultOrRevert").val(r);
-        $("#fid").submit();
-    }
 
+        var textVal = $("#textId").val();
+        var bl = true;
+        if (textVal == null || textVal.length == 0) {
+            sendErroInfo("请输入会商结果");
+        }
+        if (bl) {
+            var a = "";
+            var specialistId = $(":checked");
+            specialistId.each(function () {
+                a = a + this.value + ",";
+            });
+            a = a.substring(0, a.length - 1);
+            $("#specialist").val(a);
+            $("#addResultOrRevert").val(r);
+            $("#fid").submit();
+        }
+    }
 
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径

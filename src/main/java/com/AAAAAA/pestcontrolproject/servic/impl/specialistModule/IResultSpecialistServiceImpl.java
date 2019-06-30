@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 public class IResultSpecialistServiceImpl implements IResultSpecialistService {
     @Override
-    public boolean addResultSpecialist(String  resultId,String  specialistId) {
+    public boolean addResultSpecialist(long  resultId,String  specialistId) {
         SqlSession session = GetSession.getSession();
         int a = session.getMapper(IResultSpecialistDao.class).addResultSpecialist(resultId,specialistId);
         session.commit();

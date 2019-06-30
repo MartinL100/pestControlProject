@@ -1,0 +1,6 @@
+conferenceEvent
+conferenceMain
+specialistAdd
+specialistFind
+specialistMain
+specialistUpdate

@@ -7,5 +7,5 @@ public interface IResultSpecialistDao {
      * 添加专家结果
      * @return 受影响的行数
      */
-    public int addResultSpecialist( String  resultId,String  specialistId);
+    public int addResultSpecialist( long  resultId,String  specialistId);
 }

@@ -36,9 +36,9 @@ public class IConferenceResultServiceImpl implements IConferenceResultService {
     }
 
     @Override
-    public String findResultByConference(String ConferenceID) {
+    public ConferenceResult findResultByConference(String ConferenceID) {
         SqlSession session = GetSession.getSession();
-        String resultId = session.getMapper(IConferenceResultDao.class).findResultByConference(ConferenceID);
+        ConferenceResult resultId = session.getMapper(IConferenceResultDao.class).findResultByConference(ConferenceID);
         session.close();
         return resultId;
     }

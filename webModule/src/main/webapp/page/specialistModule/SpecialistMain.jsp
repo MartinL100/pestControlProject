@@ -98,7 +98,7 @@
                             </div>
                             <!-- 按钮结束 -->
                             <!-- 条件查询框开始 -->
-                            <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px; position: relative;left:620px;top: -30px;">
+                            <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px; position: relative;left:700px;top: -30px;">
                                 <span style=" position:absolute;top:-35px;left:30px">查询专家信息</span>
                                 <span style=" position:absolute;top:20px;left:30px">专家姓名</span>
                                 <input type="text" name="specialistName" value="${specialistName}"
@@ -138,7 +138,6 @@
     //查看专家信息、修改、删除专家标记提交
     function findSpecialist(r) {
         $("#hid1").val(r);
-        alert(r)
         var a = $("#hid2").val();
         if (a != null) {
             $("#sid1").text("");

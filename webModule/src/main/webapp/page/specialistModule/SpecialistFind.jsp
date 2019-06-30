@@ -3,8 +3,8 @@
 <%
     String path = request.getContextPath();
 //http://ip+port+projectName
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String basePathIMG = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/img/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePathIMG = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/";
 %>
 
 <html>
@@ -22,88 +22,53 @@
         <h1 align="center" style="font-size: 35px">查 看 专 家 信 息</h1>
         <div class="layui-card-body" style="padding: 15px;">
             <form class="layui-form" action="specialistFind" method="post" lay-filter="component-form-group">
-<input type="hidden" name="findTag" id="findTagId">
-                <div style="float: left;margin-left: 60px">
-                    <div class="layui-form-item" style="margin-top: 55px">
+                <input type="hidden" name="findTag" id="findTagId">
+                <div style="overflow:hidden;" align="center">
+                    <div class="layui-form-item"
+                         style="position: relative;width: 50%;float: left;">
+                        <div class="layui-inline" style="margin-left: 100px">
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 45px">姓名&emsp;&emsp;&emsp;&emsp;&emsp;${specialist.specialistName}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">出身年月&emsp;&emsp;&emsp;${specialist.specialistBirthday}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">性别&emsp;&emsp;&emsp;&emsp;&emsp;${specialist.specialistSex}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">专长&emsp;&emsp;&emsp;&emsp;&emsp;${specialist.specialistSpeciality}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">电话&emsp;&emsp;&emsp;&emsp;&emsp;${specialist.specialistTel}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">通讯地址&emsp;&emsp;&emsp;${specialist.specialistSite}</label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="layui-form-item"
+                         style="position: relative;width: 50%;float: left;margin-left:50%;margin-top:-400px;">
                         <div class="layui-inline">
-                            <label class="layui-form-label">姓名</label>${specialist.specialistName}
+                            <div style="float: left;margin-left: 15px">
+                                <img src="<%=basePathIMG%>${specialist.specialistPath}"
+                                     style="width: 150px;height: 200px">
+                            </div>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 5px">职务&emsp;&emsp;&emsp;&emsp;&emsp;${specialist.specialistDuty}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">工作单位&emsp;&emsp;&emsp;${specialist.specialistUnits}</label>
+                            <label class="layui-form-label" style="text-align:left;width: 90%;margin-top: 25px">邮箱&emsp;&emsp;&emsp;&emsp;&emsp;${specialist.specialistEmail}</label>
                         </div>
                     </div>
-
-                    <div class="layui-form-item" style="margin-top: 30px">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">出身年月</label>${specialist.specialistBirthday}
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item" style="margin-top: 30px">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">性别</label>${specialist.specialistSex}
-                        </div>
-                    </div>
-
-                </div>
-                <div  style="float: left; margin-left: 280px">
-                    <div class="layui-form-item" style="margin-top: 30px">
-                        <div class="layui-inline">
-                            <%--<label class="layui-form-label">照片</label>--%>
-                            <img src="<%=basePathIMG%>${specialist.specialistPath}" style="width: 100px;height: 120px">
-                        </div>
-                    </div>
                 </div>
 
 
-                <div class="layui-form-item" style="margin-top: 30px">
-                    <div class="layui-inline" style="margin-left: 60px">
-                        <label class="layui-form-label">专长</label>${specialist.specialistSpeciality}
-
-                    </div>
-                    <div class="layui-inline" style="margin-left: 280px">
-                        <label class="layui-form-label">职务</label>${specialist.specialistDuty}
-
-                    </div>
+                <div align="center">
+                    <button class="layui-btn layui-btn-primary layui-btn-sm"
+                            style="width:80px;margin-top:10px" onclick="getBack('getBack')">返回
+                    </button>
                 </div>
-
-
-                <div class="layui-form-item" style="margin-top: 25px">
-                    <div class="layui-inline" style="margin-left: 60px">
-                        <label class="layui-form-label">电话</label>${specialist.specialistTel}
-
-                    </div>
-                    <div class="layui-inline" style="margin-left: 280px">
-                        <label class="layui-form-label">工作单位</label>${specialist.specialistUnits}
-
-                    </div>
-                </div>
-
-
-                <div class="layui-form-item" style="margin-top: 25px">
-                    <div class="layui-inline">
-                        <label class="layui-form-label" style="margin-left: 60px">通讯地址</label>${specialist.specialistSite}
-
-                    </div>
-                    <div class="layui-inline" style="margin-left: 280px">
-                        <label class="layui-form-label">邮箱</label>${specialist.specialistEmail}
-
-                    </div>
-                </div>
-   <div align="center">
-                <button class="layui-btn layui-btn-primary layui-btn-sm"
-                        style="width:80px;margin-top:0px" onclick="getBack('getBack')">返回
-                </button>
-   </div>
             </form>
         </div>
     </div>
 </div>
 
 
-
 <script>
 
-    function getBack(r){
-       $("#findTagId").val(r);
+    function getBack(r) {
+        $("#findTagId").val(r);
         $("#fid").submit();
     }
 

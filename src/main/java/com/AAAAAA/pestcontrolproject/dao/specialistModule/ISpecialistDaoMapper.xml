@@ -39,13 +39,13 @@
             parameterType="map">
         select *from t_specialist where 1=1
         <if test="null!=specialistName and  ''!=specialistName">
-            and specialist_name=#{specialistName}
+            and specialist_name like concat("%",#{specialistName},"%")
         </if>
         <if test="specialistSpeciality!=null and specialistSpeciality!=''">
-            and specialist_speciality=#{specialistSpeciality}
+            and specialist_speciality like concat("%",#{specialistSpeciality},"%")
         </if>
         <if test="specialistUnits!=null and specialistUnits!=''">
-            and specialist_units=#{specialistUnits}
+            and specialist_units like concat("%",#{specialistUnits},"%")
         </if>
         limit #{startIndex},#{rowNum}
     </select>
