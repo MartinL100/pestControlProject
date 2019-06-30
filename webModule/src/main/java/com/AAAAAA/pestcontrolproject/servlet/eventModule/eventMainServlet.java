@@ -1,10 +1,12 @@
 package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 
+import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
+import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.FindTypeServiceImpl;
 import com.AAAAAA.pestcontrolproject.util.SplitPage;
 
 import javax.servlet.ServletException;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 public class eventMainServlet extends HttpServlet {
     IEventService service = new EventServiceImpl();
+    FindTypeServiceImpl servicef=new FindTypeServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Map<String,Object> map=new HashMap<>();
@@ -40,12 +43,18 @@ public class eventMainServlet extends HttpServlet {
             area.setAreaName("四川"+i+"区");
             areaList.add(area);
         }
+        //查询灾情状态集合
+        Map<String,Object> map1 =new HashMap<>();
+        map1.put("typeName","disasterStage");
+        List<SysSelectedType> disasterStageList=servicef.findType(map1);
+
 
         //将集合放入request
         request.setAttribute("areaList",areaList);
         request.setAttribute("currentPage",1);
         request.setAttribute("maxPage",mapSplit.get("maxPage"));
         request.setAttribute("eventsList",eventsSplit);
+        request.setAttribute("disasterStageList",disasterStageList);
         request.getRequestDispatcher("page/eventModule/eventMain.jsp").forward(request,response);
     }
 

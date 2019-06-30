@@ -58,8 +58,8 @@ public class eventShowServlet extends HttpServlet {
 //            int[]idArr=addConfService.findConfIdByEventId(eventId);iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
             List<ConferenceResult> conferenceResults=new ArrayList<>();
             ConferenceResult test=new ConferenceResult();
-            test.setConferenceDate("2001-01-01");
-            test.setConferenceResult("66666");
+            test.setConferenceDate("2019-06-28");
+            test.setConferenceResult("投放消毒液");
             List<TSpecialist> specialist= new ArrayList<>();
             TSpecialist special=new TSpecialist();
             special.setSpecialistName("hagou");

@@ -19,6 +19,10 @@
 
     </select>
 
+<select id="findClaaByAreaId" parameterType="int" resultType="com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass">
 
+    select sclass_id as sclassId, sclass_name as sclassName from sys_class where area_id=#{0}
+
+</select>
 
 </mapper>
