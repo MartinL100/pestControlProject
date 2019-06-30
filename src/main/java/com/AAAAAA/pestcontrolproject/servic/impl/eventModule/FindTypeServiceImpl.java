@@ -3,6 +3,7 @@ package com.AAAAAA.pestcontrolproject.servic.impl.eventModule;
 import com.AAAAAA.pestcontrolproject.dao.eventModule.IEventDao;
 import com.AAAAAA.pestcontrolproject.dao.eventModule.IFindTypeDao;
 import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
+import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysClass;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,6 +20,21 @@ public class FindTypeServiceImpl implements IFindTypeDao {
         session.commit();
         session.close();
         return selectedTypeList;
+
+    }
+
+    @Override
+    public SysClass findClaaByAreaId(int id) {
+
+        SqlSession session= GetSession.getSession();
+        IFindTypeDao dao=session.getMapper(IFindTypeDao.class);
+
+        SysClass aClass = dao.findClaaByAreaId(id);
+        session.commit();
+        session.close();
+        return aClass;
+
+
 
     }
 }

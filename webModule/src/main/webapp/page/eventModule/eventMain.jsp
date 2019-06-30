@@ -8,12 +8,9 @@
 <head>
     <base href="<%=basePath%>">
     <%@include file="../../head.jsp"%>
-
     <title>事件记录</title>
 </head>
 <body>
-
-
 
 <div class="layui-fluid">
 
@@ -43,7 +40,6 @@
                         <td>${e.eventName}</td>
                         <td>${e.occurTime}</td>
                         <td><c:if test="${e.areaId==0}">
-
                         </c:if>
                             <c:if test="${e.areaId==1}">
 
@@ -54,13 +50,13 @@
 
                         <td>${e.plan}</td>
                         <td><c:if test="${e.disasterStage==1}">
-                            已经得到控制
+
                         </c:if>
                             <c:if test="${e.disasterStage==2}">
-                                防治中
+
                             </c:if>
                             <c:if test="${e.disasterStage==3}">
-                               无法解决申请专家会商
+
                             </c:if></td>
                     </tr>
                 </c:forEach>
@@ -85,8 +81,9 @@
 
 <!-- 按钮部分 -->
 <div style="position: relative;left:100px;top:20px">
+    <a id="add" href="eventAddInitServlet" method="post">
     <button id="b1" class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:36px" >&nbsp&nbsp&nbsp&nbsp添加事件&nbsp&nbsp&nbsp&nbsp</button>
-
+    </a>
     <button id="b2" class="layui-btn layui-btn-primary" style="position: relative;left:28px;top:36px">查询事件信息</button>
     <p/>
     <button id="b3" class="layui-btn layui-btn-primary"style="position: relative;left:0px;top:88px">申请专家会审</button>
@@ -115,9 +112,9 @@
                     <div class="layui-input-inline" style="width:52%;">
                         <select name="quiz" id="dx1" >
                             <option value="">请选择</option>
-                            <option value="1">已得到控制</option>
-                            <option value="2">防治中</option>
-                            <option value="3">无法解决,申请会商</option>
+                            <c:forEach items="${disasterStageList}" var="s">
+                                <option value="${s.typeKey}">${s.typeVal}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -235,7 +232,7 @@
     }
     // 添加、查看、修改、申请会审按钮点击
     $("#b1").click(function () {
-        location.href="page/eventModule/eventAdd.jsp"
+       // $("#add").submit();
     });
     $("#b2").click(function () {
         if($("#tid").val()!=null&&$("#tid").val().length>0){
@@ -248,12 +245,12 @@
     });
     $("#b3").click(function () {
         var id=$("#tid").val();
+
         if($("#tid").val()==null||$("#tid").val().length<1){
             sendErroInfo("请选中行");
-        }else if ($("#disasterstage").val()!="无法解决,申请会商") {
+        }else if ($("#disasterstage").val()!="无法解决，申请专家会商") {
             sendErroInfo("请选中无法解决,申请会商的行");
-        }
-        else{
+        } else{
             $.post("eventConferenceServlet",{"eventId":id});
             $("#f1").attr("action","eventConferenceServlet");
             $("#f1").submit();
@@ -264,10 +261,9 @@
             $("#f1").attr("action","eventShowServlet");
             $("#showOrUp").val("update");
             $("#f1").submit();} else{
-            $("#error").text("请选中行");
+            sendErroInfo("请选中行");
         }
     });
-
     // 查询按钮触发事件
     $("#find").click(function () {
         var eventName=$("#eventName").val();
@@ -284,7 +280,6 @@
         });
     });
 </script>
-
 
 <script>
     layui.config({
@@ -312,7 +307,6 @@
             elem: '#startTime'
             ,trigger:"click"
         });
-
         laydate.render({
                 elem: '#endTime'
             ,trigger:"click"

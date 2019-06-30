@@ -106,7 +106,6 @@ public class eventAddServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println(event.toString());
 
         // 将添加对象加入数据库
         service.eventAdd(event);

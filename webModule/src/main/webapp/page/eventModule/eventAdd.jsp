@@ -55,10 +55,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="layui-form-label">发生位置</label>
                         <div class="layui-input-inline" >
                             <select id="area" name="areaId" lay-verify="" lay-filter="aihao" class="layui-form">
-                                <option value="" selected="selected">请选择</option>
-                                <option value="1" onclick="fullClass(this)">电信一区</option>
-                                <option value="2" onclick="fullClass(this)" >电信二区</option>
-                                <option value="3" onclick="fullClass(this)">电信三区</option>
+                                <option value="" >请选择</option>
+                                <c:forEach items="${areaList}" var="a">
+                                    <option value="${a.areaId}" onclick="fullClass(this)">${a.areaName}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -75,9 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-input-inline">
                             <select name="disasterType">
                                 <option value="">请选择</option>
-                                <option value="1">虫害</option>
-                                <option value="2">病害</option>
-                                <option value="3">鼠害</option>
+                                <c:forEach items="${disasterTypeList}" var="t">
+                                    <option value="${t.typeKey}">${t.typeVal}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -86,9 +86,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-input-inline">
                             <select name="disasterStage" lay-verify="required" lay-search="">
                                 <option value="">直接选择或搜索选择</option>
-                                <option value="1">已经得到控制</option>
-                                <option value="2">防治中</option>
-                                <option value="3">无法解决申请专家会商</option>
+                                <c:forEach items="${disasterStageList}" var="s">
+                                    <option value="${s.typeKey}">${s.typeVal}</option>
+                                </c:forEach>
+
                             </select>
                         </div>
                     </div>
@@ -97,9 +98,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="layui-input-inline">
                             <select name="findWay" lay-verify="required" lay-search="">
                                 <option value="" >直接选择或搜索选择</option>
-                                <option value="1">小班巡查发现</option>
-                                <option value="2">公众发现</option>
-                                <option value="3">上级部门巡查通报</option>
+                               <c:forEach items="${findWayList}" var="f">
+                                   <option value="${f.typeKey}">${f.typeVal}</option>
+                               </c:forEach>
+
                             </select>
                         </div>
                     </div>
@@ -173,7 +175,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           }
        })
         if(yes=="yes"){
-            alert(yes);
         $(f1).submit();}else {
             sendErroInfo("请选择下拉选项")
         }

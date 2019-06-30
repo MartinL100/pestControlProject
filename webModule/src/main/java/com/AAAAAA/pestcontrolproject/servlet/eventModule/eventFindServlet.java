@@ -3,6 +3,8 @@ package com.AAAAAA.pestcontrolproject.servlet.eventModule;
 import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
+import com.AAAAAA.pestcontrolproject.servic.impl.areaAndClassModule.AreaServiceImpl;
+import com.AAAAAA.pestcontrolproject.servic.impl.areaAndClassModule.ClassServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.FindTypeServiceImpl;
@@ -22,8 +24,10 @@ import java.util.List;
 import java.util.Map;
 
 public class eventFindServlet extends HttpServlet {
-    IEventService service = new EventServiceImpl();
-    FindTypeServiceImpl servicef=new FindTypeServiceImpl();
+     IEventService service = new EventServiceImpl();
+     FindTypeServiceImpl servicef=new FindTypeServiceImpl();
+    AreaServiceImpl areaService=new AreaServiceImpl();
+    ClassServiceImpl classService=new ClassServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         //条件map
@@ -65,14 +69,22 @@ public class eventFindServlet extends HttpServlet {
         String currentPage=mapSplit.get("newCurrentPage").toString();
 
         //查询区域LIST
-        //封装页面显示的数据进入map集合
-        List<SysArea> areaList=new ArrayList<>();
-        for (int i=1;i<4;i++){
-            SysArea area=new SysArea();
-            area.setAreaId(i);
-            area.setAreaName("四川"+i+"区");
-            areaList.add(area);
-        }
+        Map<String,Object> map0 =new HashMap<>();
+        map0.put("startIndex",0);
+        map0.put("rowNum",10);
+        List<SysArea> areaList =areaService.findAreaList(map0);
+      //查询班级
+        Map<String,Object> mapc =new HashMap<>();
+
+
+//        封装页面显示的数据进入map集合
+//        List<SysArea> areaList=new ArrayList<>();
+//        for (int i=1;i<4;i++){
+//            SysArea area=new SysArea();
+//            area.setAreaId(i);
+//            area.setAreaName("四川"+i+"区");
+//            areaList.add(area);
+//        }
         //查询灾情状态集合
         Map<String,Object> map1 =new HashMap<>();
         map1.put("typeName","disasterStage");

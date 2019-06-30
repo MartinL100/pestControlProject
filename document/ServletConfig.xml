@@ -158,63 +158,75 @@
 
 
 <!--舒俊益mapper配置部分--> <servlet>
-    <servlet-name>eventMainServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventMainServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>eventFindServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventFindServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>eventShowServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventShowServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>eventUpdateServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventUpdateServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>eventConferenceServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventConferenceServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>eventAddServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventAddServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>eventFindClassByAreaServlet</servlet-name>
-    <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventFindClassByAreaServlet</servlet-class>
-</servlet>
 
-<servlet-mapping>
-    <servlet-name>eventFindClassByAreaServlet</servlet-name>
-    <url-pattern>/eventFindClassByAreaServlet</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>eventAddServlet</servlet-name>
-    <url-pattern>/eventAddServlet</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>eventConferenceServlet</servlet-name>
-    <url-pattern>/eventConferenceServlet</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>eventUpdateServlet</servlet-name>
-    <url-pattern>/eventUpdateServlet</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>eventShowServlet</servlet-name>
-    <url-pattern>/eventShowServlet</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>eventFindServlet</servlet-name>
-    <url-pattern>/eventFindServlet</url-pattern>
-</servlet-mapping>
+    <servlet>
+        <servlet-name>eventMainServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventMainServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eventFindServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventFindServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eventShowServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventShowServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eventUpdateServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eventConferenceServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventConferenceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eventAddServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eventFindClassByAreaServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventFindClassByAreaServlet</servlet-class>
+    </servlet>
 
-<servlet-mapping>
-    <servlet-name>eventMainServlet</servlet-name>
-    <url-pattern>/eventMainServlet</url-pattern>
-</servlet-mapping>
+    <servlet>
+        <servlet-name>eventAddInitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventAddInitServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>eventAddInitServlet</servlet-name>
+        <url-pattern>/eventAddInitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eventFindClassByAreaServlet</servlet-name>
+        <url-pattern>/eventFindClassByAreaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eventAddServlet</servlet-name>
+        <url-pattern>/eventAddServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eventConferenceServlet</servlet-name>
+        <url-pattern>/eventConferenceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eventUpdateServlet</servlet-name>
+        <url-pattern>/eventUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eventShowServlet</servlet-name>
+        <url-pattern>/eventShowServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eventFindServlet</servlet-name>
+        <url-pattern>/eventFindServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>eventMainServlet</servlet-name>
+        <url-pattern>/eventMainServlet</url-pattern>
+    </servlet-mapping>
 
 <!--舒俊益mapper配置部分-->
 
