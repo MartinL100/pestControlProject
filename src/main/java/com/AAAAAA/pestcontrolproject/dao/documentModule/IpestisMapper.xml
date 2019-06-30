@@ -56,7 +56,7 @@
     </select>
     <!--获得总行数-->
     <select id="getCountPestis" resultType="int">
-        select count (pestis_id ) from t_pestis where 1=1
+        select count(pestis_id ) from t_pestis where 1=1
         <if test=" pestisName!= null and pestisName!='' ">
          and pestis_name=#{pestisName}
         </if>

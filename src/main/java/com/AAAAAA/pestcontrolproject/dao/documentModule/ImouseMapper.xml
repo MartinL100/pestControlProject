@@ -38,7 +38,7 @@
 
     </insert>
     <select id="getMouseByName" resultType="int">
-          select count(*)  from  t_mouse where mouse_name=#{mouseName}   ;
+          select count(*)  from  t_mouse where mouse_name=#{mouseName};
     </select>
     <!--动态查询-->
     <select id="getByMouse" resultMap="spcialistObj" parameterType="map">
@@ -51,7 +51,7 @@
     </select>
     <!--获得总行数-->
     <select id="getCountMouse" resultType="int">
-        select count (mouse_id) from t_mouse where 1=1
+        select count(mouse_id) from t_mouse where 1=1
         <if test="mouseName != null and mouseName!='' ">
             and mouse_name= #{mouseName}
         </if>

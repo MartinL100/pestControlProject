@@ -19,12 +19,13 @@
 
                 <div class="layui-form layui-card-header layuiadmin-card-header-auto">
                     <!-- 表单开始 -->
-                    <form action="idPestis" method="post" id="addInformationFromId">
+                    <form action="pestisIndex" method="post" id="queryFromId">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input type="hidden" value="${currentPage}" name="currentPage">
-                                <input type="hidden" value="${checkType}" id="checkTypeId">
-                                <input type="hidden" value=""  id="pestisId" name="pestisId">
+                                <input type="hidden" value="${page.currentPage}" name="currentPage">
+                                <input type="hidden" value="" id="name" name="name">
+                                <input type="hidden" value="" id="name1" name="name1">
+                                <input type="hidden"  name="pageTag" id="pageTagId">
                             </div>
 
 
@@ -36,22 +37,25 @@
                                         <col width="150">
                                         <col width="150">
                                         <col width="200">
-
+                                        <col width="200">
                                     </colgroup>
                                     <thead>
                                     <tr>
                                         <th>名称</th>
                                         <th>寄主</th>
                                         <th>发病规律</th>
+                                        <th></th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach  var="pestisBean" items="${page}"  >
-                                        <tr onclick="fing(${pestisBean.id})" >
+                                    <c:forEach  var="pestisBean" items="${list}" >
+                                        <tr onclick="fun(${pestisBean.id})" >
                                         <td>${pestisBean.pestisName}</td>
                                         <td>${pestisBean.pestisHost}</td>
                                         <td>${pestisBean.pestisHarm}</td>
+                                            <td><a href="/idPestis?PestisId=${pestisBean.id}"><input class="layui-btn layui-btn-primary layui-btn-sm" type="button" value="查看详细信息"/> </a></td>
+
                                         </tr>
                                     </c:forEach>
 
@@ -63,11 +67,11 @@
 
                             <!-- 物品表格数据结束 -->
                             <div style="margin-bottom: 50px;margin-top: 50px">
-                                <button type="button" class="layui-btn layui-btn-primary" id="prevBtn"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
-                                &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${currentPage}" id="currentPage">
+                                <button type="button" class="layui-btn layui-btn-primary" id="prevBtn" onclick="pageF('prev')"> &nbsp;<&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
+                                <%--&nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px" name="currentPage" value="${currentPage}" id="currentPage">--%>
                                 &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${MaxPage}</span>
-                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="lastBtn" value="lastBtn"> &nbsp;>|&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;
-                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextBtn" value="nextBtn">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
+                                <%--&nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="lastBtn" value="lastBtn"> &nbsp;>|&nbsp;</button>&nbsp;&nbsp; &nbsp;&nbsp;--%>
+                                &nbsp;&nbsp; &nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary" id="nextBtn" value="nextBtn" onclick="pageF('prev')">&nbsp;&nbsp;>&nbsp;&nbsp;</button>
                             </div>
 
 
@@ -83,18 +87,18 @@
                     <div class="layui-card-body">
                         <div class="layui-btn-container" style="margin-top: 40px">
                            <a href="page/documentModule/wormAdd.jsp"><button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:50px">添加新害虫</button></a>
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:100px" onclick="x()">查看详细信息</button>
+
                         </div>
                     </div>
 
                     <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -80px">
                         <span style=" position:absolute;top:-35px;left:30px">查询虫害信息</span>
                         <span style=" position:absolute;top:20px;left:30px">寄生虫</span>
-                        <input type="text" style=" position:absolute;top:30px;left:140px ;width: 140px" >
+                        <input type="text" style=" position:absolute;top:30px;left:140px ;width: 140px" name="name" id="qname" >
                         <span style=" position:absolute;top:75px;left:30px">寄主</span>
-                        <input type="text" style="position:absolute;top:85px;left:140px;width: 140px"/>
+                        <input type="text" style="position:absolute;top:85px;left:140px;width: 140px" name="name1" id="qname1"/>
 
-                        <button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:absolute;top:170px;left:200px">查询</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:absolute;top:170px;left:200px" name="name2" id="query" onclick="query()">查询</button>
                     </div>
                 </div>
                 <!-- 按钮结束 -->
@@ -116,12 +120,25 @@
         //
         alert(123)
     });
-function fing(id) {
-    $("#pestisId").val(id)
-}
-function x() {
-    $("#addInformationFromId").submit()
-}
+
+    function fun(id) {
+        $("#diseaseId").val(id);
+    }
+    function query() {
+        var name=$('#qname').val();
+        var name1=$('#qname1').val();
+        $('#name').val(name);
+        $('#name1').val(name1);
+        $("#queryFromId").submit();
+
+    }
+
+    function  pageF(tag) {
+        //把分页标志放入到隐藏表单
+        $("#pageTagId").val(tag);
+        //提交查询表单
+        $("#queryFromId").submit();
+    }
 
 </script>
 

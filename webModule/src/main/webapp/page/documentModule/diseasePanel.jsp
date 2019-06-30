@@ -12,11 +12,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-<form action="getName" method="post" id="xiangqing">
-    <%--得到ID--%>
-<input type="hidden" value="" id="diseaseId" name="diseaseId" >
-
-</form>
+<%--<form action="getName" method="post" id="xiangqing">--%>
+    <%--&lt;%&ndash;得到ID&ndash;%&gt;--%>
+<%--<input type="hidden" value="" id="diseaseId" name="diseaseId" >--%>
+<%--</form>--%>
 
 <div class="layui-fluid" id="LAY-component-layer-list">
     <div class="layui-row layui-col-space15">
@@ -41,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <col width="150">
                                         <col width="150">
                                         <col width="200">
+                                        <col width="200">
                                         <col>
                                     </colgroup>
                                     <thead>
@@ -48,6 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <th>名称</th>
                                         <th>主要危害</th>
                                         <th>发病规律</th>
+                                        <th></th>
 
                                     </tr>
                                     </thead>
@@ -59,6 +60,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <td>${diseaseBean.diseaseName}</td>
                                             <td>${diseaseBean.diseaseHarm}</td>
                                             <td>${diseaseBean.diseaseLaw}</td>
+                                            <%--class="layui-btn layui-btn-primary layui-btn-sm"--%>
+                                            <td><a href="/idDisease?diseaseId=${diseaseBean.diseaseId}"><input class="layui-btn layui-btn-primary layui-btn-sm" type="button" value="查看详细信息"/> </a></td>
                                         </tr>
 
                                     </c:forEach>
@@ -66,7 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </table>
 
                             </div>
-
 
                             <!-- 物品表格数据结束 -->
                             <div style="margin-bottom: 50px;margin-top: 50px">
@@ -87,7 +89,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="layui-card-body">
                         <div class="layui-btn-container" style="margin-top: 40px">
                           <a href="/page/documentModule/diseaseAdd.jsp"><button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:50px">添加新病害</button></a>
-                            <button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:100px" onclick="findDisease('find')">查看详细信息</button>
                         </div>
                     </div>
 
@@ -128,12 +129,11 @@ function fun(id) {
 }
 
 
-function findDisease(){
-
-      $("#xiangqing").submit();
-
-
-}
+// function findDisease(){
+//
+//       $("#xiangqing").submit();
+//
+// }
 
 
     function query() {

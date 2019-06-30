@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <br>
     </form>
 </div>
-<a href="page/documentModule/diseasePanel.jsp"><button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;top:250px;left:450px">返回</button></a>
+<a href="/diseaseIndex"><button class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;top:250px;left:450px">返回</button></a>
 
 <script>
 
@@ -63,4 +63,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </body>
 </html>
->

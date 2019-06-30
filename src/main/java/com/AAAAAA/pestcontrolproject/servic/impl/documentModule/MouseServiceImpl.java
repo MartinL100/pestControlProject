@@ -1,7 +1,7 @@
 package com.AAAAAA.pestcontrolproject.servic.impl.documentModule;
 
 import com.AAAAAA.pestcontrolproject.dao.documentModule.ImouseDao;
-import com.AAAAAA.pestcontrolproject.entity.documentModule.DiseaseBean;
+
 import com.AAAAAA.pestcontrolproject.entity.documentModule.mouseBean;
 import com.AAAAAA.pestcontrolproject.servic.documentModule.ImouseSernice;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
@@ -51,14 +51,14 @@ public class MouseServiceImpl implements ImouseSernice {
     @Override
     public List<mouseBean> getNameMouse(Map map) {
         SqlSession session = GetSession.getSession();
-        List<mouseBean> nameMouse = session.getMapper(ImouseSernice.class).getNameMouse(map);
+        List<mouseBean> nameMouse = session.getMapper(ImouseDao.class).getByMouse(map);
         return nameMouse;
     }
 
     @Override
     public int getMouse(Map map) {
         SqlSession session = GetSession.getSession();
-        int mouse = session.getMapper(ImouseSernice.class).getMouse(map);
+        int mouse = session.getMapper(ImouseDao.class).getCountMouse(map);
         return mouse;
     }
 }
