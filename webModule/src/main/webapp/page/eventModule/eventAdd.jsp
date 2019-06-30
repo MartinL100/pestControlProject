@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="layui-inline">
                         <label class="layui-form-label">发生位置</label>
                         <div class="layui-input-inline" >
-                            <select id="area" name="areaId" lay-verify="" lay-filter="aihao" class="layui-form">
+                            <select id="area" name="areaId" lay-verify="required" lay-search="" lay-filter="aihao" class="layui-form">
                                 <option value="" >请选择</option>
                                 <c:forEach items="${areaList}" var="a">
                                     <option value="${a.areaId}" onclick="fullClass(this)">${a.areaName}</option>
@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="layui-inline">
                         <label class="layui-form-label">灾害类型</label>
                         <div class="layui-input-inline">
-                            <select name="disasterType">
+                            <select name="disasterType" lay-verify="required" lay-search="">
                                 <option value="">请选择</option>
                                 <c:forEach items="${disasterTypeList}" var="t">
                                     <option value="${t.typeKey}">${t.typeVal}</option>
@@ -169,12 +169,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     // 提交按钮触发事件
     $("#ad").click(function () {
          var yes="yes";
-       $.each( $(":selected"),function () {
-          if($(this).val()==null||$(this).val().length==0){
+
+       $.each( $(":textarea"),function () {
+          if($(this).val()==null||$(this).val()==""){
               yes="no"
           }
-       })
+       });
         if(yes=="yes"){
+            alert(yes);
         $(f1).submit();}else {
             sendErroInfo("请选择下拉选项")
         }

@@ -9,13 +9,8 @@
     <base href="<%=basePath%>">
     <%@include file="../../head.jsp"%>
     <title>事件信息</title>
-
 </head>
 <body>
-
-
-
-
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -34,7 +29,6 @@
                                 <label class="layui-form-label" style="width: 60%;text-align:left;">发生位置：${area}   </label>
                                 <label class="layui-form-label" style="width: 60%;text-align:left;">所在小班：${className}   </label>
                                 <label class="layui-form-label" style="width: 60%;text-align:left;">影响面积：${event.eventArea}  </label>
-
                             </div>
                         </div>
                     </div>
@@ -48,17 +42,14 @@
                             <label class="layui-form-label">灾区图片：   </label>
                             <div style="position: relative;left:120px;top: -20px">
                                 <img  style="width: 120px;height: 130px;margin-left: -3cm;margin-top: 1cm" src="/img/${event.photoPath}"><p/></div>
-                            <label class="layui-form-label" style="width: 60%;text-align:left;">事件描述：${event.eventDescribe}   </label>
+                            <label class="layui-form-label" style="width: 60%;text-align:left;margin-top: -20px">事件描述：${event.eventDescribe}   </label>
                             <label class="layui-form-label" style="width: 60%;text-align:left;">初步损失：${event.eventLoss}   </label>
                             <label class="layui-form-label" style="width: 60%;text-align:left;">专家建议：${event.plan}   </label>
                             <label class="layui-form-label" style="width: 60%;text-align:left;">防治方案：${event.plan}   </label>
-
                         </div>
                         </div>
                     </div>
-
                 </div>
-
                 <!-- 表格部分-->
                 <div class="layui-card-body">
                     <table class="layui-table">
@@ -88,14 +79,10 @@
                                         ${conf.conferenceResult}
                                 </td>
                             </c:forEach>
-
                         </tbody>
                     </table>
-
-
                 </div>
                 <!-- 表格部分结束 -->
-
             </div>
         </div>
     </div>

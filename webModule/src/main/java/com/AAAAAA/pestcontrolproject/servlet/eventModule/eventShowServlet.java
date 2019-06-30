@@ -8,6 +8,7 @@ import com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.AddConfServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
+import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.FindTypeServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.specialistModule.IConferenceResultServiceImpl;
 
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ public class eventShowServlet extends HttpServlet {
     IEventService service = new EventServiceImpl();
     IConferenceResultServiceImpl iConferenceResultService=new IConferenceResultServiceImpl();
     AddConfServiceImpl addConfService=new AddConfServiceImpl();
+    FindTypeServiceImpl findTypeService=new FindTypeServiceImpl();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -35,12 +38,11 @@ public class eventShowServlet extends HttpServlet {
         //查找所有事件对象集合
         List<Event> eventsList =service.findAllByMap(map);
         Event event=eventsList.get(0);
-        //模拟查询班级信息
-        evenUTIL eventutil=new evenUTIL();
-
+        //查询班级、区域信息
         evenUTIL util=new evenUTIL();
-        SysClass aClass=util.findClass(event.getAreaId()+"");
-        SysArea  area=util.findArea(event.getAreaId()+"");
+        SysClass aClass=findTypeService.findClaaByAreaId(event.getAreaId());
+        SysArea  area=findTypeService.findAreaByAreaId(event.getAreaId());
+
         request.setAttribute("className",aClass.getSclassName());
         request.setAttribute("area",area.getAreaName());
         request.setAttribute("disasterStage",util.findDisasterStage(event.getDisasterStage()+""));
@@ -55,14 +57,13 @@ public class eventShowServlet extends HttpServlet {
         if("show".equals(showOrUpdate)){
 
             //查找会商信息,并保存到request中
-//            int[]idArr=addConfService.findConfIdByEventId(eventId);iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
+//          int[]idArr=addConfService.findConfIdByEventId(eventId);iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
             List<ConferenceResult> conferenceResults=new ArrayList<>();
             ConferenceResult test=new ConferenceResult();
-            test.setConferenceDate("2019-06-28");
-            test.setConferenceResult("投放消毒液");
+
             List<TSpecialist> specialist= new ArrayList<>();
             TSpecialist special=new TSpecialist();
-            special.setSpecialistName("hagou");
+
             specialist.add(special);
             test.setSpecialistList(specialist);
             conferenceResults.add(test);
