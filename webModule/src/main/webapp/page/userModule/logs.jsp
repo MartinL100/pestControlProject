@@ -82,18 +82,18 @@
                                         <div class="layui-inline">
                                             <label class="layui-form-label">开始日期</label>
                                             <div class="layui-input-inline">
-                                                <input type="text" value="${startTime}" name="startTime" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                                <input  type="text" value="${startTime}" name="startTime" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
                                         <!--时间模块-->
-                                        <div class="layui-inline"style="margin-top: 10%">
+                                        <div class="layui-inline"style="margin-top: 7%">
                                             <label class="layui-form-label">结束日期</label>
                                             <div class="layui-input-inline">
-                                                <input type="text" value="${endTime}" name="endTime" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                                <input  type="text" value="${endTime}" name="endTime" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
                                         <!--时间模块-->
-                                        <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%">查询</button>
+                                        <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 3%">查询</button>
                                         <!--分页标记-->
                                         <input id="currentPageId" name="currentPage" style="display: none" value="${currentPage}"/><!--当前页-->
                                         <input id="tagId" name="tag" style="display: none" value="${tag}"/><!--操作标记-->
@@ -145,13 +145,14 @@
         form.render(null, 'component-form-group');
 
         laydate.render({
-            elem: '#startdate'
 
+            elem: '#startdate'
+            ,trigger: 'click'
         });
 
         laydate.render({
             elem: '#enddate'
-
+            ,trigger: 'click'
         });
 
 

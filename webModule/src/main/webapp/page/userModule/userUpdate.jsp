@@ -118,12 +118,9 @@
 
 
         if(sureNewPwd!=newPwd){
-
-            $("#erroInfo").show();
-            $("#errorInfo").text("两次密码不一致，请重新输入");
-            setTimeout(function(){
-                $("#erroInfo").hide();
-            }, 3000);
+            sendErroInfo("两次密码不一致，请重新输入");
+            $("#newPwd").val("");
+            $("#sureNewPwd").val("");
         }else {
 
             $("#updateForm").submit();

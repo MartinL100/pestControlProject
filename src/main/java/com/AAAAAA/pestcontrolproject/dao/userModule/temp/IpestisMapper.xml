@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.userModule.temp.IpestisDao">
+    <resultMap id="spcialistObj" type="com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean">
+        <id column="id" property="id" ></id>
+        <result column="pestis_name " property="pestisName"></result>
+        <result column="pestis_breed" property="pestisBreed"></result>
+        <result column="pestis_defense" property="pestisDefense"></result>
+        <result column="pestis_enemy" property="pestisEnemy"></result>
+        <result column="pestis_harm" property="pestisHarm"></result>
+        <result column="pestis_host" property="pestisHost"></result>
+        <result column="pestis_photo" property="pestisPhoto"></result>
+        <result column="pestis_adult_images" property="pestisAdultImages"></result>
+    </resultMap>
+
+    <select id="getListPestis" parameterType="map" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean">
+        select
+         pestis_id as id,
+         pestis_name as pestisName,
+         pestis_host as pestisHost,
+          pestis_harm as pestisHarm
+        from t_pestis where 1=1
+        <if test="pestisName!=null and pestisName!=''" >
+            and pestis_name=#{pestisName}
+        </if>
+        <if test="pestisHost != null and pestisHost!=''">
+            and pestis_host=#{pestisHost}
+        </if>
+        limit #{startIndex},#{rowNum}
+
+    </select>
+
+    <select id="AllPestis" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.pestisBean">
+        select
+         pestis_id as id,
+         pestis_name as pestisName,
+         pestis_harm as pestisHarm,
+         pestis_adultImages as  pestisAdultImages,
+         pestis_breed as pestisBreed,
+         pestis_defense as pestisDefense,
+         pestis_enemy as pestisEnemy,
+         pestis_photo as pestisPhoto,
+         pestis_host as pestisHost
+         from t_pestis where pestis_id=#{pestisId} ;
+
+    </select>
+    <insert id="AddPestis" parameterType="pestisBean" >
+        insert into t_pestis(pestis_name, pestis_breed, pestis_host, pestis_enemy, pestis_harm, pestis_defense, pestis_photo, pestis_adultImages)
+        values (#{pestisName},#{pestisBreed},#{pestisHost},#{pestisEnemy},#{pestisHarm},#{pestisDefense},#{pestisPhoto},#{pestisAdultImages})
+    </insert>
+    <select id="getPestisByName" resultType="int">
+        select count(*) from t_pestis where pestis_name=#{pestisName};
+    </select>
+    <!--动态查询-->
+    <select id="getBypestis" resultMap="spcialistObj" parameterType="map">
+               select * from t_pestis where 1=1
+        <if test="pestisName!=null and pestisName!=''" >
+            and pestis_name=#{pestisName}
+        </if>
+         <if test="pestisHost != null and pestisHost!=''">
+              and pestis_host=#{pestisHost}
+         </if>
+        limit #{startIndex},#{rowNum}
+    </select>
+    <!--获得总行数-->
+    <select id="getCountPestis" resultType="int">
+        select count(pestis_id ) from t_pestis where 1=1
+        <if test=" pestisName!= null and pestisName!='' ">
+         and pestis_name=#{pestisName}
+        </if>
+        <if test="pestisHost != null and pestisHost !='' " >
+            and pestis_host=#{pestisHost}
+        </if>
+<!--        <if test="pestisHarm != null and pestisHarm!='' ">-->
+<!--            and pestis_Harm=#{pestisHarm}-->
+<!--        </if>-->
+
+    </select>
+</mapper>

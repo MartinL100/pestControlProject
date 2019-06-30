@@ -29,16 +29,6 @@ public class LoginServlet extends HttpServlet {
     IPowerService powerService=new PowerServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-//           //获取登录的对象
-//            String userName=request.getParameter("userName");
-//            String password=request.getParameter("password");
-//        Map<String, String> map = new HashMap<>();
-//        map.put("userName",userName);
-//        map.put("password",password);
-//       TUser user= userServic.login(map);
-
-
             String userName=request.getParameter("userName");
             String password=request.getParameter("password");
         Map<String, String> map = new HashMap<>();
@@ -98,7 +88,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("menuVOList",menuVOList);
                 //添加登录日志
             TLog log=new TLog();
-            log.setLogDescrip(userName+UserModuleStringInfo.LOG_INFO);
+            log.setLogDescrip(user.getRealName()+UserModuleStringInfo.LOG_INFO);
             logSevice.addLog(log);
             //转发到主窗体
             request.getRequestDispatcher("page/userModule/mainFrame.jsp").forward(request,response);

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AAAAAA.pestcontrolproject.dao.userModule.temp.IdiseaseDao">
+    <resultMap id="spcialistObj" type="com.AAAAAA.pestcontrolproject.entity.documentModule.DiseaseBean">
+        <id column="disease_id" property="diseaseId"></id>
+        <result column="disease_name" property="diseaseName"></result>
+        <result column="disease_harm" property="diseaseHarm"></result>
+        <result column="disease_law" property="diseaseLaw"></result>
+        <result column="disease_measure" property="diseaseMeasure"></result>
+        <result column="disease_photo" property="diseasePhoto"></result>
+        <result column="disease_symptom" property="diseaseSymptom"></result>
+        <result column="disease_source" property="diseaseSource"></result>
+
+
+    </resultMap>
+        <!--添加-->
+      <insert id="AddDisease" parameterType="DiseaseBean" >
+        insert into t_disease( disease_name , disease_source , disease_symptom, disease_law, disease_harm, disease_photo, disease_measure)
+        values (#{diseaseName} ,#{diseaseSource} ,#{diseaseSymptom} ,#{diseaseLaw} ,#{diseaseHarm} ,#{diseasePhoto} ,#{diseaseMeasure});
+      </insert>
+           <!--按id查询详细信息-->
+      <select id="AllDisease" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.DiseaseBean">
+           select
+            disease_id as diseaseId,
+            disease_name as diseaseName,
+            disease_source as diseaseSource,
+            disease_law as diseaseLaw,
+            disease_harm as diseaseHarm,
+            disease_measure as diseaseMeasure,
+            disease_symptom as diseaseSymptom,
+            disease_photo as diseasePhoto
+
+            from t_disease where disease_id=#{diseaseId} ;
+      </select>
+            <!--模糊查询-->
+      <select id="getListDisease" resultMap="spcialistObj" parameterType="map">
+         select * from t_disease where 1=1
+        <if test="diseaseName!=null and diseaseName!=''" >
+             and disease_name=#{diseaseName}
+        </if>
+         <if test="diseaseSymptom!=null and diseaseSymptom!=''">
+             and disease_symptom=#{diseaseSymptom}
+         </if>
+          limit #{startIndex},#{rowNum}
+
+      </select>
+
+
+         <!--获得总行数-->
+      <select id="getDisease" resultType="int" parameterType="map">
+          SELECT COUNT(disease_id) FROM t_disease WHERE 1=1
+            <if test="diseaseName != null and diseaseName!='' ">
+             and disease_name= #{diseaseName}
+            </if>
+             <if test="diseaseHarm != null and diseaseHarm !='' " >
+                 and disease_harm=#{diseaseHarm}
+             </if>
+              <if test="diseaseLaw != null and diseaseLaw!='' ">
+                  and disease_law=#{diseaseLaw}
+              </if>
+      </select>
+
+      <!--初始化页面-->
+    <select id="getList" resultType="com.AAAAAA.pestcontrolproject.entity.documentModule.DiseaseBean">
+        select
+         disease_id as diseaseId ,
+         disease_name as diseaseName,
+         disease_harm as diseaseHarm,
+         disease_law as diseaseLaw
+        from t_disease;
+    </select>
+
+    <select id="getDiseaseByName" resultType="int" >
+
+        select count(*)  from  t_disease where disease_name=#{diseaseName}  ;
+
+   </select>
+
+</mapper>
