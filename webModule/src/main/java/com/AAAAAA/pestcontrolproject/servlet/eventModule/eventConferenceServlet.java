@@ -20,6 +20,7 @@ public class eventConferenceServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         String eventId=request.getParameter("eventId");
+//        添加事件id到事件会商中间表
         AddConfServiceImpl addConfService=new AddConfServiceImpl();
         addConfService.addConf(Integer.parseInt(eventId));
         Map<String,Object> map=new HashMap<>();

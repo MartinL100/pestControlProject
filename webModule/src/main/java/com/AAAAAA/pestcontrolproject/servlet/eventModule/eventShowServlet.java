@@ -56,26 +56,24 @@ public class eventShowServlet extends HttpServlet {
         String showOrUpdate=request.getParameter("showOrUp");
         if("show".equals(showOrUpdate)){
 
-            //查找会商信息,并保存到request中
-//          int[]idArr=addConfService.findConfIdByEventId(eventId);iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
-            List<ConferenceResult> conferenceResults=new ArrayList<>();
-            ConferenceResult test=new ConferenceResult();
-
-            List<TSpecialist> specialist= new ArrayList<>();
-            TSpecialist special=new TSpecialist();
-
-            specialist.add(special);
-            test.setSpecialistList(specialist);
-            conferenceResults.add(test);
+//            查找会商信息,并保存到request中
+          int[]idArr=addConfService.findConfIdByEventId(eventId);
+            List<ConferenceResult> conferenceResults=iConferenceResultService.findConferenceByConferenceId(idArr[0]+"");
+//            List<ConferenceResult> conferenceResults1=new ArrayList<>();
+//            ConferenceResult test=new ConferenceResult();
+//            List<TSpecialist> specialist= new ArrayList<>();
+//            TSpecialist special=new TSpecialist();
+//            specialist.add(special);
+//            test.setSpecialistList(specialist);
+//            conferenceResults.add(test);
 
             request.setAttribute("conferenceResults",conferenceResults);
             request.getRequestDispatcher("page/eventModule/eventShow.jsp").forward(request,response);
         }
         else if("update".equals(showOrUpdate)){
-        // 请求转发到更新页面
+            // 请求转发到更新页面
             request.getRequestDispatcher("page/eventModule/eventUpdate.jsp").forward(request,response);
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -252,8 +252,8 @@
             sendErroInfo("请选中无法解决,申请会商的行");
         } else{
             $.post("eventConferenceServlet",{"eventId":id});
-            $("#f1").attr("action","eventConferenceServlet");
-            $("#f1").submit();
+            // $("#f1").attr("action","eventConferenceServlet");
+            // $("#f1").submit();
         }
     });
     $("#b4").click(function () {
