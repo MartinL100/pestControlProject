@@ -4,6 +4,7 @@ import com.AAAAAA.pestcontrolproject.entity.Selected.SysSelectedType;
 import com.AAAAAA.pestcontrolproject.entity.areaAndClassModule.SysArea;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
 
+import com.AAAAAA.pestcontrolproject.servic.impl.areaAndClassModule.AreaServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.EventServiceImpl;
 import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
 import com.AAAAAA.pestcontrolproject.servic.impl.eventModule.FindTypeServiceImpl;
@@ -22,6 +23,7 @@ import java.util.Map;
 public class eventMainServlet extends HttpServlet {
     IEventService service = new EventServiceImpl();
     FindTypeServiceImpl servicef=new FindTypeServiceImpl();
+    AreaServiceImpl areaService=new AreaServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Map<String,Object> map=new HashMap<>();
@@ -37,12 +39,13 @@ public class eventMainServlet extends HttpServlet {
         List<Event> eventsSplit =service.findAllByMap(map);
 
         List<SysArea> areaList=new ArrayList<>();
-        for (int i=1;i<4;i++){
-            SysArea area=new SysArea();
-            area.setAreaId(i);
-            area.setAreaName("四川"+i+"区");
-            areaList.add(area);
-        }
+
+        //查询区域LIST
+        Map<String,Object> map0 =new HashMap<>();
+        map0.put("startIndex",0);
+        map0.put("rowNum",10);
+        areaList =areaService.findAreaList(map0);
+
         //查询灾情状态集合
         Map<String,Object> map1 =new HashMap<>();
         map1.put("typeName","disasterStage");

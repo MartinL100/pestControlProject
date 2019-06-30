@@ -59,9 +59,11 @@ public class eventShowServlet extends HttpServlet {
 
 //            查找会商信息,并保存到request中
             List<TConference> tConferences=addConfService.findConfIdByEventId(eventId);
+            List<ConferenceResult> conferenceResults=new ArrayList<>();
+           if(tConferences.size()>0){
             Long i=tConferences.get(0).getConferenceId();
             int a=i.intValue();
-            List<ConferenceResult> conferenceResults=iConferenceResultService.findConferenceByConferenceId(a+"");
+            conferenceResults=iConferenceResultService.findConferenceByConferenceId(a+"");}
 //            List<ConferenceResult> conferenceResults=new ArrayList<>();
 //            ConferenceResult test=new ConferenceResult();
 //            List<TSpecialist> specialist= new ArrayList<>();
