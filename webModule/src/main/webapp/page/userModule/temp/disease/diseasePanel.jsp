@@ -18,7 +18,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <h1 align="center">虫害一览</h1>
+                <h1 align="center">病害一览</h1>
                 <h2 style="color: red" id="erroInfo" align="center"></h2>
                 <div class="layui-card-body">
                     <table class="layui-table">
@@ -26,18 +26,17 @@
                         <thead>
                         <tr>
                             <th>名称</th>
-                            <th>寄主</th>
                             <th>主要危害</th>
-
+                            <th>发病规律</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${pestisBeanList}" var="pestisBean" >
+                        <c:forEach items="${diseaseBeanList}" var="diseaseBean" >
                             <tr onclick="saveId(this)">
-                                <td>${pestisBean.pestisName}</td>
-                                <td>${pestisBean.pestisHost}</td>
-                                <td>${pestisBean.pestisHarm}</td>
-                                <td style="display: none">${pestisBean.id}</td>
+                                <td>${diseaseBean.diseaseName}</td>
+                                <td>${diseaseBean.diseaseHarm}</td>
+                                <td>${diseaseBean.diseaseLaw}</td>
+                                <td style="display: none">${diseaseBean.diseaseId}</td>
                             </tr>
                         </c:forEach>
 
@@ -78,27 +77,27 @@
 
                     <div class="layui-row layui-col-space10" >
                         <div style="width: 40%; float: left;margin-top: 4%" >
-                           <a href="page/userModule/temp/worm/wormAdd.jsp"><button id="addUser" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加新虫害</button></a>
+                           <a href="page/userModule/temp/disease/diseaseAdd.jsp"><button id="addUser" ac class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加新病害</button></a>
                             <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">查看详细信息</button><br/>
                         </div>
 
                         <div class="layui-col-xs3" style="float: right;margin-right: 20%;">
 
                             <div class="layui-card" style="border: solid 2px;border-color: #8D8D8D">
-                                <div class="layui-card-header">查询虫害信息</div>
+                                <div class="layui-card-header">查询病害信息</div>
                                 <div class="layui-card-body" >
-                                    <form action="wormIntitServlet" method="post" id="selectForm">
+                                    <form action="diseaseIntitServlet" method="post" id="selectForm">
                                     <!-- 填充内容 -->
                                         <div class="layui-inline">
-                                            <label class="layui-form-label" >害虫名</label>
+                                            <label class="layui-form-label" >病害名称</label>
                                             <div class="layui-input-block" style="width:52%;">
-                                                <input  value="${pestisName}" type="text" name="pestisName"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                                                <input  value="${diseaseName}" type="text" name="diseaseName"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
                                         <div class="layui-inline" style="margin-top: 10%">
-                                            <label class="layui-form-label" >寄主</label>
+                                            <label class="layui-form-label" >发病症状</label>
                                             <div class="layui-input-block" style="width:52%;">
-                                                <input  value="${pestisHost}" type="text" name="pestisHost"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                                                <input  value="${diseaseSymptom}" type="text" name="diseaseSymptom"  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
                                     <button class="layui-btn layui-btn-primary layui-btn-sm" style="width: 20%;margin-left: 70%;margin-top: 10%" type="submit">查询</button>

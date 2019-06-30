@@ -43,13 +43,29 @@
     <!--舒俊益mapper配置部分-->
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IEventDaoMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IAddConfMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/eventModule/IFindTypeDaoMapper.xml"></mapper>
     <!--舒俊益mapper配置部分-->
 
 
+    <!--古成全mapper配置部分-->
     <!-- 古成全部分 -->
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IDrugDaoMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/drugModule/IStockpileDaoMapper.xml"></mapper>
 
+    <!--古成全mapper配置部分-->
+
+    <!--曾贤富mapper配置部分-->
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/documentModule/IdiseaseMapper.xml"/>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/documentModule/IpestisMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/documentModule/ImouseMapper.xml"></mapper>
+    <!--曾贤富mapper配置部分-->
+
+
+    <!--临时mapper-->
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/temp/IpestisMapper.xml" ></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/temp/IdiseaseMapper.xml"></mapper>
+    <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/temp/ImouseMapper.xml"></mapper>
+    <!--临时mapper-->
 </mappers>
 
 </configuration>

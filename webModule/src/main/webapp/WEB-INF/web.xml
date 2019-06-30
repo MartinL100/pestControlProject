@@ -261,7 +261,14 @@
         <servlet-name>eventFindClassByAreaServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventFindClassByAreaServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>eventAddInitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventAddInitServlet</servlet-class>
+    </servlet>
+<servlet-mapping>
+    <servlet-name>eventAddInitServlet</servlet-name>
+    <url-pattern>/eventAddInitServlet</url-pattern>
+</servlet-mapping>
     <servlet-mapping>
         <servlet-name>eventFindClassByAreaServlet</servlet-name>
         <url-pattern>/eventFindClassByAreaServlet</url-pattern>
@@ -378,6 +385,7 @@
         <servlet-name>AddPestisServlet</servlet-name>
         <servlet-class>com.AAAAAA.pestcontrolproject.servlet.documentModule.pestis.AddPestisServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>AddPestisServlet</servlet-name>
         <url-pattern>/addPestis</url-pattern>
@@ -398,7 +406,56 @@
     </servlet-mapping>
     <!--曾贤富mapper配置部分-->
 
+    <!--刘俊麟mapper配置部分-->
 
+
+    <!--刘俊麟mapper配置部分-->
+
+
+
+
+    <!--temp  servlet-->
+    <servlet>
+        <servlet-name>wormIntitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.WormIntitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addWormServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.AddWormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findWormServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.FindWormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>diseaseIntitServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.DiseaseIntitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addDiseaseeServlet</servlet-name>
+        <servlet-class>com.AAAAAA.pestcontrolproject.servlet.userModule.temp.AddDiseaseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addDiseaseeServlet</servlet-name>
+        <url-pattern>/addDiseaseeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>diseaseIntitServlet</servlet-name>
+        <url-pattern>/diseaseIntitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findWormServlet</servlet-name>
+        <url-pattern>/findWormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addWormServlet</servlet-name>
+        <url-pattern>/addWormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>wormIntitServlet</servlet-name>
+        <url-pattern>/wormIntitServlet</url-pattern>
+    </servlet-mapping>
+    <!--temp  servlet-->
 
     <listener>
         <listener-class>com.AAAAAA.pestcontrolproject.listenner.ContextListenner</listener-class>
@@ -420,7 +477,7 @@
     </filter>
     <filter-mapping>
         <filter-name>powerFilter</filter-name>
-        <url-pattern>/hjhfh</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>encodeFilter</filter-name>
