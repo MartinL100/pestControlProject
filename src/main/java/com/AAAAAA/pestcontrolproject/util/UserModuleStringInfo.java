@@ -13,4 +13,5 @@ public class UserModuleStringInfo {
     public static String ADD_FAILED="添加失败，请重新添加";
     public static String UPDATE_SUCCESSFUL="修改成功";
     public static String UPDATE_FAILED="修改失败，请重新修改";
+    public static String FILE_ISNOT_ALLOWED="图片格式不支持，请重新添加";
 }

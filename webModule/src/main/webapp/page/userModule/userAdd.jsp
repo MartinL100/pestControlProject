@@ -39,7 +39,7 @@
                     <label class="layui-form-label" style="margin-left: 27%">密码</label>
 
                     <div class="layui-input-block" style="width: 30%" >
-                        <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" >
+                        <input type="password" id="password1" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" >
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
 
                     <div class="layui-input-block" style="width: 30% ;" >
 
-                        <input type="password" name="passwordSure" lay-verify="required" placeholder="确认密码" autocomplete="off" class="layui-input" >
+                        <input type="password" id="surePwd" name="passwordSure" lay-verify="required" placeholder="确认密码" autocomplete="off" class="layui-input" >
                     </div>
                 </div>
                 <div class="layui-form-item" align="center">
@@ -118,25 +118,31 @@
 <script>
 
     $(document).ready(function () {
-        setTimeout(function(){
-            $("#erroInfo").hide();
-        }, 3000);
 
 
-        $("#userName").mouseleave(function () {
+
+        $("#userName").change(function () {
             var userName=$("#userName").val()
 
             $.post("isExistUserServlet",{"userName":userName},function (result) {
-                $("#erroInfo").show();
-                $("#erroInfo").text(result);
-                setTimeout(function(){
-                    $("#erroInfo").hide();
-                }, 3000);
+
+                sendErroInfo(result);
+
 
             })
         })
     })
-
+//判断两次输入密码是否一致
+    $("#surePwd").change(function () {
+        var pwd1=$("#password1").val();
+        var pw2=$("#surePwd").val();
+        if(pwd1!=pw2){
+            sendErroInfo("两次输入的密码不一致，请重新输入")
+            //清空密码框
+            $("#password1").val("");
+            $("#surePwd").val("");
+        }
+    })
 </script>
 </body>
 </html>
