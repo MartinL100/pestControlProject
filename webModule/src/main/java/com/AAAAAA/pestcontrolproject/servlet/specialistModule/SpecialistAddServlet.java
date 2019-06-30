@@ -40,7 +40,7 @@ public class SpecialistAddServlet extends HttpServlet {
             List<FileItem> listForm = map.get("listForm");
             //获得图片集合
             List<FileItem> listFile = map.get("listFile");
-            String afterPathDir = FileStringInfo.filePath; //文件放入的文件夹名
+           String afterPathDir = FileStringInfo.filePath; //文件放入的文件夹名
             //获得图片
             for (FileItem file : listFile) {
                 String fileName = file.getName();//上传图片的名字
@@ -51,7 +51,7 @@ public class SpecialistAddServlet extends HttpServlet {
                 }
                 //验证成功
                 //重新生产新的文件名
-//                fileName = FileStringInfo.getNewFileName(fileName);
+                fileName = FileStringInfo.getNewFileName(fileName);
                 //把文件名放入到专家对象
                 specialist.setSpecialistPath(fileName);
                 OutputStream out = new FileOutputStream(afterPathDir + fileName);

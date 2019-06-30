@@ -13,15 +13,11 @@ public class ConferenceResult {
     public ConferenceResult() {
     }
 
-    @Override
-    public String toString() {
-        return "ConferenceResult{" +
-                "resultId=" + resultId +
-                ", conferenceId='" + conferenceId + '\'' +
-                ", conferenceDate='" + conferenceDate + '\'' +
-                ", conferenceResult='" + conferenceResult + '\'' +
-                ", specialistList=" + specialistList +
-                '}';
+    public ConferenceResult(String conferenceId, String conferenceDate, String conferenceResult, List<TSpecialist> specialistList) {
+        this.conferenceId = conferenceId;
+        this.conferenceDate = conferenceDate;
+        this.conferenceResult = conferenceResult;
+        this.specialistList = specialistList;
     }
 
     public long getResultId() {
@@ -64,10 +60,14 @@ public class ConferenceResult {
         this.specialistList = specialistList;
     }
 
-    public ConferenceResult(String conferenceId, String conferenceDate, String conferenceResult, List<TSpecialist> specialistList) {
-        this.conferenceId = conferenceId;
-        this.conferenceDate = conferenceDate;
-        this.conferenceResult = conferenceResult;
-        this.specialistList = specialistList;
+    @Override
+    public String toString() {
+        return "ConferenceResult{" +
+                "resultId=" + resultId +
+                ", conferenceId='" + conferenceId + '\'' +
+                ", conferenceDate='" + conferenceDate + '\'' +
+                ", conferenceResult='" + conferenceResult + '\'' +
+                ", specialistList=" + specialistList +
+                '}';
     }
 }

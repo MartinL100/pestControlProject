@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class IConferenceResultServiceImpl implements IConferenceResultService {
-
+    //按会商ID查询事件会商结果
     @Override
     public List<ConferenceResult> findConferenceByConferenceId(String conferenceId) {
         SqlSession session = GetSession.getSession();
