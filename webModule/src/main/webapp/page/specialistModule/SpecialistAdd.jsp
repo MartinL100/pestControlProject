@@ -48,7 +48,7 @@
                         <div class="layui-input-inline">
                             <input type="text" name="specialistBbirthday" id="LAY-component-form-group-date"
                                    lay-verify="date"
-                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" id="birthdayId">
+                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -126,7 +126,6 @@
 
     function add() {
         var nameTest = $("#nameId").val();
-        var birthdayTest = $("#birthdayId").val();
         var specialityTest = $("#specialityId").val();
         var dutyTest = $("#dutyId").val();
         var telTest = $("#telId").val();
@@ -140,34 +139,45 @@
             sendErroInfo("姓名不能为空");
             bl = false;
 
+        }else {
+            bl=true;
         }
         if (null == birthdayTest || birthdayTest.length == 0) {
             sendErroInfo("生日不能为空");
             bl = false;
+        }else {
+            bl=true;
         }
-        if (null == specialityTest || specialityTest.length == 0) {
-            sendErroInfo("专长不能为空");
-            bl = false;
-        }
+
         if (null == dutyTest || dutyTest.length == 0) {
             sendErroInfo("职务不能为空");
             bl = false;
+        }else {
+            bl=true;
         }
         if (telTest.test(mPattern)) {
             sendErroInfo("请输入合法手机号");
             bl = false;
+        }else {
+            bl=true;
         }
         if (null == unitsTest || unitsTest.length == 0) {
             sendErroInfo("工作单位不能为空");
             bl = false;
+        }else {
+            bl=true;
         }
         if (null == siteTest || siteTest.length == 0) {
             sendErroInfo("通讯地址不能为空");
             bl = false;
+        }else {
+            bl=true;
         }
         if (emailTest.test(ePattern)) {
             sendErroInfo("请输入正确的邮箱");
             bl = false;
+        }else {
+            bl=true;
         }
         if (bl) {
             $("#fid").submit();

@@ -33,7 +33,7 @@
                             <div class="layui-inline" style="float: left;">
                                 <label class="layui-form-label" style="text-align:left;margin-top: 25px">电话</label>
                                 <div class="layui-input-inline" style="margin-top: 25px">
-                                    <input id="telId" type="text" name="specialistTel" autocomplete="off"
+                                    <input value="<%=basePathIMG%>${specialistObj.specialistPath}" id="telId" type="text" name="specialistTel" autocomplete="off"
                                            class="layui-input">
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 <div class="layui-inline">
                                     <label class="layui-form-label" style="text-align:left;margin-top: 25px">职务</label>
                                     <div class="layui-input-inline" style="margin-top: 25px">
-                                        <input id="dutyId" type="text" name="specialistDuty" autocomplete="off"
+                                        <input value="${specialistObj.specialistDuty}" id="dutyId" type="text" name="specialistDuty" autocomplete="off"
                                                class="layui-input">
                                     </div>
                                 </div>
@@ -63,14 +63,14 @@
                                     <label class="layui-form-label"
                                            style="text-align:left;margin-top: 25px">工作单位</label>
                                     <div class="layui-input-inline" style="margin-top: 25px">
-                                        <input id="unitsId" type="text" name="specialistUnits" autocomplete="off"
+                                        <input value="${specialistObj.specialistDuty}" id="unitsId" type="text" name="specialistUnits" autocomplete="off"
                                                class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label" style="text-align:left;margin-top: 25px">邮箱</label>
                                     <div class="layui-input-inline" style="margin-top: 25px">
-                                        <input id="emailId" type="text" name="specialistEmail" autocomplete="off"
+                                        <input value="${specialistObj.specialistEmail}" id="emailId" type="text" name="specialistEmail" autocomplete="off"
                                                class="layui-input">
                                     </div>
                                 </div>
@@ -105,18 +105,26 @@
         if (telTest.test(mPattern)) {
             sendErroInfo("请输入合法手机号");
             bl = false;
+        }else {
+            bl=true;
         }
         if (null == dutyTest || dutyTest.length == 0) {
             sendErroInfo("职务不能为空");
             bl = false;
+        }else {
+            bl=true;
         }
         if (null == unitsTest || unitsTest.length == 0) {
             sendErroInfo("工作单位不能为空");
             bl = false;
+        }else {
+            bl=true;
         }
         if (emailTest.test(ePattern)) {
             sendErroInfo("请输入正确的邮箱");
             bl = false;
+        }else {
+            bl=true;
         }
         if (bl) {
             $("#updateId").val(r);

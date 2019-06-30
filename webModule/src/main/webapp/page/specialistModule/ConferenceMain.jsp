@@ -67,8 +67,8 @@
                             <div id="box1" style="float: left;
                            width: 110px; height:150px;overflow-y:auto; border: 1px #b2b2b2 solid">
                                 <c:forEach items="${specialistList}" var="c">
-                                    <span><input type="checkbox" onchange="inputChange(this)"
-                                                 value="${c.specialistId}"/><span>${c.specialistName}</span></span><br/>
+                                    <p style="margin: 0px"><input type="checkbox" onchange="inputChange(this)"
+                                                 value="${c.specialistId}"/><span>${c.specialistName}</span></p>
                                 </c:forEach>
                             </div>
                             <button class="layui-btn layui-btn-primary layui-btn-sm" type="button" id="dtid"
@@ -135,9 +135,9 @@
     $("#dtid").click(function () {
         //获取box1中被选中的节点
         var box1Check = $("#box1 :checked");
-        $.each(box1Check, function () {
+        $.each(box1Check,function (){
             //将选中的节点添加到box2
-            $("#box2").append( this.parentNode);
+            $("#box2").append(this.parentNode);
 
         });
 

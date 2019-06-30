@@ -47,7 +47,7 @@ public class SpecialistUpdateServlet extends HttpServlet {
             resp.sendRedirect("specialistMain");
         }
 
-        //验证信息
+
 
 
     }
