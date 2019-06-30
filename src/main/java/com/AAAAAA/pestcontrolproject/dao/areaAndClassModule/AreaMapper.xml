@@ -39,7 +39,7 @@
     <if test="null!=sclassName and ''!=sclassName">
         and sclass_name=#{sclassName}
     </if>
-    <if test="null!=startIndex and ''!=startIndex and null!=rowNum and ''!=rowNum">
+    <if test="null!=startIndex  and null!=rowNum ">
         limit  #{startIndex},#{rowNum}
     </if>
 
