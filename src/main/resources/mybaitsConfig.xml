@@ -71,6 +71,7 @@
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/temp/IdiseaseMapper.xml"></mapper>
     <mapper resource="com/AAAAAA/pestcontrolproject/dao/userModule/temp/ImouseMapper.xml"></mapper>
     <!--临时mapper-->
+
 </mappers>
 
 </configuration>
