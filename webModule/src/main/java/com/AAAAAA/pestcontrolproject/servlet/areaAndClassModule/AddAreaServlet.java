@@ -18,16 +18,18 @@ public class AddAreaServlet extends HttpServlet {
          String areaTreeType = request.getParameter("areaTreeType");
          String areaGoodTree = request.getParameter("areaGoodTree");
          String selectedType = request.getParameter("selectedType");
+         String userName = request.getParameter("userName");
 
          area.setAreaTreeType(areaTreeType);
          area.setAreaGoodTree(areaGoodTree);
+         area.setAreaName(userName);
 
           SysSelectedType sysSelectedType=new SysSelectedType();
           sysSelectedType.setTypeId(Integer.parseInt(selectedType));
           area.setSelectedType(sysSelectedType);
 
           String Strare = areaSeviceareaTreeType.addArea(area);
-          request.getRequestDispatcher("page/areaAndClassModule/areaPanel.jsp").forward(request,response);
+          response.sendRedirect("findAreaServlet");
 
 
 

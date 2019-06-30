@@ -45,7 +45,7 @@
      sclass_id,sclass_name,sclass_leader,sclass_leader_tel,sclass_num,sclass_start_date
     type_key,type_val,type_name
     from sys_area join sys_class on sys_class.area_id=sys_area.area_id
-    join sys_type on sys_type.type_id=sys_area.area_adress_id
+    left join sys_type on sys_type.type_id=sys_area.area_adress_id
     where sys_class.sclass_id=#{sclassId}
     </select>
 
@@ -53,7 +53,7 @@
         select
           sclass_id,  sclass_name,sclass_leader,sclass_leader_tel,sclass_num,sclass_start_date,
             sys_area.area_id, area_name
-         from sys_class join sys_area on sys_class.area_id=sys_area.area_id where 1=1
+         from sys_class left join sys_area on sys_class.area_id=sys_area.area_id where 1=1
             <if test="null!=sclassName and ''!=sclassName">
                 and sclass_name=#{sclassName}
             </if>
@@ -79,7 +79,7 @@
     sclass_id,  sclass_name,sclass_leader,sclass_leader_tel,sclass_num,sclass_start_date
     type_key,type_val,type_name
     from sys_area join sys_class on sys_class.area_id=sys_area.area_id
-    join sys_type on sys_type.type_id=sys_area.area_adress_id
+     join sys_type on sys_type.type_id=sys_area.area_adress_id
     where sys_area.area_id=#{areaId}
     </select>
 

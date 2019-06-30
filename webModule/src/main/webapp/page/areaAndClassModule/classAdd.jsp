@@ -50,9 +50,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div style="margin-top: 100px">
         <label class="layui-form-label">负责区域</label>
         <div class="layui-input-inline">
-            <select id="areaId" name="selectedType">
-                <c:forEach var="classObj" items="${classList}" >
-                    <option value="${classObj.typeId}">${classObj.typeVal}</option>
+            <select id="areaId" name="TypeName">
+                <c:forEach var="sysArea" items="${sysAreas}" >
+                    <option value="${sysArea.areaId}">${sysArea.areaName}</option>
                 </c:forEach>
             </select>
         </div>

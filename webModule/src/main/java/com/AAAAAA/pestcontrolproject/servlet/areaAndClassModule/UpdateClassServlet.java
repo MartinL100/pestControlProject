@@ -9,13 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class UpdateClassServlet extends HttpServlet {
      IClassServic classServic=new ClassServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SysClass sysClass=new SysClass();
-        sysClass.setSclassId(Long.parseLong(""));
+        String sclassId=request.getParameter("sclassId");
+        String sclassLeader= request.getParameter("sclassLeader");
+        String sclassLeaderTel=request.getParameter("sclassLeaderTel");
 
+        HashMap map=new HashMap();
+        map.put("sclassId",sclassId);
+        map.put("sclassLeader",sclassLeader);
+        map.put("sclassLeaderTel",sclassLeaderTel);
+
+        String sysClass1= classServic.updateClass(map);
+        request.getRequestDispatcher("page/areaAndClassModule/classPanel.jsp").forward(request,response);
 
     }
 

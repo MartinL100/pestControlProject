@@ -26,18 +26,19 @@
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
                 <div class="layui-card">
-                    <div class="layui-card-header" align="center"><h1>查看小班信息</h1></div>
+                    <div class="layui-card-header" align="center"><h1>修改小班信息</h1></div>
 
+<form action="updateClassServlet" method="post" id="formID00">
     <!--左边区域-->
     <div  style="position: relative;width:400px;left:15%;float: left">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <div class="layui-inline" style="position: relative;left:15px">
-                    <label class="layui-form-label"style="margin-top: 20px;height: 25px">名称：${classShow.sclassName}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px;width: 100px">负责人电话：${classShow.sclassLeaderTel}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">负责区域：${classShow.area.areaName}</label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">地类：${classShow.area.selectedType.typeVal}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">创建时间：${classShow.sclassStartDate}   </label><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80%;text-align:left;">名称：${classShow.sclassName}   </label><p/>
+                    负责人电话：<input class="layui-form-label"style="margin-top: 80px;height: 35px;text-align:left;" value="${classShow.sclassLeaderTel}" name="sclassLeaderTel"></input><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80% ;text-align:left;">负责区域：${classShow.area.areaName}</label><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80% ;text-align:left;">地类：${classShow.area.selectedType.typeVal}   </label><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80% ;text-align:left;">创建时间：${classShow.sclassStartDate}   </label><p/>
 
 
                 </div>
@@ -50,24 +51,24 @@
         <div class="layui-form-item">
             <div class="layui-inline">
                 <div class="layui-inline" style="position: relative;left:15px">
-                    <label class="layui-form-label"style="margin-top: 20px; height: 25px">负责人：${classShow.sclassLeader}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">人员数量：${classShow.sclassNum}   </label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">林种：${classShow.area.areaTreeType}</label><p/>
-                    <label class="layui-form-label"style="margin-top: 80px;height: 25px">优势树种：${classShow.area.areaGoodTree}   </label><p/>
+                    负责人：<input class="layui-form-label"style="margin-top: 20px; height: 25px ;text-align:left;" value="${classShow.sclassLeader}" name="sclassLeader"></input><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80% ;text-align:left;">人员数量：${classShow.sclassNum}   </label><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80% ;text-align:left;">林种：${classShow.area.areaTreeType}</label><p/>
+                    <label class="layui-form-label"style="margin-top: 20px;height: 25px;width: 80% ;text-align:left;">优势树种：${classShow.area.areaGoodTree}   </label><p/>
 
                 </div>
             </div>
         </div>
 
     </div>
+</form>
 
                     <!--提交按钮-->
                     <div class="layui-form-item layui-layout-admin">
                         <div class="layui-input-block">
                             <div class="layui-footer" style="left: 0;">
-                                <form  action="eventMainServlet" method="post">
-                                    <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1" id="buttonID0">返回</button>
-                                </form>
+                                    <button class="layui-btn" lay-submit="" lay-filter="component-form-demo1" id="updateID9">修改</button>
+
                             </div>
                         </div>
                     </div>
@@ -80,10 +81,16 @@
 
 
 
-
-<script src="../../layuiadmin/layui/layui.js"></script>
 <script>
+    $("#updateID9").click(function () {
 
+        $("#formID00").submit();
+    });
+
+</script>
+
+<script src="layuiadmin/layui/layui.js"></script>
+<script>
 
 
 
@@ -111,11 +118,7 @@
 
     });
 
-
-
 </script>
-
-
 <script>
     layui.config({
         base: '../../layuiadmin/' //静态资源所在路径

@@ -27,8 +27,8 @@
     select sys_area.area_id, area_name, area_tree_type, area_good_tree, area_adress_id,
     sclass_id,  sclass_name,
     type_key,type_val,type_name
-    from sys_area join sys_class on sys_class.area_id=sys_area.area_id
-    join sys_type on sys_type.type_id=sys_area.area_adress_id
+    from sys_area left join sys_class on sys_class.area_id=sys_area.area_id
+   left join sys_type on sys_type.type_id=sys_area.area_adress_id
     where 1=1
     <if test="null!=areaName and ''!=areaName">
             and area_name=#{areaName}
@@ -39,12 +39,15 @@
     <if test="null!=sclassName and ''!=sclassName">
         and sclass_name=#{sclassName}
     </if>
-    limit  #{startIndex},#{rowNum}
+    <if test="null!=startIndex and ''!=startIndex and null!=rowNum and ''!=rowNum">
+        limit  #{startIndex},#{rowNum}
+    </if>
+
 </select>
 
     <select id="countAreas" parameterType="map" resultType="int">
         select count(sys_class.area_id)
-        from sys_area join sys_class on sys_class.area_id=sys_area.area_id
+        from sys_area left join sys_class on sys_class.area_id=sys_area.area_id
         where 1=1
         <if test="null!=areaName and ''!=areaName">
             and area_name=#{areaName}

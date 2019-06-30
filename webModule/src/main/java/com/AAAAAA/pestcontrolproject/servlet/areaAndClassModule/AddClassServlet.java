@@ -22,21 +22,22 @@ public class AddClassServlet extends HttpServlet {
         String  sclassLeaderTel=request.getParameter("sclassLeaderTel");
         String sclassLeader=request.getParameter("sclassLeader");
         String sclassNum=request.getParameter("sclassNum");
-        String selectedType=request.getParameter("selectedType");
+        String areaId= request.getParameter("TypeName");
 
 
         sysClass.setSclassName(sclassName);
         sysClass.setSclassLeaderTel(sclassLeaderTel);
         sysClass.setSclassLeader(sclassLeader);
         sysClass.setSclassNum(Long.parseLong(sclassNum));
-
-        SysSelectedType sysSelectedType=new SysSelectedType();
-        sysSelectedType.setTypeId(Long.parseLong(selectedType));
-        sysArea.setSelectedType(sysSelectedType);
+        sysArea.setAreaId(Long.parseLong(areaId));
         sysClass.setArea(sysArea);
 
+
+
+
+
         String Strclass=classServic.addSysClass(sysClass);
-        request.getRequestDispatcher("page/areaAndClassModule/classPanel.jsp").forward(request,response);
+        response.sendRedirect("findClassServlet");
 
 
 

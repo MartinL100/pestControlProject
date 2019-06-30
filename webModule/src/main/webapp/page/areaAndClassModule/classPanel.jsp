@@ -42,7 +42,9 @@
                                 <td>${classObj.sclassName}</td>
                                 <td>${classObj.sclassLeader}</td>
                                 <td>${classObj.sclassLeaderTel}</td>
-                                <td>${classObj.area.selectedType.typeVal}</td>
+                                <td>${classObj.area.areaName}</td>
+
+
                                 <td style="display: none">${classObj.sclassId}</td>
                             </tr>
                         </c:forEach>
@@ -54,8 +56,10 @@
 
                 <form action="" id="userIdRecord" method="post">
                     <!--隐藏div，用于记录点击的用户的id-->
-                    <input id="userId" name="checkedUserId" style="display: none"/>
+                    <input id="userId" name="classID" style="display: none"/>
+                    <input id="userId1" name="updateOrLook" style="display: none"/>
                 </form>
+
                 <!-- 翻页按钮部分-->
                 <div align="center">
                     <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="splitPage('prev')"><i class="layui-icon">&#xe603;</i></button>
@@ -86,8 +90,7 @@
                         <div style="width: 40%; float: left;margin-top: 4%" >
 
                             <button id="add1Class"  class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">添加小班</button>
-
-                                <button  id="delUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">查看小班信息</button><br/>
+                            <button  id="selectUser" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">查看小班信息</button><br/>
                             <button  id="updateUserInfo" class="layui-btn layui-btn-primary layui-btn-sm" style="width: 25%;margin-left: 15%;margin-top: 4%">修改小班信息</button>
                         </div>
 
@@ -144,7 +147,46 @@
 
      $("#add1Class").click(function () {
          $("#fid11").submit();
+
      });
+
+    $("#selectUser").click(function () {
+        $("#userId1").val("look");
+        $("#userIdRecord").submit();
+
+    });
+
+    $("#updateUserInfo").click(function () {
+        $("#userId1").val("update");
+        $("#userIdRecord").submit();
+
+    });
+
+
+
+
+    //点击某行，保存该行对应用户对象的id
+    function saveId(obj) {
+        //获取点中行对应的用户id
+        var id = obj.lastChild.previousSibling.firstChild.nodeValue;
+        //将用户id保存到隐藏div  userId中
+        $("#userId").val(id);
+    }
+
+    $("#selectUser").click(function () {
+        var panduan= $("#userId").val();
+        if(panduan==null||''== panduan){
+            sendErroInfo("请选择要查看的小班")
+        }else {
+            $("#userIdRecord").attr("action","showClassServlet");
+
+            $("#userIdRecord").submit();
+        }
+
+
+
+    });
+
 
 
 </script>
@@ -160,6 +202,9 @@
 
 
 <script>
+
+
+
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
