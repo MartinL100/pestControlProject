@@ -2,13 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceResultDao">
     <resultMap id="resultMap" type="com.AAAAAA.pestcontrolproject.entity.specialistModule.ConferenceResult">
-        <id column="result_id" property=""></id>
-        <result column="conference_date" property=""></result>
-        <result column="conference_result" property=""></result>
-        <association property="tConference"
-                     javaType="com.AAAAAA.pestcontrolproject.entity.specialistModule.TConference">
-            <id column="conference_id" property="conferenceId"></id>
-        </association>
+        <id column="result_id" property="resultId"></id>
+        <result column="conference_date" property="conferenceDate"></result>
+        <result column="conference_result" property="conferenceResult"></result>
+        <result column="conference_id" property="conferenceId"></result>
         <collection property="specialistList"
                     ofType="com.AAAAAA.pestcontrolproject.entity.specialistModule.TSpecialist">
             <id column="specialist_id" property="specialistId"></id>
@@ -30,8 +27,8 @@
     </insert>
 
     <select id="findResultByConference"
-            resultType="com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceResultDao">
-        select result_id as resultId  from  conference_result where conference_id=#{conferenceId}
+            resultType="com.AAAAAA.pestcontrolproject.entity.specialistModule.ConferenceResult">
+        select max(result_id) as resultId  from  conference_result where conference_id=#{conferenceId}
 
     </select>
 </mapper>

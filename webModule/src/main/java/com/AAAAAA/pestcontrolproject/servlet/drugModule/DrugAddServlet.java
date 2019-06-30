@@ -26,7 +26,7 @@ public class DrugAddServlet extends HttpServlet {
         drugService.saveSysDrug(addVo);
        // request.setAttribute("checkType","firstPage");
       //  request.getRequestDispatcher("page/drugModule/DrugPanel.jsp").forward(request,response);
-        response.sendRedirect("page/drugModule/DrugPanel.jsp");
+        response.sendRedirect("drugPanelPageServlet.lovo");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

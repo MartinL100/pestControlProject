@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="layui-inline">
                                 <label class="layui-form-label">出库人:</label>
                                 <div class="layui-input-block">
-                                    <span>${userObj.userName}</span>
+                                    <span>${userObj.realName}</span>
                                 </div>
                             </div>
 
@@ -146,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!-- 表单开始 -->
                             <div class="layui-form-item">
                                 <div class="layui-inline">
-                                    <input type="hidden" value="${newCurrentPage}" name="currentPage" id="sonCurrentPage">
+                                    <%--<input type="hidden" value="${newCurrentPage}" name="currentPage" id="sCurrentPage">--%>
                                     <input type="hidden" id="checkType" name="PageTag">
                                 </div>
 
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             onclick="pageSubmit('prev')"> &nbsp;<&nbsp;</button>
                                     &nbsp;&nbsp; &nbsp;&nbsp;
                                     &nbsp;&nbsp; &nbsp;&nbsp;<input type="number" style="width: 35px;height: 32px"
-                                    name="currentPage" value="${newCurrentPage}" id="currentPage">
+                                    name="sonCurrentPage" value="${sonCurrentPage}" id="sonCurrentPage">
                                     &nbsp;&nbsp; &nbsp;&nbsp; <span style="width: 35px;height: 32px;font-size:15px">&nbsp;&nbsp;/ ${MaxPage}</span>
                                     &nbsp;&nbsp; &nbsp;&nbsp;
                                     <button type="button" onclick="pageSubmit('')"class="layui-btn layui-btn-primary" id="skipBtn"> &nbsp;跳转&nbsp;</button>&nbsp;&nbsp;
@@ -278,7 +278,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     // var fatherIdArr=new Array();
     var fatherStr="";
     var sonStr="";
-
+    //初始化子页面当前页
+    $("#sonCurrentPage").val(1)
     //打开模态框
     function openModak() {
         $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
@@ -320,10 +321,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         if(null==cName&&''==cName){
             return;
         }
-        trid= $("#checkTypeId").val("outBtn");
+        alert("开始进去Servlet")
+        $("#checkTypeId").val("outBtn");
+        var x= $("#checkTypeId").val();
         $("#addInformationFromId").submit();
+        alert(x)
         // trid= $("#checkTypeId").val("");
-        location.href='outwarehouseAddServlet.lovo'
+        // location.href='outwarehouseAddServlet.lovo'
     });
 
     //移除按钮
@@ -378,10 +382,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var drugNames=$("#drugName").val();
             var  SonTy = $("#checkType").val();
             var currentPages=$("#currentPage").val();
-            $.post('OutWareHouseAddObjServlet.lovo',{'PageTag':SonTy,"drugCureType":drugCureTypes,"drugType":drugTypes,"drugName":drugNames,"currentPage":currentPages},function(resultHtml){
+            $.post('outwarehouseAddObjServlet.lovo',{'PageTag':SonTy,"drugCureType":drugCureTypes,"drugType":drugTypes,"drugName":drugNames,"currentPage":currentPages},function(resultHtml){
             var JSonobj=  eval("("+resultHtml+")")
             //$("#fatherTBodyId").append(getFatherTableHtml(JSonobj));
-            $("#MotaiTableView").html(getSonTableHtml(JSonobj))
+            //     getMaxPageAndSonCurrenPage(JSonobj,tag);
+            $("#MotaiTableView").html(getSonTableHtml(JSonobj));
+
             <%--//拼接模态框内容--%>
             });
         }  <%--}--%>
@@ -424,7 +430,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             str+="<td>"+JSonObj[i].drugName+"</td>";
             str+="<td>"+JSonObj[i].drugType+"</td>";
             str+="<td>"+JSonObj[i].drugCureType+"</td>";
-            str+="<td><input type='number'   onblur='getMax(this)' value='1' name='DrugCounts'><span style='color: red'></span></td>";
+            str+="<td><input style='' type='number' onblur='getMax(this)' value='1' name='DrugCounts'><span style='color: red'></span></td>";
             str+="<td hidden><input type='hidden' name='AlldrugId' class='fatherClassId' value='"+JSonObj[i].drugId+"'></td>"
             str+="<td hidden><input type='number' class='MaxNum' value='"+JSonObj[i].drugNum+"'></td>"
             str+="</tr>";
@@ -465,14 +471,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         // alert(sev)
       var currentCount=   $(obj).val();
       var maxCount= $(obj).parent().next().next().children().val()
+        currentCount=  parseInt(currentCount)
+        maxCount=  parseInt(maxCount)
+        // alert(currentCount)
         //alert(maxCount)
         if(currentCount>maxCount){
             $(obj).next().text("最多可以领取"+maxCount+"个")
+            //alert(currentCount)
+            $(obj).val(1)
+            return
+        }
+        if(null==currentCount||0==currentCount){
             $(obj).val(1)
         }
         else{
+            alert(currentCount)
             $(obj).next().html("")
-
         }
     }
 
@@ -537,7 +551,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       return sStr;
   }
 
+  function getMaxPageAndSonCurrenPage(JsonObj,tag) {
+        //当前页数默认为1
+      var CurrentPageCounts=   $("#sonCurrentPage").val()
 
+  if(null==CurrentPageCounts||''==CurrentPageCounts){
+      CurrentPageCounts=1;
+      $("#sonCurrentPage").val(1);
+  }
+        //得到数据行数
+      var CellCounts=JsonObj.length
+      //alert(CellCounts)
+      //得到最大页数
+      var MaxPageCounts=1;
+      if(CellCounts%6==0){
+          MaxPageCounts=CellCounts/6;
+      }
+      else{
+          MaxPageCounts=CellCounts%6+1
+      }
+      var newx=SpiltPage(CurrentPageCounts,tag);
+      $("#sonCurrentPage").val(SpiltPage(CurrentPageCounts,tag,MaxPageCounts));
+  }
+
+  //分页得到当前页
+  function SpiltPage(CurrentPageCounts,tag,MaxPageCounts) {
+        var newCurrentPageCounts=CurrentPageCounts;
+      switch (tag) {
+          case "next":
+              if (newCurrentPageCounts+1>MaxPageCounts)
+              {  newCurrentPageCounts=MaxPageCounts;}
+              else{
+                  newCurrentPageCounts+=1;
+              }
+              break;
+          case 'prev':
+              if(newCurrentPageCounts<2){
+                  return;
+          }
+              else{
+                  newCurrentPageCounts= newCurrentPageCounts-1
+              }
+           break;
+          case 'last':
+              if(newCurrentPageCounts+1>MaxPageCounts){
+                  return;
+              }
+              else{
+                  newCurrentPageCounts= newCurrentPageCounts+1
+              }
+              break;
+          default:
+              if(newCurrentPageCounts>MaxPageCounts){
+                  return;
+              }
+              newCurrentPageCounts= $("#sonCurrentPage").val();
+      }
+      return newCurrentPageCounts;
+  }
 </script>
 
 

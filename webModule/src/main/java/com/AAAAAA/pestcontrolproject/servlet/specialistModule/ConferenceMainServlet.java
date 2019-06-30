@@ -35,10 +35,9 @@ public class ConferenceMainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //初始化界面
         String findEvent = req.getParameter("findEvent");//会商ID
-        String addResult1 = req.getParameter("addResult1");//添加、返回
-        String conferenceResult1 = req.getParameter("conferenceResult");
-
-        if (null == addResult1 || "".equals(addResult1)) {
+        String addResultOrRevert = req.getParameter("addResultOrRevert");//添加、返回
+        String conferenceResult1 = req.getParameter("conferenceResult");//会商结果
+        if (null == addResultOrRevert || "".equals(addResultOrRevert)) {
             ConferenceDto conferenceDto = service.findEventByConferenceId(findEvent);
             //得到事件记录对象会审的结果集合
             List<ConferenceResult> resultList = resultService.findConferenceByConferenceId(findEvent);
@@ -50,22 +49,26 @@ public class ConferenceMainServlet extends HttpServlet {
             req.setAttribute("resultList", resultList);
             req.setAttribute("specialistList", specialistList);
             req.getRequestDispatcher("page/specialistModule/ConferenceMain.jsp").forward(req, resp);
-        } else if ("addResult1".equals(addResult1)) {
+        } else if ("resultAdd".equals(addResultOrRevert)) {
             //添加结果
             ConferenceResult conferenceResult = new ConferenceResult();
             conferenceResult.setConferenceDate(new Date(System.currentTimeMillis()).toString());//得到当前时间
             conferenceResult.setConferenceResult(conferenceResult1);
-            conferenceResult.setConferenceId(findEvent);
+            conferenceResult.setConferenceId(findEvent);//会商ID
             resultService.addConferenceResult(conferenceResult);//添加事件结果
             //得到参与专家
             String resultId = resultService.findResultByConference(findEvent);//得到结果ID
             String specialist = req.getParameter("specialist");//专家ID字符串
+
             String[] str = specialist.split("\\,");
+            for (String s : str) {
+                System.out.println(s);
+            }
             for (int i = 0; i < str.length; i++) {
                 resultSpecialistService.addResultSpecialist(resultId, str[i]);
             }
             resp.sendRedirect("conferenceMain");
-        } else if ("revert".equals(addResult1)) {
+        } else if ("revert".equals(addResultOrRevert)) {
             //点击返回
             //重定向到ConferenceEvent.jsp
             resp.sendRedirect("conferenceEvent");

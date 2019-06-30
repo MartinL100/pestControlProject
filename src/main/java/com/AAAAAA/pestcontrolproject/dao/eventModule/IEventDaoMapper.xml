@@ -28,7 +28,7 @@
                 and event_Id=#{eventId}
             </if>
              <if test="eventName!=null and eventName!=''">
-                and event_Name=#{eventName}
+                and event_Name like  concat('%',#{eventName},'%')
              </if>
             <if test="disasterStage!=null">
                and disaster_stage=#{disasterStage}

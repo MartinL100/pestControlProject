@@ -157,8 +157,7 @@
 <!--龚亮mapper配置部分-->
 
 
-<!--舒俊益mapper配置部分-->
-<servlet>
+<!--舒俊益mapper配置部分--> <servlet>
     <servlet-name>eventMainServlet</servlet-name>
     <servlet-class>com.AAAAAA.pestcontrolproject.servlet.eventModule.eventMainServlet</servlet-class>
 </servlet>
@@ -216,6 +215,7 @@
     <servlet-name>eventMainServlet</servlet-name>
     <url-pattern>/eventMainServlet</url-pattern>
 </servlet-mapping>
+
 <!--舒俊益mapper配置部分-->
 
 

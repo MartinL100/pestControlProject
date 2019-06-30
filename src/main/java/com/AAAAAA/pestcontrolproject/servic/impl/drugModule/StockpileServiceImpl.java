@@ -41,7 +41,7 @@ public class StockpileServiceImpl implements IStockpileService {
         int id=dao.saveStockpileDrug(vo);
         session.commit();
         session.close();
-        return id;
+        return vo.getStockpileId();
     }
 
     @Override
@@ -60,10 +60,10 @@ public class StockpileServiceImpl implements IStockpileService {
         int count= drugdao.getDrugById(DrugVo.getDrugId()).getDrugNum();
         IStockpileDao dao =session.getMapper(IStockpileDao.class);
         if(count-DrugVo.getStockpileNum()>=0){
-         dao.addStockpileDrug(DrugVo);
+         int x=dao.addStockpileDrug(DrugVo);
          session.commit();
          session.close();
-         return 1;
+         return DrugVo.getDrugId();
       }
         return -1;
     }

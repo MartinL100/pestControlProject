@@ -64,7 +64,7 @@ public class OutWareHouseAddServlet extends HttpServlet {
                 startIndex = 0;
                 map.put("startIndex", 0);
             } else {
-                map.put("startIndex", mapx.get(startIndex));
+                map.put("startIndex", mapx.get("startIndex"));
             }
             map.put("rowNum", 5);
             //查询物品集合
@@ -119,34 +119,39 @@ public class OutWareHouseAddServlet extends HttpServlet {
              String[] countNumArr=  request.getParameterValues("DrugCounts");
              String[] drugIdArr= request.getParameterValues("AlldrugId");
              TUser user= (TUser) request.getSession().getAttribute("userObj");
+             if(null==user){
+                 response.sendRedirect("loginServlet");
+                 return;
+             }
              String classID= request.getParameter("SelectedClassName");
              long classid=Integer.parseInt(classID);
-            int stoID=0;
             if(null!=countNumArr&&null!=drugIdArr){
                 //得到当前用户id
-//            long userId=user.getUserId();
-//           String RealName= user.getRealName();
-               long userId=1;
+           long userId=user.getUserId();
+           String RealName= user.getRealName();
+              // long userId=1;
                 StockpileVo vo= new StockpileVo();
                 vo.setStockpileUserId(userId);
                 vo.setStockpileClassId(classid);
                 //得到新建的订单的id
-               stoID= stockpileService.saveStockpileDrug(vo);
+              int stoID= stockpileService.saveStockpileDrug(vo);
                //将得到数据遍历出来 依次添加中间表数据
                for (int i=0;i<countNumArr.length;i++){
-                  int count=   Integer.parseInt(countNumArr[i]);
-                  int drugId=Integer.parseInt(drugIdArr[i]);
+                  int count=  Integer.parseInt(countNumArr[i]);
+                   int drugId=Integer.parseInt(drugIdArr[i]);
                    StockpileDrugVo drugVo=new StockpileDrugVo();
                    drugVo.setDrugId(drugId);
                    drugVo.setStockpileId(stoID);
                    drugVo.setStockpileNum(count);
                  int resultCount=  stockpileService.addStockpileDrug(drugVo);
+                   //System.out.println(resultCount);
                }
                //添加完毕
+                response.sendRedirect("outwarehousePanelServlet.lovo");
             }
 
              else{
-                return;
+                response.sendRedirect("outwarehouseAddServlet.lovo");
             }
          }
 

@@ -50,7 +50,7 @@
                     <div class="layui-form-item">
                         <div class="layui-inline" style="position: relative;left:15px">
                             <label class="layui-form-label">灾区图片：   </label>
-                            <img src="${event.photoPath}" style="width: 120px;height: 140px"><p/>
+                            <img src="/img/${event.photoPath}" style="width: 120px;height: 140px"><p/>
                         </div>
                     </div>
 
@@ -108,14 +108,14 @@
         $("#hide").hide();
        var findid=$("#findId").val();
         $("#findWaySelect").val(findid);
-
-
     })
   $("#changeButton").click(function () {
       $("#plan1").val( $("#plan").val());
       if($("#plan").val().length!=0){
-        alert($("#disasterStage").val());
       $("#f1").submit();}
+      else {
+          sendErroInfo("修改项不能为空！")
+      }
   })
 
 

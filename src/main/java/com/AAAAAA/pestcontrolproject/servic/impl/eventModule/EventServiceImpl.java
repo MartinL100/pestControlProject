@@ -1,7 +1,8 @@
-package com.AAAAAA.pestcontrolproject.servic.eventModule;
+package com.AAAAAA.pestcontrolproject.servic.impl.eventModule;
 
 import com.AAAAAA.pestcontrolproject.dao.eventModule.IEventDao;
 import com.AAAAAA.pestcontrolproject.entity.eventModule.Event;
+import com.AAAAAA.pestcontrolproject.servic.eventModule.IEventService;
 import com.AAAAAA.pestcontrolproject.util.GetSession;
 import org.apache.ibatis.session.SqlSession;
 

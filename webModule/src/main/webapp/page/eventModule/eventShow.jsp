@@ -47,7 +47,7 @@
                         <div class="layui-inline" style="position: relative;left:15px">
                             <label class="layui-form-label">灾区图片：   </label>
                             <div style="position: relative;left:120px;top: -20px">
-                                <img  style="width: 120px;height: 130px" src=${event.photoPath}><p/></div>
+                                <img  style="width: 120px;height: 130px;margin-left: -3cm;margin-top: 1cm" src="/img/${event.photoPath}"><p/></div>
                             <label class="layui-form-label" style="width: 60%;text-align:left;">事件描述：${event.eventDescribe}   </label>
                             <label class="layui-form-label" style="width: 60%;text-align:left;">初步损失：${event.eventLoss}   </label>
                             <label class="layui-form-label" style="width: 60%;text-align:left;">专家建议：${event.plan}   </label>
@@ -75,7 +75,19 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                            <c:forEach items="${conferenceResults}" var="conf">
+                                <td>
+                                        ${conf.conferenceDate}
+                                </td>
+                                <td>
+                                       <c:forEach items="${conf.specialistList}" var="sp">
+                                           ${sp.specialistName}&nbsp;
+                                       </c:forEach>
+                                </td>
+                                <td>
+                                        ${conf.conferenceResult}
+                                </td>
+                            </c:forEach>
 
                         </tbody>
                     </table>

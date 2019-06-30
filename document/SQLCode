@@ -42,13 +42,22 @@ alter table drug_stockpile add constraint FK_Reference_13 foreign key (stockpile
       references sys_stockpile (stockpile_id) on delete restrict on update restrict;
 
  创建订单表视图
-CREATE v_drug_tockpile as
+/*CREATE v_drug_tockpile as
 SELECT DISTINCT d.drug_id,d.drug_name,d.drug_type,d.drug_cure_type,d.drug_use_way,
 s.stockpile_id,
 sd.stockpile_num
 from  drug_stockpile s,sys_drug d,drug_stockpile sd
 where s.drug_id=d.drug_id and s.stockpile_id=sd.stockpile_id
- GROUP BY d.drug_id
+ GROUP BY d.drug_id*/
+
+CREATE view  v_drug_tockpile as
+SELECT   d.drug_id,d.drug_name,d.drug_type,d.drug_cure_type,d.drug_use_way,
+s.stockpile_id,
+sd.stockpile_num FROM drug_stockpile sd,sys_stockpile s,sys_drug d where
+sd.stockpile_id=s.stockpile_id and d.drug_id=sd.drug_id
+
+
+
 
 /*==============================================================*/
 /* Table: sys_stockpile   出库信息表                                      */
@@ -59,7 +68,6 @@ create table sys_stockpile
    stockpile_class      bigint,
    stockpile_man        bigint,
    stockpile_date       varchar(48),
-   stockpile_num        int,
    primary key (stockpile_id)
 );
 
@@ -160,6 +168,10 @@ create table result_specialist
    result_id            bigint comment '结果ID',
    specialist_id        bigint comment '专家ID'
 );
+
+
+
+
 alter table result_specialist add constraint FK_Reference_10 foreign key (result_id)
       references conference_result (result_id) on delete restrict on update restrict;
 
@@ -175,7 +187,7 @@ alter table result_specialist add constraint FK_Reference_11 foreign key (specia
 alter table conference_result comment '专家会商结果表';
 create table conference_result
 (
-   result_id            bigint not null comment '结果ID',
+   result_id            bigint not null auto_increment comment '结果ID',
    conference_id        bigint comment '专家会商ID',
    conference_date      varchar(48) comment '专家会审日期',
    conference_result    text comment '专家会商结果',

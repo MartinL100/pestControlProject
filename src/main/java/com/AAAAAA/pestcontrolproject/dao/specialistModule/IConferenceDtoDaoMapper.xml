@@ -3,7 +3,7 @@
 <mapper namespace="com.AAAAAA.pestcontrolproject.dao.specialistModule.IConferenceDtoDao">
     <resultMap id="conferenceMap" type="com.AAAAAA.pestcontrolproject.entity.Dto.ConferenceDto">
         <id column="conference_id" property="conferenceId"></id>
-        <result column="even_tName" property="eventName"></result>
+        <result column="event_Name" property="eventName"></result>
         <result column="occur_Time" property="occurTime"></result>
         <result column="photo_Path" property="photoPath"></result>
         <result column="area_name" property="areaName"></result>

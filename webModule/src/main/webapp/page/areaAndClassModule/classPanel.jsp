@@ -135,10 +135,11 @@
         //从隐藏div中获取选中id
         var userId=$("#userId").val();
         if(userId==null||""==userId){
-            $("#erroInfo").text("请点击需要删除的行");
-            setTimeout(function(){
-                $("#erroInfo").hide();
-            }, 3000);
+            // $("#erroInfo").text("请点击需要删除的行");
+            // setTimeout(function(){
+            //     $("#erroInfo").hide();
+            // }, 3000);
+            sendErroInfo("请点击需要删除的行");
         }else {
             $("#userIdRecord").submit();
         }
@@ -152,10 +153,12 @@
         //从隐藏div中获取选中id
         var userId=$("#userId").val();
         if(userId==null||""==userId){
-            $("#erroInfo").text("请点击需要删除的行");
-            setTimeout(function(){
-                $("#erroInfo").hide();
-            }, 3000);
+            // $("#erroInfo").text("请点击需要修改的行");
+            // setTimeout(function(){
+            //     $("#erroInfo").hide();
+            // }, 3000);
+
+            sendErroInfo("请点击需要修改的行");
         }else {
             $("#userIdRecord").submit();
         }
