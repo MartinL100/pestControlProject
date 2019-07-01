@@ -89,6 +89,7 @@ public class eventAddServlet extends HttpServlet {
                 fileName= date.getTime()+FileStringInfo.getNewFileName(fileName);
 
                 //把文件名放入到实体对象中
+                System.out.println(fileName);
                 event.setPhotoPath(fileName);
 
                 OutputStream out=new FileOutputStream(afterPathDir+ fileName );
