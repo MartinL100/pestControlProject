@@ -68,7 +68,7 @@
         <div class="layui-inline" >
             <label>发现途径</label>
             <div class="layui-input-inline" style="width:65%;">
-                <select id="findWaySelect" name="findWay"  lay-verify="required" lay-search="" >
+                <select id="findWaySelect" name="disasterStage"  lay-verify="required" lay-search="" >
                     <option value="">直接选择或搜索选择</option>
                     <option value="1">已得到控制</option>
                     <option value="2">防治中</option>
