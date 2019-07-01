@@ -33,7 +33,8 @@
                             <div class="layui-inline" style="float: left;">
                                 <label class="layui-form-label" style="text-align:left;margin-top: 25px">电话</label>
                                 <div class="layui-input-inline" style="margin-top: 25px">
-                                    <input value="<%=basePathIMG%>${specialistObj.specialistPath}" id="telId" type="text" name="specialistTel" autocomplete="off"
+                                    <input value="${specialistObj.specialistTel}" id="telId" type="text"
+                                           name="specialistTel" autocomplete="off"
                                            class="layui-input">
                                 </div>
                             </div>
@@ -55,7 +56,8 @@
                                 <div class="layui-inline">
                                     <label class="layui-form-label" style="text-align:left;margin-top: 25px">职务</label>
                                     <div class="layui-input-inline" style="margin-top: 25px">
-                                        <input value="${specialistObj.specialistDuty}" id="dutyId" type="text" name="specialistDuty" autocomplete="off"
+                                        <input value="${specialistObj.specialistDuty}" id="dutyId" type="text"
+                                               name="specialistDuty" autocomplete="off"
                                                class="layui-input">
                                     </div>
                                 </div>
@@ -63,14 +65,16 @@
                                     <label class="layui-form-label"
                                            style="text-align:left;margin-top: 25px">工作单位</label>
                                     <div class="layui-input-inline" style="margin-top: 25px">
-                                        <input value="${specialistObj.specialistDuty}" id="unitsId" type="text" name="specialistUnits" autocomplete="off"
+                                        <input value="${specialistObj.specialistUnits}" id="unitsId" type="text"
+                                               name="specialistUnits" autocomplete="off"
                                                class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label" style="text-align:left;margin-top: 25px">邮箱</label>
                                     <div class="layui-input-inline" style="margin-top: 25px">
-                                        <input value="${specialistObj.specialistEmail}" id="emailId" type="text" name="specialistEmail" autocomplete="off"
+                                        <input value="${specialistObj.specialistEmail}" id="emailId" type="text"
+                                               name="specialistEmail" autocomplete="off"
                                                class="layui-input">
                                     </div>
                                 </div>
@@ -98,38 +102,30 @@
         var telTest = $("#telId").val();
         var dutyTest = $("#dutyId").val();
         var unitsTest = $("#unitsId").val();
-        var emailTest = $("#siteId").val();
+        var emailTest = $("#emailId").val();
         var mPattern = /^1[34578]\d{9}$/;
         var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        var bl = true;
-        if (telTest.test(mPattern)) {
+
+        if (!mPattern.test(telTest)) {
             sendErroInfo("请输入合法手机号");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
         if (null == dutyTest || dutyTest.length == 0) {
             sendErroInfo("职务不能为空");
-            bl = false;
-        }else {
-            bl=true;
+            return;
+
         }
         if (null == unitsTest || unitsTest.length == 0) {
             sendErroInfo("工作单位不能为空");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
-        if (emailTest.test(ePattern)) {
+        if (!ePattern.test(emailTest)) {
             sendErroInfo("请输入正确的邮箱");
-            bl = false;
-        }else {
-            bl=true;
+            return;
+
         }
-        if (bl) {
-            $("#updateId").val(r);
-            $("#fid").submit();
-        }
+        $("#updateId").val(r);
+        $("#fid").submit();
     }
 
     layui.config({

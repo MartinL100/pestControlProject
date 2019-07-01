@@ -28,7 +28,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">姓名</label>
                         <div class="layui-input-inline">
-                            <input  type="text" name="specialistName" autocomplete="off" id="nameId"
+                            <input type="text" name="specialistName" autocomplete="off" id="nameId"
                                    class="layui-input">
                         </div>
                     </div>
@@ -126,62 +126,51 @@
 
     function add() {
         var nameTest = $("#nameId").val();
+        var birthdayTest = $("#LAY-component-form-group-date").val();
         var specialityTest = $("#specialityId").val();
         var dutyTest = $("#dutyId").val();
         var telTest = $("#telId").val();
         var unitsTest = $("#unitsId").val();
         var siteTest = $("#siteId").val();
-        var emailTest = $("#siteId").val();
+        var emailTest = $("#emailId").val();
         var mPattern = /^1[34578]\d{9}$/;
         var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        var bl = true;
+        var dP2 = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
         if (null == nameTest || nameTest.length == 0) {
             sendErroInfo("姓名不能为空");
-            bl = false;
-
-        }else {
-            bl=true;
+            return;
         }
-        if (null == birthdayTest || birthdayTest.length == 0) {
-            sendErroInfo("生日不能为空");
-            bl = false;
-        }else {
-            bl=true;
+        if (!dP2.test(birthdayTest)) {
+            sendErroInfo("请输入正确格式的生日XXXX-XX-XX")
+            return;
         }
-
+        if (null == specialityTest || specialityTest.length == 0) {
+            sendErroInfo("专长不能为空");
+            return;
+        }
         if (null == dutyTest || dutyTest.length == 0) {
             sendErroInfo("职务不能为空");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
-        if (telTest.test(mPattern)) {
+        if (!mPattern.test(telTest)) {
             sendErroInfo("请输入合法手机号");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
         if (null == unitsTest || unitsTest.length == 0) {
             sendErroInfo("工作单位不能为空");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
         if (null == siteTest || siteTest.length == 0) {
             sendErroInfo("通讯地址不能为空");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
-        if (emailTest.test(ePattern)) {
+        if (!ePattern.test(emailTest)) {
             sendErroInfo("请输入正确的邮箱");
-            bl = false;
-        }else {
-            bl=true;
+            return;
         }
-        if (bl) {
-            $("#fid").submit();
-        }
+
+        $("#fid").submit();
+
     }
 
     layui.config({
