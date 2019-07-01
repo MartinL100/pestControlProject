@@ -12,12 +12,12 @@
     </resultMap>
 
    <select id="getListPageDrugByMap" parameterType="map" resultMap="DrugMap">
-       select  *from  sys_drug where 1=1
+       select  *  from  sys_drug where 1=1
        <if test="drugName !=null and drugName !=''">
            and drug_name=#{drugName}
        </if>
        <if test="drugCureType !=null and drugCureType !='' and '不限'!=drugCureType">
-           and drug_cure_type= (select type_id from sys_type where type_val= #{drugCureType})
+           and drug_cure_type = (select type_id from sys_type where type_val= #{drugCureType})
        </if>
        <if test="drugType !=null and drugType!='' and '不限'!=drugType ">
            and drug_type=(select type_id from sys_type where type_val= #{drugType})

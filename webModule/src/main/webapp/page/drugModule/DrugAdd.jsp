@@ -16,7 +16,7 @@
     <%--<link rel="stylesheet" href="/web/layuiadmin/layui/css/layui.css" type="text/css" media="all">--%>
     <%--<link rel="stylesheet" href="/web/layuiadmin/style/admin.css" type="text/css" media="all">--%>
     <%--<script src="/web/lib/jquery.js" type="text/javascript"></script>--%>
-    <%@include file="../../head.jsp"%>
+    <%@include file="../../head.jsp" %>
 </head>
 <body>
 
@@ -91,13 +91,11 @@
     </div>
 </div>
 
-<script src="/web/layuiadmin/layui/layui.js">
 
-</script>
 
 <script>
     layui.config({
-        base: '/web/layuiadmin/' //静态资源所在路径
+        base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'form', 'laydate'], function(){

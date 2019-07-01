@@ -77,7 +77,7 @@ public class DrugPanelPageServlet extends HttpServlet {
               map.put("rowNum",5);
              //查询物品集合
              List<SysDrug> drugList=drugService.getListPageDrugByMap(map);
-             //得到下拉框集合
+            //得到下拉框集合
              List<SysSelectedType> drugCureTypeList= typeService.getSelectValueListByTypeName("drugCureType");
              List<SysSelectedType> drugTypeList=  typeService.getSelectValueListByTypeName("drugType");
              request.setAttribute("drugCureTypeList",drugCureTypeList);

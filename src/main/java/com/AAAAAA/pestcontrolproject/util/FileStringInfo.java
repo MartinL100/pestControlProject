@@ -1,8 +1,8 @@
 package com.AAAAAA.pestcontrolproject.util;
 
 public class FileStringInfo {
-    public  static String FILEPATH="F:/Img/";
-    public  static String filePath="F:/Img/";
+    public  static String FILEPATH="D:/img/";
+    public  static String filePath="D:/img/";
     public  static final  String USERORPASSERROR="用户名或密码不能为空";
     public  static final  String  ERRORFILE="上传文件失败！！";
 

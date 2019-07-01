@@ -21,7 +21,7 @@ public class PowerFilter implements Filter {
         String servletPath=request.getServletPath();
         servletPath=servletPath.substring(1,servletPath.length());
         //判断如果是登录servlet则放行
-        if("loginServlet".equals(servletPath)||"index.jsp".equals(servletPath)||servletPath.endsWith(".js")||servletPath.endsWith(".jsp")){
+        if("loginServlet".equals(servletPath)||"index.jsp".equals(servletPath)||servletPath.endsWith(".js")||servletPath.contains(".jsp")||servletPath.contains(".css")||servletPath.contains("jpg")||servletPath.contains("png")){
             chain.doFilter(request,response);
             return;
         }
