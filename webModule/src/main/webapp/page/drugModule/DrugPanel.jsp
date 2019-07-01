@@ -95,7 +95,7 @@
 
 
 
-                        <div style="border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -25px">
+                        <div style="border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:420px;top: -60px">
                             <span style=" position:absolute;top:-35px;left:30px">查询药剂信息</span>
                             <span style=" position:absolute;top:0px;left:30px">药剂名称</span>
                             <span style=" position:absolute;top:60px;left:30px">防治类型</span>
@@ -122,8 +122,8 @@
                     <!-- 按钮开始 -->
                     <div class="layui-card-body">
                         <div class="layui-btn-container" style="position: relative;left:0px;top: -55px">
-                            <button id="addBtn" type="button" class="layui-btn layui-btn-primary" style=" position:relative;left:80px;top: -120px">添加药剂</button>
-                            <button id="findBtn" type="submit" class="layui-btn layui-btn-primary" style=" position:absolute;top:-25px;left:550px">查询</button>
+                            <button id="addBtn" type="button" class="layui-btn layui-btn-primary" style=" position:relative;left:80px;top: -150px">添加药剂</button>
+                            <button id="findBtn" type="submit" class="layui-btn layui-btn-primary" style=" position:absolute;top:-60px;left:580px">查询</button>
                         </div>
 
                     </div>
@@ -147,6 +147,7 @@
     $("#addBtn").click(function () {
         $("#checkType").val("addBtn")
         $("#addInformationFromId").submit();
+        $("#checkType").val("")
 
     });
 

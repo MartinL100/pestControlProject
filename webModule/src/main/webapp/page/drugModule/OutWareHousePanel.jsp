@@ -121,7 +121,7 @@
                             <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style=" position:relative;left:100px" id="findByIDbtn">查看出库信息</button>
                         </div>
                     </div>
-                    <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:380px;top: -130px">
+                    <div style="margin-top: 40px;border: solid #b2b2b2;width: 300px;height: 210px;position:relative;left:420px;top: -200px">
                         <span style=" position:absolute;top:-35px;left:30px">查询出库信息</span>
                         <span style=" position:absolute;top:20px;left:30px">起始时间</span>
                         <input  name="startTime" type="date" style=" position:absolute;top:30px;left:140px"/>

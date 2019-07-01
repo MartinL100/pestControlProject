@@ -21,12 +21,23 @@
                 <div class="layui-input-inline">
                     <div class="layui-form-item">
                         <label class="layui-form-label">名称</label>
-                        <div class="layui-input-inline">
-                            <input type="articleName" name="articleName" lay-verify="pass" placeholder="请输入物品名称" autocomplete="off" class="layui-input">
+                        <div class="layui-input-inline"  style="width: 212px;height: 32px">
+                            <input  onblur="verifyContent(this)"   type="articleName" id="drugName" name="drugName" lay-verify="pass" placeholder="请输入物品名称" autocomplete="off" class="layui-input">
+                            <span style="color: red;position: relative;top: -25px;left: 215px;font-size: 18px"></span>
                         </div>
                     </div>
                 </div>
 
+
+                <!--<div class="layui-input-inline">-->
+                    <!--<div class="layui-form-item">-->
+                        <!--<label class="layui-form-label">名称</label>-->
+                        <!--<div class="layui-input-inline">-->
+                            <!--<input onblur="verifyContent(this)"    style="width: 210px;height: 38px" type="articleName" id="drugName" name="drugName" lay-verify="pass" placeholder="请输入物品名称" autocomplete="off" class="layui-input">-->
+                            <!--<span style="color: red"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
 
                 <div class="layui-form-item">
@@ -34,9 +45,9 @@
                     <div class="layui-input-block">
                         <div class="layui-inline">
                             <select name="articleCureType">
-                                <option value="druy">病害</option>
-                                <option value="article">虫害</option>
-                                <option value="article">鼠害</option>
+                                <c:forEach items="${drugCureTypeList}" var="cureType">
+                                <!--<option value="${cureType.getTypeId()}">${cureType.getTypeVal()}</option>-->
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -48,9 +59,10 @@
                     <label class="layui-form-label">类别</label>
                     <div class="layui-input-block">
                         <div class="layui-inline">
-                            <select name="articleType">
-                                <option value="druy">药剂</option>
-                                <option value="article">器械</option>
+                            <select type="text" id="drugType" name="drugType" style="display: block; position:absolute;top:128px;left:105px;width: 58%;height: 22px">
+                                <c:forEach items="${drugTypeList}" var="drugType">
+                                    <option value="${drugType.getTypeId()}">${drugType.getTypeVal()}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -60,14 +72,23 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">主要用途</label>
                     <div class="layui-input-block">
-                        <textarea id="purpose" name="text" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea onblur="verifyContent(this)"  class="myText" style="width: 350px;height: 200px" id="purpose" name="DrugUseWay" placeholder="请输入主要内容" class="layui-textarea"></textarea>
+                        <span style="color: red;position: relative;top: -25px;font-size: 18px"></span>
                     </div>
                 </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">数量</label>
+                    <div class="layui-input-block">
+                        <input onblur="verifyContent(this)" value="1" type="number" placeholder="请输入数量" id="drugNum" name="drugNum" style="width: 205px;height: 34px">
+                        <span style="color: red;position: relative;top: -25px;left: 215px;font-size: 18px"></span>
+                    </div>
+                </div>
+
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">
-
-                            <button type="button" class="layui-btn layui-btn-primary">添加</button>
+                            <button style=" position:absolute;top: -20px; left:200px" type="button" class="layui-btn layui-btn-primary" id="addBtn">添加</button>
                         </div>
                     </div>
                 </div>
@@ -77,10 +98,24 @@
 </div>
 
 <script src="../../layuiadmin/layui/layui.js">
-    alert(123)
-</script>
 
+</script>
 <script>
+
+    function verifyContent(obj){
+        var placeholder=  $(obj).attr("placeholder")
+        var  txt=$(obj).val();
+        if(''==txt){
+            $(obj).attr("placeholder",placeholder)
+            $(obj).next().eq(0).text(placeholder)
+        }
+        else{
+            $(obj).next().eq(0).text("")
+        }
+
+    }
+
+
     layui.config({
         base: '../../layuiadmin/' //静态资源所在路径
     }).extend({
@@ -98,7 +133,25 @@
             elem: '#LAY-component-form-group-date'
         });
     });
-</script>
 
+    $("#addBtn").click(function () {
+        var drugName= $("#drugName").val()
+        var drugCureType= $("#drugCureType").val()
+        var drugType= $("#drugType").val()
+        var drugNum= $("#drugNum").val()
+        if(''==drugName){
+            $("#drugName").next().eq(0).text("请输入名字")
+        }
+        if (''!=drugName&&''!=drugNum&&drugNum>0){
+            // alert(drugName+"   "+drugCureType+"  "+drugType+"   "+drugNum)
+            $("#AddFormId").submit();
+            $("#AddFormId").reset();
+        }
+        else{
+            return;
+        }
+        // location.href="../../page/drugModule/drugPanel.html"
+    })
+</script>
 </body>
 </html>

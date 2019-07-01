@@ -14,8 +14,8 @@
    <select id="getListPageDrugByMap" parameterType="map" resultMap="DrugMap">
        select  *  from  sys_drug where 1=1
        <if test="drugName !=null and drugName !=''">
-<!--         and drug_name=#{drugName} -->
-       and drug_name like concat('%',#{drugName},'%')
+<!--           and drug_name=#{drugName} -->
+        and drug_name like concat('%',#{drugName},'%')
        </if>
        <if test="drugCureType !=null and drugCureType !='' and '不限'!=drugCureType">
            and drug_cure_type = (select type_id from sys_type where type_val= #{drugCureType})

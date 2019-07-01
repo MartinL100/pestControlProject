@@ -31,6 +31,7 @@
                         <label class="layui-form-label">名称</label>
                         <div class="layui-input-inline">
                             <input style="width: 212px" onblur="verifyContent(this)" type="articleName" id="drugName" name="drugName" lay-verify="pass" placeholder="请输入物品名称" autocomplete="off" class="layui-input">
+                            <span style="color: red;position: relative;top: -25px;left: 215px;font-size: 18px"></span>
                         </div>
                     </div>
                 </div>
@@ -70,20 +71,21 @@
                     <label class="layui-form-label">主要用途</label>
                     <div class="layui-input-block">
                         <textarea onblur="verifyContent(this)" style="width: 350px;height: 200px" id="purpose" name="DrugUseWay" placeholder="请输入主要内容" class="layui-textarea"></textarea>
+                        <span style="color: red;position: relative;top: -25px;left:360px;font-size: 18px"></span>
                     </div>
                 </div>
 
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">数量</label>
                     <div class="layui-input-block">
-                        <input onblur="verifyContent(this)" type="number" placeholder="请输入数量" id="drugNum" name="drugNum" style="width: 205px;height: 34px">
-                   <span style="color: red"></span>
+                        <input value="1" onblur="verifyContent(this)" type="number" placeholder="请输入数量" id="drugNum" name="drugNum" style="width: 205px;height: 34px">
+                        <span style="color: red;top: -25px;left: 215px;font-size: 18px"></span>
                     </div>
                 </div>
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">
-                            <button style=" position:absolute;top: -80px; left:200px" type="button" class="layui-btn layui-btn-primary" id="addBtn">添加</button>
+                            <button style=" position:absolute;top: -50px; left:200px" type="button" class="layui-btn layui-btn-primary" id="addBtn">添加</button>
                         </div>
                     </div>
                 </div>
@@ -97,13 +99,19 @@
 <script>
 
     function verifyContent(obj){
-       var placeholder=  $(obj).attr("placeholder")
-       var  txt=$(obj).text();
-       if(''==txt){
-           $(obj).attr("placeholder",placeholder)
-       }
-       alert(placeholder)
+        var placeholder=  $(obj).attr("placeholder")
+        var  txt=$(obj).val();
+        if(''==txt){
+            $(obj).attr("placeholder",placeholder)
+            $(obj).next().eq(0).text(placeholder)
+            return;
+        }
+        else{
+            $(obj).next().eq(0).text("")
+        }
+
     }
+
 
 
     layui.config({

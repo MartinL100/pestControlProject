@@ -321,11 +321,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         if(null==cName&&''==cName){
             return;
         }
-        alert("开始进去Servlet")
+
         $("#checkTypeId").val("outBtn");
         var x= $("#checkTypeId").val();
         $("#addInformationFromId").submit();
-        alert(x)
         // trid= $("#checkTypeId").val("");
         // location.href='outwarehouseAddServlet.lovo'
     });
@@ -485,7 +484,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $(obj).val(1)
         }
         else{
-            alert(currentCount)
+           // alert(currentCount)
             $(obj).next().html("")
         }
     }
