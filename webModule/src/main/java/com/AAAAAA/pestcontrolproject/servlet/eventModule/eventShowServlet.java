@@ -49,7 +49,6 @@ public class eventShowServlet extends HttpServlet {
         request.setAttribute("disasterStage",util.findDisasterStage(event.getDisasterStage()+""));
         request.setAttribute("findWay",util.findWay(event.getFindWay()+""));
         request.setAttribute("disasterType",util.findType(event.getDisasterType()+""));
-
         //将对象放入request
         request.setAttribute("event",event);
 
@@ -64,13 +63,6 @@ public class eventShowServlet extends HttpServlet {
             Long i=tConferences.get(0).getConferenceId();
             int a=i.intValue();
             conferenceResults=iConferenceResultService.findConferenceByConferenceId(a+"");}
-//            List<ConferenceResult> conferenceResults=new ArrayList<>();
-//            ConferenceResult test=new ConferenceResult();
-//            List<TSpecialist> specialist= new ArrayList<>();
-//            TSpecialist special=new TSpecialist();
-//            specialist.add(special);
-//            test.setSpecialistList(specialist);
-//            conferenceResults.add(test);
 
             request.setAttribute("conferenceResults",conferenceResults);
             request.getRequestDispatcher("page/eventModule/eventShow.jsp").forward(request,response);

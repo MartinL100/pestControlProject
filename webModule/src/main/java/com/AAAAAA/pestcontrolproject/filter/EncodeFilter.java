@@ -21,7 +21,7 @@ public class EncodeFilter implements Filter {
         //获取请求名称
         String servletPath=req.getServletPath();
         //如果是jsp文件则放行
-            if(servletPath.endsWith("jsp")){
+            if(servletPath.contains("jsp")||servletPath.contains("css")){
                 chain.doFilter(request,response);
                 return;
             }
